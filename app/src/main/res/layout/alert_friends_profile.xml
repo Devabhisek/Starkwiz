@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/backhallow"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="16dp"></ImageView>
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="65dp"
+            android:src="@mipmap/starkwiz_scoreboard"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"></ImageView>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/searchhollow"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="16dp"></ImageView>
+
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="11dp"
+        app:cardElevation="11dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:src="@mipmap/person"
+                android:scaleType="centerCrop"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khusi Meher"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="22dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rourkela, Odisha"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"></TextView>
+
+            <LinearLayout
+                android:layout_width="49dp"
+                android:layout_height="5dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@color/theme_blue"></LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="22dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class 9"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mount Carmel School, Odisha"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"></TextView>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/hearthollow"
+            android:layout_weight="5"></ImageView>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"
+            android:src="@mipmap/starhollow"></ImageView>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/user_profile"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"></ImageView>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/sharehollow"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="5"></ImageView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:textColor="@color/theme_blue"
+        android:background="@drawable/rounded_button_white"
+        android:text="Follow"
+        android:layout_marginBottom="5dp"></Button>
+</LinearLayout>

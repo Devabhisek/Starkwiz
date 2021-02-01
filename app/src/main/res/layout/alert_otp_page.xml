@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="11dp"
+    android:layout_marginBottom="16dp"
+    android:backgroundTint="@color/white"
+    app:cardElevation="11dp"
+    app:cardCornerRadius="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone number Verification"
+                android:textSize="22dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/theme_blue"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We have sent you a 4 digit code\nnumber please enter below to Confirm."
+                android:gravity="center"
+                android:textColorHint="#bebebe"
+                android:textColor="@color/black"
+                android:layout_marginTop="11dp"></TextView>
+
+
+
+            <in.aabhasjindal.otptextview.OtpTextView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:textColor="#000000"
+                app:height="40dp"
+                app:width="40dp"
+                app:bar_enabled="true"
+                android:layout_gravity="center"
+                app:bar_height="2dp"
+                app:length="6"
+                app:otp_text_size="24dp"/>
+
+
+
+
+            <TextView
+                android:id="@+id/txt_otptimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="00.60"
+                android:gravity="center"
+                android:textColor="@color/theme_blue"
+                android:layout_marginTop="11dp"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@mipmap/reload"
+                    android:layout_marginLeft="116dp"></ImageView>
+
+
+                <TextView
+                    android:id="@+id/txtresendotp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resend OTP"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="11dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/theme_blue"></TextView>
+
+
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_alert_otpdone"
+                android:layout_width="220dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_button"
+                android:layout_marginTop="22dp"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="16dp"></Button>
+
+            <Button
+                android:id="@+id/btn_alert_editphnno"
+                android:layout_width="220dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bordee"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="11dp"
+                android:text="Edit Number"
+                android:textAllCaps="false"
+                android:textColor="@color/theme_blue"
+                android:textStyle="bold"
+                android:textSize="16dp"></Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

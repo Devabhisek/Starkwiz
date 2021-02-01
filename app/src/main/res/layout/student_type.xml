@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/linear_usertype">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="11dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We conduct monthly online Multiple choice \nQuestion (MCQ) Tests as Dynamos."
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student studying from Class 4 to 10 are only \neligible to join Starkwiz."
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="As a student will be able to appear \nDynamos of vital Subjects which have all your \nsyllabus covered as tests."
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Starkwiz have well curated optimized syllabus from\n ICSE and CBSE board of India."
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Starkwiz doesn't provide or support in-app tutorial so we promise you the best experience\n of MCQ test."
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_contiue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Continued..."
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
+                android:textSize="15dp"></TextView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearcontiue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Connect with your classmates and other students from all over India."
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Evaluate your knowledge by appearing Dynamos and Share your Achievements with others with ease."
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You will get complete evaluation of your test available for your review."
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="We curate best in class Question Set for you from well experienced so that you get more competative and  acknowledge with your syllabus."
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15dp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Collect Exclusive Starwiz rewards with your Achievementsm, yes! we have special rewards for you !."
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="15dp"></TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

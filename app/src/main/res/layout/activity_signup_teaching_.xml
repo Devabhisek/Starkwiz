@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.Signup_teaching_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/splash"></ImageView>
+
+        <TextView
+            android:id="@+id/txtpersonalfirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teaching"
+            android:layout_below="@+id/img_personal"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="55dp"
+            android:textColor="@color/oceanblue"
+            android:layout_marginTop="22dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtpersonalftwo"
+            android:layout_below="@+id/txtpersonalfirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="School and Board you are related to"
+            android:textColor="@color/theme_blue"
+            android:layout_marginTop="8dp"
+            android:textSize="19dp"
+            android:layout_marginLeft="55dp"></TextView>
+
+        <TextView
+            android:id="@+id/txt_studying_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="School Board"
+            android:textColor="@color/theme_blue"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="11dp"
+            android:textSize="19dp"
+            android:layout_below="@+id/txtpersonalftwo"></TextView>
+
+
+        <RadioGroup
+            android:id="@+id/linear_studying_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_studying_school"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="60dp">
+
+            <RadioButton
+                android:id="@+id/radio_teaching_icse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ICSE"
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teaching_cbse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CBSE "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="35dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/linear_styuding_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/linear_studying_school">
+
+            <EditText
+                android:id="@+id/et_personal_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginTop="18dp"
+                android:layout_weight="5"
+                android:background="@drawable/round_textview"
+                android:gravity="center_vertical"
+                android:hint="State"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="6dp"
+                android:paddingLeft="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="#bebebe"></EditText>
+
+            <EditText
+                android:id="@+id/et_personal_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:hint="City"
+                android:textColorHint="#bebebe"
+                android:textColor="@color/black"
+                android:layout_weight="5"
+
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="16dp"
+                android:paddingLeft="16dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/round_textview"></EditText>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_studying_district"
+            android:layout_below="@+id/linear_styuding_location"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="District/Block"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe"
+            android:paddingLeft="16dp"
+            android:gravity="center_vertical"
+            android:layout_marginRight="49dp"
+            android:background="@drawable/round_textview"></EditText>
+
+        <EditText
+            android:id="@+id/et_personal_schoolname"
+            android:layout_below="@+id/et_studying_district"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Name of your School"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe"
+            android:paddingLeft="16dp"
+            android:gravity="center_vertical"
+            android:layout_marginRight="49dp"
+            android:background="@drawable/round_textview"></EditText>
+
+        <TextView
+            android:id="@+id/txt_studying_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class you are studying now"
+            android:textColor="@color/theme_blue"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="11dp"
+            android:textSize="19dp"
+            android:layout_below="@+id/et_personal_schoolname"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/linear_studying_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_studying_class"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="11dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="60dp">
+
+            <RadioButton
+                android:id="@+id/radio_teahing_four"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:button="@null"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:paddingLeft="8dp"
+                android:text="4 "
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teahing_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teahing_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teahing_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/linear_studying_classes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_studying_class"
+            android:layout_marginLeft="60dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="60dp">
+
+            <RadioButton
+                android:id="@+id/radio_teahing_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teahing_nine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9 "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/radio_teahing_ten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="8dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/btn_signup_teaching"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/rounded_button"
+            android:text="Proceed"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_alignParentBottom="true"></Button>
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#000"
+    tools:context=".Activities.Achivement_Showcase_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toprl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="11dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/backhallow"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="16dp"></ImageView>
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="65dp"
+                android:src="@mipmap/starkwiz_scoreboard"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"></ImageView>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/searchhollow"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="16dp"></ImageView>
+
+
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_rl"
+            android:layout_below="@+id/toprl"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="16dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="330dp"
+                    android:layout_height="490dp"
+                    app:cardCornerRadius="11dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="11dp"
+                    app:cardElevation="11dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/grandmaster"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="330dp"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="30dp"
+                                android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Class 9"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Priyanka Gandhi"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="19dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rourkela, Odisha"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GRAND MASTER"
+                            android:textColor="#5C5031"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jan"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2021"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rank"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2231"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="points"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1278"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="330dp"
+                    android:layout_height="490dp"
+                    app:cardCornerRadius="11dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="11dp"
+                    app:cardElevation="11dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/grandmaster"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="330dp"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="30dp"
+                                android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Class 9"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Priyanka Gandhi"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="19dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rourkela, Odisha"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GRAND MASTER"
+                            android:textColor="#5C5031"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jan"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2021"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rank"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2231"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="points"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1278"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="330dp"
+                    android:layout_height="490dp"
+                    app:cardCornerRadius="11dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="11dp"
+                    app:cardElevation="11dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/grandmaster"
+                        android:orientation="vertical">
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="330dp"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="30dp"
+                                android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Class 9"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Priyanka Gandhi"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="19dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rourkela, Odisha"
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/white"></TextView>
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GRAND MASTER"
+                            android:textColor="#5C5031"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jan"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2021"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rank"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2231"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="points"
+                                    android:textColor="@color/white"
+                                    android:textSize="16dp"></TextView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1278"
+                                    android:textColor="@color/white"
+                                    android:textSize="19dp"></TextView>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/button_li"
+            android:layout_below="@+id/horizontal_rl"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="22dp"
+            android:layout_marginLeft="22dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/hearthollow"
+                android:layout_weight="5"></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/starhollow"
+                android:layout_weight="5"></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/user_profile"
+                android:layout_weight="5"></ImageView>
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/sharehollow"
+                android:layout_weight="5"></ImageView>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_li"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Results"
+            android:textAllCaps="false"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button_white"
+            android:textColor="@color/theme_blue"></Button>
+    </RelativeLayout>
+
+</ScrollView>

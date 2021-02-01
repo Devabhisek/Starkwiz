@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/bottom_menu_profile"
+        android:title="Profile"
+        android:icon="@mipmap/user_profile"/>
+
+    <item android:id="@+id/bottom_menu_showcase"
+        android:title="ShowCase"
+        android:icon="@mipmap/showcase"/>
+
+    <item android:id="@+id/bottom_menu_dynamo"
+        android:title="Dynamo"
+        android:icon="@mipmap/dynamo"/>
+
+    <item android:id="@+id/bottom_menu_following"
+        android:title="Following"
+        android:icon="@mipmap/following"/>
+
+    <item android:id="@+id/bottom_menu_hubs"
+        android:title="Hubs"
+        android:icon="@mipmap/hub"/>
+</menu>

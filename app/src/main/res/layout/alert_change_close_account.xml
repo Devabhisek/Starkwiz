@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_email_change"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:cardElevation="11dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="22dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_alert"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"></ImageView>
+
+            <TextView
+                android:id="@+id/txt_typeofuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Close Account"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="3dp"
+                android:textSize="18dp"
+                android:textColor="@color/theme_blue"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_alert"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="16dp"
+                android:text="Enter Password"
+                android:textColor="@color/theme_blue"
+                android:textSize="16dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/et_change_email"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:hint="starkwiz2021@gmail.com"
+                android:textColor="@color/black"
+                android:textColorHint="#bebebe"
+                android:textSize="14dp"></EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Closing Procedure"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="3dp"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue"
+                android:paddingLeft="16dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+            <TextView
+                android:id="@+id/txt_belowtypeofuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Once you confirm to close your account, you\nare advised not to log in again for a month\nperiod else the closing procedure will get terminated. You will be notified when your account is completely closed, through Email"
+                android:layout_below="@+id/txt_typeofuser"
+                android:layout_marginTop="3dp"
+                android:justificationMode="inter_word"
+                android:fontFamily="@font/nunito"
+                android:textSize="14dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Refund Password"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="3dp"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue"
+                android:paddingLeft="16dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No amount will be refunded until and unless\nthe plan exhaustion is more than 1 year.You\nwill be only refunded the remaining years\namount with deducted Tax value"
+                android:padding="8dp"
+                android:layout_below="@+id/txt_typeofuser"
+                android:layout_marginTop="2dp"
+                android:textSize="14dp"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"></TextView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <Button
+        android:id="@+id/btn_change_email_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_button"
+        android:layout_below="@+id/card_email_change"
+        android:text="Confirm"
+        android:textColor="@color/white"
+        android:textAllCaps="false"></Button>
+
+    <Button
+        android:id="@+id/btn_change_email_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordeetwo"
+        android:layout_below="@+id/btn_change_email_confirm"
+        android:text="Cancel"
+        android:textColor="@color/theme_blue"
+        android:textAllCaps="false"></Button>
+
+
+
+</LinearLayout>

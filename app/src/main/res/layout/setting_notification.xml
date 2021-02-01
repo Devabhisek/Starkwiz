@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See activity from other\n people"
+            android:textSize="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"></TextView>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/CustomAppTheme"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/theme_blue"
+            android:checked="true"></Switch>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"></TextView>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Copy of your score cards"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/black"></CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Copy of your achievement cards"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="3dp"
+        android:checked="true"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/black"></CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Information of rewards"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        android:checked="true"
+        android:textColor="@color/black"></CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Friend Requests"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/black"></CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Events"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        android:checked="true"
+        android:textColor="@color/black"></CheckBox>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Book Fest"
+        android:buttonTint="@color/theme_blue"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        android:checked="true"
+        android:textColor="@color/black"></CheckBox>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Starkwiz announcement\nand updates"
+            android:textSize="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"></TextView>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/CustomAppTheme"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/theme_blue"
+            android:checked="true"></Switch>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feedback and surveys"
+            android:textSize="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"></TextView>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:theme="@style/CustomAppTheme"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/theme_blue"
+            android:checked="false"></Switch>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class updates "
+            android:textSize="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"></TextView>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/CustomAppTheme"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@color/theme_blue"
+            android:checked="true"></Switch>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

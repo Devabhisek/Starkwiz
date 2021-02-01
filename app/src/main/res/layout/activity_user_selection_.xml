@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.UserSelection_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_userselection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/splash"></ImageView>
+
+        <TextView
+            android:id="@+id/txtuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:layout_below="@+id/img_userselection"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="38dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="22dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtsigninas"
+            android:layout_below="@+id/txtuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You would like to \nSign in as"
+            android:textColor="@color/theme_blue"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:layout_marginLeft="38dp"></TextView>
+
+
+        <TextView
+            android:id="@+id/txt_userselection_student"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_below="@+id/txtsigninas"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/round_textview"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Student"
+            android:textAllCaps="true"
+            android:textColor="#8F9CB3"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+
+        <TextView
+            android:id="@+id/txt_userselection_parent"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_below="@+id/txt_userselection_student"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="32dp"
+            android:fontFamily="@font/nunito"
+            android:background="@drawable/round_textview"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Parent"
+            android:textAllCaps="true"
+            android:textColor="#8F9CB3"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/txt_userselection_teacher"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:text="Teacher"
+            android:background="@drawable/round_textview"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:fontFamily="@font/nunito"
+            android:textColor="#8F9CB3"
+            android:textSize="18dp"
+            android:layout_below="@+id/txt_userselection_parent"
+            android:layout_marginTop="16dp"></TextView>
+
+        <TextView
+            android:id="@+id/txt_userselection_hub"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:text="Hub"
+            android:background="@drawable/round_textview"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#8F9CB3"
+            android:fontFamily="@font/nunito"
+            android:textSize="18dp"
+            android:layout_below="@+id/txt_userselection_teacher"
+            android:layout_marginTop="16dp"></TextView>
+
+
+        <TextView
+            android:id="@+id/txt_userselection_knowmore"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:text="Know More !"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/theme_blue"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@mipmap/exclamation"
+            android:drawablePadding="8dp"
+            android:textSize="14dp"
+            android:layout_below="@+id/txt_userselection_hub"
+            android:layout_marginTop="22dp"></TextView>
+
+
+        <Button
+            android:id="@+id/btn_userselection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/rounded_button"
+            android:text="Proceed"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_below="@+id/txt_userselection_knowmore"></Button>
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

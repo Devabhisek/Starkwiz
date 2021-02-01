@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_alert"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp"></ImageView>
+
+            <TextView
+                android:id="@+id/txt_typeofuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Switch Account"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="8dp"
+                android:textSize="22dp"
+                android:textColor="@color/theme_blue"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+            <TextView
+                android:id="@+id/txt_belowtypeofuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Switch your current account to"
+                android:layout_below="@+id/txt_typeofuser"
+                android:layout_marginTop="8dp"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"></TextView>
+
+            <LinearLayout
+                android:layout_width="220dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@mipmap/person"
+                ></de.hdodenhof.circleimageview.CircleImageView>
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Khusi \nMeher"
+
+                  android:textColor="@color/theme_blue"></TextView>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_chevron_right_24"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="16dp"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="10dp">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@mipmap/persontwo"
+                    app:civ_border_width="4dp"
+                    app:civ_border_color="@color/theme_blue"
+                    ></de.hdodenhof.circleimageview.CircleImageView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Barsha \nMeher"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/theme_blue"></TextView>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disconnect Account "
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="8dp"
+                android:textSize="18dp"
+                android:textColor="@color/theme_blue"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="you can disconnect an account to\nLog in from other device"
+                android:layout_below="@+id/txt_typeofuser"
+                android:layout_marginTop="8dp"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+            <TextView
+                android:id="@+id/txt_disconnect_knowmore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Know More !"
+                android:drawablePadding="8dp"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginTop="8dp"
+                android:textSize="16dp"
+                android:drawableLeft="@mipmap/exclamation"
+                android:layout_marginBottom="11dp"
+                android:textColor="@color/theme_blue"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+
+        </LinearLayout>
+
+
+
+        <Button
+        android:id="@+id/btn_switch_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/rounded_button"
+        android:layout_below="@+id/card_email_change"
+        android:text="Switch"
+        android:textColor="@color/white"
+        android:textAllCaps="false"></Button>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.SettingActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dash_menubar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:layout_alignParentTop="true"
+            app:cardElevation="11dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/setting"
+                    android:layout_marginTop="11dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"></ImageView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/logo"
+                    android:layout_marginTop="11dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"></ImageView>
+
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/bell"
+                    android:layout_marginTop="11dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginRight="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"></ImageView>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/linearcontainersetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/dash_menubar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/oceanblue"
+            android:textSize="30dp"
+            android:layout_margin="8dp"></TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account"
+            android:layout_margin="8dp"
+            android:textColor="@color/theme_blue"
+            android:textSize="18dp"></TextView>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_margin="1dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="11dp"
+                    android:src="@mipmap/person"></de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Khusi Meher"
+                    android:gravity="center"
+                    android:textColor="@color/theme_blue"
+                    android:layout_marginTop="5dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_switch_account"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_margin="1dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="11dp"
+                    android:src="@mipmap/persontwo"></de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Barsha Meher"
+                    android:gravity="center"
+                    android:textColor="@color/theme_blue"
+                    android:layout_marginTop="5dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_margin="1dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="11dp"
+                    android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Barsha Meher"
+                    android:gravity="center"
+                    android:textColor="@color/theme_blue"
+                    android:layout_marginTop="5dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:layout_margin="1dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="11dp"
+                    android:src="@mipmap/plus"></ImageView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Account"
+                    android:gravity="center"
+                    android:textColor="@color/theme_blue"
+                    android:layout_marginTop="5dp"></TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/txtsetting_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account settings"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/linear_setting_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginRight="8dp">
+
+            <include
+                layout="@layout/setting_accountsetting"></include>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtsetting_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/linear_setting_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:visibility="gone">
+
+            <include
+                layout="@layout/setting_notification"></include>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtsetting_privacyanddata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacy &amp; Data"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/linear_setting_privacydata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:visibility="gone">
+            <include
+                layout="@layout/setting_privacy_data"></include>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtsetting_plandetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plan Details"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/linear_setting_plandetails"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                layout="@layout/setting_plandetails"></include>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUPPORT"
+            android:layout_margin="11dp"
+            android:textColor="@color/theme_blue"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtsetting_supportnotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            android:layout_marginLeft="16dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txtsetting_supportprivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacy &amp; data"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTION"
+            android:layout_margin="11dp"
+            android:textColor="@color/theme_blue"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtsetting_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log out"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"></TextView>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:text="copyright Starkwiz 2020"
+            android:background="@color/theme_blue"
+            android:layout_marginTop="22dp"
+            android:textSize="16dp"
+            android:layout_below="@+id/linearcontainersetting"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:textStyle="bold"></TextView>
+
+    </RelativeLayout>
+
+
+</ScrollView>

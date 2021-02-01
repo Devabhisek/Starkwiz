@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="An Online competitive platform for \nstudents of class 4 to 10"
+    android:textColor="@color/black"
+    android:layout_margin="8dp"
+    android:fontFamily="@font/nunito"
+   android:textSize="14dp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Both ICSE and CBSE board syllabus \nof India"
+        android:textColor="@color/black"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/nunito"
+       android:textSize="14dp"></TextView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Test every month for each of your \nfavourite Subject. Challenge yourself !"
+        android:textColor="@color/black"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/nunito"
+       android:textSize="14dp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discover and Connect to your new \nmates and see how they are performing"
+        android:textColor="@color/black"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/nunito"
+       android:textSize="14dp"></TextView>
+
+</LinearLayout>

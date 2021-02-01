@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.ShowcaseFragment.ShowCaseFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:fillViewport="true">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="8dp">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Showcase"
+                   android:textColor="@color/oceanblue"
+                   android:textSize="30dp"
+                   android:textStyle="bold"
+                   android:layout_alignParentLeft="true"
+                   android:layout_marginLeft="11dp"
+                   android:layout_marginTop="5dp"></TextView>
+
+
+               <ImageView
+                   android:layout_width="35dp"
+                   android:layout_height="35dp"
+                   android:src="@mipmap/search"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"></ImageView>
+
+
+           </RelativeLayout>
+
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="View and Share all of \nthe Starkwiz activity."
+               android:textSize="18dp"
+               android:textColor="@color/black"
+               android:layout_marginLeft="55dp"
+               android:layout_marginTop="8dp"></TextView>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Share your Achievements,\nScore Cards,Oerformances\nhere"
+               android:textSize="16dp"
+               android:textColor="@color/black"
+               android:layout_marginLeft="55dp"
+               android:layout_marginTop="8dp"></TextView>
+
+           <Button
+               android:layout_width="130dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:layout_marginLeft="55dp"
+               android:background="@drawable/round_textview_clicked"
+               android:text="Share"
+               android:textAllCaps="false"
+               android:textColor="@color/white"></Button>
+
+           <com.google.android.material.tabs.TabLayout
+               android:id="@+id/tabLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               app:tabTextColor="@color/black"
+               app:tabIndicatorColor="@color/theme_blue"
+               app:tabTextAppearance="@style/MineCustomTabText"
+               app:tabIndicatorFullWidth="false">
+           </com.google.android.material.tabs.TabLayout>
+
+           <androidx.viewpager.widget.ViewPager
+               android:id="@+id/viewPager"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+               tools:layout_editor_absoluteX="8dp" />
+       </LinearLayout>
+   </ScrollView>
+
+</FrameLayout>

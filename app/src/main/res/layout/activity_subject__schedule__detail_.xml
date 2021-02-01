@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.Subject_Schedule_Detail_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dash_menubar"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:backgroundTint="@color/white"
+            app:cardElevation="11dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/mathematics"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="5"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:id="@+id/dash_setting"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/leftchevron"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"></ImageView>
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/logowhite"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"></ImageView>
+
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@mipmap/cancel"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="11dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"></ImageView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="5"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration\n90mins"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="8dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FIXTURE: December"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="8dp"></TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Marks\n80"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="8dp"></TextView>
+
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mathematics"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose a suitable Date and Time\nto appear Dynamo."
+            android:textColor="@android:color/black"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Data"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="22dp"></TextView>
+
+        <CalendarView
+            android:id="@+id/cal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/CustomCalendarMonth"
+            android:dateTextAppearance="@style/CustomCalendarDay"
+            android:weekDayTextAppearance="@style/CustomCalendarWeek"
+            android:layout_margin="8dp"></CalendarView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Time"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="11dp"></TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="116dp"
+                    android:layout_height="35dp"
+                    android:text="Hour : Minute"
+                    android:gravity="center"
+                    android:textColor="#bebebe"
+                    android:background="@drawable/round_textview"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginLeft="22dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="AM / "
+                    android:gravity="center"
+                    android:layout_marginTop="11dp"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:layout_marginLeft="22dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="PM"
+                    android:gravity="center"
+                    android:layout_marginTop="11dp"
+                    android:textColor="#bebebe"
+                    ></TextView>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="22dp"
+                android:text="Done"
+                android:gravity="center"
+                android:background="@drawable/rounded_button_green"
+                android:layout_marginTop="11dp"
+                android:layout_marginLeft="85dp"
+                android:textColor="@android:color/white"
+                ></TextView>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="16dp"></TextView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_math"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_margin="11dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="11dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@mipmap/mathematics">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21st\nDec"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="11dp"></TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time\n03.00 PM"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="30dp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mathematics"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="11dp"></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number System &amp; \nAlgebra"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"></TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time Remaining"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="11dp"></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 d:3 h:43 m"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Marks"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="11dp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"></TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="30dp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="90mins"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:background="@drawable/rounded_button_green"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginBottom="8dp"></Button>
+
+
+    </LinearLayout>
+
+</ScrollView>

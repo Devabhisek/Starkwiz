@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".Activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/spalshimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/splash"
+        android:layout_marginTop="175dp"
+        android:layout_centerHorizontal="true"></ImageView>
+
+    <TextView
+        android:id="@+id/txtfirst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spalshimg"
+        android:text="India's scholastic digital showcase."
+        android:fontFamily="@font/nunito"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:textColor="@color/black"></TextView>
+
+    <TextView
+        android:id="@+id/txtsecind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtfirst"
+        android:text="The Battle of the Bests."
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/theme_blue"></TextView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/loading"
+        android:layout_marginTop="85dp"
+        android:layout_centerHorizontal="true"
+        app:lottie_loop="true"
+        android:layout_below="@+id/txtsecind"></com.airbnb.lottie.LottieAnimationView>
+
+
+</RelativeLayout>

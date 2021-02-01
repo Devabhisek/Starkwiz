@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.ProfileFragments.HubProfile.Info_HubProfile_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_personalinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="GENERAL"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:id="@+id/txt_generalinfo"
+                        android:layout_width="75dp"
+                        android:layout_height="22dp"
+                        android:text="Edit"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/bordee"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="User ID"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="UK834H717"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="City"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Rourkela"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Odisha"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Location"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sector 5, Rourkela"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Contact"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="+91 987654321"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Website"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="www.google.com"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="PERSONA"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="22dp"
+                        android:text="Edit"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/bordee"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photos"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/person"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/persontwo"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personthree"
+                                android:scaleType="centerCrop"></ImageView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/persomfour"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personfive"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Birthday"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="21st August 2010"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="About us"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interest"
+                        android:layout_weight="5"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Music"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="11dp"
+                        android:textColor="@color/white"></TextView>
+
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Poetry"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Travel"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"></TextView>
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="LOCATION"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="22dp"
+                        android:text="Edit"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/bordee"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="SOCIAL MEDIA"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="22dp"
+                        android:text="Edit"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/bordee"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="facebook.com/queenmeher"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="11dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="instagram.com/queenmeher"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="11dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:text="copyright Starkwiz 2020"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:background="@color/theme_blue"
+                    android:layout_marginTop="11dp"
+                    android:textColor="@color/white"></TextView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linear_editpersonalinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="GENERAL"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:id="@+id/txt_editgeneralinfo"
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:text="Done"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/round_textview_clicked"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"></TextView>
+
+                </RelativeLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User ID"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UK834H717"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="City"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rourkela"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Odisha"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="School"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deepika English\nMedium School"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Location"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sector 5, Rourkela"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Board"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ICSE"
+                        android:textSize="18dp"
+                        android:textColor="@color/theme_blue"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" / "
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CBSE"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></TextView>
+
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="PERSONA"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:text="Done"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/round_textview_clicked"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"></TextView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photos"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"></TextView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/person"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/persontwo"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personthree"
+                                android:scaleType="centerCrop"></ImageView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/persomfour"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personfive"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
+                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Birthday"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21st August 2010"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About me"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="22dp"
+                        android:backgroundTint="@android:color/holo_blue_light"
+                        android:textColor="@color/black"></EditText>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interest"
+                        android:layout_weight="5"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Music"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="11dp"
+                        android:textColor="@color/white"></TextView>
+
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Poetry"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:text="Travel"
+                        android:background="@drawable/rounded_button"
+                        android:layout_weight="5"
+                        android:textSize="14dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"></TextView>
+
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Singing,Dance,Sports etc.."
+                    android:layout_weight="5"
+                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="116dp"
+                    android:backgroundTint="@android:color/holo_blue_light"
+                    android:textColor="@color/black"
+                    android:textColorHint="#bebebe"></EditText>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="LOCATION"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:text="Edit"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/round_textview_clicked"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"></TextView>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="22dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="SOCIAL MEDIA"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/theme_blue"></TextView>
+
+                    <TextView
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:text="Done"
+                        android:layout_centerVertical="true"
+                        android:textSize="14dp"
+                        android:gravity="center"
+                        android:background="@drawable/round_textview_clicked"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/white"></TextView>
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="facebook.com/queenmeher"
+                        android:backgroundTint="@android:color/holo_blue_light"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="11dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"></EditText>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"></TextView>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="instagram.com/queenmeher"
+                        android:layout_weight="5"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="11dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:text="copyright Starkwiz 2020"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:background="@color/theme_blue"
+                    android:layout_marginTop="11dp"
+                    android:textColor="@color/white"></TextView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

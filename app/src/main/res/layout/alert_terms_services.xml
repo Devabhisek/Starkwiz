@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="11dp"
+    android:backgroundTint="@color/white"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="18dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="49dp"></ImageView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Term of Serives and Privacy \nPolicies !"
+                android:textSize="16dp"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/theme_blue"
+                android:textStyle="bold"
+                android:layout_marginLeft="35dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Term of Services and Privacy Policies !"
+                android:layout_marginTop="35dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="35dp"></TextView>
+
+
+
+            <Button
+                android:id="@+id/alert_yesgotit"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/alert_cardterm"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/rounded_button"
+                android:layout_gravity="center"
+                android:text="Yes, It's OK!"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginBottom="11dp"></Button>
+
+            <Button
+                android:id="@+id/alert_nothanks"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/alert_yesgotit"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bordee"
+                android:layout_gravity="center"
+                android:layout_marginBottom="11dp"
+                android:layout_marginTop="11dp"
+                android:text="No Thanks!"
+                android:textColor="@color/theme_blue"
+                android:textSize="16dp"></Button>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

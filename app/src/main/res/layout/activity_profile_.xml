@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Fragments.ProfileFragments.StudentProfile.Profile_Activity">
+
+    `<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="@color/oceanblue"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="5dp"></TextView>
+
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/addfriend"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="11dp"></ImageView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="22dp"
+            android:layout_weight="2"
+            android:src="@mipmap/person"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="2dp"></de.hdodenhof.circleimageview.CircleImageView>
+
+
+        <LinearLayout android:visibility="gone"
+            android:id="@+id/linearedit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+
+            <EditText
+                    android:id="@+id/et_profile_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:hint="Enter first name"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="22dp"></EditText>
+
+                <EditText
+                    android:id="@+id/et_profile_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:textColor="@color/black"
+                    android:hint="Enter last name"
+                    android:textSize="16dp"
+                    android:layout_marginTop="5dp"></EditText>
+
+
+
+            <EditText
+                android:id="@+id/et_profile_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:hint="Enter Address"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"></EditText>
+
+            <EditText
+                android:id="@+id/et_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:hint="Enter Class"
+                android:maxLength="2"
+                android:inputType="number"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"></EditText>
+
+            <TextView
+                android:id="@+id/txt_editprofile_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/theme_blue"
+                android:text="Save"
+                android:drawablePadding="8dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"></TextView>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/txt_profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/theme_blue"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/nunito"
+                android:layout_marginTop="22dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_profile_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_editprofile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/theme_blue"
+                android:text="Edit"
+                android:drawableRight="@drawable/ic_baseline_edit_24"
+                android:drawablePadding="8dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"></TextView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="11dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_marginLeft="11dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent"
+            android:layout_marginStart="11dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="67"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Stars"
+                android:gravity="center"
+                android:fontFamily="@font/nunito"
+                android:textSize="16dp"
+                android:textColor="@color/black" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_marginLeft="11dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent"
+            android:layout_marginStart="11dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="130"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Likes"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/black" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:layout_marginLeft="11dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent"
+            android:layout_marginStart="11dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="55"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Followers"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/black" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+
+        <TextView
+            android:id="@+id/txt_profile_board"
+            android:layout_width="116dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="55dp"
+            android:background="@drawable/bordee"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:textColor="@color/theme_blue"
+            android:textSize="16dp" />
+
+        <TextView
+                android:id="@+id/txt_profile_status"
+                android:layout_width="116dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/bordee"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue" />
+
+
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:background="@color/white"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="@color/theme_blue"
+        app:tabIndicatorFullWidth="false">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        tools:layout_editor_absoluteX="8dp" />
+
+</LinearLayout>
+
+
+
+</ScrollView>

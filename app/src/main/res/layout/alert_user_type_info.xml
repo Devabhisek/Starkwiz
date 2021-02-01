@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp"
+    android:backgroundTint="@color/white"
+    android:layout_centerVertical="true"
+    android:orientation="vertical">
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_alert"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp"></ImageView>
+
+            <TextView
+                android:id="@+id/txt_typeofuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_alert"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/nunito"
+                android:text="Type of Users Profiles"
+                android:textColor="@color/theme_blue"
+                android:textSize="22dp"
+                android:textStyle="bold"></TextView>
+
+
+            <LinearLayout
+                android:id="@+id/linear_usertype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_typeofuser"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_studenttype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Student"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold"></TextView>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:id="@+id/linear_studenttype"
+                        android:layout_width="35dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_parentype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Parent"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"></TextView>
+
+                  <LinearLayout
+                        android:visibility="gone"
+                        android:orientation="horizontal"
+                        android:id="@+id/linear_parenttype"
+                        android:layout_width="35dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="11dp"
+                        android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_teachertype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Teacher"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"></TextView>
+
+                 <LinearLayout
+                      android:visibility="gone"
+                        android:orientation="horizontal"
+                        android:id="@+id/linear_teachertype"
+                        android:layout_width="35dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="11dp"
+                        android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_hubtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Hub"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"></TextView>
+
+                  <LinearLayout
+                      android:visibility="gone"
+                        android:orientation="horizontal"
+                        android:id="@+id/linear_hubtype"
+                        android:layout_width="35dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="11dp"
+                        android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:id="@+id/lineartype"
+                android:layout_below="@+id/linear_usertype"
+                android:layout_marginBottom="11dp"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/btn_userselection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="49dp"
+                android:layout_marginRight="49dp"
+                android:layout_marginBottom="22dp"
+                android:background="@drawable/rounded_button"
+                android:text="Yes, got it !"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_below="@+id/lineartype"></Button>
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

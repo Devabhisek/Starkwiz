@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.Signup_Personal_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/splash"></ImageView>
+
+        <TextView
+            android:id="@+id/txtpersonalfirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal \nInformation"
+            android:layout_below="@+id/img_personal"
+            android:textSize="22dp"
+            android:fontFamily="@font/nunito"
+            android:textStyle="bold"
+            android:layout_marginLeft="35dp"
+            android:textColor="@color/oceanblue"
+            android:layout_marginTop="22dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtpersonalftwo"
+            android:layout_below="@+id/txtpersonalfirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let your mates recognize you"
+            android:textColor="@color/theme_blue"
+            android:layout_marginTop="11dp"
+            android:textSize="19dp"
+            android:layout_marginLeft="35dp"></TextView>
+
+        <EditText
+            android:id="@+id/et_personal_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/txtpersonalftwo"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/round_textview"
+            android:fontFamily="@font/nunito"
+            android:gravity="center_vertical"
+            android:hint="First name"
+            android:paddingLeft="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe"></EditText>
+
+
+        <EditText
+            android:id="@+id/et_personal_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/et_personal_firstname"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/round_textview"
+            android:fontFamily="@font/nunito"
+            android:gravity="center_vertical"
+            android:hint="Last name"
+            android:paddingLeft="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe"></EditText>
+
+        <RadioGroup
+            android:id="@+id/linear_personal_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_personal_lastname"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="35dp">
+
+            <RadioButton
+                android:id="@+id/check_gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/check_gender_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female "
+                android:paddingLeft="8dp"
+                android:layout_marginLeft="35dp"
+                android:drawableLeft="@drawable/radio_button_selector"
+                android:drawablePadding="16dp"
+                android:button="@null"
+                android:textColor="@color/black"></RadioButton>
+
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/et_personal_dob"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/linear_personal_gender"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/round_textview"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/nunito"
+            android:inputType="date"
+            android:hint="Date of birth"
+            android:paddingLeft="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="#bebebe"></TextView>
+
+        <LinearLayout
+            android:id="@+id/linear_personal_phnno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_personal_dob"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone +91"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_personal_phnno"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="Phone number"
+                android:layout_marginLeft="16dp"
+                android:textColorHint="#bebebe"
+                android:maxLength="10"
+                android:inputType="number"
+                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
+                android:paddingLeft="16dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/round_textview"></EditText>
+
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_signup_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/round_textview"
+            android:enabled="false"
+            android:text="Proceed"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_below="@+id/linear_personal_phnno"></Button>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="49dp"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@+id/btn_signup_personal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account ?"
+                android:textColor="@color/black"
+                android:layout_marginLeft="30dp"></TextView>
+
+            <TextView
+                android:id="@+id/txt_signin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/theme_blue"
+                ></TextView>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

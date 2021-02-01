@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Activities.Dasboard_Activity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dash_menubar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:backgroundTint="@color/white"
+        app:cardElevation="11dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/dash_setting"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/setting"
+                android:layout_marginTop="11dp"
+                android:layout_weight="5"
+                android:layout_marginLeft="11dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"></ImageView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:src="@mipmap/logo"
+                android:layout_marginTop="11dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:layout_marginLeft="11dp"
+                android:layout_centerVertical="true"
+               android:layout_centerHorizontal="true"></ImageView>
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/bell"
+                android:layout_marginTop="11dp"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:layout_marginRight="11dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"></ImageView>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomnavigation"
+        android:layout_below="@+id/dash_menubar"></FrameLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomnavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_menu"
+        android:background="#0A395A"
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        android:layout_alignParentBottom="true"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>

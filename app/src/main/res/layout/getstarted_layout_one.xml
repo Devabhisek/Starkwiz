@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Boost of your school exam performance !"
+    android:fontFamily="@font/nunito"
+    android:textColor="@color/black"
+    android:layout_margin="8dp"
+    android:textSize="14dp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score and Earn reward points, get \nexclusive Starkwiz prizes"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"
+        android:layout_margin="8dp"
+        android:textSize="14dp"></TextView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appear in Natioanl level Starkwiz \nTalent Hunt and Scholarship Exams"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"
+        android:layout_margin="8dp"
+        android:textSize="14dp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Participate in several Sponsered \nEvents and Exams "
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"
+        android:layout_margin="8dp"
+        android:textSize="14dp"></TextView>
+
+</LinearLayout>

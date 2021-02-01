@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".Activities.Signup_Email_Verification_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo"
+            android:layout_marginTop="22dp"></ImageView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verification"
+            android:textSize="26dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/oceanblue"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get verified and we are \ndone to getyou in"
+            android:textSize="19dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/theme_blue"
+            android:textStyle="bold"></TextView>
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/round_textview"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="16dp"
+            android:hint="Email Id"
+            android:textColorHint="#bebebe"
+            android:textColor="@color/black"
+            android:paddingLeft="11dp"></EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We will send an email with a verification \ncode on the above address. Please Confirm and be patient for its neccessary for a Safe user experience"
+            android:textSize="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            ></TextView>
+
+
+        <Button
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/round_textview_clicked"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_gravity="center_horizontal"></Button>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@drawable/round_textview"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="22dp"
+            android:hint="Enter 6 digit verification code here"
+            android:textColorHint="#bebebe"
+            android:textColor="@color/black"
+            android:paddingLeft="11dp"></EditText>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/reload"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="122dp"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="22dp"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue"></TextView>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_verfication_proceed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/rounded_button"
+            android:text="Proceed"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="6dp"></Button>
+
+    </LinearLayout>
+
+</ScrollView>
