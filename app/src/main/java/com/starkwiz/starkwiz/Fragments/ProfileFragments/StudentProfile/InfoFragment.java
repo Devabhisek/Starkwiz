@@ -301,29 +301,29 @@ public class InfoFragment extends Fragment {
                                 txt_profile_board.setText("ICSE");
                             }
 
-                            txt_profile_userid.setText(object.getString("userid"));
-                            txt_profile_status.setText(object.getString("profile_status"));
-                            txt_profile_city.setText(object.getString("profile_city"));
-                            txt_profile_state.setText(object.getString("profile_state"));
-                            txt_profile_school.setText(object.getString("profile_school"));
+                            txt_profile_userid.setText(strtext);
+                            txt_profile_status.setText(object.getString("status"));
+                            txt_profile_city.setText(object.getString("city"));
+                            txt_profile_state.setText(object.getString("state"));
+                            txt_profile_school.setText(object.getString("school"));
                             txt_profile_location.setText(object.getString("location"));
                             //txt_profile_board.setText(object.getString("board"));
-                            txt_profile_dob.setText(object.getString("birthday"));
+                            txt_profile_dob.setText(object.getString("date_of_birth"));
                             txt_profile_aboutme.setText(object.getString("about_me"));
                             txt_profile_address.setText(object.getString("address"));
                             txt_profile_fblink.setText(object.getString("profile_facebook_link"));
                             txt_profile_instalink.setText(object.getString("insta_link"));
 
-                            et_profile_city.setText(object.getString("profile_city"));
-                            et_profile_state.setText(object.getString("profile_state"));
-                            et_profile_school.setText(object.getString("profile_school"));
+                            et_profile_city.setText(object.getString("city"));
+                            et_profile_state.setText(object.getString("state"));
+                            et_profile_school.setText(object.getString("school"));
                             et_profile_location.setText(object.getString("location"));
-                            et_profile_dob.setText(object.getString("birthday"));
+                            et_profile_dob.setText(object.getString("date_of_birth"));
                             et_profile_about.setText(object.getString("about_me"));
                             et_profile_address.setText(object.getString("address"));
                             et_profile_fblink.setText(object.getString("profile_facebook_link"));
                             et_profile_instalink.setText(object.getString("insta_link"));
-                            txt_userid.setText(object.getString("userid"));
+                            txt_userid.setText(strtext);
 
                         }
 

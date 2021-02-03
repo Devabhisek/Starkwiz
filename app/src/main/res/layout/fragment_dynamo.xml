@@ -33,7 +33,7 @@
         android:textSize="18dp"
         android:fontFamily="@font/nunito"
         android:textStyle="bold"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="22dp"></TextView>
 
     <TextView
@@ -43,7 +43,7 @@
         android:textColor="@color/black"
         android:textSize="16dp"
         android:fontFamily="@font/nunito"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="16dp"></TextView>
 
     <Button

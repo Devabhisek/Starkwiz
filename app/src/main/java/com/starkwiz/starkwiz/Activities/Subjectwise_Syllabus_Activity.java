@@ -66,6 +66,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Student_Quiz_Activity.class);
                     intent.putExtra("selected_testid",selected_testid);
                     intent.putExtra("selected_module",selected_module);
+                    intent.putExtra("selected_subject",txt_subject.getText().toString().trim());
                     startActivity(intent);
                 }
                 else {
@@ -97,8 +98,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
 
         final Map<String, String> params = new HashMap();
 
-        params.put("class", "5");
-        params.put("subject", "science");
+        params.put("class", "4");
+        params.put("subject", "English");
         params.put("board", "icse");
 
         JSONObject parameters = new JSONObject(params);

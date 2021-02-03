@@ -166,6 +166,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                         dialog.setTitle("Title");
 
 
+
                         Button btn_alert_otpdone, btn_alert_editphnno;
                         TextView txt_otptimer,txtresendotp;
                         OtpTextView otp_view;
@@ -174,6 +175,8 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                         txt_otptimer = dialog.findViewById(R.id.txt_otptimer);
                         txtresendotp = dialog.findViewById(R.id.txtresendotp);
                         otp_view = dialog.findViewById(R.id.otp_view);
+
+
 
                         txtresendotp.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -462,6 +465,9 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                     if (!response.getString("error").equals("mobilenumber not register")){
                         AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Number is already exists");
                         et_personal_phnno.setError("Number Exists");
+                        btn_signup_personal.setEnabled(false);
+
+
                     }else {
                         SendOTP(Number);
                         Toast.makeText(Signup_Personal_Activity.this, "Otp has sent to this "+Number, Toast.LENGTH_SHORT).show();
@@ -517,35 +523,34 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 try {
-                    String access_token = response.getString("access_token");
 
-                    String User=response.getString("user");
+                    String token_details = response.getString("token_details");
 
-                    JSONObject object = new JSONObject(User);
+                    JSONObject object = new JSONObject(token_details);
+
+                    String original = object.getString("original");
+
+                    JSONObject jsonObject = new JSONObject(original);
+
+                    String user = jsonObject.getString("user");
+
+                    JSONObject obj = new JSONObject(user);
+
                     Login_ModelClass modelClass=new Login_ModelClass(
-                            access_token,
-                            object.getString("id"),
-                            object.getString("first_name"),
-                            object.getString("last_name"),
-                            object.getString("mobile_number"),
-                            object.getString("class"),
-                            object.getString("school_board"),
-                            object.getString("role")
+                            jsonObject.getString("access_token"),
+                            obj.getString("id"),
+                            obj.getString("first_name"),
+                            obj.getString("last_name"),
+                            obj.getString("mobile_number"),
+                            obj.getString("class"),
+                            obj.getString("school_board"),
+                            obj.getString("role")
                     );
                     login_modelClasses.add(modelClass);
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
-
-//                    SharedPreferences sp = getSharedPreferences("Loginkey", 0);
-//                    SharedPreferences.Editor sedt = sp.edit();
-//                    sedt.putString("token", access_token);
-//                    sedt.putString("role", object.getString("role"));
-//                    sedt.putString("id", object.getString("id"));
-//                    sedt.putString("firstname", object.getString("first_name"));
-//                    sedt.putString("lastname", object.getString("last_name"));
-//                    sedt.putString("id", object.getString("id"));
-//                    sedt.commit();
-                    Toast.makeText(Signup_Personal_Activity.this, "Welcome "+object.getString("first_name")+" "+object.getString("last_name"), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Signup_Personal_Activity.this, Dasboard_Activity.class));
+                    Toast.makeText(Signup_Personal_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Signup_Personal_Activity.this,Dasboard_Activity.class);
+                    startActivity(intent);
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 } catch (JSONException e) {
                     e.printStackTrace();

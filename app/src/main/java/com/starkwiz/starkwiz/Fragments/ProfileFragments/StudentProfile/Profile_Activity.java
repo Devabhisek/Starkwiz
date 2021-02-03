@@ -173,7 +173,7 @@ public class Profile_Activity extends Fragment {
 
 
                             if (object.getString("address").equals("null")){
-                                txt_profile_address.setText("Edit your proflie");
+                                txt_profile_address.setText(object.getString("city")+", "+object.getString("state"));
                             }else{
                                     txt_profile_address.setText(object.getString("address"));
                                     et_profile_address.setText(object.getString("address"));
@@ -199,15 +199,15 @@ public class Profile_Activity extends Fragment {
                                 txt_profile_board.setText("ICSE");
                             }
 
-                            txt_profile_status.setText(object.getString("profile_status"));
+                            txt_profile_status.setText(object.getString("status"));
 
-                            status = object.getString("profile_status");
-                            city = object.getString("profile_city");
-                            state = object.getString("profile_state");
-                            school = object.getString("profile_school");
+                            status = object.getString("status");
+                            city = object.getString("city");
+                            state = object.getString("state");
+                            school = object.getString("school");
                             location = object.getString("location");
                             board = object.getString("board");
-                            birthday = object.getString("birthday");
+                            birthday = object.getString("date_of_birth");
                             about_me = object.getString("about_me");
                             interest = object.getString("profile_interest");
                             address = object.getString("address");

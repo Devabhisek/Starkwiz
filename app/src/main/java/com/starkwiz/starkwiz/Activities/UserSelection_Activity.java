@@ -54,7 +54,7 @@ public class UserSelection_Activity extends AppCompatActivity {
                 Parent="null";
                 Teacher="null";
                 Hub="null";
-
+                btn_userselection.setBackgroundResource(R.drawable.rounded_button);
                 btn_userselection.setEnabled(true);
 
             }
@@ -76,7 +76,7 @@ public class UserSelection_Activity extends AppCompatActivity {
                 Parent="null";
                 Student="null";
                 Hub="null";
-
+                btn_userselection.setBackgroundResource(R.drawable.rounded_button);
                 btn_userselection.setEnabled(true);
 
             }
@@ -98,7 +98,7 @@ public class UserSelection_Activity extends AppCompatActivity {
                 Student="null";
                 Teacher="null";
                 Hub="null";
-
+                btn_userselection.setBackgroundResource(R.drawable.rounded_button);
                 btn_userselection.setEnabled(true);
 
             }
@@ -120,7 +120,7 @@ public class UserSelection_Activity extends AppCompatActivity {
                 Student="null";
                 Parent="null";
                 Teacher="null";
-
+                btn_userselection.setBackgroundResource(R.drawable.rounded_button);
                 btn_userselection.setEnabled(true);
             }
         });

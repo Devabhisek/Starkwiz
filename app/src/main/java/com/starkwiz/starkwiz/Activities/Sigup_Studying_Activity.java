@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.R;
@@ -146,11 +147,9 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
 
                 if (State.isEmpty()) {
                     et_studying_state.setError("Please Enter State");
-                } else if (City.isEmpty()) {
-                    et_studying_city.setError("Please Enter City");
-                }else if (BlockNo.isEmpty()) {
-                    et_studying_block.setError("Please Enter Block Number");
-                } else if (District.isEmpty()) {
+                } else if ((City.isEmpty() && BlockNo.isEmpty())) {
+                   AlertBoxClasses.SimpleAlertBox(Sigup_Studying_Activity.this,"Please check fields");
+                }else if (District.isEmpty()) {
                     et_studying_district.setError("Please Enter District");
                 } else if (SchoolName.isEmpty()) {
                     et_personal_schoolname.setError("Please Enter School Name");

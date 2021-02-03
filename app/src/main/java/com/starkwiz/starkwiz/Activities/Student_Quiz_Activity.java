@@ -9,14 +9,18 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -43,8 +48,8 @@ import java.util.Map;
 
 public class Student_Quiz_Activity extends AppCompatActivity {
 
-    String selected_testid, selected_module;
-    TextView txt_chapter,txt_noofqn,txt_qn;
+    String selected_testid, selected_module,selected_subject;
+    TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject;
     Button optionone,optiontwo,optionthree,optionfour;
     Button btn_next,btn_skip;
     LinearLayout optionContainer;
@@ -52,6 +57,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
     ArrayList<Quiz_Modelclass>list_quiz;
     int position = 0;
     int score=0;
+    ImageView img_qn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +72,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         optionfour=findViewById(R.id.optionfour);
         btn_next=findViewById(R.id.btn_next);
         btn_skip=findViewById(R.id.btn_skip);
+        img_qn=findViewById(R.id.img_qn);
         optionContainer=findViewById(R.id.optionContainer);
+        txt_quiz_subject=findViewById(R.id.txt_quiz_subject);
         list_quiz=new ArrayList<>();
 
 
@@ -74,8 +82,10 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
             selected_testid = getIntent().getStringExtra("selected_testid");
             selected_module = getIntent().getStringExtra("selected_module");
+            selected_subject = getIntent().getStringExtra("selected_subject");
 
             txt_chapter.setText(selected_module);
+            txt_quiz_subject.setText(selected_subject);
 
 
 
@@ -118,14 +128,14 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                                 object.getString("wrong_answer_1"),
                                 object.getString("wrong_answer_2"),
                                 object.getString("wrong_answer_3"),
-                                object.getString("wrong_answer_4")
+                                object.getString("wrong_answer_4"),
+                                object.getString("image")
                         );
 
                         list_quiz.add(modelClass);
                     }
 
                     PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -164,7 +174,8 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                         return;
                     }
                     count = 0;
-                    PlayAnim(txt_qn, 0, list_quiz.get(position).getQuestion());
+                    PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
+
 
                 }
 
@@ -192,7 +203,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                     enableoption(true);
                     count = 0;
                     position++;
-                    PlayAnim(txt_qn, 0, list_quiz.get(position).getQuestion());
+                    PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
 
                 }
             }
@@ -236,7 +247,72 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                         ((Button)view).setText(data);
                     }
                    view.setTag(data);
+                    if (!list_quiz.get(position).getImage().equals("null")) {
+                        String image = list_quiz.get(position).getImage();
+                        img_qn.setVisibility(View.VISIBLE);
+                        image = image.replace("data:image/png;base64,","");
+                        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        img_qn.setImageBitmap(decodedByte);
+
+
+                    }else {
+                        img_qn.setVisibility(View.GONE);
+                    }
                     PlayAnim(view,1,data);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+
+    }
+
+    private void ImagePlayAnim(View view,ImageView imgview ,int value,String data, String imgdata){
+
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(100)
+                .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                if (value == 0 && count<4){
+                    String option="";
+                    if (count == 0){
+                        option = list_quiz.get(position).getWrong_answer_1();
+                    }else if (count==1){
+                        option = list_quiz.get(position).getWrong_answer_2();
+                    }else if (count==2){
+                        option = list_quiz.get(position).getWrong_answer_3();
+                    }else if (count==3){
+                        option = list_quiz.get(position).getWrong_answer_4();
+                    }
+                    PlayAnim(optionContainer.getChildAt(count),0,option);
+                    count++;
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+
+                if (value == 0 ){
+                    try {
+                        ((TextView)view).setText(data);
+                        txt_noofqn.setText(position+1+"/"+list_quiz.size());
+                    }catch (Exception e){
+                        ((Button)view).setText(data);
+                    }
+                    view.setTag(data);
+                    Picasso.with(Student_Quiz_Activity.this)
+                            .load(imgdata)
+                            .into(imgview);
+                    ImagePlayAnim(view,imgview,1,data,imgdata);
                 }
             }
 
