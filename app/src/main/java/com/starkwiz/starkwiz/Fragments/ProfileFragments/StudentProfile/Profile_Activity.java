@@ -193,7 +193,7 @@ public class Profile_Activity extends Fragment {
 
                             txt_profile_status.setText("status");
 
-                            if (object.getString("board").equals("CBSE")){
+                            if (object.getString("board").equals("CBSE") || object.getString("board").equals("cbse")){
                                 txt_profile_board.setText("CBSE");
                             }else {
                                 txt_profile_board.setText("ICSE");

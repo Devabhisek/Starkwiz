@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="We conduct monthly online Multiple choice \nQuestion (MCQ) Tests as Dynamos."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="You can enroll your children studying in from Class 4 to 10."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="As a Teacher you will be able to add and manage multiple account for the number of children you have."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="We cover syllabus from ICSE and CBSE board of India"
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="Starkwiz doesn't provide or support in-app tutorial so we promise you the best experience of MCQ tests for your children"
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Connect your children with their classmates and others students from all over India and take care of their education."
-                android:textStyle="bold"
+                
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="15dp"
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Spectate your children's performance by participating them in Dynamos, Share their Achievement and Improvements with others with ease"
-                    android:textStyle="bold"
+                    
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="15dp"
@@ -81,7 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Collect Exclusive Starkwiz rewards from their Achievements and Surprise them. Yes ! we have special rewards for your children !"
-                    android:textStyle="bold"
+                    
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="15dp"
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="With Starkwiz you can help your children and your students perform well in education by monitoring thier weak performance in a subject."
-                    android:textStyle="bold"
+                    
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="15dp"
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="We curate best in class Question Set for you from well experienced so that you get more competative and  acknowledge with your syllabus."
-                    android:textStyle="bold"
+                    
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="15dp"
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="You can connect with your students with us and see how they are performing in their Dynamos."
-                    android:textStyle="bold"
+                    
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="15dp"
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="We do not intent to entertain comparison but we want to provide a healthy competitive ecosystem of education."
-                android:textStyle="bold"
+                
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="15dp"
@@ -131,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="We want every and teacher to stay well connected to their children and stay aware of the quality of education their children are getting."
-                android:textStyle="bold"
+                
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="15dp"

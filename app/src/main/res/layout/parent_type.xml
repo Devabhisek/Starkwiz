@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="We conduct monthly online Multiple Choice Question(MCQ) Tests as Dynamos."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="You can enroll your children studying in from class 4 to 10."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="As a parent you will be able to add and manage multiple account for the number of children you have"
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="We cover syllabus from ICSE and CBSE board of India."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:text="Starkwiz doesn't provide or support in-app tutorial so we promise you the best experience of MCQ tests for your children."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Connect your children with their classmates and other students from all over India and take care if their education."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="Spectate your children's preformance by participating them in Dynamos, Share their Achievement and Improvements with others with ease."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:text="Collect Exclusive Starkwiz rewards from their Achivements and Surprise them. Yes ! we have special rewards for your children."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:text="With Starkwiz you can help your children perform well in education by monitoring their weak performance in a subject."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:text="you can connect with Teachers and Parents through us and see how other children are performing."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
@@ -97,15 +97,17 @@
             android:layout_height="wrap_content"
             android:text="We do not intent to entertain comparison but we want to provide a healthy competitive ecosystem of education."
             android:layout_margin="5dp"
-            android:textStyle="bold"
+            
             android:textSize="15dp"></TextView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="We want every parent to stay well connected to their children and stay aware of the quality of education their children are getting."
-            android:layout_margin="5dp"
-            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="16dp"
             android:textSize="15dp"></TextView>
 
     </LinearLayout>

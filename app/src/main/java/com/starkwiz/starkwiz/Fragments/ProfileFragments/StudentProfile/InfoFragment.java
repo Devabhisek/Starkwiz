@@ -2,6 +2,7 @@ package com.starkwiz.starkwiz.Fragments.ProfileFragments.StudentProfile;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class InfoFragment extends Fragment {
 
@@ -44,14 +47,15 @@ public class InfoFragment extends Fragment {
    TextView txt_editgeneralinfo,txt_generalinfo,txt_profile_status,txt_profile_userid,txt_profile_city,txt_profile_state,
            txt_profile_school,txt_profile_board,txt_profile_dob,txt_profile_aboutme,txt_profile_address,et_profile_dob,
            txt_profile_fblink,txt_profile_instalink,txt_profile_location,txt_edit_location,txt_edit_social
-           ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona;
+           ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
     String date,strtext,Board;
     EditText et_profile_city,et_profile_state,et_profile_school,et_profile_location,et_profile_about,et_profile_address,
             et_profile_fblink,et_profile_instalink,et_profile_interest;
     View view;
     private static final String TAG = "InfoFragment";
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    RadioButton radio_profile_icse,radio_profile_cbse;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,25 +70,7 @@ public class InfoFragment extends Fragment {
 
          GetProfile();
 
-       radio_profile_cbse.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
 
-                   radio_profile_cbse.setTextColor(getResources().getColor(R.color.theme_blue));
-                   radio_profile_icse.setTextColor(getResources().getColor(R.color.black));
-                   Board = "CBSE";
-
-           }
-       });
-
-       radio_profile_icse.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               radio_profile_icse.setTextColor(getResources().getColor(R.color.theme_blue));
-               radio_profile_cbse.setTextColor(getResources().getColor(R.color.black));
-               Board = "ICSE";
-           }
-       });
 
        et_profile_dob.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -184,19 +170,14 @@ public class InfoFragment extends Fragment {
                     et_profile_instalink.setError("Enter your Instagram Profile Link");
                 } else {
 
-                    if (radio_profile_icse.isChecked()) {
-                        Board = "ICSE";
-                    } else {
-                        Board = "CBSE";
-                    }
                     EditProfile(strtext,
-                            txt_profile_status.getText().toString().trim(),
+                            "Bubble",
                             et_profile_city.getText().toString().trim(),
                             et_profile_state.getText().toString().trim(),
                             et_profile_school.getText().toString().trim(),
                             et_profile_location.getText().toString().trim(),
                             et_profile_interest.getText().toString(),
-                            Board,
+                            txt_edit_board.getText().toString().trim(),
                             et_profile_dob.getText().toString(),
                             et_profile_about.getText().toString().trim(),
                             et_profile_address.getText().toString().trim(),
@@ -242,14 +223,15 @@ public class InfoFragment extends Fragment {
         et_profile_instalink = view.findViewById(R.id.et_profile_instalink);
         txt_edit_location = view.findViewById(R.id.txt_edit_location);
         txt_edit_social = view.findViewById(R.id.txt_edit_social);
-        radio_profile_icse = view.findViewById(R.id.radio_profile_icse);
-        radio_profile_cbse = view.findViewById(R.id.radio_profile_cbse);
+        txt_edit_board=view.findViewById(R.id.txt_edit_board);
         et_profile_interest = view.findViewById(R.id.et_profile_interest);
         txt_userid = view.findViewById(R.id.txt_userid);
         txt_edit_persona = view.findViewById(R.id.txt_edit_persona);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 //        txt_profile_icse = view.findViewById(R.id.txt_profile_icse);
 //        txt_profile_cbse = view.findViewById(R.id.txt_profile_cbse);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("USER",MODE_PRIVATE);
     }
 
     private void GetProfile(){
@@ -289,25 +271,20 @@ public class InfoFragment extends Fragment {
                         for (int i = 0 ; i<array.length();i++){
                             JSONObject object = array.getJSONObject(i);
 
-                            if (object.getString("board").equals("cbse")){
-                                radio_profile_cbse.setChecked(true);
-                                radio_profile_cbse.setTextColor(getResources().getColor(R.color.theme_blue));
-                                radio_profile_icse.setTextColor(getResources().getColor(R.color.black));
-                                txt_profile_board.setText("CBSE");
-                            }else {
-                                radio_profile_icse.setChecked(true);
-                                radio_profile_icse.setTextColor(getResources().getColor(R.color.theme_blue));
-                                radio_profile_cbse.setTextColor(getResources().getColor(R.color.black));
-                                txt_profile_board.setText("ICSE");
-                            }
-
                             txt_profile_userid.setText(strtext);
                             txt_profile_status.setText(object.getString("status"));
                             txt_profile_city.setText(object.getString("city"));
                             txt_profile_state.setText(object.getString("state"));
                             txt_profile_school.setText(object.getString("school"));
                             txt_profile_location.setText(object.getString("location"));
-                            //txt_profile_board.setText(object.getString("board"));
+
+                            if (object.getString("board").equals("CBSE") || object.getString("board").equals("cbse")){
+                                txt_edit_board.setText("CBSE");
+                                txt_profile_board.setText("CBSE");
+                            }else {
+                                txt_edit_board.setText("ICSE");
+                                txt_profile_board.setText("ICSE");
+                            }
                             txt_profile_dob.setText(object.getString("date_of_birth"));
                             txt_profile_aboutme.setText(object.getString("about_me"));
                             txt_profile_address.setText(object.getString("address"));
@@ -368,17 +345,17 @@ public class InfoFragment extends Fragment {
         final Map<String, String> params = new HashMap();
 
         params.put("userid", UserId);
-        params.put("status", Status);
+        params.put("status", "Bubble");
         params.put("city", City);
         params.put("state", State);
         params.put("school", School);
         params.put("location", Location);
         params.put("board", Board);
-        params.put("birthday", DOB);
+        params.put("date_of_birth", DOB);
         params.put("about_me", About);
         params.put("address", Address);
         params.put("interest", Address);
-        params.put("facebook_link", Fblink);
+        params.put("profile_facebook_link", Fblink);
         params.put("insta_link", Instalink);
         params.put("class", cls);
         params.put("last_name", last_name);

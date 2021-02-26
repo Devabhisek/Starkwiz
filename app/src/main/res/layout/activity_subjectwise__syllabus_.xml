@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/txtdetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -32,7 +33,7 @@
                 android:background="@mipmap/mathematics"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -52,7 +53,7 @@
                         android:layout_alignParentLeft="true"></ImageView>
 
                     <ImageView
-                        android:layout_width="35dp"
+                        android:layout_width="130dp"
                         android:layout_height="35dp"
                         android:src="@mipmap/logowhite"
                         android:layout_marginTop="8dp"
@@ -60,7 +61,7 @@
                         android:layout_weight="5"
                         android:layout_marginLeft="11dp"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"></ImageView>
+                        android:layout_centerHorizontal="true"></ImageView>
 
 
                     <ImageView
@@ -70,12 +71,12 @@
                         android:layout_marginTop="8dp"
                         android:layout_gravity="center"
                         android:layout_weight="5"
-                        android:layout_marginLeft="11dp"
+                        android:layout_marginRight="11dp"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentLeft="true"></ImageView>
+                        android:layout_alignParentRight="true"></ImageView>
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,9 +87,9 @@
                     android:layout_marginBottom="5dp">
 
                     <TextView
+                        android:id="@+id/txtduration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Duration\n90mins"
                         android:layout_weight="5"
                         android:gravity="center"
                         android:textColor="@color/white"
@@ -96,9 +97,9 @@
 
 
                     <TextView
+                        android:id="@+id/txt_fixture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FIXTURE: December"
                         android:layout_weight="5"
                         android:gravity="center"
                         android:textColor="@color/white"
@@ -141,15 +142,19 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/txtdetail"
             android:id="@+id/list_test"
-            android:layout_centerVertical="true"
             android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
+            android:id="@+id/linearaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_below="@+id/list_test"
             android:layout_alignParentBottom="true">
 
         <Button

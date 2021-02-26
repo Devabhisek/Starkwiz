@@ -34,6 +34,7 @@ public class DynamoFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.addTab(tabLayout.newTab().setText("Score Cards"));
         tabLayout.addTab(tabLayout.newTab().setText("Rewards"));
+        
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 

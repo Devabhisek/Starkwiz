@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="We have a special educational hub section for a various range of education related shops and organization from which you can select the type of Hub you represnt."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="School,Stationary Shops,Book Store,Music Classes,Coaching Centers and alot move we have enlisted as Hubb."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="We feature your Hub in our platform which will give you a more reach with you customers."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Our users will easily be able to locate you and get your service at ease."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="We want to cover as much Hubs we can so that Students,Parents and Teachers will never feel problem locating you and find what they are  looking for."
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                
                 android:textSize="15dp"></TextView>
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="We have future plans of organising various Starkwiz programs and Event through our platform where you will be directly involve."
-                android:textStyle="bold"
+                
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="15dp"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Get enroll and make your service visible online exclusively on Starkwiz, here you are the only advertisement for our users."
-                android:textStyle="bold"
+                
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="15dp"

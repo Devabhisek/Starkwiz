@@ -1,10 +1,12 @@
 package com.starkwiz.starkwiz.Activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.animation.Animator;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,9 +16,18 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -42,14 +53,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Student_Quiz_Activity extends AppCompatActivity {
 
-    String selected_testid, selected_module,selected_subject;
-    TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject;
+    String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes;
+    TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject,txt_qn_hint,txtfixture,txt_otptimer;
     Button optionone,optiontwo,optionthree,optionfour;
     Button btn_next,btn_skip;
     LinearLayout optionContainer;
@@ -58,6 +74,10 @@ public class Student_Quiz_Activity extends AppCompatActivity {
     int position = 0;
     int score=0;
     ImageView img_qn;
+    int minutes,millisecond;
+    private ScaleGestureDetector scaleGestureDetector;
+    private float mScaleFactor = 1.0f;
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +95,17 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         img_qn=findViewById(R.id.img_qn);
         optionContainer=findViewById(R.id.optionContainer);
         txt_quiz_subject=findViewById(R.id.txt_quiz_subject);
+        txt_qn_hint=findViewById(R.id.txt_qn_hint);
+        txtfixture=findViewById(R.id.txtfixture);
+        txt_otptimer=findViewById(R.id.txt_otptimer);
         list_quiz=new ArrayList<>();
+        scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+
+        Calendar cal=Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String month = month_date.format(cal.getTime());
+
+        txtfixture.setText("FIXTURE: "+month);
 
 
         try {
@@ -83,6 +113,34 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             selected_testid = getIntent().getStringExtra("selected_testid");
             selected_module = getIntent().getStringExtra("selected_module");
             selected_subject = getIntent().getStringExtra("selected_subject");
+            selected_hour = getIntent().getStringExtra("selected_hour");
+            selected_minutes = getIntent().getStringExtra("selected_minutes");
+
+            minutes = (Integer.parseInt(selected_hour)*60)+Integer.parseInt(selected_minutes);
+
+            millisecond = minutes*60000;
+
+            Log.d("timer", String.valueOf(millisecond));
+
+
+
+            new CountDownTimer(millisecond, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                    String v = String.format("%02d", millisUntilFinished / 60000);
+                    int va = (int) ((millisUntilFinished % 60000) / 1000);
+                    txt_otptimer.setText(v + ":" + String.format("%02d", va));
+                }
+
+                @Override
+                public void onFinish() {
+                    txt_otptimer.setText("Times up");
+
+                }
+            }.start();
+
+
 
             txt_chapter.setText(selected_module);
             txt_quiz_subject.setText(selected_subject);
@@ -129,7 +187,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                                 object.getString("wrong_answer_2"),
                                 object.getString("wrong_answer_3"),
                                 object.getString("wrong_answer_4"),
-                                object.getString("image")
+                                object.getString("image"),
+                                object.getString("hint"),
+                                object.getString("explanation")
                         );
 
                         list_quiz.add(modelClass);
@@ -139,6 +199,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(Student_Quiz_Activity.this, "", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -175,7 +236,6 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                     }
                     count = 0;
                     PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
-
 
                 }
 
@@ -247,6 +307,8 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                         ((Button)view).setText(data);
                     }
                    view.setTag(data);
+                    txt_qn_hint.setText("Hint: "+list_quiz.get(position).getTxt_qn_hint());
+
                     if (!list_quiz.get(position).getImage().equals("null")) {
                         String image = list_quiz.get(position).getImage();
                         img_qn.setVisibility(View.VISIBLE);
@@ -254,6 +316,24 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                         byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
                         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         img_qn.setImageBitmap(decodedByte);
+
+                        img_qn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                final Dialog dialog = new Dialog(Student_Quiz_Activity.this);
+                                dialog.setContentView(R.layout.custom_fullimage);
+                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                                ImageView img_fullview;
+
+                                img_fullview = dialog.findViewById(R.id.img_fullview);
+
+                                img_fullview.setImageBitmap(decodedByte);
+
+                                dialog.show();
+                                Window window = dialog.getWindow();
+                                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            }
+                        });
 
 
                     }else {
@@ -275,60 +355,6 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         });
 
     }
-
-    private void ImagePlayAnim(View view,ImageView imgview ,int value,String data, String imgdata){
-
-        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500).setStartDelay(100)
-                .setInterpolator(new DecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-                if (value == 0 && count<4){
-                    String option="";
-                    if (count == 0){
-                        option = list_quiz.get(position).getWrong_answer_1();
-                    }else if (count==1){
-                        option = list_quiz.get(position).getWrong_answer_2();
-                    }else if (count==2){
-                        option = list_quiz.get(position).getWrong_answer_3();
-                    }else if (count==3){
-                        option = list_quiz.get(position).getWrong_answer_4();
-                    }
-                    PlayAnim(optionContainer.getChildAt(count),0,option);
-                    count++;
-                }
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-
-                if (value == 0 ){
-                    try {
-                        ((TextView)view).setText(data);
-                        txt_noofqn.setText(position+1+"/"+list_quiz.size());
-                    }catch (Exception e){
-                        ((Button)view).setText(data);
-                    }
-                    view.setTag(data);
-                    Picasso.with(Student_Quiz_Activity.this)
-                            .load(imgdata)
-                            .into(imgview);
-                    ImagePlayAnim(view,imgview,1,data,imgdata);
-                }
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-    }
-
 
     private void checkAnswer(Button selected_option){
 
@@ -405,6 +431,22 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             E.printStackTrace();
         }
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        scaleGestureDetector.onTouchEvent(motionEvent);
+        return true;
+    }
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 10.0f));
+            img_qn.setScaleX(mScaleFactor);
+            img_qn.setScaleY(mScaleFactor);
+            return true;
+        }
     }
 
     @Override

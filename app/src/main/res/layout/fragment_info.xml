@@ -938,39 +938,16 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/radio_profile_icse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ICSE"
-                            android:textSize="18dp"
-                            android:textColor="@color/black"
-                            android:button="@null"></RadioButton>
 
                         <TextView
+                            android:id="@+id/txt_edit_board"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" / "
                             android:textSize="18dp"
                             android:textColor="@color/black"></TextView>
 
-                        <RadioButton
-                            android:id="@+id/radio_profile_cbse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="CBSE"
-                            android:textSize="18dp"
-                            android:button="@null"
-                            android:textColor="@color/black"></RadioButton>
 
-
-                    </RadioGroup>
                     </TableRow>
                 </TableLayout>
 

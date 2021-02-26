@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Starkwiz">
-        <activity android:name=".Activities.IntroActivity"></activity>
+        <activity android:name=".Activities.PlansActivity"></activity>
+        <activity android:name=".Activities.IntroActivity" />
         <activity
             android:name=".Activities.Student_Quiz_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -70,7 +71,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.Sigup_Studying_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.UserSelection_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

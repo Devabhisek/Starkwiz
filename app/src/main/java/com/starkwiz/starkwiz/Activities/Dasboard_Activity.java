@@ -3,12 +3,16 @@ package com.starkwiz.starkwiz.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,11 +30,17 @@ import com.starkwiz.starkwiz.Fragments.ShowcaseFragment.ShowCaseFragment;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.R;
 
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
+
 public class Dasboard_Activity extends AppCompatActivity {
 
     BottomNavigationView bottomnavigation;
     ImageView dash_setting;
     String Student_intent,Parent_intent,Teacher_intent,Hub_intent;
+    private TourGuide mTourGuideHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +70,6 @@ public class Dasboard_Activity extends AppCompatActivity {
             String strtext = SharedPrefManager.getInstance(Dasboard_Activity.this).getUser().getRole();
 
             switch (menuItem.getItemId()) {
-
 
                 case R.id.bottom_menu_profile:
                     // selectedFragment = new HomeFragment();

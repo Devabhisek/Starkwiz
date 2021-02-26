@@ -1,9 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.PlansActivity">
+    android:fillViewport="true"
+    android:layout_centerVertical="true"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linearplans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true">
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@mipmap/cross"
+        android:layout_gravity="right"
+        android:layout_margin="16dp"></ImageView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_alert"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo"
+            android:layout_centerHorizontal="true"></ImageView>
+
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_typeofuser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_alert"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="22dp"
+        android:text="Plans"
+        android:textColor="@color/oceanblue"
+        android:textSize="26dp"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:id="@+id/txt_studenttype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:text="Choose a suitable plan.\nWelcome to Starkwiz !"
+        android:textColor="@color/theme_blue"
+        android:layout_marginLeft="49dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="16dp"
+        android:textStyle="bold"></TextView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="11dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/plansgradient">
+
+            <TextView
+                android:id="@+id/txtplantype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="11dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs."
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="55dp"></TextView>
+
+            <TextView
+                android:id="@+id/txtplanprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3dp"></TextView>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="22dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtplanvalidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_perprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="3dp"></TextView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+  </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearplans"
+            android:layout_marginTop="11dp"
+            android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:text="Basic"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linear_basictype"
+                android:layout_width="35dp"
+                android:layout_height="7dp"
+                android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:text="Standard"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linear_standardtype"
+                android:orientation="horizontal"
+                android:layout_width="35dp"
+                android:layout_height="7dp"
+                android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/premium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:text="Premium"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linear_premiumtype"
+                android:orientation="horizontal"
+                android:layout_width="35dp"
+                android:layout_height="7dp"
+                android:background="@drawable/round_textview_clicked"></LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineartype"
+        android:layout_below="@+id/linear_usertype"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_plans"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="Proceed"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/rounded_button"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:textAllCaps="false"></Button>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

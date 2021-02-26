@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -55,6 +56,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     TextView txt_signin,et_personal_dob;
     ArrayList<Login_ModelClass>login_modelClasses;
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +136,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
                     FirstName = et_personal_firstname.getText().toString().trim();
                     LastName =  et_personal_lastname.getText().toString().trim();
-                    PhoneNo =   et_personal_phnno.getText().toString().trim();
+                    PhoneNo =   "+91"+et_personal_phnno.getText().toString().trim();
                     Dob=        et_personal_dob.getText().toString().trim();
 
                     if (check_gender_male.isChecked()){
@@ -151,7 +153,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                         et_personal_lastname.setError("Please Enter Last Name !");
                     }else if (Dob.isEmpty()){
                         et_personal_dob.setError("Please Enter Your Date Of Birth !");
-                    }else if (PhoneNo.isEmpty() || PhoneNo.length()>10 || PhoneNo.length()<10){
+                    }else if (PhoneNo.isEmpty() || PhoneNo.length()>13 || PhoneNo.length()<13){
                         et_personal_phnno.setError("Please Enter Valid Number");
                     }else if (Gender.isEmpty()){
                         Toast.makeText(Signup_Personal_Activity.this, "Please Click On Gender", Toast.LENGTH_SHORT).show();
@@ -248,7 +250,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
                                 final Map<String, String> params = new HashMap();
 
-                                params.put("mobile_number", "+91"+PhoneNo);
+                                params.put("mobile_number", PhoneNo);
                                 params.put("otp_code", Number);
 
                                 JSONObject parameters = new JSONObject(params);
@@ -408,7 +410,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
         final Map<String, String> params = new HashMap();
 
-        params.put("mobile_number", "+91"+Number);
+        params.put("mobile_number", Number);
 
         JSONObject parameters = new JSONObject(params);
 
@@ -451,7 +453,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
         final Map<String, String> params = new HashMap();
 
-        params.put("mobile_number", "+91"+Number);
+        params.put("mobile_number", Number);
 
         JSONObject parameters = new JSONObject(params);
 
@@ -610,5 +612,12 @@ public class Signup_Personal_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+           startActivity(new Intent(Signup_Personal_Activity.this,WelcomeActivity.class));
+           overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+    }
 }

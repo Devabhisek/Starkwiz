@@ -2,10 +2,11 @@ package com.starkwiz.starkwiz.ModelClass;
 
 public class Quiz_Modelclass {
 
-    String question_id,question,correct_answer,wrong_answer_1,wrong_answer_2,wrong_answer_3,wrong_answer_4,image;
+    String question_id,question,correct_answer,wrong_answer_1,wrong_answer_2,
+            wrong_answer_3,wrong_answer_4,image,txt_qn_hint,explanation;
 
-    public Quiz_Modelclass(String question_id, String question, String correct_answer, String wrong_answer_1,
-                           String wrong_answer_2, String wrong_answer_3, String wrong_answer_4, String image) {
+    public Quiz_Modelclass(String question_id, String question, String correct_answer, String wrong_answer_1, String wrong_answer_2, String wrong_answer_3,
+                           String wrong_answer_4, String image, String txt_qn_hint, String explanation) {
         this.question_id = question_id;
         this.question = question;
         this.correct_answer = correct_answer;
@@ -14,6 +15,8 @@ public class Quiz_Modelclass {
         this.wrong_answer_3 = wrong_answer_3;
         this.wrong_answer_4 = wrong_answer_4;
         this.image = image;
+        this.txt_qn_hint = txt_qn_hint;
+        this.explanation = explanation;
     }
 
     public String getQuestion_id() {
@@ -78,5 +81,21 @@ public class Quiz_Modelclass {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getTxt_qn_hint() {
+        return txt_qn_hint;
+    }
+
+    public void setTxt_qn_hint(String txt_qn_hint) {
+        this.txt_qn_hint = txt_qn_hint;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 }

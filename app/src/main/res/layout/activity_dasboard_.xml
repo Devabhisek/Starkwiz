@@ -67,15 +67,23 @@
         android:layout_below="@+id/dash_menubar"></FrameLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomnavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/bottom_menu"
-        android:background="#0A395A"
-        app:labelVisibilityMode="labeled"
-        app:itemTextColor="@drawable/bottom_navigation_selector"
-        app:itemIconTint="@drawable/bottom_navigation_selector"
-        android:layout_alignParentBottom="true"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomnavigation"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:menu="@menu/bottom_menu"
+            android:background="@drawable/rounded_bottomnavigation"
+            app:labelVisibilityMode="labeled"
+            android:layout_alignParentBottom="true"
+            app:itemTextColor="@drawable/bottom_navigation_selector"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
+            ></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+
+
 
 </RelativeLayout>

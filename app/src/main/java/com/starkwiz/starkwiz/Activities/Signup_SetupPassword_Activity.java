@@ -203,7 +203,63 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                         );
                         login_modelClass.add(modelClass);
                         SharedPrefManager.getInstance(Signup_SetupPassword_Activity.this).userLogin(modelClass);
+                        Profile(object.getString("id"));
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+               progressDialog.dismiss();
+            }
+        });
+
+
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
+
+
+    private void Profile(String id) {
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("userid", id);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.Profile, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+                try {
+                    String created = response.getString("message");
+
+                   if (created.equals("profile created")){
+                    Intent intent = new Intent(Signup_SetupPassword_Activity.this,Dasboard_Activity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                   }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -216,7 +272,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-               progressDialog.dismiss();
+                progressDialog.dismiss();
             }
         });
 

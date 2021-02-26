@@ -2,10 +2,13 @@ package com.starkwiz.starkwiz.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +17,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +27,22 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.Adapter.TermCondition_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.URLS;
+import com.starkwiz.starkwiz.ModelClass.TermCondition_ModelClass;
 import com.starkwiz.starkwiz.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,7 +60,8 @@ public class WelcomeActivity extends AppCompatActivity {
     Timer timer;
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
-
+    RecyclerView lv_termcondition;
+    ArrayList<TermCondition_ModelClass>list_term;
 
 
     @Override
@@ -56,6 +74,8 @@ public class WelcomeActivity extends AppCompatActivity {
         btn_getstarted = findViewById(R.id.btn_getstarted);
         txt_welcome_termsserives = findViewById(R.id.txt_welcome_termsserives);
         welcome_checkbox = findViewById(R.id.welcome_checkbox);
+
+        list_term= new ArrayList<>();
 
         layouts = new int[]{
                 R.layout.getstarted_layout_two,
@@ -133,6 +153,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 Button alert_yesgotit,alert_nothanks;
                 alert_yesgotit = dialog.findViewById(R.id.alert_yesgotit);
                 alert_nothanks = dialog.findViewById(R.id.alert_nothanks);
+                lv_termcondition = dialog.findViewById(R.id.lv_termcondition);
+                lv_termcondition.setHasFixedSize(true);
+                lv_termcondition.setLayoutManager(new LinearLayoutManager(WelcomeActivity.this));
+
+
+                GetTermCondition();
 
                 alert_yesgotit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -230,7 +256,54 @@ public class WelcomeActivity extends AppCompatActivity {
             startActivity(new Intent(WelcomeActivity.this,UserSelection_Activity.class));
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         }
+    }
 
+    public void GetTermCondition(){
+        list_term.clear();
+        ProgressDialog progressDialog = new ProgressDialog(WelcomeActivity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, URLS.getcondition, null,
+                new Response.Listener<JSONArray>()
+                {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        progressDialog.dismiss();
+
+                        // display response
+                        for (int j=0 ; j<response.length() ; j++){
+
+                            try {
+                                JSONObject object = response.getJSONObject(j);
+
+                                TermCondition_ModelClass modelClass = new TermCondition_ModelClass(
+                                        object.getString("terms_and_conditions")
+                                );
+
+                                list_term.add(modelClass);
+                                TermCondition_Adapter adapter = new TermCondition_Adapter(list_term,WelcomeActivity.this);
+                                lv_termcondition.setAdapter(adapter);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Log.d("Error.Response", error.toString());
+                    }
+                }
+        );
+
+        Volley.newRequestQueue(WelcomeActivity.this).add(getRequest);
 
     }
 }

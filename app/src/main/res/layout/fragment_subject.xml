@@ -818,9 +818,24 @@
             </LinearLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/rl_addsubject"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/bordeethree"
+                android:layout_margin="11dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add more subject by upgrading\nyour plan"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/pls"
+                    android:textColor="@color/black"
+                    android:drawablePadding="30dp"
+                    android:layout_centerHorizontal="true"> </TextView>
 
-
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
