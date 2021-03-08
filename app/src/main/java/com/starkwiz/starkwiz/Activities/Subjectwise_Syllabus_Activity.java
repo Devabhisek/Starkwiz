@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,8 +55,10 @@ import tourguide.tourguide.TourGuide;
 public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
     TextView txt_appear,txt_subject,txtduration,txt_fixture;
     RecyclerView list_test;
+    Button btn_schedule;
     ArrayList<GetTestList_ModelClass>lis_gettests;
-    String selected_module,selected_testid,is_active,selected_hour,selected_minutes;
+    String selected_module,selected_testid,is_active,selected_hour,selected_minutes,
+            test_id,user_id,subject_id,module_id,hour,minutes,subject,module;
     LinearLayout linearaction;
     private TourGuide mTourGuideHandler;
     SharedPreferences sharedPreferences ;
@@ -70,6 +73,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
         txtduration = findViewById(R.id.txtduration);
         txt_fixture = findViewById(R.id.txt_fixture);
         linearaction = findViewById(R.id.linearaction);
+        btn_schedule = findViewById(R.id.btn_schedule);
         lis_gettests = new ArrayList<>();
         list_test.setHasFixedSize(true);
         list_test.setLayoutManager(new LinearLayoutManager(Subjectwise_Syllabus_Activity.this));
@@ -103,6 +107,25 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                 else {
                     AlertBoxClasses.SimpleAlertBox(Subjectwise_Syllabus_Activity.this,"Please select a chapter");
                 }
+            }
+        });
+
+        btn_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                user_id = SharedPrefManager.getInstance(Subjectwise_Syllabus_Activity.this).getUser().getId();
+                Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Subject_Schedule_Detail_Activity.class);
+                intent.putExtra("test_id",test_id);
+                intent.putExtra("subject_id",subject_id);
+                intent.putExtra("module_id",module_id);
+                intent.putExtra("user_id",user_id);
+                intent.putExtra("month",month);
+                intent.putExtra("hour",hour);
+                intent.putExtra("minutes",minutes);
+                intent.putExtra("subject",subject);
+                intent.putExtra("module",module);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });
     }
@@ -159,6 +182,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     for (int j = 0 ; j<test_details.length() ; j++){
                         JSONObject jsonObject = test_details.getJSONObject(j);
                         txt_subject.setText(jsonObject.getString("subject_name"));
+                        subject = jsonObject.getString("subject_name");
                         is_active = jsonObject.getString("is_active");
                     }
 
@@ -183,6 +207,13 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                         for (int i= 0 ; i<modulearray.length() ; i++){
 
                             JSONObject module_bject = modulearray.getJSONObject(i);
+
+                            test_id = module_bject.getString("test_id");
+                            subject_id = module_bject.getString("subject_id");
+                            module_id = module_bject.getString("module_id");
+                            hour = module_bject.getString("hour");
+                            minutes = module_bject.getString("minutes");
+                            module = module_bject.getString("module_name");
 
                             GetTestList_ModelClass modelClass = new GetTestList_ModelClass(
                                     module_bject.getString("module_id"),
@@ -243,6 +274,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
 
 
     }
+
+
 
     @Override
     protected void onStart() {

@@ -146,9 +146,11 @@
 
         <CalendarView
             android:id="@+id/cal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/CustomCalendarMonth"
+            style="@style/datepicker"
+            android:layout_gravity="center"
             android:dateTextAppearance="@style/CustomCalendarDay"
             android:weekDayTextAppearance="@style/CustomCalendarWeek"
             android:layout_margin="8dp"></CalendarView>
@@ -171,6 +173,7 @@
 
 
                 <TextView
+                    android:id="@+id/txt_schedule_time"
                     android:layout_width="116dp"
                     android:layout_height="35dp"
                     android:text="Hour : Minute"
@@ -180,23 +183,42 @@
                     android:layout_marginTop="11dp"
                     android:layout_marginLeft="22dp"></TextView>
 
-                <TextView
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_am"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:text="AM / "
-                    android:gravity="center"
-                    android:layout_marginTop="11dp"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:layout_marginLeft="22dp"></TextView>
+                    android:layout_height="wrap_content"
+                    android:text="AM"
+                    android:layout_marginLeft="8dp"
+                    android:button="@null"
+                    android:textColor="@color/Green"></RadioButton>
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="/"></TextView>
+
+                <RadioButton
+                    android:id="@+id/rb_pm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="PM"
-                    android:gravity="center"
-                    android:layout_marginTop="11dp"
-                    android:textColor="#bebebe"
-                    ></TextView>
+                    android:button="@null"
+                    android:textColor="@color/grey"></RadioButton>
+
+            </RadioGroup>
+
+
 
             <TextView
                 android:layout_width="70dp"
@@ -243,9 +265,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_scheduled_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="21st\nDec"
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:layout_marginLeft="8dp"
@@ -253,9 +275,9 @@
 
 
                     <TextView
+                        android:id="@+id/txt_scheduld_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Time\n03.00 PM"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:layout_marginLeft="8dp"
@@ -270,18 +292,19 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_schedule_subjectname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mathematics"
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="11dp"></TextView>
+
                     <TextView
+                        android:id="@+id/txt_schedule_modulename"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Number System &amp; \nAlgebra"
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         android:layout_marginLeft="8dp"
@@ -297,6 +320,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="11dp"></TextView>
                     <TextView
+                        android:id="@+id/txt_schedule_timeremaining"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4 d:3 h:43 m"
@@ -349,9 +373,9 @@
                         android:layout_marginTop="30dp"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_schedule_duration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="90mins"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:layout_gravity="right"
@@ -366,6 +390,7 @@
 
 
         <Button
+            android:id="@+id/btn_createschedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Schedule"

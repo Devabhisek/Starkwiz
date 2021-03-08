@@ -39,6 +39,14 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="35dp"></TextView>
 
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="49dp"></ProgressBar>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lv_termcondition"
                 android:layout_width="match_parent"

@@ -41,11 +41,13 @@ public class Dasboard_Activity extends AppCompatActivity {
     ImageView dash_setting;
     String Student_intent,Parent_intent,Teacher_intent,Hub_intent;
     private TourGuide mTourGuideHandler;
+    private boolean isBackFromB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dasboard_);
-
+        isBackFromB=false;
         bottomnavigation = findViewById(R.id.bottomnavigation);
         dash_setting = findViewById(R.id.dash_setting);
 
@@ -154,4 +156,6 @@ public class Dasboard_Activity extends AppCompatActivity {
         AlertDialog alert11 = alertDialog.create();
         alert11.show();
     }
+
+
 }

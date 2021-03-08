@@ -199,7 +199,8 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                                 object.getString("mobile_number"),
                                 object.getString("class"),
                                 object.getString("school_board"),
-                                object.getString("role")
+                                object.getString("role"),
+                                object.getString("email")
                         );
                         login_modelClass.add(modelClass);
                         SharedPrefManager.getInstance(Signup_SetupPassword_Activity.this).userLogin(modelClass);

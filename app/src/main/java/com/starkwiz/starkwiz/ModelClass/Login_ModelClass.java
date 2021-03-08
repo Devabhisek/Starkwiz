@@ -2,10 +2,10 @@ package com.starkwiz.starkwiz.ModelClass;
 
 public class Login_ModelClass {
 
-    String access_token,id,first_name,last_name,mobile_number,cls,school_board,role;
+    String access_token,id,first_name,last_name,mobile_number,cls,school_board,role,email;
 
-    public Login_ModelClass(String access_token, String id, String first_name,
-                            String last_name, String mobile_number, String cls, String school_board, String role) {
+    public Login_ModelClass(String access_token, String id, String first_name, String last_name,
+                            String mobile_number, String cls, String school_board, String role, String email) {
         this.access_token = access_token;
         this.id = id;
         this.first_name = first_name;
@@ -14,6 +14,7 @@ public class Login_ModelClass {
         this.cls = cls;
         this.school_board = school_board;
         this.role = role;
+        this.email = email;
     }
 
     public String getAccess_token() {
@@ -78,5 +79,13 @@ public class Login_ModelClass {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -25,6 +25,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -147,18 +148,69 @@ public class WelcomeActivity extends AppCompatActivity {
         txt_welcome_termsserives.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressDialog progressDialog = new ProgressDialog(WelcomeActivity.this);
+                progressDialog.setMessage("Loading...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 final Dialog dialog = new Dialog(WelcomeActivity.this);
                 dialog.setContentView(R.layout.alert_terms_services);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 Button alert_yesgotit,alert_nothanks;
+                ProgressBar progress;
                 alert_yesgotit = dialog.findViewById(R.id.alert_yesgotit);
                 alert_nothanks = dialog.findViewById(R.id.alert_nothanks);
                 lv_termcondition = dialog.findViewById(R.id.lv_termcondition);
+                progress = dialog.findViewById(R.id.progress);
                 lv_termcondition.setHasFixedSize(true);
                 lv_termcondition.setLayoutManager(new LinearLayoutManager(WelcomeActivity.this));
 
 
-                GetTermCondition();
+                list_term.clear();
+
+                //HttpsTrustManager.allowAllSSL();
+
+                progress.setVisibility(View.VISIBLE);
+                lv_termcondition.setVisibility(View.GONE);
+
+                JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, URLS.getcondition, null,
+                        new Response.Listener<JSONArray>()
+                        {
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                progress.setVisibility(View.GONE);
+                                lv_termcondition.setVisibility(View.VISIBLE);
+
+                                // display response
+                                for (int j=0 ; j<response.length() ; j++){
+
+                                    try {
+                                        JSONObject object = response.getJSONObject(j);
+
+                                        TermCondition_ModelClass modelClass = new TermCondition_ModelClass(
+                                                object.getString("terms_and_conditions")
+                                        );
+
+                                        list_term.add(modelClass);
+                                        TermCondition_Adapter adapter = new TermCondition_Adapter(list_term,WelcomeActivity.this);
+                                        lv_termcondition.setAdapter(adapter);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                progress.setVisibility(View.GONE);
+                                Log.d("Error.Response", error.toString());
+                            }
+                        }
+                );
+
+                Volley.newRequestQueue(WelcomeActivity.this).add(getRequest);
 
                 alert_yesgotit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -258,52 +310,5 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 
-    public void GetTermCondition(){
-        list_term.clear();
-        ProgressDialog progressDialog = new ProgressDialog(WelcomeActivity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
 
-        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, URLS.getcondition, null,
-                new Response.Listener<JSONArray>()
-                {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        progressDialog.dismiss();
-
-                        // display response
-                        for (int j=0 ; j<response.length() ; j++){
-
-                            try {
-                                JSONObject object = response.getJSONObject(j);
-
-                                TermCondition_ModelClass modelClass = new TermCondition_ModelClass(
-                                        object.getString("terms_and_conditions")
-                                );
-
-                                list_term.add(modelClass);
-                                TermCondition_Adapter adapter = new TermCondition_Adapter(list_term,WelcomeActivity.this);
-                                lv_termcondition.setAdapter(adapter);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Log.d("Error.Response", error.toString());
-                    }
-                }
-        );
-
-        Volley.newRequestQueue(WelcomeActivity.this).add(getRequest);
-
-    }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,11 +17,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
+import com.starkwiz.starkwiz.LinkingClass.URLS;
+import com.starkwiz.starkwiz.ModelClass.Login_ModelClass;
 import com.starkwiz.starkwiz.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -28,6 +45,7 @@ public class SettingActivity extends AppCompatActivity {
             txt_setting_email,txt_setting_changepassword,txt_changeregion,txt_deactivate_account,txt_closeaccount,
             txtsetting_supportnotification,txtsetting_supportprivacy,txt_disconnect_knowmore,txtsetting_logout;
     LinearLayout linear_setting_account,linear_setting_notification,linear_setting_privacydata,linear_setting_plandetails,linear_switch_account;
+    String UserId,Email_Id,NewEmail,Password,OldPassword,NewPassword,ConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +69,9 @@ public class SettingActivity extends AppCompatActivity {
         linear_switch_account = findViewById(R.id.linear_switch_account);
         txt_disconnect_knowmore = findViewById(R.id.txt_disconnect_knowmore);
         txtsetting_logout = findViewById(R.id.txtsetting_logout);
+
+        UserId = SharedPrefManager.getInstance(SettingActivity.this).getUser().getId();
+        Email_Id = SharedPrefManager.getInstance(SettingActivity.this).getUser().getEmail();
 
 
         txtsetting_logout.setOnClickListener(new View.OnClickListener() {
@@ -131,16 +152,30 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.alert_change_email);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 Button btn_change_email_done = dialog.findViewById(R.id.btn_change_email_done);
+                EditText et_change_email = dialog.findViewById(R.id.et_change_email);
+                EditText et_change_pswd = dialog.findViewById(R.id.et_change_pswd);
+
+
 
                 btn_change_email_done.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        NewEmail = et_change_email.getText().toString().trim();
+                        Password = et_change_pswd.getText().toString().trim();
                         final Dialog dialog = new Dialog(SettingActivity.this);
                         dialog.setContentView(R.layout.alert_email_verification);
                         InsetDrawable background =
                                 (InsetDrawable) dialog.getWindow().getDecorView().getBackground();
                         background.setAlpha(0);
                         dialog.show();
+                        Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+
+                        btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ChangeEmail(NewEmail,Password);
+                            }
+                        });
                         Window window = dialog.getWindow();
                         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     }
@@ -155,21 +190,38 @@ public class SettingActivity extends AppCompatActivity {
         txt_setting_changepassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ViewGroup viewGroup = findViewById(android.R.id.content);
 
-                //then we will inflate the custom alert dialog xml that we created
-                View dialogView = LayoutInflater.from(SettingActivity.this).inflate(R.layout.alert_change_passwprd, viewGroup, false);
+                final Dialog dialog = new Dialog(SettingActivity.this);
+                dialog.setContentView(R.layout.alert_change_passwprd);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.show();
+                EditText et_current_password,et_new_password,et_reenterpassword;
+                Button btn_change_email_confirm;
+                et_current_password = dialog.findViewById(R.id.et_current_password);
+                et_new_password = dialog.findViewById(R.id.et_new_password);
+                et_reenterpassword = dialog.findViewById(R.id.et_reenterpassword);
+                btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+
+                btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OldPassword = et_current_password.getText().toString().trim();
+                        NewPassword = et_new_password.getText().toString().trim();
+                        ConfirmPassword = et_reenterpassword.getText().toString().trim();
+
+                        if (NewPassword.equals(ConfirmPassword)){
+                            ChangePassword(OldPassword,NewPassword);
+                        }else {
+                            AlertBoxClasses.SimpleAlertBox(SettingActivity.this,"Password didn't match");
+                        }
 
 
-                //Now we need an AlertDialog.Builder object
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+                    }
+                });
 
-                //setting the view of the builder to our custom view that we already inflated
-                builder.setView(dialogView);
 
-                //finally creating the alert dialog and displaying it
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                Window window = dialog.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
         });
 
@@ -192,6 +244,15 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.alert_deactivate_account);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
+                Button btn_deactive = (Button)dialog.findViewById(R.id.btn_deactive);
+
+                btn_deactive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Deactivate(UserId);
+                    }
+                });
+
                 Window window = dialog.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
@@ -204,6 +265,7 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.alert_change_close_account);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
+
                 Window window = dialog.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
@@ -279,5 +341,252 @@ public class SettingActivity extends AppCompatActivity {
                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
         });
+    }
+
+    public void Deactivate(String UserId){
+
+        ProgressDialog progressDialog = new ProgressDialog(SettingActivity.this);
+        progressDialog.setMessage("Signing In..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("id", UserId);
+        params.put("active_status", "deactive");
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updatestatus, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String msg = response.getString("0");
+
+                    if (msg.equals("success")){
+
+                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingActivity.this)
+                                .setMessage("Your account is Deactived.")
+                                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        dialogInterface.cancel();
+                                        SharedPrefManager.getInstance(SettingActivity.this).logout();
+                                    }
+                                });
+                        AlertDialog alert11 = alertDialog.create();
+                        alert11.show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Toast.makeText(SettingActivity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
+
+    }
+
+
+    public void Close(String UserId){
+
+        ProgressDialog progressDialog = new ProgressDialog(SettingActivity.this);
+        progressDialog.setMessage("Signing In..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("id", UserId);
+        params.put("active_status", "close");
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updatestatus, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String msg = response.getString("0");
+
+                    if (msg.equals("success")){
+
+                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingActivity.this)
+                                .setMessage("Your account is Deactived.")
+                                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        dialogInterface.cancel();
+                                        SharedPrefManager.getInstance(SettingActivity.this).logout();
+                                    }
+                                });
+                        AlertDialog alert11 = alertDialog.create();
+                        alert11.show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Toast.makeText(SettingActivity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
+
+    }
+
+    public void ChangeEmail(String NewEmail, String Password){
+
+        ProgressDialog progressDialog = new ProgressDialog(SettingActivity.this);
+        progressDialog.setMessage("Signing In..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("oldemail", Email_Id);
+        params.put("newemail", NewEmail);
+        params.put("password", Password);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updateemail, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String msg = response.getString("message");
+
+                    if (msg.equals("Password updated")){
+
+                        Toast.makeText(SettingActivity.this, "Email Changed Successfully.", Toast.LENGTH_SHORT).show();
+
+                         SharedPrefManager.getInstance(SettingActivity.this).logout();
+
+                    }else if (msg.equals("Incorrect Password")){
+                        Toast.makeText(SettingActivity.this, "Incorrect Password.", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                Toast.makeText(SettingActivity.this, "Email already exists.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
+    }
+
+    public void ChangePassword(String oldpassword, String newpassword){
+
+        ProgressDialog progressDialog = new ProgressDialog(SettingActivity.this);
+        progressDialog.setMessage("Signing In..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("email", Email_Id);
+        params.put("oldpassword", oldpassword);
+        params.put("newpassword", newpassword);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updatepassword, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String msg = response.getString("message");
+
+                    if (msg.equals("Password updated")){
+
+                        Toast.makeText(SettingActivity.this, "Password Changed Successfully.", Toast.LENGTH_SHORT).show();
+
+                        SharedPrefManager.getInstance(SettingActivity.this).logout();
+
+                    }else if (msg.equals("Incorrect Password")){
+                        Toast.makeText(SettingActivity.this, "Please check and try again.", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                Toast.makeText(SettingActivity.this, "Email already exists.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
     }
 }

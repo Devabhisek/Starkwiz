@@ -1,10 +1,12 @@
 package com.starkwiz.starkwiz.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -30,12 +32,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Login_ModelClass;
 import com.starkwiz.starkwiz.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,7 +54,7 @@ import in.aabhasjindal.otptextview.OtpTextView;
 public class Signup_Personal_Activity extends AppCompatActivity {
 
     Button btn_signup_personal;
-    String Student_intent,Parent_intent,Teacher_intent,Hub_intent,Gender,FirstName,LastName,Dob,PhoneNo,date;
+    String Student_intent,Parent_intent,Teacher_intent,Hub_intent,Gender,FirstName,LastName,Dob,PhoneNo,date,User_ID;
     RadioButton check_gender_male,check_gender_female;
     EditText et_personal_firstname,et_personal_lastname,et_personal_phnno;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -546,7 +551,8 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                             obj.getString("mobile_number"),
                             obj.getString("class"),
                             obj.getString("school_board"),
-                            obj.getString("role")
+                            obj.getString("role"),
+                            obj.getString("email")
                     );
                     login_modelClasses.add(modelClass);
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
@@ -556,6 +562,40 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 } catch (JSONException e) {
                     e.printStackTrace();
+
+                    try {
+                        String msg =  response.getString("message");
+
+                        String all_profile = response.getString("all_profile");
+
+                        JSONArray array = new JSONArray(all_profile);
+
+                        for (int i = 0 ; i<array.length();i++){
+
+                            JSONObject object = array.getJSONObject(i);
+
+                            User_ID = object.getString("userid");
+
+                        }
+
+                        if (msg.equals("user is not active")){
+
+                            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Signup_Personal_Activity.this)
+                                    .setMessage("Your account is Deactived / Closed.\n Would you like to active your account?")
+                                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            activate(User_ID);
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                            AlertDialog alert11 = alertDialog.create();
+                            alert11.show();
+                        }
+                    } catch (JSONException jsonException) {
+                        jsonException.printStackTrace();
+                    }
                 }
 
 
@@ -575,6 +615,74 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
+
+    }
+
+
+
+    public void activate(String UserId){
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
+        progressDialog.setMessage("Signing In..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("id", UserId);
+        params.put("active_status", "active");
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updatestatus, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String msg = response.getString("0");
+
+                    if (msg.equals("success")){
+
+                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Signup_Personal_Activity.this)
+                                .setMessage("Your account is actived successfully.")
+                                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                        dialogInterface.cancel();
+
+                                    }
+                                });
+                        AlertDialog alert11 = alertDialog.create();
+                        alert11.show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Toast.makeText(Signup_Personal_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
     }
 
@@ -611,6 +719,8 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public void onBackPressed() {

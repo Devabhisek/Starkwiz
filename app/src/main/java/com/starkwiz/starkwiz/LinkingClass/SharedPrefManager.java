@@ -18,6 +18,7 @@ public class SharedPrefManager {
     private static final String KEY_mobile_number = "keymobile_number";
     private static final String KEY_cls = "keycls";
     private static final String KEY_school_board = "keyschool_board";
+    private static final String KEY_email = "keyschool_email";
     private static final String KEY_role = "keyrole";
 
     private static SharedPrefManager mInstance;
@@ -48,6 +49,7 @@ public class SharedPrefManager {
         editor.putString(KEY_cls,               login_modelClass.getCls());
         editor.putString(KEY_school_board,      login_modelClass.getSchool_board());
         editor.putString(KEY_role,              login_modelClass.getRole());
+        editor.putString(KEY_email,             login_modelClass.getEmail());
         editor.apply();
     }
 
@@ -70,7 +72,8 @@ public class SharedPrefManager {
                sharedPreferences.getString(KEY_mobile_number, null),
                sharedPreferences.getString(KEY_cls, null),
                sharedPreferences.getString(KEY_school_board, null),
-               sharedPreferences.getString(KEY_role, null)
+               sharedPreferences.getString(KEY_role, null),
+               sharedPreferences.getString(KEY_email, null)
 
                    );
 

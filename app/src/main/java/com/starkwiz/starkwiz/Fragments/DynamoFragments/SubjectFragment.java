@@ -47,6 +47,7 @@ import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.FeaturedSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
+import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Extra_Subjectplan_ModelClass;
@@ -80,9 +81,9 @@ public class SubjectFragment extends Fragment {
 
     CardView card_subject,carddance,card_declamation,card_music;
     RelativeLayout rl_addsubject;
-    LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,
+    LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
             linear_premiumtype,core,extra,feature,linear_coretype,linear_extratype,linear_featuretype;
-    TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,
+    TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
             txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject;
     String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,json;
     Button btn_plans,btn_subjectproceed;
@@ -99,6 +100,7 @@ public class SubjectFragment extends Fragment {
     ArrayList<Selected_Subject_Modelclass>list_subjects;
     private TourGuide mTourGuideHandler;
     View view;
+    String Cls;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,10 +114,6 @@ public class SubjectFragment extends Fragment {
         card_music = view.findViewById(R.id.card_music);
         rl_addsubject = view.findViewById(R.id.rl_addsubject);
 
-
-
-
-
         list_coresubjects =new ArrayList<>();
         list_extrasubjects =new ArrayList<>();
         list_featuresubjects =new ArrayList<>();
@@ -123,12 +121,12 @@ public class SubjectFragment extends Fragment {
         adapter = new CoreSubjects_Adapter(list_coresubjects,getActivity());
         extraSubjects_adapter = new ExtraSubjects_Adapter(list_extrasubjects,getActivity());
         featuredSubjects_adapter = new FeaturedSubjects_Adapter(list_featuresubjects,getActivity());
+        Cls = SharedPrefManager.getInstance(getActivity()).getUser().getCls();
 
 
 //        String subject = String.valueOf(featuredSubjects_adapter.getArrayList());
 //
 //        Log.d("Sub",subject);
-
 
 
         card_subject.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +172,10 @@ public class SubjectFragment extends Fragment {
                 linear_basictype = dialog.findViewById(R.id.linear_basictype);
                 standard = dialog.findViewById(R.id.standard);
                 linear_standardtype = dialog.findViewById(R.id.linear_standardtype);
+                lineardisciunt = dialog.findViewById(R.id.lineardisciunt);
                 premium = dialog.findViewById(R.id.premium);
+                txt_disciuntprice = dialog.findViewById(R.id.txt_disciuntprice);
+                txt_disciuntpricemonth = dialog.findViewById(R.id.txt_disciuntpricemonth);
                 linear_premiumtype = dialog.findViewById(R.id.linear_premiumtype);
                 txtplantype = dialog.findViewById(R.id.txtplantype);
                 txtplanprice = dialog.findViewById(R.id.txtplanprice);
@@ -208,7 +209,7 @@ public class SubjectFragment extends Fragment {
                                     try {
                                         JSONObject object = response.getJSONObject(j);
 
-                                        if (object.getString("plan_type").equals("basic")){
+                                        if (object.getString("plan_type").equals("Basic")){
                                             txt_perprice.setText("Rs "+object.getString("plan_price_month")+" / per month");
                                             txtplanprice.setText(object.getString("plan_price"));
                                             txtplantype.setText(object.getString("plan_type"));
@@ -220,11 +221,25 @@ public class SubjectFragment extends Fragment {
                                             PlanDuration = object.getString("plan_duration");
                                             PlanDuarationType = object.getString("plan_duration_type");
 
+                                            String discounted_price = object.getString("discounted_price");
+
+                                            if (!discounted_price.equals("0")){
+
+                                                lineardisciunt.setVisibility(View.VISIBLE);
+
+                                                txt_disciuntprice.setText(discounted_price);
+
+                                                int discount_month = Integer.parseInt(discounted_price)/12;
+
+                                                txt_disciuntpricemonth.setText(String.valueOf(discount_month));
+                                            }
+                                            else {
+                                                lineardisciunt.setVisibility(View.GONE);
+                                            }
+
+
                                             btn_plans.setEnabled(true);
-
-
                                         }
-
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -263,9 +278,7 @@ public class SubjectFragment extends Fragment {
                         View layview = inflater.inflate(R.layout.custom_basic_plans, null);
                         lineartype.addView(layview);
 
-
-
-                            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+                        ProgressDialog progressDialog = new ProgressDialog(getActivity());
                             progressDialog.setMessage("Loading...");
                             progressDialog.setCancelable(false);
                             progressDialog.show();
@@ -283,7 +296,7 @@ public class SubjectFragment extends Fragment {
                                             try {
                                                 JSONObject object = response.getJSONObject(j);
 
-                                                if (object.getString("plan_type").equals("basic")){
+                                                if (object.getString("plan_type").equals("Basic")){
                                                     txt_perprice.setText("Rs "+object.getString("plan_price_month")+"/ per month");
                                                     txtplanprice.setText(object.getString("plan_price"));
                                                     txtplantype.setText(object.getString("plan_type"));
@@ -291,6 +304,22 @@ public class SubjectFragment extends Fragment {
 
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
+
+                                                    String discounted_price = object.getString("discounted_price");
+
+                                                    if (!discounted_price.equals("0")){
+
+                                                        lineardisciunt.setVisibility(View.VISIBLE);
+
+                                                        txt_disciuntprice.setText(discounted_price);
+
+                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+
+                                                        txt_disciuntpricemonth.setText(String.valueOf(discount_month));
+                                                    }
+                                                    else {
+                                                        lineardisciunt.setVisibility(View.GONE);
+                                                    }
 
                                                     btn_plans.setEnabled(true);
                                                 }
@@ -368,6 +397,23 @@ public class SubjectFragment extends Fragment {
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
 
+                                                    String discounted_price = object.getString("discounted_price");
+
+                                                    if (!discounted_price.equals("0")){
+
+                                                        lineardisciunt.setVisibility(View.VISIBLE);
+
+                                                        txt_disciuntprice.setText(discounted_price);
+
+                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+
+                                                        txt_disciuntpricemonth.setText(String.valueOf(discount_month));
+                                                    }
+                                                    else {
+                                                        lineardisciunt.setVisibility(View.GONE);
+                                                    }
+
+
                                                     btn_plans.setEnabled(true);
                                                 }
 
@@ -438,6 +484,23 @@ public class SubjectFragment extends Fragment {
 
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
+
+                                                    String discounted_price = object.getString("discounted_price");
+
+                                                    if (!discounted_price.equals("0")){
+
+                                                        lineardisciunt.setVisibility(View.VISIBLE);
+
+                                                        txt_disciuntprice.setText(discounted_price);
+
+                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+
+                                                        txt_disciuntpricemonth.setText(String.valueOf(discount_month));
+                                                    }
+                                                    else {
+                                                        lineardisciunt.setVisibility(View.GONE);
+                                                    }
+
 
                                                     btn_plans.setEnabled(true);
                                                 }
@@ -533,8 +596,6 @@ public class SubjectFragment extends Fragment {
                         lv_subjectsplan_feature.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-
-
                         txtplantype_subject.setText(PlanType);
                         txtplanprice_subject.setText(PlanPrice);
                         txtplanvalidity_subject.setText(PlanDuration+" "+PlanDuarationType);
@@ -554,8 +615,9 @@ public class SubjectFragment extends Fragment {
                             //HttpsTrustManager.allowAllSSL();
 
 
+
                             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                                    "https://www.rentopool.com/starkwiz/api/auth/subjectbyplan?plan_type=" + PlanType, new Response.Listener<String>() {
+                                    "https://www.rentopool.com/starkwiz/api/auth/subjectbyplan?class=" + Cls, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
 
@@ -578,7 +640,7 @@ public class SubjectFragment extends Fragment {
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
-                                                        subject_object.getString("plan_type")
+                                                        ""
                                                 );
 
                                                 list_coresubjects.add(core_subjectbyplans_modelClass);
@@ -594,7 +656,7 @@ public class SubjectFragment extends Fragment {
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
-                                                        subject_object.getString("plan_type")
+                                                        ""
 
                                                 );
                                                 list_extrasubjects.add(extra_subjectplan_modelClass);
@@ -609,7 +671,7 @@ public class SubjectFragment extends Fragment {
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
-                                                        subject_object.getString("plan_type")
+                                                        ""
 
                                                 );
                                                 list_featuresubjects.add(featured_subjectplan_modelClass);
@@ -701,32 +763,20 @@ public class SubjectFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        sharedPreferences = getActivity().getSharedPreferences("USER", 0);
-        String strtext = sharedPreferences.getString("First","");
 
-        if (strtext.isEmpty()) {
 
             Firsttime_Guide();
-
-        }
-
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        sharedPreferences = getActivity().getSharedPreferences("USER", 0);
-        String strtext = sharedPreferences.getString("First","");
 
-        if (strtext.isEmpty()) {
 
-            Firsttime_Guide();
-
-        }
-    }
 
     private void Firsttime_Guide(){
 
+        sharedPreferences = getActivity().getSharedPreferences("USER", 0);
+        String strtext = sharedPreferences.getString("First","");
+
+        if (strtext.isEmpty())
         mTourGuideHandler = TourGuide.init(getActivity()).with(TourGuide.Technique.Click)
                 .setPointer(new Pointer())
                 .setToolTip( new ToolTip()

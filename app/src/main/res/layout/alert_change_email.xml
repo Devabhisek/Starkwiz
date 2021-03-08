@@ -71,11 +71,27 @@
                 android:backgroundTint="@android:color/holo_blue_light"></EditText>
 
 
+            <EditText
+                android:id="@+id/et_change_pswd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/et_change_email"
+                android:textSize="16dp"
+                android:hint="Enter Password"
+                android:textColorHint="#bebebe"
+                android:textColor="@color/black"
+                android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
             <Button
                 android:id="@+id/btn_change_email_done"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_change_email"
+                android:layout_below="@+id/et_change_pswd"
                 android:layout_marginTop="8dp"
                 android:text="Done"
                 android:background="@drawable/round_textview_clicked"

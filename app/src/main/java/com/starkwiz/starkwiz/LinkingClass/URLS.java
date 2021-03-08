@@ -15,4 +15,8 @@ public class URLS {
     public static String subjectbyplan="https://www.rentopool.com/starkwiz/api/auth/subjectbyplan";
     public static String getcondition="https://rentopool.com/starkwiz/api/auth/getcondition";
     public static String getcontent="https://rentopool.com/starkwiz/api/auth/getcontent";
+    public static String updatestatus="https://rentopool.com/starkwiz/api/auth/updatestatus";
+    public static String getfixture="https://www.rentopool.com/starkwiz/api/auth/getfixture";
+    public static String updateemail="https://www.rentopool.com/starkwiz/api/auth/updateemail";
+    public static String updatepassword="https://rentopool.com/starkwiz/api/auth/updatepassword";
 }
