@@ -19,4 +19,16 @@ public class URLS {
     public static String getfixture="https://www.rentopool.com/starkwiz/api/auth/getfixture";
     public static String updateemail="https://www.rentopool.com/starkwiz/api/auth/updateemail";
     public static String updatepassword="https://rentopool.com/starkwiz/api/auth/updatepassword";
+    public static String get_moduleByID="https://www.rentopool.com/starkwiz/api/auth/get_moduleByID";
+    public static String insertsubject="https://rentopool.com/starkwiz/api/auth/insertsubject";
+    public static String createscore="https://rentopool.com/starkwiz/api/auth/createscore";
+    public static String getsubject="https://rentopool.com/starkwiz/api/auth/getsubject";
+    public static String send_mail_trap="https://www.rentopool.com/starkwiz/api/auth/send-mail-trap";
+    public static String verifyemail="https://www.rentopool.com/starkwiz/api/auth/verifyemail";
+    public static String updatefixture="https://www.rentopool.com/starkwiz/api/auth/updatefixture";
+    public static String getscorebyid="https://www.rentopool.com/starkwiz/api/auth/getscorebyid";
+    public static String send_otp_forgotpassword="https://www.rentopool.com/starkwiz/api/auth/send-mail-trap";
+    public static String verifyemail_forgot_password="https://www.rentopool.com/starkwiz/api/auth/verifyemail";
+    public static String forgot_password="https://www.rentopool.com/starkwiz/api/auth/forgotpassword";
 }
+

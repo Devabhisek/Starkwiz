@@ -1,17 +1,22 @@
-package com.starkwiz.starkwiz.Fragments.DynamoFragments;
+ package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,22 +45,30 @@ import com.google.gson.reflect.TypeToken;
 import com.starkwiz.starkwiz.Activities.Dance_Activity;
 import com.starkwiz.starkwiz.Activities.Declamation;
 import com.starkwiz.starkwiz.Activities.Music_Activity;
+import com.starkwiz.starkwiz.Activities.Signup_Personal_Activity;
 import com.starkwiz.starkwiz.Activities.Student_Quiz_Activity;
 import com.starkwiz.starkwiz.Activities.Subjectwise_Syllabus_Activity;
 import com.starkwiz.starkwiz.Activities.UserSelection_Activity;
+import com.starkwiz.starkwiz.Adapter.GridAdapter.Getsubject_GridViewAdapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.CoreSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.FeaturedSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
+import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
+import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.Extra_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Extra_Subjectplan_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.Featured_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Featured_Subjectplan_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.GetSubjects_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.GetTestList_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Quiz_Modelclass;
 import com.starkwiz.starkwiz.ModelClass.Selected_Subject_Modelclass;
+import com.starkwiz.starkwiz.ModelClass.TotalSubjects_ModelClass;
 import com.starkwiz.starkwiz.R;
 
 import org.json.JSONArray;
@@ -79,17 +93,18 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SubjectFragment extends Fragment {
 
-    CardView card_subject,carddance,card_declamation,card_music;
+
     RelativeLayout rl_addsubject;
     LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
             linear_premiumtype,core,extra,feature,linear_coretype,linear_extratype,linear_featuretype;
     TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
             txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject;
-    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,json;
+    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price;
     Button btn_plans,btn_subjectproceed;
     ArrayList<Core_Subjectbyplans_ModelClass>list_coresubjects;
     ArrayList<Extra_Subjectplan_ModelClass>list_extrasubjects;
     ArrayList<Featured_Subjectplan_ModelClass>list_featuresubjects;
+    ArrayList<GetSubjects_ModelClass> totalSubjects_modelClasses = new ArrayList<>();
     RecyclerView lv_subjectsplan,lv_subjectsplan_extra,lv_subjectsplan_feature;
     CoreSubjects_Adapter adapter;
     ExtraSubjects_Adapter extraSubjects_adapter;
@@ -100,7 +115,9 @@ public class SubjectFragment extends Fragment {
     ArrayList<Selected_Subject_Modelclass>list_subjects;
     private TourGuide mTourGuideHandler;
     View view;
-    String Cls;
+    String Cls,User_Id,Plan_Id;
+    GridView subject_grid;
+    int discount_month;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,11 +125,13 @@ public class SubjectFragment extends Fragment {
         // Inflate the layout for this fragment
 
          view = inflater.inflate(R.layout.fragment_subject, container, false);
-        card_subject = view.findViewById(R.id.card_subject);
-        carddance = view.findViewById(R.id.carddance);
-        card_declamation = view.findViewById(R.id.card_declamation);
-        card_music = view.findViewById(R.id.card_music);
+
         rl_addsubject = view.findViewById(R.id.rl_addsubject);
+        subject_grid = view.findViewById(R.id.subject_grid);
+
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-message"));
+
 
         list_coresubjects =new ArrayList<>();
         list_extrasubjects =new ArrayList<>();
@@ -123,43 +142,10 @@ public class SubjectFragment extends Fragment {
         featuredSubjects_adapter = new FeaturedSubjects_Adapter(list_featuresubjects,getActivity());
         Cls = SharedPrefManager.getInstance(getActivity()).getUser().getCls();
 
-
-//        String subject = String.valueOf(featuredSubjects_adapter.getArrayList());
-//
-//        Log.d("Sub",subject);
+        User_Id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
 
-        card_subject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Subjectwise_Syllabus_Activity.class));
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-            }
-        });
 
-        carddance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Dance_Activity.class));
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-            }
-        });
-
-        card_declamation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Declamation.class));
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-            }
-        });
-
-        card_music.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Music_Activity.class));
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-            }
-        });
 
         rl_addsubject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,15 +207,19 @@ public class SubjectFragment extends Fragment {
                                             PlanDuration = object.getString("plan_duration");
                                             PlanDuarationType = object.getString("plan_duration_type");
 
-                                            String discounted_price = object.getString("discounted_price");
+                                             discounted_price = object.getString("discounted_price");
+
+                                            Intent intent = new Intent("custom-message");
+                                            intent.putExtra("planid",object.getString("plan_id"));
+                                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
                                             if (!discounted_price.equals("0")){
 
                                                 lineardisciunt.setVisibility(View.VISIBLE);
-
+                                                txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                                 txt_disciuntprice.setText(discounted_price);
 
-                                                int discount_month = Integer.parseInt(discounted_price)/12;
+                                                 discount_month = Integer.parseInt(discounted_price)/12;
 
                                                 txt_disciuntpricemonth.setText(String.valueOf(discount_month));
                                             }
@@ -305,15 +295,15 @@ public class SubjectFragment extends Fragment {
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
 
-                                                    String discounted_price = object.getString("discounted_price");
+                                                     discounted_price = object.getString("discounted_price");
 
                                                     if (!discounted_price.equals("0")){
 
                                                         lineardisciunt.setVisibility(View.VISIBLE);
-
+                                                        txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                                         txt_disciuntprice.setText(discounted_price);
 
-                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+                                                         discount_month = Integer.parseInt(discounted_price)/12;
 
                                                         txt_disciuntpricemonth.setText(String.valueOf(discount_month));
                                                     }
@@ -397,15 +387,17 @@ public class SubjectFragment extends Fragment {
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
 
-                                                    String discounted_price = object.getString("discounted_price");
+                                                     discounted_price = object.getString("discounted_price");
 
                                                     if (!discounted_price.equals("0")){
 
                                                         lineardisciunt.setVisibility(View.VISIBLE);
 
+                                                        txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
                                                         txt_disciuntprice.setText(discounted_price);
 
-                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+                                                         discount_month = Integer.parseInt(discounted_price)/12;
 
                                                         txt_disciuntpricemonth.setText(String.valueOf(discount_month));
                                                     }
@@ -485,15 +477,16 @@ public class SubjectFragment extends Fragment {
                                                     PlanPrice = object.getString("plan_price");
                                                     PlanPerMonth = object.getString("plan_duration");
 
-                                                    String discounted_price = object.getString("discounted_price");
+                                                     discounted_price = object.getString("discounted_price");
 
                                                     if (!discounted_price.equals("0")){
 
                                                         lineardisciunt.setVisibility(View.VISIBLE);
 
+                                                        txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                                                         txt_disciuntprice.setText(discounted_price);
 
-                                                        int discount_month = Integer.parseInt(discounted_price)/12;
+                                                         discount_month = Integer.parseInt(discounted_price)/12;
 
                                                         txt_disciuntpricemonth.setText(String.valueOf(discount_month));
                                                     }
@@ -595,9 +588,13 @@ public class SubjectFragment extends Fragment {
                         lv_subjectsplan_feature.setHasFixedSize(true);
                         lv_subjectsplan_feature.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+                        if (String.valueOf(discounted_price)!=null){
+                            txtplanprice_subject.setText(String.valueOf(discounted_price));
+                        }else {
+                            txtplanprice_subject.setText(PlanPrice);
+                        }
 
                         txtplantype_subject.setText(PlanType);
-                        txtplanprice_subject.setText(PlanPrice);
                         txtplanvalidity_subject.setText(PlanDuration+" "+PlanDuarationType);
                         txt_perprice_subject.setText("Rs. "+PlanPerMonth+" / per month");
                        //txtplanprice_subject.setText(PlanPrice);
@@ -629,14 +626,12 @@ public class SubjectFragment extends Fragment {
 
                                             String plan = subject_object.getString("subject_type");
 
-
-
                                             if (plan.equals("core")){
 
                                                 Core_Subjectbyplans_ModelClass core_subjectbyplans_modelClass = new Core_Subjectbyplans_ModelClass(
 
 
-                                                        "",
+                                                        subject_object.getString("subject_id"),
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
@@ -652,7 +647,7 @@ public class SubjectFragment extends Fragment {
 
                                                 Extra_Subjectplan_ModelClass extra_subjectplan_modelClass = new Extra_Subjectplan_ModelClass(
 
-                                                        "",
+                                                        subject_object.getString("subject_id"),
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
@@ -667,7 +662,7 @@ public class SubjectFragment extends Fragment {
                                             }else {
                                                 Featured_Subjectplan_ModelClass featured_subjectplan_modelClass = new Featured_Subjectplan_ModelClass(
 
-                                                        "",
+                                                        subject_object.getString("subject_id"),
                                                         "",
                                                         subject_object.getString("subject_name"),
                                                         subject_object.getString("subject_type"),
@@ -701,41 +696,83 @@ public class SubjectFragment extends Fragment {
                                 @Override
                                 public void onClick(View view) {
 
-                                    ArrayList<String> CoreSubject = adapter.getArrayList();
-                                    ArrayList<String> ExtraSubject = extraSubjects_adapter.getExtraArrayList();
-                                    ArrayList<String> FeatureSubject = featuredSubjects_adapter.getFeatureArrayList();
+
+                                    ArrayList<Core_ModelClass> CoreSubject = adapter.getArrayList_Core();
+                                    ArrayList<Core_ModelClass> ExtraSubject = extraSubjects_adapter.getExtraArrayList();
+                                    ArrayList<Core_ModelClass> FeatureSubject = featuredSubjects_adapter.getFeatureArrayList();
+
 
                                     int total = CoreSubject.size()+ExtraSubject.size()+FeatureSubject.size();
 
                                     if (total==6){
-                                        ArrayList<ArrayList<String>> totalsubject = new ArrayList<ArrayList<String>>();
-
-                                        totalsubject.add(CoreSubject);
-                                        totalsubject.add(ExtraSubject);
-                                        totalsubject.add(FeatureSubject);
 
                                         Log.d("coresub", String.valueOf(CoreSubject));
                                         Log.d("extrasub", String.valueOf(ExtraSubject));
                                         Log.d("featuresub", String.valueOf(FeatureSubject));
-                                        Log.d("total", String.valueOf(totalsubject));
 
-                                        for (int a =0 ;a<totalsubject.size();a++){
+                                        for ( int k = 0 ; k<CoreSubject.size();k++){
 
-                                            for (int b = 0 ;b<totalsubject.get(a).size();b++){
+                                        String CoreSub_Id = CoreSubject.get(k).getSubjectId();
+                                        String CoreSub_name = CoreSubject.get(k).getSubjectname();
+                                        String CoreSub_type = CoreSubject.get(k).getSubjecttype();
 
-                                                Selected_Subject_Modelclass modelclass =
-                                                        new Selected_Subject_Modelclass(
-                                                        totalsubject.get(a).get(b)
-                                                );
-                                                list_subjects.add(modelclass);
-                                            }
+                                        Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                CoreSub_Id,
+                                                CoreSub_name,
+                                                CoreSub_type,
+                                                "1",
+                                                User_Id);
 
-                                            Gson gson = new Gson();
+                                        list_subjects.add(selected_subject_modelclasses);
+
+                                    };
+
+                                    Log.d("Core_selectedvalue",list_subjects.toString());
+
+
+                                    for ( int k = 0 ; k<FeatureSubject.size();k++){
+
+                                        String FeatureSub_Id = FeatureSubject.get(k).getSubjectId();
+                                        String FeatureSub_name = FeatureSubject.get(k).getSubjectname();
+                                        String FeatureSub_type = FeatureSubject.get(k).getSubjecttype();
+
+                                        Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                FeatureSub_Id,
+                                                FeatureSub_name,
+                                                FeatureSub_type,
+                                                "3",
+                                                User_Id);
+
+                                        list_subjects.add(selected_subject_modelclasses);
+
+                                    };
+
+                                    Log.d("Featured_selectedvalue",list_subjects.toString());
+
+                                    for ( int k = 0 ; k<ExtraSubject.size();k++){
+
+                                        String ExtraSub_Id = ExtraSubject.get(k).getSubjectId();
+                                        String ExtraSub_name = ExtraSubject.get(k).getSubjectname();
+                                        String ExtraSub_type = ExtraSubject.get(k).getSubjecttype();
+
+                                        Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                ExtraSub_Id,
+                                                ExtraSub_name,
+                                                ExtraSub_type,
+                                                "2",
+                                                User_Id);
+
+                                        list_subjects.add(selected_subject_modelclasses);
+
+                                    };
+
+                                        Log.d("Extra_selectedvalue",list_subjects.toString());
+
+                                        Gson gson = new Gson();
                                             String json = gson.toJson(list_subjects);
-                                            Log.d("js",json);
-                                        }
+                                            Log.d("extra_js",json);
 
-
+                                            InsertSubjects(json);
 
                                     }else {
                                         Toast.makeText(getActivity(), "Please Choose any 6 Subjects", Toast.LENGTH_SHORT).show();
@@ -759,41 +796,182 @@ public class SubjectFragment extends Fragment {
         return view;
     }
 
+    public void InsertSubjects(String data){
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("post_data", data);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.insertsubject, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String status = response.getString("success");
+
+                    if (status.equals("success")){
+
+                        Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(getActivity()).add(jsonRequest);
+    }
+
+    public void GetSubjects(){
+
+        totalSubjects_modelClasses.clear();
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", User_Id);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.getsubject, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String allsubject = response.getString("allsubject");
+
+                    JSONArray array = new JSONArray(allsubject);
+
+                    for (int i = 0 ; i < array.length() ; i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        GetSubjects_ModelClass modelClass = new GetSubjects_ModelClass(
+
+                                object.getString("id"),
+                                object.getString("plan_id"),
+                                object.getString("subject_id"),
+                                object.getString("subject_name"),
+                                object.getString("subject_type")
+                        );
+
+                        totalSubjects_modelClasses.add(modelClass);
+
+                    }
+
+                    String subjects = totalSubjects_modelClasses.toString();
+
+                    if (subjects.equals("[]")){
+                        subject_grid.setVisibility(View.GONE);
+                    }else {
+                        Getsubject_GridViewAdapter adapter = new Getsubject_GridViewAdapter(totalSubjects_modelClasses,getActivity());
+                        subject_grid.setAdapter(adapter);
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    subject_grid.setVisibility(View.GONE);
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                subject_grid.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(getActivity()).add(jsonRequest);
+    }
+
+
+
     @Override
     public void onStart() {
         super.onStart();
 
-
-
-            Firsttime_Guide();
+        GetSubjects();
     }
+//
+//
+//
+//
+//    private void Firsttime_Guide(){
+//
+//        sharedPreferences = getActivity().getSharedPreferences("USER", 0);
+//        String strtext = sharedPreferences.getString("First","");
+//
+//        if (strtext.isEmpty())
+//            mTourGuideHandler = TourGuide.init(getActivity()).with(TourGuide.Technique.Click)
+//                    .setPointer(new Pointer())
+//                    .setToolTip(new ToolTip()
+//                            .setTitle("Click on")
+//                            .setDescription("Any Subject")
+//                            .setBackgroundColor(Color.parseColor("#88D5F0"))
+//                            .setShadow(true)
+//                            .setGravity(Gravity.BOTTOM | Gravity.RIGHT))
+//                    .setOverlay(new Overlay()).playOn(card_subject);
+//
+//            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("USER", MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putString("First", "Firsttime");
+//            editor.commit();
 
 
+   // }
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            Plan_Id = intent.getStringExtra("planid");
+
+            Log.d("planid",String.valueOf(Plan_Id));
 
 
-    private void Firsttime_Guide(){
+        }
+    };
 
-        sharedPreferences = getActivity().getSharedPreferences("USER", 0);
-        String strtext = sharedPreferences.getString("First","");
-
-        if (strtext.isEmpty())
-        mTourGuideHandler = TourGuide.init(getActivity()).with(TourGuide.Technique.Click)
-                .setPointer(new Pointer())
-                .setToolTip( new ToolTip()
-                        .setTitle("Click on")
-                        .setDescription("Any Subject")
-                        .setBackgroundColor(Color.parseColor("#88D5F0"))
-                        .setShadow(true)
-                        .setGravity(Gravity.BOTTOM | Gravity.RIGHT))
-                .setOverlay(new Overlay()) .playOn(card_subject);
-
-        SharedPreferences sharedPreferences=getActivity().getSharedPreferences("USER",MODE_PRIVATE) ;
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("First","Firsttime" );
-        editor.commit();
-
-    }
 }
+
+
 
 
 

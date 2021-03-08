@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.Featured_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Featured_Subjectplan_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Featured_Subjectplan_ModelClass;
 import com.starkwiz.starkwiz.R;
@@ -28,7 +30,7 @@ public class FeaturedSubjects_Adapter extends RecyclerView.Adapter<FeaturedSubje
 
     public Activity context;
     private ArrayList<Featured_Subjectplan_ModelClass> listitems;
-    final ArrayList<String> arrPackage=new ArrayList<>();
+    final ArrayList<Core_ModelClass> arrPackage=new ArrayList<>();
     SharedPreferences sharedPreferences;
 
     public FeaturedSubjects_Adapter(ArrayList<Featured_Subjectplan_ModelClass> listitems, Activity context) {
@@ -62,7 +64,10 @@ public class FeaturedSubjects_Adapter extends RecyclerView.Adapter<FeaturedSubje
                         editor1.clear();
                         editor1.apply();
 
-                        arrPackage.add(Featured_Subjectplan_ModelClass.getSubject_name());
+                        Core_ModelClass core_modelClass= new Core_ModelClass(Featured_Subjectplan_ModelClass.getId(),
+                                Featured_Subjectplan_ModelClass.getSubject_name(),
+                                Featured_Subjectplan_ModelClass.getSubject_type());
+                        arrPackage.add(core_modelClass);
                         HashSet hs = new HashSet();
 
                         hs.addAll(arrPackage); // demoArrayList= name of arrayList from which u want to remove duplicates
@@ -129,7 +134,7 @@ public class FeaturedSubjects_Adapter extends RecyclerView.Adapter<FeaturedSubje
         }
     }
 
-    public ArrayList<String> getFeatureArrayList(){
+    public ArrayList<Core_ModelClass> getFeatureArrayList(){
         return arrPackage;
     }
 }

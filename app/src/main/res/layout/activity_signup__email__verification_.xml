@@ -66,17 +66,20 @@
 
 
         <Button
+            android:id="@+id/btn_cnfrm_email"
             android:layout_width="135dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="11dp"
             android:background="@drawable/round_textview_clicked"
+            android:enabled="false"
             android:text="Confirm"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16dp"
-            android:layout_gravity="center_horizontal"></Button>
+            android:textSize="16dp"></Button>
 
         <EditText
+            android:id="@+id/et_token"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:background="@drawable/round_textview"
@@ -121,6 +124,7 @@
             android:layout_marginTop="22dp"
             android:background="@drawable/rounded_button"
             android:text="Proceed"
+            android:enabled="false"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16dp"

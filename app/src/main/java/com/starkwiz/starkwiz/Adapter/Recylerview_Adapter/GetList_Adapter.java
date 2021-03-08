@@ -15,16 +15,29 @@ import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.GetTestList_ModelClass;
 import com.starkwiz.starkwiz.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GetList_Adapter extends RecyclerView.Adapter<GetList_Adapter.ViewHolder> {
 
     public Activity context;
     private ArrayList<GetTestList_ModelClass> listitems;
     private int mCheckedPostion = -1;
+    String totalmark;
 
 
     public GetList_Adapter(ArrayList<GetTestList_ModelClass> listitems, Activity context) {
@@ -50,6 +63,56 @@ public class GetList_Adapter extends RecyclerView.Adapter<GetList_Adapter.ViewHo
 
             holder.chk_getlist.setChecked(position == mCheckedPostion);
 
+            final Map<String, String> params = new HashMap();
+
+            params.put("module_id", GetTestList_ModelClass.getModule_id());
+
+
+            JSONObject parameters = new JSONObject(params);
+
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.get_moduleByID, parameters, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+
+
+                    try {
+                        String Information = response.getString("1");
+
+                        JSONArray array = new JSONArray(Information);
+
+                        for (int i = 0 ; i <array.length() ; i++){
+
+                            JSONObject object = array.getJSONObject(i);
+
+                             totalmark = object.getString("totalmark");
+
+
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+
+
+
+                }
+            });
+
+
+            Volley.newRequestQueue(context).add(jsonRequest);
+
+
+
             holder.chk_getlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -65,6 +128,7 @@ public class GetList_Adapter extends RecyclerView.Adapter<GetList_Adapter.ViewHo
                         intent.putExtra("selected_testid",selected_testid);
                         intent.putExtra("selected_hour",GetTestList_ModelClass.getHour());
                         intent.putExtra("selected_minutes",GetTestList_ModelClass.getMinutes());
+                        intent.putExtra("totalmark",totalmark);
                         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                         notifyDataSetChanged();
                     }
@@ -90,15 +154,14 @@ public class GetList_Adapter extends RecyclerView.Adapter<GetList_Adapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox chk_getlist;
+        RecyclerView lv_submodule;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             chk_getlist = itemView.findViewById(R.id.chk_getlist);
-
-
-
+            lv_submodule = itemView.findViewById(R.id.lv_submodule);
         }
     }
 

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.starkwiz.starkwiz.Activities.UserSelection_Activity;
+import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
 import com.starkwiz.starkwiz.R;
 
@@ -39,7 +40,7 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
 
     public Context context;
     private ArrayList<Core_Subjectbyplans_ModelClass> listitems;
-    final ArrayList<String> arrPackage=new ArrayList<>();
+    final ArrayList<Core_ModelClass> arrPackage_Core=new ArrayList<>();
     SharedPreferences sharedPreferences;
 //    private CoreSubjectAdapterListener listener;
     private TourGuide mTourGuideHandler;
@@ -48,8 +49,6 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
     public CoreSubjects_Adapter(ArrayList<Core_Subjectbyplans_ModelClass> listitems, Context context) {
         this.listitems = listitems;
         this.context = context;
-
-
     }
 
     @NonNull
@@ -79,17 +78,22 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
                         editor1.clear();
                         editor1.apply();
 
-                        arrPackage.add(Core_Subjectbyplans_ModelClass.getSubject_name());
+                        Core_ModelClass core_modelClass= new Core_ModelClass(Core_Subjectbyplans_ModelClass.getId(),
+                                Core_Subjectbyplans_ModelClass.getSubject_name(),
+                                Core_Subjectbyplans_ModelClass.getSubject_type());
+
+                        arrPackage_Core.add(core_modelClass);
+
                         HashSet hs = new HashSet();
 
-                        hs.addAll(arrPackage); // demoArrayList= name of arrayList from which u want to remove duplicates
+                        hs.addAll(arrPackage_Core); // demoArrayList= name of arrayList from which u want to remove duplicates
 
-                        arrPackage.clear();
-                        arrPackage.addAll(hs);
+                        arrPackage_Core.clear();
+                        arrPackage_Core.addAll(hs);
 
                         Gson gson = new Gson();
-                        String json = gson.toJson(arrPackage);
-                        Log.d("js",json);
+                        String json = gson.toJson(arrPackage_Core);
+                        Log.d("json",json);
 
                         sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -98,10 +102,10 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
 
                     }else {
 
-                        arrPackage.remove(Core_Subjectbyplans_ModelClass.getSubject_name());
+                        arrPackage_Core.remove(Core_Subjectbyplans_ModelClass.getSubject_name());
 
                         Gson gson = new Gson();
-                        String json = gson.toJson(arrPackage);
+                        String json = gson.toJson(arrPackage_Core);
                         Log.d("js",json);
 
                         sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
@@ -109,6 +113,9 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
                         editor.putString("Set",json );
                         editor.commit();
                     }
+
+
+
 
                 }
             });
@@ -145,9 +152,11 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
         }
     }
 
-    public ArrayList<String> getArrayList(){
-        return arrPackage;
+    public ArrayList<Core_ModelClass> getArrayList_Core(){
+        return arrPackage_Core;
     }
+
+
 
     public interface CoreSubjectAdapterListener {
         void onCoreSubjectSelected(Core_Subjectbyplans_ModelClass contact);

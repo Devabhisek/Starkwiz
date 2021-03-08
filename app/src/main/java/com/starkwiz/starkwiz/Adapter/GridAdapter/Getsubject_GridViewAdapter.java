@@ -1,4 +1,4 @@
-package com.waymart.waymart.Customer.Adapter.GridAdapter;
+package com.starkwiz.starkwiz.Adapter.GridAdapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -15,23 +15,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.squareup.picasso.Picasso;
-import com.waymart.waymart.Customer.Fragments.CategoryFragments.Fragment_All_Items;
-import com.waymart.waymart.Customer.Fragments.CategoryFragments.Fragment_Particular_Items_Lists;
-import com.waymart.waymart.Customer.ModelClass.GetCategoriesModelClass;
-import com.waymart.waymart.R;
+import com.starkwiz.starkwiz.Activities.Subjectwise_Syllabus_Activity;
+import com.starkwiz.starkwiz.ModelClass.GetSubjects_ModelClass;
+import com.starkwiz.starkwiz.R;
+
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class GridViewAdapter extends BaseAdapter {
+public class Getsubject_GridViewAdapter extends BaseAdapter {
 
     public Context context;
 
-    private List<GetCategoriesModelClass> listitems;
+    private List<GetSubjects_ModelClass> listitems;
 
-    public GridViewAdapter(List<GetCategoriesModelClass> listitems, Context context) {
+    public Getsubject_GridViewAdapter(List<GetSubjects_ModelClass> listitems, Context context) {
         this.listitems = listitems;
         this.context = context;
     }
@@ -63,43 +60,72 @@ public class GridViewAdapter extends BaseAdapter {
 
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            grid = inflater.inflate(R.layout.custom_getcategory_gridview, parent, false);
+            grid = inflater.inflate(R.layout.custom_getsubjects, parent, false);
 
         }
         else {
             grid =(View) convertView;
         }
 
-            final GetCategoriesModelClass getCategoriesModelClass = listitems.get(position);
-            TextView textView = (TextView) grid.findViewById(R.id.txt_custom_homegrid_getcategory);
-            //ImageView imageView = (ImageView) grid.findViewById(R.id.Img_custom_homegrid_getcategory);
-            CardView card_custom_getcategory = (CardView) grid.findViewById(R.id.card_custom_getcategory);
+            final GetSubjects_ModelClass getSubjects_modelClass = listitems.get(position);
+            TextView txt_subjectname = (TextView) grid.findViewById(R.id.txt_subjectname);
+            //TextView txt_subjectduration = (TextView) grid.findViewById(R.id.txt_subjectduration);
 
-            textView.setText(getCategoriesModelClass.getCatName());
-//            Picasso.with(context)
-//                    .load(getTopServicesForHomepage_modelClass.getFullPath())
-//                    // .placeholder(getActivity().getResources().getDrawable(R.drawable.ic_person_black_24dp))
-//                    .into(imageView);
+            RelativeLayout card_subject = grid.findViewById(R.id.card_subject);
 
-            card_custom_getcategory.setOnClickListener(new View.OnClickListener() {
+            txt_subjectname.setText(getSubjects_modelClass.getSubject_name());
+
+            if (txt_subjectname.getText().toString().equals("English")){
+
+                card_subject.setBackgroundResource(R.mipmap.english);
+            }else if (txt_subjectname.getText().toString().equals("Mathematics")){
+
+                card_subject.setBackgroundResource(R.mipmap.mathematics);
+
+            }else if (txt_subjectname.getText().toString().equals("Science and Technology")){
+                card_subject.setBackgroundResource(R.mipmap.science);
+            }else if (txt_subjectname.getText().toString().equals("Art")){
+                card_subject.setBackgroundResource(R.mipmap.art);
+            }else if (txt_subjectname.getText().toString().equals("Biology")){
+                card_subject.setBackgroundResource(R.mipmap.biology);
+            }else if (txt_subjectname.getText().toString().equals("Chemistry")){
+                card_subject.setBackgroundResource(R.mipmap.chemistry);
+            }else if (txt_subjectname.getText().toString().equals("Computer Science")){
+                card_subject.setBackgroundResource(R.mipmap.computer);
+            }else if (txt_subjectname.getText().toString().equals("Dance")){
+                card_subject.setBackgroundResource(R.mipmap.dancing);
+            }else if (txt_subjectname.getText().toString().equals("Debate")){
+                card_subject.setBackgroundResource(R.mipmap.debate);
+            }else if (txt_subjectname.getText().toString().equals("Declamation")){
+                card_subject.setBackgroundResource(R.mipmap.declamation);
+            }else if (txt_subjectname.getText().toString().equals("Elocution")){
+                card_subject.setBackgroundResource(R.mipmap.elocution);
+            }else if (txt_subjectname.getText().toString().equals("Environmental Science")){
+                card_subject.setBackgroundResource(R.mipmap.environmentalscience);
+            } else if (txt_subjectname.getText().toString().equals("General Knowledge")){
+                card_subject.setBackgroundResource(R.mipmap.generalknowledge);
+            }else if (txt_subjectname.getText().toString().equals("Geography")){
+                card_subject.setBackgroundResource(R.mipmap.geography);
+            }else if (txt_subjectname.getText().toString().equals("History")){
+                card_subject.setBackgroundResource(R.mipmap.history);
+            }else if (txt_subjectname.getText().toString().equals("Music")){
+                card_subject.setBackgroundResource(R.mipmap.music);
+            }else if (txt_subjectname.getText().toString().equals("Physics")){
+                card_subject.setBackgroundResource(R.mipmap.physics);
+            }else  {
+                card_subject.setBackgroundResource(R.mipmap.socialscience);
+            }
+
+
+            card_subject.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-
-                    SharedPreferences sp = context.getSharedPreferences("key", 0);
-                    SharedPreferences.Editor sedt = sp.edit();
-                    sedt.putString("CategoryName",getCategoriesModelClass.getCatName());
-                    sedt.commit();
-
-                    Fragment newFragment = new Fragment_All_Items();
-                    FragmentTransaction transaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, newFragment);
-                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), Subjectwise_Syllabus_Activity.class);
+                    intent.putExtra("subject",getSubjects_modelClass.getSubject_name());
+                    view.getContext().startActivity(intent);
 
                 }
             });
-
 
 
         return grid;

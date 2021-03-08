@@ -60,7 +60,7 @@
                 android:id="@+id/txt_currentpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current Password"
+                android:text="Email"
                 android:layout_below="@+id/img_alert"
                 android:fontFamily="@font/nunito"
                 android:layout_marginTop="3dp"
@@ -73,7 +73,7 @@
 
 
             <EditText
-                android:id="@+id/et_current_password"
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -81,18 +81,72 @@
                 android:layout_marginTop="3dp"
                 android:layout_below="@+id/txt_belowtypeofuser"
                 android:textSize="16dp"
+                android:inputType="textEmailAddress"
                 android:hint="starkwiz2021@gmail.com"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"
                 android:backgroundTint="@android:color/holo_blue_light"></EditText>
 
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_change_pswd_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_email_change"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/rounded_button"
+                android:text="Verify"
+                android:textAllCaps="false"
+                android:textColor="@color/white"></Button>
 
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:id="@+id/txt_otp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter OTP"
+                android:layout_below="@+id/img_alert"
+                android:fontFamily="@font/nunito"
+                android:layout_marginTop="3dp"
+                android:textSize="16dp"
+                android:textColor="@color/theme_blue"
+                android:paddingLeft="30dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"></TextView>
+
+
+
+            <EditText
+                android:id="@+id/et_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/txt_otp"
+                android:textSize="16dp"
+                android:maxLength="6"
+                android:inputType="textEmailAddress"
+                android:hint="starkwiz2021@gmail.com"
+                android:textColorHint="#bebebe"
+                android:textColor="@color/black"
+                android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+            </LinearLayout>
             <TextView
                 android:id="@+id/txt_newpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Password"
-                android:layout_below="@+id/img_alert"
+                android:layout_below="@+id/et_otp"
                 android:layout_marginTop="3dp"
                 android:textSize="16dp"
                 android:fontFamily="@font/nunito"
@@ -112,6 +166,8 @@
                 android:layout_marginTop="3dp"
                 android:layout_below="@+id/txt_belowtypeofuser"
                 android:textSize="16dp"
+                android:enabled="false"
+                android:inputType="textPassword"
                 android:hint="starkwiz2021@gmail.com"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"
@@ -141,6 +197,8 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="16dp"
+                android:enabled="false"
+                android:inputType="textPassword"
                 android:layout_below="@+id/txt_belowtypeofuser"
                 android:textSize="16dp"
                 android:hint="starkwiz2021@gmail.com"
@@ -150,21 +208,21 @@
 
         </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_change_email_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="11dp"
-        android:background="@drawable/rounded_button"
-        android:layout_below="@+id/card_email_change"
-        android:text="Confirm"
-        android:textColor="@color/white"
-        android:textAllCaps="false"></Button>
+       <Button
+           android:id="@+id/btn_change_pswd_confirm"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/card_email_change"
+           android:layout_marginLeft="35dp"
+           android:layout_marginTop="11dp"
+           android:layout_marginRight="35dp"
+           android:background="@drawable/rounded_button"
+           android:text="Confirm"
+           android:textAllCaps="false"
+           android:textColor="@color/white"></Button>
 
-    <Button
-        android:id="@+id/btn_change_email_cancel"
+       <Button
+        android:id="@+id/btn_change_pswd_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"

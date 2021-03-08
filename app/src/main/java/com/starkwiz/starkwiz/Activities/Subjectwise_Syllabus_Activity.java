@@ -53,12 +53,12 @@ import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
 public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
-    TextView txt_appear,txt_subject,txtduration,txt_fixture;
+    TextView txt_appear,txt_subject,txtduration,txt_fixture,txt_totalmark;
     RecyclerView list_test;
     Button btn_schedule;
     ArrayList<GetTestList_ModelClass>lis_gettests;
-    String selected_module,selected_testid,is_active,selected_hour,selected_minutes,
-            test_id,user_id,subject_id,module_id,hour,minutes,subject,module;
+    String selected_module,selected_testid,is_active,selected_hour,selected_minutes,totalmark,
+            test_id,user_id,subject_id,module_id,hour,minutes,subject,module,Getsubject;
     LinearLayout linearaction;
     private TourGuide mTourGuideHandler;
     SharedPreferences sharedPreferences ;
@@ -67,6 +67,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subjectwise__syllabus_);
+        Getsubject = getIntent().getStringExtra("subject");
         txt_appear = findViewById(R.id.txt_appear);
         list_test = findViewById(R.id.list_test);
         txt_subject = findViewById(R.id.txt_subject);
@@ -74,6 +75,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
         txt_fixture = findViewById(R.id.txt_fixture);
         linearaction = findViewById(R.id.linearaction);
         btn_schedule = findViewById(R.id.btn_schedule);
+        txt_totalmark = findViewById(R.id.txt_totalmark);
         lis_gettests = new ArrayList<>();
         list_test.setHasFixedSize(true);
         list_test.setLayoutManager(new LinearLayoutManager(Subjectwise_Syllabus_Activity.this));
@@ -102,6 +104,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     intent.putExtra("selected_hour",selected_hour);
                     intent.putExtra("selected_minutes",selected_minutes);
                     intent.putExtra("selected_subject",txt_subject.getText().toString().trim());
+                    intent.putExtra("selected_totalmark",totalmark);
                     startActivity(intent);
                 }
                 else {
@@ -115,6 +118,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 user_id = SharedPrefManager.getInstance(Subjectwise_Syllabus_Activity.this).getUser().getId();
                 Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Subject_Schedule_Detail_Activity.class);
+                intent.putExtra("newschedule","new");
                 intent.putExtra("test_id",test_id);
                 intent.putExtra("subject_id",subject_id);
                 intent.putExtra("module_id",module_id);
@@ -124,6 +128,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                 intent.putExtra("minutes",minutes);
                 intent.putExtra("subject",subject);
                 intent.putExtra("module",module);
+                intent.putExtra("date",module);
+                intent.putExtra("totalmark",totalmark);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
@@ -138,10 +144,12 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
              selected_testid = intent.getStringExtra("selected_testid");
                 selected_hour = intent.getStringExtra("selected_hour");
             selected_minutes = intent.getStringExtra("selected_minutes");
+            totalmark = intent.getStringExtra("totalmark");
 
-            Log.d("selected_hour",selected_hour);
+//            Log.d("selected_hour",selected_hour);
 
             txtduration.setText("Duration\n"+selected_hour+" : "+selected_minutes);
+            txt_totalmark.setText("Marks \n"+totalmark);
         }
     };
 
@@ -161,7 +169,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
         final Map<String, String> params = new HashMap();
 
         params.put("class", cls);
-        params.put("subject", "English");
+        params.put("subject", Getsubject);
         params.put("board", board);
 
         JSONObject parameters = new JSONObject(params);
@@ -202,33 +210,59 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     }
                     else if (!is_active.equals("NO")){
 
+
                         JSONArray modulearray = object.getJSONArray("test_module_list");
 
-                        for (int i= 0 ; i<modulearray.length() ; i++){
+                        String array = modulearray.toString();
 
-                            JSONObject module_bject = modulearray.getJSONObject(i);
+                        if (!array.equals("[]")){
+                            for (int i= 0 ; i<modulearray.length() ; i++){
 
-                            test_id = module_bject.getString("test_id");
-                            subject_id = module_bject.getString("subject_id");
-                            module_id = module_bject.getString("module_id");
-                            hour = module_bject.getString("hour");
-                            minutes = module_bject.getString("minutes");
-                            module = module_bject.getString("module_name");
 
-                            GetTestList_ModelClass modelClass = new GetTestList_ModelClass(
-                                    module_bject.getString("module_id"),
-                                    module_bject.getString("subject_id"),
-                                    module_bject.getString("test_id"),
-                                    module_bject.getString("module_number"),
-                                    module_bject.getString("module_name"),
-                                    module_bject.getString("hour"),
-                                    module_bject.getString("minutes"),
-                                    "",
-                                    module_bject.getString("no_of_questions")
-                            );
 
-                            lis_gettests.add(modelClass);
+                                JSONObject module_bject = modulearray.getJSONObject(i);
+
+                                test_id = module_bject.getString("test_id");
+                                subject_id = module_bject.getString("subject_id");
+                                module_id = module_bject.getString("module_id");
+                                hour = module_bject.getString("hour");
+                                minutes = module_bject.getString("minutes");
+                                module = module_bject.getString("module_name");
+
+                                GetTestList_ModelClass modelClass = new GetTestList_ModelClass(
+                                        module_bject.getString("module_id"),
+                                        module_bject.getString("subject_id"),
+                                        module_bject.getString("test_id"),
+                                        module_bject.getString("module_number"),
+                                        module_bject.getString("module_name"),
+                                        module_bject.getString("hour"),
+                                        module_bject.getString("minutes"),
+                                        "",
+                                        module_bject.getString("no_of_questions")
+                                );
+
+                                lis_gettests.add(modelClass);
+
+                            }
+
+                        }else {
+                            linearaction.setVisibility(View.GONE);
+                            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Subjectwise_Syllabus_Activity.this)
+                                    .setMessage("No Tests are availabel")
+                                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                            startActivity(new Intent(Subjectwise_Syllabus_Activity.this,Dasboard_Activity.class));
+                                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                                        }
+                                    });
+                            AlertDialog alert11 = alertDialog.create();
+                            alert11.show();
                         }
+
+
+
 
                         GetList_Adapter adapter = new GetList_Adapter(lis_gettests,Subjectwise_Syllabus_Activity.this);
                         list_test.setAdapter(adapter);
@@ -253,7 +287,18 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AlertBoxClasses.SimpleAlertBox(Subjectwise_Syllabus_Activity.this,"No Tests are availabel");
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Subjectwise_Syllabus_Activity.this)
+                            .setMessage("No tests are availabel for this subject")
+                            .setCancelable(false)
+                            .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                    AlertDialog alert11 = alertDialog.create();
+                    alert11.show();
+                    linearaction.setVisibility(View.GONE);
                 }
 
             }
@@ -266,6 +311,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 Toast.makeText(Subjectwise_Syllabus_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+                linearaction.setVisibility(View.GONE);
             }
         });
 

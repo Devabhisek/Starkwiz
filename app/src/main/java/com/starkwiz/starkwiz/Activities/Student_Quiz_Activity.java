@@ -19,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
@@ -31,6 +32,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.GetTestList_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Quiz_Modelclass;
@@ -64,8 +67,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Student_Quiz_Activity extends AppCompatActivity {
 
-    String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes;
-    TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject,txt_qn_hint,txtfixture,txt_otptimer;
+    String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes,test_id,
+            module_id,mark,user_id,total_question,total_marks_obtained,total_points_obtained,selected_totalmark,
+            total_time,total_acquired_time,total_correct_answer;
+    TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject,txt_qn_hint,txtfixture,txt_otptimer,txt_quiz_mark;
     Button optionone,optiontwo,optionthree,optionfour;
     Button btn_next,btn_skip;
     LinearLayout optionContainer;
@@ -77,6 +82,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
     int minutes,millisecond;
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
+    Chronometer timer;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +104,13 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         txt_qn_hint=findViewById(R.id.txt_qn_hint);
         txtfixture=findViewById(R.id.txtfixture);
         txt_otptimer=findViewById(R.id.txt_otptimer);
+        timer=findViewById(R.id.timer);
+        txt_quiz_mark=findViewById(R.id.txt_quiz_mark);
         list_quiz=new ArrayList<>();
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+        timer.stop();
+        timer.setVisibility(View.GONE);
+        user_id = SharedPrefManager.getInstance(Student_Quiz_Activity.this).getUser().getId();
 
         Calendar cal=Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
@@ -115,6 +126,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             selected_subject = getIntent().getStringExtra("selected_subject");
             selected_hour = getIntent().getStringExtra("selected_hour");
             selected_minutes = getIntent().getStringExtra("selected_minutes");
+            selected_totalmark = getIntent().getStringExtra("selected_totalmark");
 
             minutes = (Integer.parseInt(selected_hour)*60)+Integer.parseInt(selected_minutes);
 
@@ -127,15 +139,37 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             new CountDownTimer(millisecond, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-
+                    timer.stop();
                     String v = String.format("%02d", millisUntilFinished / 60000);
                     int va = (int) ((millisUntilFinished % 60000) / 1000);
-                    txt_otptimer.setText(v + ":" + String.format("%02d", va));
+                    txt_otptimer.setText(v + ":" + String.valueOf( va));
                 }
 
                 @Override
                 public void onFinish() {
                     txt_otptimer.setText("Times up");
+
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Student_Quiz_Activity.this)
+                            .setMessage("Times up. Would you like to")
+                            .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    timer.start();
+                                    timer.setVisibility(View.VISIBLE);
+
+                                    Log.d("timer",String.valueOf(timer.getFormat()));
+                                    dialogInterface.cancel();
+                                }
+                            })
+                            .setNegativeButton("Leave", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                    AlertDialog alert11 = alertDialog.create();
+                    alert11.show();
+
 
                 }
             }.start();
@@ -179,6 +213,15 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                         JSONObject object = array.getJSONObject(i);
 
+                        String mark = object.getString("mark");
+
+                        if (mark.equals("null")){
+                            mark = "0";
+                        }else {
+                            mark = object.getString("mark");
+                        }
+
+
                         Quiz_Modelclass modelClass = new Quiz_Modelclass(
                                 object.getString("question_id"),
                                 object.getString("question"),
@@ -189,17 +232,25 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                                 object.getString("wrong_answer_4"),
                                 object.getString("image"),
                                 object.getString("hint"),
-                                object.getString("explanation")
+                                object.getString("explanation"),
+                                mark
                         );
 
+
                         list_quiz.add(modelClass);
+
+                        test_id = object.getString("test_id");
+                        module_id = object.getString("module_id");
+
+
+
                     }
 
                     PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(Student_Quiz_Activity.this, "", Toast.LENGTH_SHORT).show();
+
                 }
 
 
@@ -224,8 +275,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (position+1==list_quiz.size()){
-
+                    total_question = String.valueOf(list_quiz.size());
                     AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"You have attend all questions");
+                    //Score(user_id,test_id,module_id,selected_subject,total_question,mark);
                 }else {
                     btn_next.setEnabled(false);
                     btn_next.setAlpha(0.7f);
@@ -284,6 +336,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                     String option="";
                     if (count == 0){
                         option = list_quiz.get(position).getWrong_answer_1();
+                        mark = list_quiz.get(position).getMark();
                     }else if (count==1){
                         option = list_quiz.get(position).getWrong_answer_2();
                     }else if (count==2){
@@ -308,6 +361,8 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                     }
                    view.setTag(data);
                     txt_qn_hint.setText("Hint: "+list_quiz.get(position).getTxt_qn_hint());
+
+                    txt_quiz_mark.setText("Mark\n"+list_quiz.get(position).getMark());
 
                     if (!list_quiz.get(position).getImage().equals("null")) {
                         String image = list_quiz.get(position).getImage();
@@ -366,33 +421,53 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             //btn_next.setAlpha(1);
             if (selected_option.getText().toString().equals(list_quiz.get(position).getCorrect_answer())) {
                 //correct
+                String time = txt_otptimer.getText().toString().trim();
+
+                String[] separated = time.split(":");
+                time = separated[0];
+                time = String.valueOf(Integer.parseInt(time)+Integer.parseInt("1"));
+
+                String question = String.valueOf(list_quiz.size());
+
+
                 score++;
-//            Drawable drawable = new ColorDrawable(Color.parseColor("#4CAF50"));
-//            // Wrap the drawable so that future tinting calls work
-//            // on pre-v21 devices. Always use the returned drawable.
-//            drawable = DrawableCompat.wrap(drawable);
+                total_marks_obtained = String.valueOf((Integer.parseInt(mark)*10));
+                total_points_obtained = String.valueOf(((Integer.parseInt(mark)*score)*3)+Integer.parseInt(time));
+                Log.d("time",total_points_obtained);
+
+
+
+
+
 
                 Drawable img = getApplicationContext().getResources().getDrawable(R.drawable.correct);
                 selected_option.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
-                //selected_option.setBackground(drawable);
+
+
+
+                Score(user_id,
+                        test_id,
+                        module_id,
+                        selected_subject,
+                        question,
+                        selected_totalmark,
+                        total_marks_obtained,
+                        total_points_obtained,
+                        String.valueOf(minutes),
+                        time,
+                        String.valueOf(score));
+
 
             } else {
                 //incorrect
-//            Drawable drawable = new ColorDrawable(Color.parseColor("#ff0000"));
-//            // Wrap the drawable so that future tinting calls work
-//            // on pre-v21 devices. Always use the returned drawable.
-//            drawable = DrawableCompat.wrap(drawable);
+
                 Drawable img = getApplicationContext().getResources().getDrawable(R.drawable.remove);
                 selected_option.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
                 //selected_option.setBackground(drawable);
                 Button correctoption = (Button) optionContainer.findViewWithTag(list_quiz.get(position).getCorrect_answer());
-//            Drawable drawable_correct = new ColorDrawable(Color.parseColor("#4CAF50"));
-//            // Wrap the drawable so that future tinting calls work
-//            // on pre-v21 devices. Always use the returned drawable.
-//            drawable_correct = DrawableCompat.wrap(drawable_correct);
-//            correctoption.setBackground(drawable_correct);
+
 
                 Drawable crtimg = getApplicationContext().getResources().getDrawable(R.drawable.correct);
                 correctoption.setCompoundDrawablesWithIntrinsicBounds(crtimg, null, null, null);
@@ -449,9 +524,63 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         }
     }
 
+    public void Score(String user_id, String test_id, String module_id,
+                      String subject_name, String total_question, String total_marks, String total_marks_obtained,
+                      String total_points_obtained, String total_time, String total_acquired_time, String total_correct_answer){
+
+        ProgressDialog progressDialog = new ProgressDialog(Student_Quiz_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", user_id);
+        params.put("test_id", test_id);
+        params.put("module_id", module_id);
+        params.put("subject_name", subject_name);
+        params.put("total_question", total_question);
+        params.put("total_marks", total_marks);
+        params.put("total_marks_obtained", total_marks_obtained);
+        params.put("total_points_obtained", total_points_obtained);
+        params.put("total_time", total_time);
+        params.put("total_acquired_time", total_acquired_time);
+        params.put("total_correct_answer", total_correct_answer);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                Log.d("success","success");
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Log.d("error","error");
+
+                Toast.makeText(Student_Quiz_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Student_Quiz_Activity.this).add(jsonRequest);
+    }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
         final androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(Student_Quiz_Activity.this)
                 .setMessage("Are you sure you want to Leave Quiz?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

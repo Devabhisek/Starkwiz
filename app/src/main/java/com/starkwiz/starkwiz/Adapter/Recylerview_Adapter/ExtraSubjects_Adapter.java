@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.Extra_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Extra_Subjectplan_ModelClass;
 import com.starkwiz.starkwiz.R;
 
@@ -26,7 +28,7 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
 
     public Activity context;
     private ArrayList<Extra_Subjectplan_ModelClass> listitems;
-    final ArrayList<String> arrPackage=new ArrayList<>();
+    final ArrayList<Core_ModelClass> arrPackage=new ArrayList<>();
     SharedPreferences sharedPreferences;
 
 
@@ -61,7 +63,10 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
                         editor1.clear();
                         editor1.apply();
 
-                        arrPackage.add(Extra_Subjectplan_ModelClass.getSubject_name());
+                        Core_ModelClass core_modelClass= new Core_ModelClass(Extra_Subjectplan_ModelClass.getId(),
+                                Extra_Subjectplan_ModelClass.getSubject_name(),
+                                Extra_Subjectplan_ModelClass.getSubject_type());
+                        arrPackage.add(core_modelClass);
                         HashSet hs = new HashSet();
 
                         hs.addAll(arrPackage); // demoArrayList= name of arrayList from which u want to remove duplicates
@@ -128,7 +133,7 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
 
     }
 
-    public ArrayList<String> getExtraArrayList(){
+    public ArrayList<Core_ModelClass> getExtraArrayList(){
         return arrPackage;
     }
 }

@@ -35,19 +35,39 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
     CalendarView cal;
-    String test_id,subject_id,module_id,user_id,month,date,time,time_type,hour,minutes,subject,module;
+    String test_id,subject_id,module_id,user_id,month,date,time,time_type,id,
+            hour,minutes,subject,module,schedule_date,totalmark,Schdmin,newschedule;
     Button btn_createschedule;
-    TextView txt_schedule_time,txt_scheduled_date,txt_scheduld_time,txt_schedule_subjectname,
-            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration;
+    TextView txt_schedule_time,txt_scheduled_date,txt_scheduld_time,txt_schedule_subjectname,txt_schdl_fixture,txt_schdl_subjectname,
+            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration,txt_scdlmark,txt_scdl_duration;
     RadioButton rb_am,rb_pm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject__schedule__detail_);
+
+        cal = findViewById(R.id.cal);
+        btn_createschedule = findViewById(R.id.btn_createschedule);
+        txt_schedule_time = findViewById(R.id.txt_schedule_time);
+        txt_scheduled_date = findViewById(R.id.txt_scheduled_date);
+        txt_scheduld_time = findViewById(R.id.txt_scheduld_time);
+        txt_schedule_subjectname = findViewById(R.id.txt_schedule_subjectname);
+        txt_schedule_modulename = findViewById(R.id.txt_schedule_modulename);
+        txt_schedule_timeremaining = findViewById(R.id.txt_schedule_timeremaining);
+        txt_schedule_duration = findViewById(R.id.txt_schedule_duration);
+        txt_scdlmark = findViewById(R.id.txt_scdlmark);
+        rb_am = findViewById(R.id.rb_am);
+        rb_pm = findViewById(R.id.rb_pm);
+        txt_schdl_fixture = findViewById(R.id.txt_schdl_fixture);
+        txt_scdl_duration = findViewById(R.id.txt_scdl_duration);
+        txt_schdl_subjectname = findViewById(R.id.txt_schdl_subjectname);
+
         try {
             test_id = getIntent().getStringExtra("test_id");
             subject_id = getIntent().getStringExtra("subject_id");
@@ -58,23 +78,45 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             minutes = getIntent().getStringExtra("minutes");
             subject = getIntent().getStringExtra("subject");
             module = getIntent().getStringExtra("module");
+            schedule_date = getIntent().getStringExtra("date");
+            newschedule = getIntent().getStringExtra("newschedule");
+            id = getIntent().getStringExtra("id");
 
-            minutes = String.valueOf((Integer.parseInt(hour)*60)+Integer.parseInt(minutes));
+            GetTotalmark(module_id);
+            txt_schdl_subjectname.setText(subject);
+
+            if (hour==null){
+                hour = "1";
+            }else if (minutes==null){
+                minutes="0";
+            }
+
+            txt_schedule_time.setText(hour+" : "+minutes);
+             Schdmin = String.valueOf((Integer.parseInt(hour)*60)+Integer.parseInt(minutes));
+
+            txt_scdl_duration.setText("Duration\n"+Schdmin+" mins");
+
+            String parts[] = schedule_date.split("/");
+
+            int schdlyear = Integer.parseInt(parts[0]);
+            int schdlmonth = Integer.parseInt(parts[1]);
+            int schdlday = Integer.parseInt(parts[2]);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, schdlyear);
+            calendar.set(Calendar.MONTH, schdlmonth-1);
+            calendar.set(Calendar.DAY_OF_MONTH, schdlday);
+
+            long milliTime = calendar.getTimeInMillis();
 
 
+            cal.setDate (milliTime, true, true);
 
+            Calendar Fix_cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+            String Fixmonth = month_date.format(Fix_cal.getTime());
 
-            cal = findViewById(R.id.cal);
-            btn_createschedule = findViewById(R.id.btn_createschedule);
-            txt_schedule_time = findViewById(R.id.txt_schedule_time);
-            txt_scheduled_date = findViewById(R.id.txt_scheduled_date);
-            txt_scheduld_time = findViewById(R.id.txt_scheduld_time);
-            txt_schedule_subjectname = findViewById(R.id.txt_schedule_subjectname);
-            txt_schedule_modulename = findViewById(R.id.txt_schedule_modulename);
-            txt_schedule_timeremaining = findViewById(R.id.txt_schedule_timeremaining);
-            txt_schedule_duration = findViewById(R.id.txt_schedule_duration);
-            rb_am = findViewById(R.id.rb_am);
-            rb_pm = findViewById(R.id.rb_pm);
+            txt_schdl_fixture.setText("Fixture: "+Fixmonth);
 
 
 
@@ -143,14 +185,17 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
                 else {
                     time_type = "PM";
                 }
-                CreateSchdule(test_id,user_id,subject_id,module_id,date,time,month,time_type);
+
+                if (newschedule!=null) {
+                    CreateSchdule(test_id, user_id, subject_id, module_id, date, time, month, time_type);
+                }else {
+                    UpdateSchdule(id,test_id,user_id,subject_id,module_id,date,time,month);
+                }
             }
         });
 
-        txt_scheduld_time.setText(time);
-        txt_schedule_modulename.setText(subject);
-        txt_schedule_modulename.setText(module);
-        txt_schedule_duration.setText(minutes);
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -165,7 +210,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             HttpsTrustManager.allowAllSSL();
             ProgressDialog dialog = new ProgressDialog(Subject_Schedule_Detail_Activity.this);
             dialog.setCancelable(false);
-            dialog.setMessage("Loading...");
+            dialog.setMessage("Creating Schedule...");
             dialog.show();
             JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
                     "https://www.rentopool.com/starkwiz/api/auth/createfixture?test_id=" + test_id +
@@ -219,5 +264,121 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         }
     }
 
+    public void UpdateSchdule(String Id,String test_id,String user_id,String subject_id,String module_id,
+                              String date,String time,String month){
+
+        if (date!=null && time!=null && time_type!=null) {
+
+            HttpsTrustManager.allowAllSSL();
+            ProgressDialog dialog = new ProgressDialog(Subject_Schedule_Detail_Activity.this);
+            dialog.setCancelable(false);
+            dialog.setMessage("Updating...");
+            dialog.show();
+            final Map<String, String> params = new HashMap();
+
+            params.put("id", Id);
+            params.put("test_id", test_id);
+            params.put("user_id", user_id);
+            params.put("subject_id", subject_id);
+            params.put("module_id", module_id);
+            params.put("date", date);
+            params.put("time", time);
+            params.put("month", month);
+
+            JSONObject parameters = new JSONObject(params);
+
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
+                    URLS.updatefixture,
+                    parameters, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                    dialog.dismiss();
+
+
+                    try {
+                        String success = response.getString("0");
+
+                        if (success.equals("success")){
+                            AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this,"Schedule updated");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    dialog.dismiss();
+
+                    AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this, "Error.");
+
+                }
+            });
+
+
+            Volley.newRequestQueue(Subject_Schedule_Detail_Activity.this).add(jsonRequest);
+
+        }
+        else {
+            AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this,"Check all fields");
+        }
+    }
+
+    public void GetTotalmark(String moduleid){
+        final Map<String, String> params = new HashMap();
+
+        params.put("module_id", moduleid);
+
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.get_moduleByID, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+
+                try {
+                    String Information = response.getString("1");
+
+                    JSONArray array = new JSONArray(Information);
+
+                    for (int i = 0 ; i <array.length() ; i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        totalmark = object.getString("totalmark");
+
+                        txt_scdlmark.setText("Marks\n"+totalmark);
+
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+
+
+            }
+        });
+
+
+        Volley.newRequestQueue(Subject_Schedule_Detail_Activity.this).add(jsonRequest);
+    }
 
 }

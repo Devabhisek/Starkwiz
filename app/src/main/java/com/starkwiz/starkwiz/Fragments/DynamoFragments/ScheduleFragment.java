@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,44 +26,48 @@ import com.starkwiz.starkwiz.Activities.Signup_Personal_Activity;
 import com.starkwiz.starkwiz.Activities.Signup_teaching_Activity;
 import com.starkwiz.starkwiz.Activities.Sigup_Studying_Activity;
 import com.starkwiz.starkwiz.Activities.Subject_Schedule_Detail_Activity;
+import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ScheduledList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
+import com.starkwiz.starkwiz.ModelClass.Scheduled_ModelClass;
 import com.starkwiz.starkwiz.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class ScheduleFragment extends Fragment {
+public class        ScheduleFragment extends Fragment {
 
-    CardView cardview_math;
+    //CardView cardview_math;
     String Userid;
-
+    ArrayList<Scheduled_ModelClass>list_schedule;
+    RecyclerView lv_schedule;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
-        cardview_math = view.findViewById(R.id.cardview_math);
+        //cardview_math = view.findViewById(R.id.cardview_math);
+        lv_schedule = view.findViewById(R.id.lv_schedule);
+        list_schedule = new ArrayList<>();
+        lv_schedule.setHasFixedSize(true);
+        lv_schedule.setLayoutManager(new LinearLayoutManager(getActivity()));
         Userid = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
-        cardview_math.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Subject_Schedule_Detail_Activity.class));
-                getActivity().overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-            }
-        });
+
         return view;
     }
 
     public void GetSchedule(){
 
+        list_schedule.clear();
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
@@ -73,7 +79,6 @@ public class ScheduleFragment extends Fragment {
 
         params.put("user_id", Userid);
 
-
         JSONObject parameters = new JSONObject(params);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.getfixture, parameters, new Response.Listener<JSONObject>() {
@@ -82,7 +87,41 @@ public class ScheduleFragment extends Fragment {
 
                 progressDialog.dismiss();
 
+                try {
+                    String Information = response.getString("Information");
 
+                    JSONArray array = new JSONArray(Information);
+
+                    for (int i = 0 ; i <array.length() ; i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        Scheduled_ModelClass modelClass = new Scheduled_ModelClass(
+
+                                object.getString("id"),
+                                object.getString("test_id"),
+                                object.getString("subject_id"),
+                                object.getString("module_id"),
+                                object.getString("date"),
+                                object.getString("time"),
+                                object.getString("month"),
+                                object.getString("time_type"),
+                                ""
+                        );
+
+                        list_schedule.add(modelClass);
+
+                    }
+
+                    ScheduledList_Adapter adapter = new ScheduledList_Adapter(list_schedule,getActivity());
+                    lv_schedule.setAdapter(adapter);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    lv_schedule.setVisibility(View.GONE);
+
+                }
 
 
             }
@@ -100,5 +139,11 @@ public class ScheduleFragment extends Fragment {
 
 
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        GetSchedule();
     }
 }

@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
 import com.starkwiz.starkwiz.Adapter.DynamoAdapter;
@@ -20,6 +21,7 @@ public class DynamoFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+    Button btnselectsubject;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,6 +31,7 @@ public class DynamoFragment extends Fragment {
 
         tabLayout=(TabLayout)view.findViewById(R.id.tabLayout);
         viewPager=(ViewPager)view.findViewById(R.id.viewPager);
+        btnselectsubject = view.findViewById(R.id.btnselectsubject);
 
         tabLayout.addTab(tabLayout.newTab().setText("Subjects"));
         tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
@@ -36,6 +39,13 @@ public class DynamoFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Rewards"));
         
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        btnselectsubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
         final DynamoAdapter adapter = new DynamoAdapter(getActivity(),getActivity().getSupportFragmentManager(), tabLayout.getTabCount());

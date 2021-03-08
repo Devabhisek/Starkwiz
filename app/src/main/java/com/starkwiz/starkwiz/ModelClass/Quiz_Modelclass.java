@@ -3,10 +3,11 @@ package com.starkwiz.starkwiz.ModelClass;
 public class Quiz_Modelclass {
 
     String question_id,question,correct_answer,wrong_answer_1,wrong_answer_2,
-            wrong_answer_3,wrong_answer_4,image,txt_qn_hint,explanation;
+            wrong_answer_3,wrong_answer_4,image,txt_qn_hint,explanation,mark;
 
-    public Quiz_Modelclass(String question_id, String question, String correct_answer, String wrong_answer_1, String wrong_answer_2, String wrong_answer_3,
-                           String wrong_answer_4, String image, String txt_qn_hint, String explanation) {
+    public Quiz_Modelclass(String question_id, String question, String correct_answer, String wrong_answer_1,
+                           String wrong_answer_2, String wrong_answer_3, String wrong_answer_4, String image,
+                           String txt_qn_hint, String explanation, String mark) {
         this.question_id = question_id;
         this.question = question;
         this.correct_answer = correct_answer;
@@ -17,6 +18,7 @@ public class Quiz_Modelclass {
         this.image = image;
         this.txt_qn_hint = txt_qn_hint;
         this.explanation = explanation;
+        this.mark = mark;
     }
 
     public String getQuestion_id() {
@@ -97,5 +99,13 @@ public class Quiz_Modelclass {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
     }
 }

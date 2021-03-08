@@ -33,6 +33,7 @@ import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Login_ModelClass;
 import com.starkwiz.starkwiz.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,11 +42,11 @@ import java.util.Map;
 
 public class SettingActivity extends AppCompatActivity {
 
-    TextView txtsetting_account,txtsetting_notification,txtsetting_privacyanddata,txtsetting_plandetail,
+    TextView txtsetting_account,txtsetting_notification,txtsetting_privacyanddata,txtsetting_plandetail,txt_username,
             txt_setting_email,txt_setting_changepassword,txt_changeregion,txt_deactivate_account,txt_closeaccount,
             txtsetting_supportnotification,txtsetting_supportprivacy,txt_disconnect_knowmore,txtsetting_logout;
     LinearLayout linear_setting_account,linear_setting_notification,linear_setting_privacydata,linear_setting_plandetails,linear_switch_account;
-    String UserId,Email_Id,NewEmail,Password,OldPassword,NewPassword,ConfirmPassword;
+    String UserId,Email_Id,NewEmail,Password,OldPassword,NewPassword,ConfirmPassword,strtext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class SettingActivity extends AppCompatActivity {
         linear_switch_account = findViewById(R.id.linear_switch_account);
         txt_disconnect_knowmore = findViewById(R.id.txt_disconnect_knowmore);
         txtsetting_logout = findViewById(R.id.txtsetting_logout);
+        txt_username = findViewById(R.id.txt_username);
 
         UserId = SharedPrefManager.getInstance(SettingActivity.this).getUser().getId();
         Email_Id = SharedPrefManager.getInstance(SettingActivity.this).getUser().getEmail();
@@ -546,7 +548,6 @@ public class SettingActivity extends AppCompatActivity {
         params.put("email", Email_Id);
         params.put("oldpassword", oldpassword);
         params.put("newpassword", newpassword);
-
         JSONObject parameters = new JSONObject(params);
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.updatepassword, parameters, new Response.Listener<JSONObject>() {
@@ -588,5 +589,71 @@ public class SettingActivity extends AppCompatActivity {
 
 
         Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
+    }
+
+    private void GetProfile(){
+        ProgressDialog progressDialog = new ProgressDialog(SettingActivity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+
+        strtext = SharedPrefManager.getInstance(SettingActivity.this).getUser().getId();
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.Getprofile+strtext, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+
+                    String Status=response.getString("success");
+
+                    if (Status.matches("profile found")){
+
+                        String allProfile=response.getString("allProfile");
+                        JSONArray array = new JSONArray(allProfile);
+
+                        for (int i = 0 ; i<array.length();i++){
+                            JSONObject object = array.getJSONObject(i);
+
+                            txt_setting_email.setText(object.getString("email"));
+                            txt_username.setText(object.getString("first_name")+" "+object.getString("last_name"));
+
+                        }
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Toast.makeText(SettingActivity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(SettingActivity.this).add(jsonRequest);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GetProfile();
+
     }
 }

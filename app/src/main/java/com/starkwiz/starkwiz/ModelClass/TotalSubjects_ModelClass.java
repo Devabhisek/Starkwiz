@@ -1,20 +1,21 @@
 package com.starkwiz.starkwiz.ModelClass;
 
-public class Core_ModelClass {
+public class TotalSubjects_ModelClass {
 
-    String Id,Subjectname;
+    String SubjectId,Subjectname,Subjecttype;
 
-    public Core_ModelClass(String id, String subjectname) {
-        Id = id;
+    public TotalSubjects_ModelClass(String subjectId, String subjectname, String subjecttype) {
+        SubjectId = subjectId;
         Subjectname = subjectname;
+        Subjecttype = subjecttype;
     }
 
-    public String getId() {
-        return Id;
+    public String getSubjectId() {
+        return SubjectId;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setSubjectId(String subjectId) {
+        SubjectId = subjectId;
     }
 
     public String getSubjectname() {
@@ -25,11 +26,20 @@ public class Core_ModelClass {
         Subjectname = subjectname;
     }
 
+    public String getSubjecttype() {
+        return Subjecttype;
+    }
+
+    public void setSubjecttype(String subjecttype) {
+        Subjecttype = subjecttype;
+    }
+
     @Override
     public String toString() {
         return "{" +
-                "Id='" + Id + '\'' +
+                "SubjectId='" + SubjectId + '\'' +
                 ", Subjectname='" + Subjectname + '\'' +
+                ", Subjecttype='" + Subjecttype + '\'' +
                 '}';
     }
 }
