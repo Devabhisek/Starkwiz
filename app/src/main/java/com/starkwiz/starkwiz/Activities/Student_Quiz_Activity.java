@@ -67,22 +67,24 @@ import java.util.concurrent.TimeUnit;
 
 public class Student_Quiz_Activity extends AppCompatActivity {
 
-    String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes,test_id,
+    String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes,test_id,selected_subjectid,
             module_id,mark,user_id,total_question,total_marks_obtained,total_points_obtained,selected_totalmark,
-            total_time,total_acquired_time,total_correct_answer;
+            total_time,total_acquired_time,total_correct_answer,GP;
     TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject,txt_qn_hint,txtfixture,txt_otptimer,txt_quiz_mark;
     Button optionone,optiontwo,optionthree,optionfour;
     Button btn_next,btn_skip;
     LinearLayout optionContainer;
     private int count=0;
     ArrayList<Quiz_Modelclass>list_quiz;
+    ArrayList<String>list_gp;
     int position = 0;
-    int score=0;
+    int score=0,markobtain=0;
     ImageView img_qn;
     int minutes,millisecond;
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
     Chronometer timer;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         timer=findViewById(R.id.timer);
         txt_quiz_mark=findViewById(R.id.txt_quiz_mark);
         list_quiz=new ArrayList<>();
+        list_gp=new ArrayList<>();
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
         timer.stop();
         timer.setVisibility(View.GONE);
@@ -127,6 +130,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             selected_hour = getIntent().getStringExtra("selected_hour");
             selected_minutes = getIntent().getStringExtra("selected_minutes");
             selected_totalmark = getIntent().getStringExtra("selected_totalmark");
+            selected_subjectid = getIntent().getStringExtra("selected_subjectid");
 
             minutes = (Integer.parseInt(selected_hour)*60)+Integer.parseInt(selected_minutes);
 
@@ -431,30 +435,31 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
 
                 score++;
-                total_marks_obtained = String.valueOf((Integer.parseInt(mark)*10));
-                total_points_obtained = String.valueOf(((Integer.parseInt(mark)*score)*3)+Integer.parseInt(time));
+
+                total_points_obtained = String.valueOf(((Integer.parseInt(mark)*score))+Integer.parseInt(time)*3);
                 Log.d("time",total_points_obtained);
-
-
-
-
+                markobtain= Integer.parseInt(mark)+markobtain;
+                //total_marks_obtained =String.valueOf(Integer.parseInt(mark)+score);
+                total_marks_obtained =String.valueOf(markobtain);
+                GP = String.valueOf((Integer.parseInt(total_marks_obtained)*10));
+                Log.d("totalmark",total_marks_obtained);
 
 
                 Drawable img = getApplicationContext().getResources().getDrawable(R.drawable.correct);
                 selected_option.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
 
-
-
                 Score(user_id,
                         test_id,
                         module_id,
+                        selected_subjectid,
                         selected_subject,
                         question,
                         selected_totalmark,
                         total_marks_obtained,
                         total_points_obtained,
                         String.valueOf(minutes),
+                        GP,
                         time,
                         String.valueOf(score));
 
@@ -524,9 +529,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         }
     }
 
-    public void Score(String user_id, String test_id, String module_id,
+    public void Score(String user_id, String test_id, String module_id, String subject_id,
                       String subject_name, String total_question, String total_marks, String total_marks_obtained,
-                      String total_points_obtained, String total_time, String total_acquired_time, String total_correct_answer){
+                      String total_points_obtained, String total_time,String gp, String total_acquired_time, String total_correct_answer){
 
         ProgressDialog progressDialog = new ProgressDialog(Student_Quiz_Activity.this);
         progressDialog.setMessage("Loading...");
@@ -539,12 +544,14 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         params.put("user_id", user_id);
         params.put("test_id", test_id);
         params.put("module_id", module_id);
+        params.put("subject_id", subject_id);
         params.put("subject_name", subject_name);
         params.put("total_question", total_question);
         params.put("total_marks", total_marks);
         params.put("total_marks_obtained", total_marks_obtained);
         params.put("total_points_obtained", total_points_obtained);
         params.put("total_time", total_time);
+        params.put("total_gp", gp);
         params.put("total_acquired_time", total_acquired_time);
         params.put("total_correct_answer", total_correct_answer);
 

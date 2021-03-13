@@ -1,9 +1,14 @@
 package com.starkwiz.starkwiz.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,8 +50,9 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             hour,minutes,subject,module,schedule_date,totalmark,Schdmin,newschedule;
     Button btn_createschedule;
     TextView txt_schedule_time,txt_scheduled_date,txt_scheduld_time,txt_schedule_subjectname,txt_schdl_fixture,txt_schdl_subjectname,
-            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration,txt_scdlmark,txt_scdl_duration;
+            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration,txt_scdlmark,txt_scdl_duration,txt_schedule_mark;
     RadioButton rb_am,rb_pm;
+    String Subject_Name,Module_Name,Schedule_Date,Schedule_Time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +73,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         txt_schdl_fixture = findViewById(R.id.txt_schdl_fixture);
         txt_scdl_duration = findViewById(R.id.txt_scdl_duration);
         txt_schdl_subjectname = findViewById(R.id.txt_schdl_subjectname);
+        txt_schedule_mark = findViewById(R.id.txt_schedule_mark);
 
         try {
             test_id = getIntent().getStringExtra("test_id");
@@ -77,10 +84,13 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             hour = getIntent().getStringExtra("hour");
             minutes = getIntent().getStringExtra("minutes");
             subject = getIntent().getStringExtra("subject");
-            module = getIntent().getStringExtra("module");
+            module = getIntent().getExtras().getString("module");
             schedule_date = getIntent().getStringExtra("date");
             newschedule = getIntent().getStringExtra("newschedule");
             id = getIntent().getStringExtra("id");
+
+
+
 
             GetTotalmark(module_id);
             txt_schdl_subjectname.setText(subject);
@@ -96,39 +106,43 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
             txt_scdl_duration.setText("Duration\n"+Schdmin+" mins");
 
-            String parts[] = schedule_date.split("/");
+            if (schedule_date!=null){
+                String parts[] = schedule_date.split("/");
 
-            int schdlyear = Integer.parseInt(parts[0]);
-            int schdlmonth = Integer.parseInt(parts[1]);
-            int schdlday = Integer.parseInt(parts[2]);
+                int schdlyear = Integer.parseInt(parts[0]);
+                int schdlmonth = Integer.parseInt(parts[1]);
+                int schdlday = Integer.parseInt(parts[2]);
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, schdlyear);
-            calendar.set(Calendar.MONTH, schdlmonth-1);
-            calendar.set(Calendar.DAY_OF_MONTH, schdlday);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, schdlyear);
+                calendar.set(Calendar.MONTH, schdlmonth-1);
+                calendar.set(Calendar.DAY_OF_MONTH, schdlday);
 
-            long milliTime = calendar.getTimeInMillis();
-
-
-            cal.setDate (milliTime, true, true);
-
-            Calendar Fix_cal=Calendar.getInstance();
-            SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-            String Fixmonth = month_date.format(Fix_cal.getTime());
-
-            txt_schdl_fixture.setText("Fixture: "+Fixmonth);
+                long milliTime = calendar.getTimeInMillis();
 
 
+                cal.setDate (milliTime, true, true);
 
-        cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
-                 date = year + "/0" + month + "/"+ dayOfMonth ;
-                Log.d("TAG", "yyyy/mm/dd:" + date);
+                Calendar Fix_cal=Calendar.getInstance();
+                SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+                String Fixmonth = month_date.format(Fix_cal.getTime());
+
+                txt_schdl_fixture.setText("Fixture: "+Fixmonth);
 
 
             }
-        });
+
+            cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                    @Override
+                    public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+                        date = year + "/0" + month + "/"+ dayOfMonth ;
+                        Log.d("TAG", "yyyy/mm/dd:" + date);
+
+
+                    }
+                });
+
+
 
         txt_schedule_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +208,12 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             }
         });
 
+            txt_scheduled_date.setText("Duration\n"+time);
+            txt_scheduled_date.setText(date);
+            txt_schedule_subjectname.setText(subject);
+            txt_schedule_modulename.setText(module);
 
+            txt_schedule_duration.setText(time+" mins");
 
 
         }catch (Exception e){
@@ -202,8 +221,9 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         }
     }
 
-    public void CreateSchdule(String test_id,String user_id,String subject_id,String module_id,
-                              String date,String time,String month,String time_type){
+
+    public void CreateSchdule(String test_id, String user_id, String subject_id, String module_id,
+                              String date, String time, String month, String time_type){
 
         if (date!=null && time!=null && time_type!=null) {
 
@@ -356,6 +376,8 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
                         txt_scdlmark.setText("Marks\n"+totalmark);
 
+                        txt_schedule_mark.setText(totalmark);
+
 
 
                     }
@@ -380,5 +402,8 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
         Volley.newRequestQueue(Subject_Schedule_Detail_Activity.this).add(jsonRequest);
     }
+
+
+
 
 }

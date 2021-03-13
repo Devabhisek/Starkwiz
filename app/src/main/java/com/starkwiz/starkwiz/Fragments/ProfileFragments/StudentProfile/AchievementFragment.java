@@ -119,6 +119,7 @@ public class AchievementFragment extends Fragment {
                                             object.getString("total_marks"),
                                             object.getString("total_marks_obtained"),
                                             object.getString("total_points_obtained"),
+                                            object.getString("subject_id"),
                                             object.getString("total_time"),
                                             object.getString("total_acquired_time"),
                                             object.getString("total_correct_answer"),

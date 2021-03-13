@@ -58,7 +58,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
     Button btn_schedule;
     ArrayList<GetTestList_ModelClass>lis_gettests;
     String selected_module,selected_testid,is_active,selected_hour,selected_minutes,totalmark,
-            test_id,user_id,subject_id,module_id,hour,minutes,subject,module,Getsubject;
+            test_id,user_id,subject_id,module_id,hour,minutes,subject,module,Getsubject,selected_subjectid;
     LinearLayout linearaction;
     private TourGuide mTourGuideHandler;
     SharedPreferences sharedPreferences ;
@@ -104,6 +104,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     intent.putExtra("selected_hour",selected_hour);
                     intent.putExtra("selected_minutes",selected_minutes);
                     intent.putExtra("selected_subject",txt_subject.getText().toString().trim());
+                    intent.putExtra("selected_subjectid",selected_subjectid);
                     intent.putExtra("selected_totalmark",totalmark);
                     startActivity(intent);
                 }
@@ -128,7 +129,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                 intent.putExtra("minutes",minutes);
                 intent.putExtra("subject",subject);
                 intent.putExtra("module",module);
-                intent.putExtra("date",module);
+                //intent.putExtra("date",module);
                 intent.putExtra("totalmark",totalmark);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
@@ -142,9 +143,10 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
             // Get extra data included in the Intent
              selected_module = intent.getStringExtra("selected_module");
              selected_testid = intent.getStringExtra("selected_testid");
-                selected_hour = intent.getStringExtra("selected_hour");
-            selected_minutes = intent.getStringExtra("selected_minutes");
-            totalmark = intent.getStringExtra("totalmark");
+             selected_hour = intent.getStringExtra("selected_hour");
+             selected_minutes = intent.getStringExtra("selected_minutes");
+             totalmark = intent.getStringExtra("totalmark");
+            selected_subjectid = intent.getStringExtra("selected_subjectid");
 
 //            Log.d("selected_hour",selected_hour);
 

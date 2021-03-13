@@ -18,9 +18,10 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txt_fixturemonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FIXTURE : December"
+                android:text="FIXTURE :"
                 android:fontFamily="@font/nunito"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="16dp"

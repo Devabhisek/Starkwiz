@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -37,7 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,18 +51,27 @@ public class        ScheduleFragment extends Fragment {
     String Userid;
     ArrayList<Scheduled_ModelClass>list_schedule;
     RecyclerView lv_schedule;
-
+    TextView txt_fixturemonth;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+
+
         //cardview_math = view.findViewById(R.id.cardview_math);
         lv_schedule = view.findViewById(R.id.lv_schedule);
+        txt_fixturemonth = view.findViewById(R.id.txt_fixturemonth);
         list_schedule = new ArrayList<>();
         lv_schedule.setHasFixedSize(true);
         lv_schedule.setLayoutManager(new LinearLayoutManager(getActivity()));
         Userid = SharedPrefManager.getInstance(getActivity()).getUser().getId();
+
+        Calendar cal=Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String month = month_date.format(cal.getTime());
+
+        txt_fixturemonth.setText("FIXTURE: "+month);
 
 
         return view;

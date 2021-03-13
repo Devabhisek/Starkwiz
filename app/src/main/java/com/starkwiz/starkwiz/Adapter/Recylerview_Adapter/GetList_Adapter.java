@@ -125,6 +125,7 @@ public class GetList_Adapter extends RecyclerView.Adapter<GetList_Adapter.ViewHo
                         String selected_testid = GetTestList_ModelClass.getModule_id();
                         Intent intent = new Intent("custom-message");
                         intent.putExtra("selected_module",selected_module);
+                        intent.putExtra("selected_subjectid",GetTestList_ModelClass.getSubject_id());
                         intent.putExtra("selected_testid",selected_testid);
                         intent.putExtra("selected_hour",GetTestList_ModelClass.getHour());
                         intent.putExtra("selected_minutes",GetTestList_ModelClass.getMinutes());

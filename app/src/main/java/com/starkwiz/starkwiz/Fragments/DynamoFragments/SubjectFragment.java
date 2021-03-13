@@ -76,7 +76,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -98,7 +100,7 @@ public class SubjectFragment extends Fragment {
     LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
             linear_premiumtype,core,extra,feature,linear_coretype,linear_extratype,linear_featuretype;
     TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
-            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject;
+            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth;
     String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price;
     Button btn_plans,btn_subjectproceed;
     ArrayList<Core_Subjectbyplans_ModelClass>list_coresubjects;
@@ -128,6 +130,13 @@ public class SubjectFragment extends Fragment {
 
         rl_addsubject = view.findViewById(R.id.rl_addsubject);
         subject_grid = view.findViewById(R.id.subject_grid);
+        txt_fixturemonth = view.findViewById(R.id.txt_fixturemonth);
+
+        Calendar cal=Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String month = month_date.format(cal.getTime());
+
+        txt_fixturemonth.setText("FIXTURE: "+month);
 
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
                 new IntentFilter("custom-message"));
@@ -704,7 +713,9 @@ public class SubjectFragment extends Fragment {
 
                                     int total = CoreSubject.size()+ExtraSubject.size()+FeatureSubject.size();
 
-                                    if (total==6){
+
+
+                                    if (PlanType.equals("Basic") && total==6){
 
                                         Log.d("coresub", String.valueOf(CoreSubject));
                                         Log.d("extrasub", String.valueOf(ExtraSubject));
@@ -773,9 +784,161 @@ public class SubjectFragment extends Fragment {
                                             Log.d("extra_js",json);
 
                                             InsertSubjects(json);
+                                            dialog.dismiss();
 
-                                    }else {
-                                        Toast.makeText(getActivity(), "Please Choose any 6 Subjects", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else if (PlanType.equals("Standard") && total==9){
+
+                                        Log.d("coresub", String.valueOf(CoreSubject));
+                                        Log.d("extrasub", String.valueOf(ExtraSubject));
+                                        Log.d("featuresub", String.valueOf(FeatureSubject));
+
+                                        for ( int k = 0 ; k<CoreSubject.size();k++){
+
+                                            String CoreSub_Id = CoreSubject.get(k).getSubjectId();
+                                            String CoreSub_name = CoreSubject.get(k).getSubjectname();
+                                            String CoreSub_type = CoreSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    CoreSub_Id,
+                                                    CoreSub_name,
+                                                    CoreSub_type,
+                                                    "1",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Core_selectedvalue",list_subjects.toString());
+
+
+                                        for ( int k = 0 ; k<FeatureSubject.size();k++){
+
+                                            String FeatureSub_Id = FeatureSubject.get(k).getSubjectId();
+                                            String FeatureSub_name = FeatureSubject.get(k).getSubjectname();
+                                            String FeatureSub_type = FeatureSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    FeatureSub_Id,
+                                                    FeatureSub_name,
+                                                    FeatureSub_type,
+                                                    "3",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Featured_selectedvalue",list_subjects.toString());
+
+                                        for ( int k = 0 ; k<ExtraSubject.size();k++){
+
+                                            String ExtraSub_Id = ExtraSubject.get(k).getSubjectId();
+                                            String ExtraSub_name = ExtraSubject.get(k).getSubjectname();
+                                            String ExtraSub_type = ExtraSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    ExtraSub_Id,
+                                                    ExtraSub_name,
+                                                    ExtraSub_type,
+                                                    "2",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Extra_selectedvalue",list_subjects.toString());
+
+                                        Gson gson = new Gson();
+                                        String json = gson.toJson(list_subjects);
+                                        Log.d("extra_js",json);
+
+                                        InsertSubjects(json);
+                                        dialog.dismiss();
+                                    }else if (PlanType.equals("Premium") && total==12){
+
+                                        Log.d("coresub", String.valueOf(CoreSubject));
+                                        Log.d("extrasub", String.valueOf(ExtraSubject));
+                                        Log.d("featuresub", String.valueOf(FeatureSubject));
+
+                                        for ( int k = 0 ; k<CoreSubject.size();k++){
+
+                                            String CoreSub_Id = CoreSubject.get(k).getSubjectId();
+                                            String CoreSub_name = CoreSubject.get(k).getSubjectname();
+                                            String CoreSub_type = CoreSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    CoreSub_Id,
+                                                    CoreSub_name,
+                                                    CoreSub_type,
+                                                    "1",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Core_selectedvalue",list_subjects.toString());
+
+
+                                        for ( int k = 0 ; k<FeatureSubject.size();k++){
+
+                                            String FeatureSub_Id = FeatureSubject.get(k).getSubjectId();
+                                            String FeatureSub_name = FeatureSubject.get(k).getSubjectname();
+                                            String FeatureSub_type = FeatureSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    FeatureSub_Id,
+                                                    FeatureSub_name,
+                                                    FeatureSub_type,
+                                                    "3",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Featured_selectedvalue",list_subjects.toString());
+
+                                        for ( int k = 0 ; k<ExtraSubject.size();k++){
+
+                                            String ExtraSub_Id = ExtraSubject.get(k).getSubjectId();
+                                            String ExtraSub_name = ExtraSubject.get(k).getSubjectname();
+                                            String ExtraSub_type = ExtraSubject.get(k).getSubjecttype();
+
+                                            Selected_Subject_Modelclass selected_subject_modelclasses=new Selected_Subject_Modelclass(
+                                                    ExtraSub_Id,
+                                                    ExtraSub_name,
+                                                    ExtraSub_type,
+                                                    "2",
+                                                    User_Id);
+
+                                            list_subjects.add(selected_subject_modelclasses);
+
+                                        };
+
+                                        Log.d("Extra_selectedvalue",list_subjects.toString());
+
+                                        Gson gson = new Gson();
+                                        String json = gson.toJson(list_subjects);
+                                        Log.d("extra_js",json);
+
+                                        InsertSubjects(json);
+                                        dialog.dismiss();
+                                    }
+
+                                    else {
+
+                                        if (PlanType.equals("Basic")){
+                                            Toast.makeText(getActivity(), "Please Choose 6 Subjects", Toast.LENGTH_SHORT).show();
+                                        }else if (PlanType.equals("Standard")){
+                                            Toast.makeText(getActivity(), "Please Choose 9 Subjects", Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            Toast.makeText(getActivity(), "Please Choose 12 Subjects", Toast.LENGTH_SHORT).show();
+                                        }
+
                                     }
                                 }
                             });
@@ -822,6 +985,8 @@ public class SubjectFragment extends Fragment {
                     if (status.equals("success")){
 
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                        GetSubjects();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
