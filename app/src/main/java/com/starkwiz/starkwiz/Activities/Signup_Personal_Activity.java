@@ -475,6 +475,13 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                             }
                         });
 
+                        btn_change_pswd_cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+
 
 
 
@@ -893,6 +900,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                     if (message.equals("Email Verified")){
                         view.setVisibility(View.VISIBLE);
                         newview.setFocusable(true);
+                        Toast.makeText(Signup_Personal_Activity.this, "Enter new password", Toast.LENGTH_SHORT).show();
 
 
                     }else {

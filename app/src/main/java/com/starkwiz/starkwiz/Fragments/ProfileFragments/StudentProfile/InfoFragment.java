@@ -2,13 +2,20 @@ package com.starkwiz.starkwiz.Fragments.ProfileFragments.StudentProfile;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -26,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.R;
@@ -34,6 +43,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,19 +54,23 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class InfoFragment extends Fragment {
 
-   LinearLayout linear_personalinfo,linear_editpersonalinfo;
+   LinearLayout linear_personalinfo,linear_editpersonalinfo,linear_lastimage;
    TextView txt_editgeneralinfo,txt_generalinfo,txt_profile_status,txt_profile_userid,txt_profile_city,txt_profile_state,
            txt_profile_school,txt_profile_board,txt_profile_dob,txt_profile_aboutme,txt_profile_address,et_profile_dob,
            txt_profile_fblink,txt_profile_instalink,txt_profile_location,txt_edit_location,txt_edit_social
            ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
-    String date,strtext,Board;
+    String date,strtext,Board,image,image1,image2,image3,image4,image5,
+            Image_One;
     EditText et_profile_city,et_profile_state,et_profile_school,et_profile_location,et_profile_about,et_profile_address,
             et_profile_fblink,et_profile_instalink,et_profile_interest;
     View view;
     private static final String TAG = "InfoFragment";
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
+    public static final int PICK_IMAGE = 1;
     SharedPreferences sharedPreferences;
+
+    ImageView profile_img_one,profile_img_two,profile_img_three,profile_img_four,profile_img_five,profile_img_six;
+    Bitmap bitmap_one;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,8 +86,7 @@ public class InfoFragment extends Fragment {
          GetProfile();
 
 
-
-       et_profile_dob.setOnClickListener(new View.OnClickListener() {
+         et_profile_dob.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                Calendar cal = Calendar.getInstance();
@@ -192,7 +206,50 @@ public class InfoFragment extends Fragment {
             }
         });
 
+        profile_img_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                bitmap_one = BitmapFactory.decodeStream(imageStream);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap_one = Bitmap.createScaledBitmap(bitmap_one, 500, 750, true);
+                bitmap_one.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
+                byte[] img = baos.toByteArray();
+
+                Image_One = Base64.encodeToString(img, Base64.DEFAULT);
+
+
+                float degrees = 90; //rotation degree
+                Matrix matrix = new Matrix();
+                matrix.setRotate(degrees);
+                bitmap_one = Bitmap.createBitmap(bitmap_one, 0, 0, bitmap_one.getWidth(), bitmap_one.getHeight(), matrix, true);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void Initialize() {
@@ -227,6 +284,12 @@ public class InfoFragment extends Fragment {
         et_profile_interest = view.findViewById(R.id.et_profile_interest);
         txt_userid = view.findViewById(R.id.txt_userid);
         txt_edit_persona = view.findViewById(R.id.txt_edit_persona);
+        profile_img_one = view.findViewById(R.id.profile_img_one);
+        profile_img_two = view.findViewById(R.id.profile_img_two);
+        profile_img_three = view.findViewById(R.id.profile_img_three);
+        profile_img_four = view.findViewById(R.id.profile_img_four);
+        profile_img_five = view.findViewById(R.id.profile_img_five);
+        profile_img_six = view.findViewById(R.id.profile_img_six);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 //        txt_profile_icse = view.findViewById(R.id.txt_profile_icse);
 //        txt_profile_cbse = view.findViewById(R.id.txt_profile_cbse);
@@ -248,9 +311,6 @@ public class InfoFragment extends Fragment {
 
 
         JSONObject parameters = new JSONObject(params);
-
-
-
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.Getprofile+strtext, parameters, new Response.Listener<JSONObject>() {
             @Override
@@ -285,6 +345,7 @@ public class InfoFragment extends Fragment {
                                 txt_edit_board.setText("ICSE");
                                 txt_profile_board.setText("ICSE");
                             }
+
                             txt_profile_dob.setText(object.getString("date_of_birth"));
                             txt_profile_aboutme.setText(object.getString("about_me"));
                             txt_profile_address.setText(object.getString("address"));
@@ -301,6 +362,134 @@ public class InfoFragment extends Fragment {
                             et_profile_fblink.setText(object.getString("profile_facebook_link"));
                             et_profile_instalink.setText(object.getString("insta_link"));
                             txt_userid.setText(strtext);
+
+                             image = object.getString("profile_image");
+                             image1 = object.getString("profile_image_1");
+                             image2 = object.getString("profile_image_2");
+                             image3 = object.getString("profile_image_3");
+                             image4 = object.getString("profile_image_4");
+                             image5 = object.getString("profile_image_5");
+
+
+
+                             if (!image.equals("null")){
+                                profile_img_one.setVisibility(View.VISIBLE);
+                                image = image.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_one.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_one.setVisibility(View.VISIBLE);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_one);
+                            }
+
+                            if (!image1.equals("null")){
+                                profile_img_two.setVisibility(View.VISIBLE);
+                                image1 = image1.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image1, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_two.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_two.setVisibility(View.VISIBLE);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_two);
+                            }
+
+                            if (!image2.equals("null")){
+                                profile_img_three.setVisibility(View.VISIBLE);
+                                image2 = image2.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image2, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_three.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_three.setVisibility(View.VISIBLE);
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_three);
+                            }
+
+                            if (!image3.equals("null")){
+                                profile_img_four.setVisibility(View.VISIBLE);
+                                image3 = image3.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image3, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_four.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_four.setVisibility(View.VISIBLE);
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_four);
+                            }
+
+
+
+
+                            if (!image4.equals("null")){
+                                profile_img_five.setVisibility(View.VISIBLE);
+                                image4 = image4.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image4, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_five.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_five.setVisibility(View.VISIBLE);
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_five);
+                            }
+
+                            if (!image5.equals("null")){
+                                profile_img_six.setVisibility(View.VISIBLE);
+                                image5 = image5.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image5, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                profile_img_six.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_six.setVisibility(View.VISIBLE);
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_six);
+                            }
 
                         }
 
@@ -360,6 +549,9 @@ public class InfoFragment extends Fragment {
         params.put("class", cls);
         params.put("last_name", last_name);
         params.put("first_name",first_name );
+        params.put("profile_image", image);
+        params.put("active_status", "active");
+
 
 
         JSONObject parameters = new JSONObject(params);

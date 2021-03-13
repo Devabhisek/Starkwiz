@@ -46,18 +46,20 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="0dp"
+            android:id="@+id/profileimg"
+            android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_marginTop="22dp"
-            android:layout_weight="2"
+            android:layout_marginRight="8dp"
             android:src="@mipmap/person"
             app:civ_border_color="@color/black"
             app:civ_border_width="2dp"></de.hdodenhof.circleimageview.CircleImageView>
 
 
-        <LinearLayout android:visibility="gone"
+        <LinearLayout
+            android:visibility="gone"
             android:id="@+id/linearedit"
-            android:layout_width="0dp"
+            android:layout_width="263dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:orientation="vertical">
@@ -127,54 +129,53 @@
 
         <LinearLayout
             android:id="@+id/linear_profile"
-            android:layout_width="0dp"
+            android:layout_width="263dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:orientation="vertical">
-
 
 
             <TextView
                 android:id="@+id/txt_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/nunito"
                 android:textColor="@color/theme_blue"
                 android:textSize="25dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/nunito"
-                android:layout_marginTop="22dp"></TextView>
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/txt_profile_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/nunito"
                 android:textColor="@color/black"
-                android:textSize="19dp"
-                android:layout_marginTop="5dp"></TextView>
+                android:textSize="19dp"></TextView>
 
             <TextView
                 android:id="@+id/txt_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/nunito"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"></TextView>
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/txt_editprofile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:textColor="@color/theme_blue"
-                android:text="Edit"
+                android:layout_marginTop="5dp"
                 android:drawableRight="@drawable/ic_baseline_edit_24"
                 android:drawablePadding="8dp"
+                android:fontFamily="@font/nunito"
+                android:text="Edit"
+                android:textColor="@color/theme_blue"
                 android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"></TextView>
+                android:textStyle="bold"></TextView>
 
 
         </LinearLayout>

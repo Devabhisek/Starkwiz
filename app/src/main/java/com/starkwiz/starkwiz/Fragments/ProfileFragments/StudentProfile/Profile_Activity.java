@@ -3,16 +3,27 @@ package com.starkwiz.starkwiz.Fragments.ProfileFragments.StudentProfile;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.Adapter.ProfileAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
@@ -33,8 +45,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile_Activity extends Fragment {
 
@@ -44,8 +60,11 @@ public class Profile_Activity extends Fragment {
             txt_profile_status,txt_editprofile,txt_editprofile_save;
     LinearLayout linearedit,linear_profile;
     String strtext,status,city,state,school,location,board,birthday,about_me,interest,address,
-            facebook_link,insta_link,cls,last_name,first_name;
+            facebook_link,insta_link,cls,last_name,first_name,encodedImage;
     EditText et_profile_address,et_class,et_profile_firstname,et_profile_lastname;
+    CircleImageView profileimg;
+    public static final int PICK_IMAGE = 1;
+    Bitmap selectedImage;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,11 +85,26 @@ public class Profile_Activity extends Fragment {
         et_profile_lastname= view.findViewById(R.id.et_profile_lastname);
         et_profile_address= view.findViewById(R.id.et_profile_address);
         et_class= view.findViewById(R.id.et_class);
+        profileimg= view.findViewById(R.id.profileimg);
 
         tabLayout.addTab(tabLayout.newTab().setText("Info"));
         tabLayout.addTab(tabLayout.newTab().setText("Achievement"));
         tabLayout.addTab(tabLayout.newTab().setText("Friends"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        GetProfile();
+
+        profileimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+
+            }
+        });
 
         txt_editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +163,42 @@ public class Profile_Activity extends Fragment {
         return view;
     }
 
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                selectedImage = BitmapFactory.decodeStream(imageStream);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                selectedImage = Bitmap.createScaledBitmap(selectedImage, 500, 750, true);
+                selectedImage.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
+                byte[] img = baos.toByteArray();
+
+                encodedImage = Base64.encodeToString(img, Base64.DEFAULT);
+
+
+                float degrees = 90; //rotation degree
+                Matrix matrix = new Matrix();
+                matrix.setRotate(degrees);
+                selectedImage = Bitmap.createBitmap(selectedImage, 0, 0, selectedImage.getWidth(), selectedImage.getHeight(), matrix, true);
+
+                //imagedata = baos.toByteArray();
+                profileimg.setImageBitmap(selectedImage);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+            }
+
+        } else {
+            Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void GetProfile(){
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
@@ -167,8 +237,28 @@ public class Profile_Activity extends Fragment {
                                 txt_profile_name.setText(object.getString("first_name")+" "+object.getString("last_name"));
                                 et_profile_firstname.setText(object.getString("first_name"));
                                 et_profile_lastname.setText(object.getString("last_name"));
+                                et_profile_address.setText(object.getString("city"));
+
+                                String image = object.getString("profile_image");
+                                if (!image.equals("null")){
+                                    image = image.replace("data:image/png;base64,","");
+                                    byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+                                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                    float degrees = 90; //rotation degree
+                                    Matrix matrix = new Matrix();
+                                    matrix.setRotate(degrees);
+                                    decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                    profileimg.setImageBitmap(decodedByte);
+                                }else {
+                                    Picasso.with(getActivity())
+                                            .load(R.mipmap.nophoto)
+                                            .into(profileimg);
+                                }
 
                             }
+
 
 
 
@@ -278,6 +368,8 @@ public class Profile_Activity extends Fragment {
             params.put("class", cls);
             params.put("last_name", last_name);
             params.put("first_name", first_name);
+            params.put("profile_image", encodedImage);
+            params.put("active_status", "active");
 
 
             JSONObject parameters = new JSONObject(params);
@@ -310,9 +402,15 @@ public class Profile_Activity extends Fragment {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
+
                     progressDialog.dismiss();
 
-                    Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+
+                    if (error.equals("com.android.volley.TimeoutError")){
+                        GetProfile();
+                    }else {
+                        Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -323,9 +421,5 @@ public class Profile_Activity extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        GetProfile();
-    }
+
 }

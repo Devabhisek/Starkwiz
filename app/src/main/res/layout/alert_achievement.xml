@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:backgroundTint="#000000">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="510dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:orientation="vertical"
+        android:background="@mipmap/grandmaster">
+
+        <LinearLayout
+            android:id="@+id/linear_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="330dp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="11dp"
+                android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Class 9"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Priyanka Gandhi"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rourkela, Odisha"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"></TextView>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grand   Master"
+            android:textColor="#E6C570"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:layout_marginTop="11dp"></TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JAN\n2021"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:layout_weight="5"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RANK\n2021"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:layout_weight="5"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POINTS\n2021"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:layout_weight="5"></TextView>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

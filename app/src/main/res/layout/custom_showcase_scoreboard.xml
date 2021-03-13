@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="516dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="11dp"
-    app:cardCornerRadius="11dp"
+    android:layout_marginLeft="22dp"
+    android:layout_marginRight="22dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="11dp"
     android:fillViewport="true">
 
@@ -23,7 +24,7 @@
                 android:layout_width="95dp"
                 android:layout_height="95dp"
                 app:cardCornerRadius="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="55dp"
                 android:layout_marginBottom="8dp">
                 <LinearLayout
@@ -39,7 +40,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -47,16 +48,16 @@
                     android:layout_height="wrap_content"
                     android:text="Status"
                     android:layout_marginTop="11dp"
-                    android:layout_marginLeft="16dp"
-                    android:textSize="19dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="16dp"
                     android:textColor="@color/white"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enthusiast"
-                    android:layout_marginLeft="16dp"
-                    android:textSize="22dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="19dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"></TextView>
 
@@ -65,8 +66,8 @@
                     android:layout_height="wrap_content"
                     android:text="Rank: 2231"
                     android:layout_marginTop="6dp"
-                    android:layout_marginLeft="16dp"
-                    android:textSize="19dp"
+                    android:layout_marginLeft="22dp"
+                    android:textSize="16dp"
                     android:textColor="@color/white"></TextView>
             </LinearLayout>
 
@@ -74,6 +75,7 @@
 
 
         <TextView
+            android:id="@+id/txt_scorecard_fixture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dec 2020"
@@ -83,16 +85,18 @@
             android:textColor="@color/white"></TextView>
 
         <TextView
+            android:id="@+id/txt_scorecard_subjectname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mathematics"
             android:layout_marginTop="6dp"
             android:layout_marginLeft="16dp"
-            android:textSize="22dp"
+            android:textSize="19dp"
             android:textStyle="bold"
             android:textColor="@color/white"></TextView>
 
         <TextView
+            android:id="@+id/txt_scorecard_modulename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Number Systems &amp; Algebra"
@@ -111,9 +115,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -121,26 +125,28 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="Accuracy:"
-                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textSize="19dp"
-                android:textColor="@color/white"></TextView>
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="53.31%"
+                android:gravity="right"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
                 android:textSize="19dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"></TextView>
+                android:textStyle="bold"></TextView>
 
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -157,6 +163,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="52/80"
+                android:gravity="right"
+                android:paddingRight="16dp"
                 android:textSize="19dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"></TextView>
@@ -165,9 +173,9 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -184,6 +192,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="520Pts."
+                android:gravity="right"
+                android:paddingRight="16dp"
                 android:textSize="19dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"></TextView>
@@ -192,9 +202,9 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -211,6 +221,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="33Pts."
+                android:gravity="right"
+                android:paddingRight="16dp"
                 android:textSize="19dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"></TextView>
@@ -219,9 +231,9 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -238,6 +250,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:text="5531Pts."
+                android:gravity="right"
+                android:paddingRight="16dp"
                 android:textSize="19dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"></TextView>
@@ -248,13 +262,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+                android:id="@+id/img_scorecard_profile"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="11dp"
                 android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
 
             <LinearLayout
@@ -263,33 +279,34 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_scorecard_class"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Class 9"
                     android:layout_marginTop="6dp"
                     android:layout_marginLeft="16dp"
                     android:textSize="16dp"
-                    android:textStyle="bold"
                     android:textColor="@color/white"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_scorecard_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Priyanka Gandhi"
                     android:layout_marginTop="6dp"
                     android:layout_marginLeft="16dp"
-                    android:textSize="22dp"
+                    android:textSize="19dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_scorecard_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rourkela, Odisha"
                     android:layout_marginTop="6dp"
                     android:layout_marginLeft="16dp"
                     android:textSize="16dp"
-                    android:textStyle="bold"
                     android:textColor="@color/white"></TextView>
 
 
