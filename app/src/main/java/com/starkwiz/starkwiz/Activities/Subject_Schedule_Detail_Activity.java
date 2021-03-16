@@ -75,6 +75,12 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         txt_schdl_subjectname = findViewById(R.id.txt_schdl_subjectname);
         txt_schedule_mark = findViewById(R.id.txt_schedule_mark);
 
+        Calendar Fix_cal=Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String Fixmonth = month_date.format(Fix_cal.getTime());
+
+        txt_schdl_fixture.setText("Fixture: "+Fixmonth);
+
         try {
             test_id = getIntent().getStringExtra("test_id");
             subject_id = getIntent().getStringExtra("subject_id");
@@ -88,9 +94,6 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             schedule_date = getIntent().getStringExtra("date");
             newschedule = getIntent().getStringExtra("newschedule");
             id = getIntent().getStringExtra("id");
-
-
-
 
             GetTotalmark(module_id);
             txt_schdl_subjectname.setText(subject);
@@ -123,12 +126,6 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
                 cal.setDate (milliTime, true, true);
 
-                Calendar Fix_cal=Calendar.getInstance();
-                SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-                String Fixmonth = month_date.format(Fix_cal.getTime());
-
-                txt_schdl_fixture.setText("Fixture: "+Fixmonth);
-
 
             }
 
@@ -138,6 +135,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
                         date = year + "/0" + month + "/"+ dayOfMonth ;
                         Log.d("TAG", "yyyy/mm/dd:" + date);
 
+                        txt_scheduled_date.setText("Date \n"+date);
 
                     }
                 });
@@ -157,11 +155,13 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
                         if (selectedHour>12){
                             selectedHour = selectedHour-12;
-                            time = selectedHour + ":" + selectedMinute;
+                            time = selectedHour + ":" + checkDigit(selectedMinute);
                             txt_schedule_time.setText(time);
+                            txt_scheduld_time.setText("Duration\n"+time);
                         }else {
-                            time = selectedHour + ":" + selectedMinute;
+                            time = selectedHour + ":" + checkDigit(selectedMinute);
                             txt_schedule_time.setText(time);
+                            txt_scheduld_time.setText("Duration\n"+time);
                         }
 
                     }
@@ -208,8 +208,8 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             }
         });
 
-            txt_scheduled_date.setText("Duration\n"+time);
-            txt_scheduled_date.setText(date);
+
+
             txt_schedule_subjectname.setText(subject);
             txt_schedule_modulename.setText(module);
 
@@ -219,6 +219,10 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public String checkDigit(int number) {
+        return number <= 9 ? "0" + number : String.valueOf(number);
     }
 
 

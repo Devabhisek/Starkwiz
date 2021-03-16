@@ -118,21 +118,26 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 user_id = SharedPrefManager.getInstance(Subjectwise_Syllabus_Activity.this).getUser().getId();
-                Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Subject_Schedule_Detail_Activity.class);
-                intent.putExtra("newschedule","new");
-                intent.putExtra("test_id",test_id);
-                intent.putExtra("subject_id",subject_id);
-                intent.putExtra("module_id",module_id);
-                intent.putExtra("user_id",user_id);
-                intent.putExtra("month",month);
-                intent.putExtra("hour",hour);
-                intent.putExtra("minutes",minutes);
-                intent.putExtra("subject",subject);
-                intent.putExtra("module",module);
-                //intent.putExtra("date",module);
-                intent.putExtra("totalmark",totalmark);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                if (selected_testid!=null) {
+                    Intent intent = new Intent(Subjectwise_Syllabus_Activity.this, Subject_Schedule_Detail_Activity.class);
+                    intent.putExtra("newschedule", "new");
+                    intent.putExtra("test_id", test_id);
+                    intent.putExtra("subject_id", subject_id);
+                    intent.putExtra("module_id", module_id);
+                    intent.putExtra("user_id", user_id);
+                    intent.putExtra("month", month);
+                    intent.putExtra("hour", hour);
+                    intent.putExtra("minutes", minutes);
+                    intent.putExtra("subject", subject);
+                    intent.putExtra("module", module);
+                    //intent.putExtra("date",module);
+                    intent.putExtra("totalmark", totalmark);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+                else {
+                    AlertBoxClasses.SimpleAlertBox(Subjectwise_Syllabus_Activity.this,"Please select a chapter");
+                }
             }
         });
     }

@@ -439,11 +439,12 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 total_points_obtained = String.valueOf(((Integer.parseInt(mark)*score))+Integer.parseInt(time)*3);
                 Log.d("time",total_points_obtained);
                 markobtain= Integer.parseInt(mark)+markobtain;
-                //total_marks_obtained =String.valueOf(Integer.parseInt(mark)+score);
+
                 total_marks_obtained =String.valueOf(markobtain);
                 GP = String.valueOf((Integer.parseInt(total_marks_obtained)*10));
                 Log.d("totalmark",total_marks_obtained);
-
+                total_points_obtained = String.valueOf((Integer.parseInt(GP)+(Integer.parseInt(time)*3)));
+                Log.d("logcat",total_points_obtained);
 
                 Drawable img = getApplicationContext().getResources().getDrawable(R.drawable.correct);
                 selected_option.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);

@@ -472,47 +472,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Interest"
-                    android:layout_weight="5"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"></TextView>
 
-                <TextView
-                    android:layout_width="75dp"
+                <HorizontalScrollView
+                    android:layout_width="318dp"
                     android:layout_height="wrap_content"
-                    android:text="Music"
-                    android:background="@drawable/rounded_button"
-                    android:layout_weight="5"
-                    android:textSize="14dp"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:layout_marginLeft="11dp"
-                    android:textColor="@color/white"></TextView>
+                    android:layout_marginLeft="16dp"
+                    android:fillViewport="true">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="75dp"
-                    android:layout_height="wrap_content"
-                    android:text="Poetry"
-                    android:background="@drawable/rounded_button"
-                    android:layout_weight="5"
-                    android:textSize="14dp"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/white"></TextView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/lv_interest"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                    android:layout_width="75dp"
-                    android:layout_height="wrap_content"
-                    android:text="Travel"
-                    android:background="@drawable/rounded_button"
-                    android:layout_weight="5"
-                    android:textSize="14dp"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/white"></TextView>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
 
 
 
@@ -692,8 +676,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-                android:visibility="gone"
+        <LinearLayout android:visibility="gone"
                 android:id="@+id/linear_editpersonalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1166,47 +1149,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Interest"
-                        android:layout_weight="5"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="75dp"
+                    <HorizontalScrollView
+                        android:layout_width="318dp"
                         android:layout_height="wrap_content"
-                        android:text="Music"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="11dp"
-                        android:textColor="@color/white"></TextView>
+                        android:layout_marginLeft="16dp"
+                        android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Poetry"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lv_editinterest"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Travel"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
 
 
 

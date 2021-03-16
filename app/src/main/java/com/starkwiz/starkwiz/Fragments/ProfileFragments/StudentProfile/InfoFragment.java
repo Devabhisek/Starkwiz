@@ -14,6 +14,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Base64;
 import android.util.Log;
@@ -35,8 +37,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.Interest_Adapter;
+import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
+import com.starkwiz.starkwiz.ModelClass.InterestModelClass;
 import com.starkwiz.starkwiz.R;
 
 import org.json.JSONArray;
@@ -45,6 +50,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +65,7 @@ public class InfoFragment extends Fragment {
            txt_profile_school,txt_profile_board,txt_profile_dob,txt_profile_aboutme,txt_profile_address,et_profile_dob,
            txt_profile_fblink,txt_profile_instalink,txt_profile_location,txt_edit_location,txt_edit_social
            ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
-    String date,strtext,Board,image,image1,image2,image3,image4,image5,
+    String date,strtext,Board,image,image1,image2,image3,image4,image5,Interest,
             Image_One;
     EditText et_profile_city,et_profile_state,et_profile_school,et_profile_location,et_profile_about,et_profile_address,
             et_profile_fblink,et_profile_instalink,et_profile_interest;
@@ -67,8 +73,9 @@ public class InfoFragment extends Fragment {
     private static final String TAG = "InfoFragment";
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     public static final int PICK_IMAGE = 1;
+    ArrayList<InterestModelClass>list_interest;
     SharedPreferences sharedPreferences;
-
+    RecyclerView lv_interest,lv_editinterest;
     ImageView profile_img_one,profile_img_two,profile_img_three,profile_img_four,profile_img_five,profile_img_six;
     Bitmap bitmap_one;
 
@@ -184,6 +191,8 @@ public class InfoFragment extends Fragment {
                     et_profile_instalink.setError("Enter your Instagram Profile Link");
                 } else {
 
+                    String intrst = Interest+et_profile_interest.getText().toString()+",";
+
                     EditProfile(strtext,
                             "Bubble",
                             et_profile_city.getText().toString().trim(),
@@ -195,6 +204,7 @@ public class InfoFragment extends Fragment {
                             et_profile_dob.getText().toString(),
                             et_profile_about.getText().toString().trim(),
                             et_profile_address.getText().toString().trim(),
+                            intrst,
                             et_profile_fblink.getText().toString().trim(),
                             et_profile_instalink.getText().toString().trim(),
                             SharedPrefManager.getInstance(getActivity()).getUser().getCls(),
@@ -290,6 +300,14 @@ public class InfoFragment extends Fragment {
         profile_img_four = view.findViewById(R.id.profile_img_four);
         profile_img_five = view.findViewById(R.id.profile_img_five);
         profile_img_six = view.findViewById(R.id.profile_img_six);
+        lv_interest = view.findViewById(R.id.lv_interest);
+        lv_editinterest = view.findViewById(R.id.lv_editinterest);
+        list_interest=new ArrayList<>();
+        lv_interest.setHasFixedSize(true);
+        lv_interest.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        lv_editinterest.setHasFixedSize(true);
+        lv_editinterest.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 //        txt_profile_icse = view.findViewById(R.id.txt_profile_icse);
 //        txt_profile_cbse = view.findViewById(R.id.txt_profile_cbse);
@@ -351,6 +369,36 @@ public class InfoFragment extends Fragment {
                             txt_profile_address.setText(object.getString("address"));
                             txt_profile_fblink.setText(object.getString("profile_facebook_link"));
                             txt_profile_instalink.setText(object.getString("insta_link"));
+
+                            Interest = object.getString("profile_interest");
+
+                            if (Interest.equals("null")){
+                                Interest = Interest.replace("null","");
+                                et_profile_interest.setHint("Enter your interest");
+                            }else {
+                                String parts[] = Interest.split(",");
+
+                                ArrayList<String> list_interests = new ArrayList<>();
+
+                                for (int j = 0 ; j<parts.length;j++){
+                                    list_interests.add(parts[j]);
+
+                                }
+
+                                for (int k = 0 ; k<list_interests.size();k++){
+
+                                    String intertest = list_interests.get(k);
+
+                                    InterestModelClass modelClass = new InterestModelClass(intertest);
+                                    list_interest.add(modelClass);
+                                        Log.d("interest",list_interest.toString());
+                                }
+
+                                Interest_Adapter adapter = new Interest_Adapter(list_interest,getActivity());
+                                lv_interest.setAdapter(adapter);
+                                lv_editinterest.setAdapter(adapter);
+
+                            }
 
                             et_profile_city.setText(object.getString("city"));
                             et_profile_state.setText(object.getString("state"));
@@ -520,69 +568,76 @@ public class InfoFragment extends Fragment {
     }
 
     private void EditProfile(String UserId, String Status,String City, String State, String School, String Location,String interest,
-                             String Board,String DOB, String About, String Address, String Fblink, String Instalink,
+                             String Board,String DOB, String About, String Address,String Interest, String Fblink, String Instalink,
                              String cls, String last_name, String first_name){
 
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
+        if (DOB.equals("null")){
+            AlertBoxClasses.SimpleAlertBox(getActivity(),"Please enter your date of birth.");
+        }else {
+            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            //HttpsTrustManager.allowAllSSL();
 
 
 
-        final Map<String, String> params = new HashMap();
+            final Map<String, String> params = new HashMap();
 
-        params.put("userid", UserId);
-        params.put("status", "Bubble");
-        params.put("city", City);
-        params.put("state", State);
-        params.put("school", School);
-        params.put("location", Location);
-        params.put("board", Board);
-        params.put("date_of_birth", DOB);
-        params.put("about_me", About);
-        params.put("address", Address);
-        params.put("interest", Address);
-        params.put("profile_facebook_link", Fblink);
-        params.put("insta_link", Instalink);
-        params.put("class", cls);
-        params.put("last_name", last_name);
-        params.put("first_name",first_name );
-        params.put("profile_image", image);
-        params.put("active_status", "active");
+            params.put("userid", UserId);
+            params.put("status", "Bubble");
+            params.put("city", City);
+            params.put("state", State);
+            params.put("school", School);
+            params.put("location", Location);
+            params.put("board", Board);
+            params.put("date_of_birth", DOB);
+            params.put("about_me", About);
+            params.put("address", Address);
+            params.put("profile_interest", Interest);
+            params.put("profile_facebook_link", Fblink);
+            params.put("insta_link", Instalink);
+            params.put("class", cls);
+            params.put("last_name", last_name);
+            params.put("first_name",first_name );
+            params.put("profile_image", image);
+            params.put("active_status", "active");
 
 
 
-        JSONObject parameters = new JSONObject(params);
+            JSONObject parameters = new JSONObject(params);
 
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.StoreProfile, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.StoreProfile, parameters, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
 
-                progressDialog.dismiss();
+                    progressDialog.dismiss();
 
 
                     Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
                     linear_editpersonalinfo.setVisibility(View.GONE);
                     linear_personalinfo.setVisibility(View.VISIBLE);
-                   GetProfile();
+                    GetProfile();
 
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-                Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
 
 
-        Volley.newRequestQueue(getActivity()).add(jsonRequest);
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    progressDialog.dismiss();
+
+                    Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+            Volley.newRequestQueue(getActivity()).add(jsonRequest);
+        }
+
+
+
 
     }
 }
