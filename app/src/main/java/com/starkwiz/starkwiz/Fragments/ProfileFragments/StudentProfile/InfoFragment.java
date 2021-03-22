@@ -65,8 +65,9 @@ public class InfoFragment extends Fragment {
            txt_profile_school,txt_profile_board,txt_profile_dob,txt_profile_aboutme,txt_profile_address,et_profile_dob,
            txt_profile_fblink,txt_profile_instalink,txt_profile_location,txt_edit_location,txt_edit_social
            ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
-    String date,strtext,Board,image,image1,image2,image3,image4,image5,Interest,
-            Image_One;
+    String date,strtext,Board,image,image1,image2,image3,image4,image5,image6,Interest,
+            profile_image_one,profile_image_two,profile_image_three,profile_image_four,profile_image_five,profile_image_six,
+            Image_One,Image_Two,Image_Three,Image_Four,Image_Five,Image_Six;
     EditText et_profile_city,et_profile_state,et_profile_school,et_profile_location,et_profile_about,et_profile_address,
             et_profile_fblink,et_profile_instalink,et_profile_interest;
     View view;
@@ -76,7 +77,8 @@ public class InfoFragment extends Fragment {
     ArrayList<InterestModelClass>list_interest;
     SharedPreferences sharedPreferences;
     RecyclerView lv_interest,lv_editinterest;
-    ImageView profile_img_one,profile_img_two,profile_img_three,profile_img_four,profile_img_five,profile_img_six;
+    ImageView profile_img_one,profile_img_two,profile_img_three,profile_img_four,profile_img_five,profile_img_six,
+            img_profile_one,img_profile_two,img_profile_three,img_profile_four,img_profile_five,img_profile_six;
     Bitmap bitmap_one;
 
     @Override
@@ -179,8 +181,6 @@ public class InfoFragment extends Fragment {
                     et_profile_school.setError("Enter School");
                 } else if (et_profile_location.getText().toString().trim().isEmpty()) {
                     et_profile_location.setError("Enter Location");
-                } else if (et_profile_interest.getText().toString().trim().isEmpty()) {
-                    et_profile_interest.setError("Enter Interest");
                 } else if (et_profile_about.getText().toString().trim().isEmpty()) {
                     et_profile_about.setError("Tell something about yourself");
                 } else if (et_profile_address.getText().toString().trim().isEmpty()) {
@@ -199,7 +199,6 @@ public class InfoFragment extends Fragment {
                             et_profile_state.getText().toString().trim(),
                             et_profile_school.getText().toString().trim(),
                             et_profile_location.getText().toString().trim(),
-                            et_profile_interest.getText().toString(),
                             txt_edit_board.getText().toString().trim(),
                             et_profile_dob.getText().toString(),
                             et_profile_about.getText().toString().trim(),
@@ -219,12 +218,101 @@ public class InfoFragment extends Fragment {
         profile_img_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                profile_image_one = "imageone";
+                profile_image_two = "null";
+                profile_image_three = "null";
+                profile_image_four = "null";
+                profile_image_five = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
+
+        profile_img_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile_image_one = "null";
+                profile_image_two = "imagetwo";
+                profile_image_three = "null";
+                profile_image_four = "null";
+                profile_image_five = "null";
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+        profile_img_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile_image_one = "null";
+                profile_image_two = "null";
+                profile_image_three = "imagethree";
+                profile_image_four = "null";
+                profile_image_five = "null";
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+        profile_img_four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile_image_one = "null";
+                profile_image_two = "null";
+                profile_image_three = "null";
+                profile_image_four = "imagefour";
+                profile_image_five = "null";
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+        profile_img_five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile_image_one = "null";
+                profile_image_two = "null";
+                profile_image_three = "null";
+                profile_image_four = "null";
+                profile_image_five = "imagefive";
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+
+        profile_img_six.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                profile_image_one = "null";
+                profile_image_two = "null";
+                profile_image_three = "null";
+                profile_image_four = "null";
+                profile_image_five = "null";
+                profile_image_six = "imagesix";
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+
+
 
         return view;
     }
@@ -242,7 +330,7 @@ public class InfoFragment extends Fragment {
                 bitmap_one.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
                 byte[] img = baos.toByteArray();
 
-                Image_One = Base64.encodeToString(img, Base64.DEFAULT);
+
 
 
                 float degrees = 90; //rotation degree
@@ -251,6 +339,26 @@ public class InfoFragment extends Fragment {
                 bitmap_one = Bitmap.createBitmap(bitmap_one, 0, 0, bitmap_one.getWidth(), bitmap_one.getHeight(), matrix, true);
 
 
+                if (profile_image_one.equals("imageone")){
+                    profile_img_one.setImageBitmap(bitmap_one);
+                    Image_One = Base64.encodeToString(img, Base64.DEFAULT);
+                }
+                else if (profile_image_two.equals("imagetwo")){
+                    profile_img_two.setImageBitmap(bitmap_one);
+                    Image_Two = Base64.encodeToString(img, Base64.DEFAULT);
+                }else if (profile_image_three.equals("imagethree")){
+                    profile_img_three.setImageBitmap(bitmap_one);
+                    Image_Three = Base64.encodeToString(img, Base64.DEFAULT);
+                }else if (profile_image_four.equals("imagefour")){
+                    profile_img_four.setImageBitmap(bitmap_one);
+                    Image_Four = Base64.encodeToString(img, Base64.DEFAULT);
+                }else if (profile_image_five.equals("imagefive")){
+                    profile_img_five.setImageBitmap(bitmap_one);
+                    Image_Five = Base64.encodeToString(img, Base64.DEFAULT);
+                }else {
+                    profile_img_six.setImageBitmap(bitmap_one);
+                    Image_Six = Base64.encodeToString(img, Base64.DEFAULT);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -302,6 +410,12 @@ public class InfoFragment extends Fragment {
         profile_img_six = view.findViewById(R.id.profile_img_six);
         lv_interest = view.findViewById(R.id.lv_interest);
         lv_editinterest = view.findViewById(R.id.lv_editinterest);
+        img_profile_one = view.findViewById(R.id.img_profile_one);
+        img_profile_two = view.findViewById(R.id.img_profile_two);
+        img_profile_three = view.findViewById(R.id.img_profile_three);
+        img_profile_four = view.findViewById(R.id.img_profile_four);
+        img_profile_five = view.findViewById(R.id.img_profile_five);
+        img_profile_six = view.findViewById(R.id.img_profile_six);
         list_interest=new ArrayList<>();
         lv_interest.setHasFixedSize(true);
         lv_interest.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -411,38 +525,19 @@ public class InfoFragment extends Fragment {
                             et_profile_instalink.setText(object.getString("insta_link"));
                             txt_userid.setText(strtext);
 
-                             image = object.getString("profile_image");
+                             image=object.getString("profile_image");
                              image1 = object.getString("profile_image_1");
                              image2 = object.getString("profile_image_2");
                              image3 = object.getString("profile_image_3");
                              image4 = object.getString("profile_image_4");
                              image5 = object.getString("profile_image_5");
+                             image6 = object.getString("profile_image_6");
 
 
 
-                             if (!image.equals("null")){
+                             if (!image1.equals("null")){
                                 profile_img_one.setVisibility(View.VISIBLE);
-                                image = image.replace("data:image/png;base64,","");
-                                byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
-
-                                profile_img_one.setImageBitmap(decodedByte);
-                            }else {
-                                profile_img_one.setVisibility(View.VISIBLE);
-
-                                Picasso.with(getActivity())
-                                        .load(R.mipmap.addphoto)
-                                        .into(profile_img_one);
-                            }
-
-                            if (!image1.equals("null")){
-                                profile_img_two.setVisibility(View.VISIBLE);
-                                image1 = image1.replace("data:image/png;base64,","");
+                                 image1 = image1.replace("data:image/png;base64,","");
                                 byte[] decodedString = Base64.decode(image1, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
@@ -451,17 +546,24 @@ public class InfoFragment extends Fragment {
                                 matrix.setRotate(degrees);
                                 decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
-                                profile_img_two.setImageBitmap(decodedByte);
+                                profile_img_one.setImageBitmap(decodedByte);
+                                img_profile_one.setImageBitmap(decodedByte);
                             }else {
-                                profile_img_two.setVisibility(View.VISIBLE);
+                                profile_img_one.setVisibility(View.VISIBLE);
 
                                 Picasso.with(getActivity())
                                         .load(R.mipmap.addphoto)
-                                        .into(profile_img_two);
+                                        .into(profile_img_one);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_one);
                             }
 
+
+
                             if (!image2.equals("null")){
-                                profile_img_three.setVisibility(View.VISIBLE);
+                                profile_img_two.setVisibility(View.VISIBLE);
                                 image2 = image2.replace("data:image/png;base64,","");
                                 byte[] decodedString = Base64.decode(image2, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -471,16 +573,21 @@ public class InfoFragment extends Fragment {
                                 matrix.setRotate(degrees);
                                 decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
-                                profile_img_three.setImageBitmap(decodedByte);
+                                profile_img_two.setImageBitmap(decodedByte);
+                                img_profile_two.setImageBitmap(decodedByte);
                             }else {
-                                profile_img_three.setVisibility(View.VISIBLE);
+                                profile_img_two.setVisibility(View.VISIBLE);
                                 Picasso.with(getActivity())
                                         .load(R.mipmap.addphoto)
-                                        .into(profile_img_three);
+                                        .into(profile_img_two);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_two);
                             }
 
                             if (!image3.equals("null")){
-                                profile_img_four.setVisibility(View.VISIBLE);
+                                profile_img_three.setVisibility(View.VISIBLE);
                                 image3 = image3.replace("data:image/png;base64,","");
                                 byte[] decodedString = Base64.decode(image3, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -490,19 +597,24 @@ public class InfoFragment extends Fragment {
                                 matrix.setRotate(degrees);
                                 decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
-                                profile_img_four.setImageBitmap(decodedByte);
+                                profile_img_three.setImageBitmap(decodedByte);
+                                img_profile_three.setImageBitmap(decodedByte);
                             }else {
-                                profile_img_four.setVisibility(View.VISIBLE);
+                                profile_img_three.setVisibility(View.VISIBLE);
                                 Picasso.with(getActivity())
                                         .load(R.mipmap.addphoto)
-                                        .into(profile_img_four);
+                                        .into(profile_img_three);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_three);
                             }
 
 
 
 
                             if (!image4.equals("null")){
-                                profile_img_five.setVisibility(View.VISIBLE);
+                                profile_img_four.setVisibility(View.VISIBLE);
                                 image4 = image4.replace("data:image/png;base64,","");
                                 byte[] decodedString = Base64.decode(image4, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -512,16 +624,21 @@ public class InfoFragment extends Fragment {
                                 matrix.setRotate(degrees);
                                 decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
-                                profile_img_five.setImageBitmap(decodedByte);
+                                profile_img_four.setImageBitmap(decodedByte);
+                                img_profile_four.setImageBitmap(decodedByte);
                             }else {
-                                profile_img_five.setVisibility(View.VISIBLE);
+                                profile_img_four.setVisibility(View.VISIBLE);
                                 Picasso.with(getActivity())
                                         .load(R.mipmap.addphoto)
-                                        .into(profile_img_five);
+                                        .into(profile_img_four);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_four);
                             }
 
                             if (!image5.equals("null")){
-                                profile_img_six.setVisibility(View.VISIBLE);
+                                profile_img_five.setVisibility(View.VISIBLE);
                                 image5 = image5.replace("data:image/png;base64,","");
                                 byte[] decodedString = Base64.decode(image5, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -531,12 +648,41 @@ public class InfoFragment extends Fragment {
                                 matrix.setRotate(degrees);
                                 decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
+                                profile_img_five.setImageBitmap(decodedByte);
+                                img_profile_five.setImageBitmap(decodedByte);
+                            }else {
+                                profile_img_five.setVisibility(View.VISIBLE);
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.addphoto)
+                                        .into(profile_img_five);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_five);
+                            }
+                            if (!image6.equals("null")){
+                                profile_img_six.setVisibility(View.VISIBLE);
+                                image6 = image6.replace("data:image/png;base64,","");
+                                byte[] decodedString = Base64.decode(image5, Base64.DEFAULT);
+                                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                float degrees = 90; //rotation degree
+                                Matrix matrix = new Matrix();
+                                matrix.setRotate(degrees);
+                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
                                 profile_img_six.setImageBitmap(decodedByte);
+                                img_profile_six.setImageBitmap(decodedByte);
                             }else {
                                 profile_img_six.setVisibility(View.VISIBLE);
                                 Picasso.with(getActivity())
                                         .load(R.mipmap.addphoto)
                                         .into(profile_img_six);
+
+                                Picasso.with(getActivity())
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profile_six);
+
                             }
 
                         }
@@ -567,7 +713,7 @@ public class InfoFragment extends Fragment {
 
     }
 
-    private void EditProfile(String UserId, String Status,String City, String State, String School, String Location,String interest,
+    private void EditProfile(String UserId, String Status,String City, String State, String School, String Location,
                              String Board,String DOB, String About, String Address,String Interest, String Fblink, String Instalink,
                              String cls, String last_name, String first_name){
 
@@ -605,6 +751,41 @@ public class InfoFragment extends Fragment {
 
 
 
+            if (profile_image_one.equals("imageone")){
+                params.put("profile_image_1",Image_One);
+            }
+            else {
+                params.put("profile_image_1",image1);
+            }
+             if (profile_image_two.equals("imagetwo")){
+                params.put("profile_image_2",Image_Two);
+            }
+             else {
+                 params.put("profile_image_2",image2);
+             }
+             if (profile_image_three.equals("imagethree")){
+                params.put("profile_image_3",Image_Three);
+            }else {
+                 params.put("profile_image_3",image3);
+             }
+             if (profile_image_four.equals("imagefour")){
+                params.put("profile_image_4",Image_Four);
+            }else {
+                 params.put("profile_image_4",image4);
+             } if (profile_image_five.equals("imagefive")){
+                params.put("profile_image_5",Image_Five);
+            }else {
+                params.put("profile_image_5",image5);
+            }
+            if (profile_image_five.equals("imagefive")){
+                params.put("profile_image_6",Image_Six);
+            }else {
+                params.put("profile_image_6",image6);
+            }
+
+
+
+
             JSONObject parameters = new JSONObject(params);
 
             JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.StoreProfile, parameters, new Response.Listener<JSONObject>() {
@@ -627,8 +808,9 @@ public class InfoFragment extends Fragment {
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
                     progressDialog.dismiss();
-
-                    Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+                    linear_editpersonalinfo.setVisibility(View.GONE);
+                    linear_personalinfo.setVisibility(View.VISIBLE);
+                    GetProfile();
                 }
             });
 

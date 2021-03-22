@@ -60,11 +60,12 @@ public class Profile_Activity extends Fragment {
             txt_profile_status,txt_editprofile,txt_editprofile_save;
     LinearLayout linearedit,linear_profile;
     String strtext,status,city,state,school,location,board,birthday,about_me,interest,address,
-            facebook_link,insta_link,cls,last_name,first_name,encodedImage;
+            facebook_link,insta_link,cls,last_name,first_name,encodedImage,image;
     EditText et_profile_address,et_class,et_profile_firstname,et_profile_lastname;
     CircleImageView profileimg;
     public static final int PICK_IMAGE = 1;
     Bitmap selectedImage;
+    String image1,image2,image3,image4,image5,image6;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -239,7 +240,7 @@ public class Profile_Activity extends Fragment {
                                 et_profile_lastname.setText(object.getString("last_name"));
                                 et_profile_address.setText(object.getString("city"));
 
-                                String image = object.getString("profile_image");
+                                 image = object.getString("profile_image");
                                 if (!image.equals("null")){
                                     image = image.replace("data:image/png;base64,","");
                                     byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
@@ -307,9 +308,12 @@ public class Profile_Activity extends Fragment {
                             last_name = object.getString("last_name");
                             first_name = object.getString("first_name");
 
-
-
-
+                            image1 = object.getString("profile_image_1");
+                            image2 = object.getString("profile_image_2");
+                            image3 = object.getString("profile_image_3");
+                            image4 = object.getString("profile_image_4");
+                            image5 = object.getString("profile_image_5");
+                            image6 = object.getString("profile_image_6");
 
                         }
 
@@ -368,9 +372,19 @@ public class Profile_Activity extends Fragment {
             params.put("class", cls);
             params.put("last_name", last_name);
             params.put("first_name", first_name);
+            if (encodedImage==null){
+                params.put("profile_image", image);
+            }else {
+                params.put("profile_image", encodedImage);
+            }
             params.put("profile_image", encodedImage);
             params.put("active_status", "active");
-
+             params.put("profile_image_1",image1);
+             params.put("profile_image_2",image2);
+             params.put("profile_image_3",image3);
+             params.put("profile_image_4",image4);
+             params.put("profile_image_5",image5);
+             params.put( "profile_image_6",image6);
 
             JSONObject parameters = new JSONObject(params);
 
