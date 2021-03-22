@@ -35,10 +35,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.Interest_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.InterestModelClass;
@@ -67,7 +70,8 @@ public class InfoFragment extends Fragment {
            ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
     String date,strtext,Board,image,image1,image2,image3,image4,image5,image6,Interest,
             profile_image_one,profile_image_two,profile_image_three,profile_image_four,profile_image_five,profile_image_six,
-            Image_One,Image_Two,Image_Three,Image_Four,Image_Five,Image_Six;
+            Image_One,Image_Two,Image_Three,Image_Four,Image_Five,Image_Six,city,state,school,location,date_of_birth,
+            about_me,address,profile_facebook_link,insta_link;
     EditText et_profile_city,et_profile_state,et_profile_school,et_profile_location,et_profile_about,et_profile_address,
             et_profile_fblink,et_profile_instalink,et_profile_interest;
     View view;
@@ -93,6 +97,7 @@ public class InfoFragment extends Fragment {
          strtext = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
          GetProfile();
+         Getrank(strtext);
 
 
          et_profile_dob.setOnClickListener(new View.OnClickListener() {
@@ -355,7 +360,7 @@ public class InfoFragment extends Fragment {
                 }else if (profile_image_five.equals("imagefive")){
                     profile_img_five.setImageBitmap(bitmap_one);
                     Image_Five = Base64.encodeToString(img, Base64.DEFAULT);
-                }else {
+                }else if (profile_image_six.equals("imagesix")) {
                     profile_img_six.setImageBitmap(bitmap_one);
                     Image_Six = Base64.encodeToString(img, Base64.DEFAULT);
                 }
@@ -464,11 +469,82 @@ public class InfoFragment extends Fragment {
                             JSONObject object = array.getJSONObject(i);
 
                             txt_profile_userid.setText(strtext);
-                            txt_profile_status.setText(object.getString("status"));
-                            txt_profile_city.setText(object.getString("city"));
-                            txt_profile_state.setText(object.getString("state"));
-                            txt_profile_school.setText(object.getString("school"));
-                            txt_profile_location.setText(object.getString("location"));
+                            //txt_profile_status.setText(object.getString("status"));
+
+                            city = object.getString("city");
+                            state = object.getString("state");
+                            school = object.getString("school");
+                            location = object.getString("location");
+                            date_of_birth = object.getString("date_of_birth");
+                            about_me = object.getString("about_me");
+                            address = object.getString("address");
+                            profile_facebook_link = object.getString("profile_facebook_link");
+                            insta_link = object.getString("insta_link");
+
+                            if (city.equals("null")){
+                                txt_profile_city.setText(" ");
+                                et_profile_city.setHint("Enter your city");
+                            }else {
+                                txt_profile_city.setText(city);
+                                et_profile_city.setText(city);
+                            }
+                            if (state.equals("null")){
+                                txt_profile_state.setText(" ");
+                                et_profile_state.setText("Enter your state");
+                            }else {
+                                txt_profile_state.setText(state);
+                                et_profile_state.setText(state);
+                            }
+                            if (school.equals("null")){
+                                txt_profile_school.setText(" ");
+                                et_profile_school.setHint("Enter your school");
+                            }else {
+                                txt_profile_school.setText(school);
+                                et_profile_school.setText(school);
+                            }
+                            if (location.equals("null")){
+                                txt_profile_location.setText(" ");
+                                et_profile_location.setHint("Enter location");
+                            }else {
+                                txt_profile_location.setText(location);
+                                et_profile_location.setText(location);
+                            }
+                            if (date_of_birth.equals("null")){
+                                txt_profile_dob.setText(" ");
+                                et_profile_dob.setHint("Enter date of birth");
+                            }else {
+                                txt_profile_dob.setText(date_of_birth);
+                                et_profile_dob.setText(date_of_birth);
+                            }
+                            if (about_me.equals("null")){
+                                txt_profile_aboutme.setText(" ");
+                                et_profile_about.setHint("Enter about you");
+                            }else {
+                                txt_profile_aboutme.setText(about_me);
+                                et_profile_about.setText(about_me);
+                            }
+                            if (address.equals("null")){
+                                txt_profile_address.setText(" ");
+                                et_profile_address.setHint("Enter your address");
+                            }else {
+                                txt_profile_address.setText(address);
+                                et_profile_address.setText(address);
+                            }
+                            if (profile_facebook_link.equals("null")){
+                                txt_profile_fblink.setText(" ");
+                                et_profile_fblink.setHint("Enter Facebook Link");
+                            }else {
+                                txt_profile_fblink.setText(profile_facebook_link);
+                                et_profile_fblink.setText(profile_facebook_link);
+                            }if (insta_link.equals("null")){
+                                txt_profile_instalink.setText(" ");
+                                et_profile_instalink.setHint("Enter Instagram Link");
+                            }else {
+                                txt_profile_instalink.setText(insta_link);
+                                et_profile_instalink.setText(insta_link);
+                            }
+
+                            txt_userid.setText(strtext);
 
                             if (object.getString("board").equals("CBSE") || object.getString("board").equals("cbse")){
                                 txt_edit_board.setText("CBSE");
@@ -478,10 +554,9 @@ public class InfoFragment extends Fragment {
                                 txt_profile_board.setText("ICSE");
                             }
 
-                            txt_profile_dob.setText(object.getString("date_of_birth"));
-                            txt_profile_aboutme.setText(object.getString("about_me"));
-                            txt_profile_address.setText(object.getString("address"));
-                            txt_profile_fblink.setText(object.getString("profile_facebook_link"));
+
+
+
                             txt_profile_instalink.setText(object.getString("insta_link"));
 
                             Interest = object.getString("profile_interest");
@@ -513,17 +588,6 @@ public class InfoFragment extends Fragment {
                                 lv_editinterest.setAdapter(adapter);
 
                             }
-
-                            et_profile_city.setText(object.getString("city"));
-                            et_profile_state.setText(object.getString("state"));
-                            et_profile_school.setText(object.getString("school"));
-                            et_profile_location.setText(object.getString("location"));
-                            et_profile_dob.setText(object.getString("date_of_birth"));
-                            et_profile_about.setText(object.getString("about_me"));
-                            et_profile_address.setText(object.getString("address"));
-                            et_profile_fblink.setText(object.getString("profile_facebook_link"));
-                            et_profile_instalink.setText(object.getString("insta_link"));
-                            txt_userid.setText(strtext);
 
                              image=object.getString("profile_image");
                              image1 = object.getString("profile_image_1");
@@ -777,7 +841,7 @@ public class InfoFragment extends Fragment {
             }else {
                 params.put("profile_image_5",image5);
             }
-            if (profile_image_five.equals("imagefive")){
+            if (profile_image_six.equals("imagesix")){
                 params.put("profile_image_6",Image_Six);
             }else {
                 params.put("profile_image_6",image6);
@@ -821,5 +885,36 @@ public class InfoFragment extends Fragment {
 
 
 
+    }
+
+
+    private void Getrank(String id){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/getrank?user_id=" + id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject object = new JSONObject(response);
+
+                            String Information = object.getString("Information");
+
+                            JSONObject jsonObject = new JSONObject(Information);
+
+                            txt_profile_status.setText(jsonObject.getString("rank_name"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
     }
 }

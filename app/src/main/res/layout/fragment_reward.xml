@@ -59,13 +59,19 @@
                            android:layout_marginTop="3dp"
                            android:layout_marginLeft="16dp"></TextView>
 
-                       <SeekBar
-                           android:layout_width="220dp"
-                           android:layout_height="4dp"
-                           android:layout_marginTop="22dp"
+                       <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                           android:id="@+id/progress_bar_1"
+                           style="?android:attr/progressBarStyleHorizontal"
+                           android:layout_width="200dp"
+                           android:layout_height="wrap_content"
+                           android:indeterminate="false"
                            android:layout_marginLeft="16dp"
-                           android:background="@color/theme_blue"
-                           android:thumb="@null"></SeekBar>
+                           android:layout_marginTop="22dp"
+                           android:maxHeight="6dp"
+                           android:minHeight="6dp"
+                           android:progress="40"
+                           app:backgroundColor="@color/grey"
+                           app:progressColor="@color/theme_blue"/>
 
                    </LinearLayout>
 
@@ -150,7 +156,7 @@
                        <TextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:text="Consicutive Reward"
+                           android:text="Consecutive Reward"
                            android:textColor="@color/theme_blue"
                            android:textSize="22dp"
                            android:fontFamily="@font/nunito"
@@ -159,6 +165,7 @@
                            android:textStyle="bold"></TextView>
 
                        <TextView
+                           android:id="@+id/txt_consecutive_details"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="You need to win Silver 1 more\ntime to unlock your Reward !"
@@ -168,14 +175,19 @@
                            android:layout_marginTop="3dp"
                            android:layout_marginLeft="16dp"></TextView>
 
-                       <SeekBar
-                           android:layout_width="220dp"
-                           android:layout_height="4dp"
-                           android:layout_marginTop="22dp"
+                       <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                           android:id="@+id/progress_bar_2"
+                           style="?android:attr/progressBarStyleHorizontal"
+                           android:layout_width="200dp"
+                           android:layout_height="wrap_content"
+                           android:indeterminate="false"
                            android:layout_marginLeft="16dp"
-                           android:background="@color/theme_blue"
-                           android:thumb="@null"></SeekBar>
-
+                           android:layout_marginTop="22dp"
+                           android:maxHeight="6dp"
+                           android:minHeight="6dp"
+                           android:progress="40"
+                           app:backgroundColor="@color/grey"
+                           app:progressColor="@color/theme_blue"/>
                    </LinearLayout>
 
                    <LinearLayout
@@ -193,6 +205,7 @@
                            android:orientation="horizontal">
 
                            <TextView
+                               android:id="@+id/txt_consecutive"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="2"
@@ -204,114 +217,7 @@
 
 
                            <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="/3"
-                               android:textColor="@color/black"
-                               android:textSize="16dp"
-                               android:layout_marginTop="8dp"
-                               android:layout_marginLeft="3dp"></TextView>
-
-
-                       </LinearLayout>
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="silver"
-                           android:fontFamily="@font/nunito"
-                           android:textColor="@color/black"
-                           android:textSize="14dp"
-                           android:layout_gravity="right"
-                           android:layout_marginTop="3dp"
-                           android:layout_marginLeft="16dp"></TextView>
-
-
-                   </LinearLayout>
-
-
-
-               </RelativeLayout>
-
-           </androidx.cardview.widget.CardView>
-
-           <androidx.cardview.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="135dp"
-               android:layout_marginLeft="22dp"
-               android:layout_marginRight="22dp"
-               android:layout_marginTop="16dp"
-               app:cardCornerRadius="10dp"
-               android:backgroundTint="#EFF2F8">
-
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
-
-                   <LinearLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_alignParentLeft="true"
-                       android:orientation="vertical">
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="Collective Reward"
-                           android:textColor="@color/theme_blue"
-                           android:textSize="22dp"
-                           android:fontFamily="@font/nunito"
-                           android:layout_marginTop="8dp"
-                           android:layout_marginLeft="16dp"
-                           android:textStyle="bold"></TextView>
-
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="You need to win Silver 3 more\ntime to unlock your Reward !"
-                           android:textColor="@color/black"
-                           android:fontFamily="@font/nunito"
-                           android:textSize="16dp"
-                           android:layout_marginTop="3dp"
-                           android:layout_marginLeft="16dp"></TextView>
-
-                       <SeekBar
-                           android:layout_width="220dp"
-                           android:layout_height="4dp"
-                           android:layout_marginTop="22dp"
-                           android:layout_marginLeft="16dp"
-                           android:background="@color/theme_blue"
-                           android:thumb="@null"></SeekBar>
-
-                   </LinearLayout>
-
-                   <LinearLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_alignParentRight="true"
-                       android:layout_marginRight="8dp"
-                       android:orientation="vertical">
-
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginRight="5dp"
-                           android:layout_marginTop="16dp"
-                           android:orientation="horizontal">
-
-                           <TextView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:text="2"
-                               android:textColor="@color/theme_blue"
-                               android:textSize="18dp"
-                               android:layout_marginTop="8dp"
-                               android:layout_marginLeft="16dp"
-                               android:textStyle="bold"></TextView>
-
-
-                           <TextView
+                               android:id="@+id/txt_totalconsecutive"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="/5"
@@ -327,9 +233,9 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="silver"
+                           android:fontFamily="@font/nunito"
                            android:textColor="@color/black"
                            android:textSize="14dp"
-                           android:fontFamily="@font/nunito"
                            android:layout_gravity="right"
                            android:layout_marginTop="3dp"
                            android:layout_marginLeft="16dp"></TextView>
@@ -342,6 +248,114 @@
                </RelativeLayout>
 
            </androidx.cardview.widget.CardView>
+
+<!--           <androidx.cardview.widget.CardView-->
+<!--               android:layout_width="match_parent"-->
+<!--               android:layout_height="135dp"-->
+<!--               android:layout_marginLeft="22dp"-->
+<!--               android:layout_marginRight="22dp"-->
+<!--               android:layout_marginTop="16dp"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--               android:backgroundTint="#EFF2F8">-->
+
+<!--               <RelativeLayout-->
+<!--                   android:layout_width="match_parent"-->
+<!--                   android:layout_height="wrap_content"-->
+<!--                   android:orientation="horizontal">-->
+
+<!--                   <LinearLayout-->
+<!--                       android:layout_width="wrap_content"-->
+<!--                       android:layout_height="wrap_content"-->
+<!--                       android:layout_alignParentLeft="true"-->
+<!--                       android:orientation="vertical">-->
+
+<!--                       <TextView-->
+<!--                           android:layout_width="wrap_content"-->
+<!--                           android:layout_height="wrap_content"-->
+<!--                           android:text="Collective Reward"-->
+<!--                           android:textColor="@color/theme_blue"-->
+<!--                           android:textSize="22dp"-->
+<!--                           android:fontFamily="@font/nunito"-->
+<!--                           android:layout_marginTop="8dp"-->
+<!--                           android:layout_marginLeft="16dp"-->
+<!--                           android:textStyle="bold"></TextView>-->
+
+<!--                       <TextView-->
+<!--                           android:layout_width="wrap_content"-->
+<!--                           android:layout_height="wrap_content"-->
+<!--                           android:text="You need to win Silver 3 more\ntime to unlock your Reward !"-->
+<!--                           android:textColor="@color/black"-->
+<!--                           android:fontFamily="@font/nunito"-->
+<!--                           android:textSize="16dp"-->
+<!--                           android:layout_marginTop="3dp"-->
+<!--                           android:layout_marginLeft="16dp"></TextView>-->
+
+<!--                       <SeekBar-->
+<!--                           android:layout_width="220dp"-->
+<!--                           android:layout_height="4dp"-->
+<!--                           android:layout_marginTop="22dp"-->
+<!--                           android:layout_marginLeft="16dp"-->
+<!--                           android:background="@color/theme_blue"-->
+<!--                           android:thumb="@null"></SeekBar>-->
+
+<!--                   </LinearLayout>-->
+
+<!--                   <LinearLayout-->
+<!--                       android:layout_width="wrap_content"-->
+<!--                       android:layout_height="wrap_content"-->
+<!--                       android:layout_alignParentRight="true"-->
+<!--                       android:layout_marginRight="8dp"-->
+<!--                       android:orientation="vertical">-->
+
+<!--                       <LinearLayout-->
+<!--                           android:layout_width="wrap_content"-->
+<!--                           android:layout_height="wrap_content"-->
+<!--                           android:layout_marginRight="5dp"-->
+<!--                           android:layout_marginTop="16dp"-->
+<!--                           android:orientation="horizontal">-->
+
+<!--                           <TextView-->
+<!--                               android:layout_width="wrap_content"-->
+<!--                               android:layout_height="wrap_content"-->
+<!--                               android:text="2"-->
+<!--                               android:textColor="@color/theme_blue"-->
+<!--                               android:textSize="18dp"-->
+<!--                               android:layout_marginTop="8dp"-->
+<!--                               android:layout_marginLeft="16dp"-->
+<!--                               android:textStyle="bold"></TextView>-->
+
+
+<!--                           <TextView-->
+<!--                               android:layout_width="wrap_content"-->
+<!--                               android:layout_height="wrap_content"-->
+<!--                               android:text="/5"-->
+<!--                               android:textColor="@color/black"-->
+<!--                               android:textSize="16dp"-->
+<!--                               android:layout_marginTop="8dp"-->
+<!--                               android:layout_marginLeft="3dp"></TextView>-->
+
+
+<!--                       </LinearLayout>-->
+
+<!--                       <TextView-->
+<!--                           android:layout_width="wrap_content"-->
+<!--                           android:layout_height="wrap_content"-->
+<!--                           android:text="silver"-->
+<!--                           android:textColor="@color/black"-->
+<!--                           android:textSize="14dp"-->
+<!--                           android:fontFamily="@font/nunito"-->
+<!--                           android:layout_gravity="right"-->
+<!--                           android:layout_marginTop="3dp"-->
+<!--                           android:layout_marginLeft="16dp"></TextView>-->
+
+
+<!--                   </LinearLayout>-->
+
+
+
+<!--               </RelativeLayout>-->
+
+<!--           </androidx.cardview.widget.CardView>-->
 
            <androidx.cardview.widget.CardView
                android:layout_width="match_parent"
@@ -376,6 +390,7 @@
                            android:textStyle="bold"></TextView>
 
                        <TextView
+                           android:id="@+id/txt_talentreward_detail"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:text="Last Starkwiz talent reward was\nworth 3210 points !"
@@ -385,13 +400,19 @@
                            android:layout_marginTop="3dp"
                            android:layout_marginLeft="16dp"></TextView>
 
-                       <SeekBar
-                           android:layout_width="220dp"
-                           android:layout_height="4dp"
-                           android:layout_marginTop="22dp"
+                       <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                           android:id="@+id/progress_bar_3"
+                           style="?android:attr/progressBarStyleHorizontal"
+                           android:layout_width="200dp"
+                           android:layout_height="wrap_content"
+                           android:indeterminate="false"
                            android:layout_marginLeft="16dp"
-                           android:background="@color/theme_blue"
-                           android:thumb="@null"></SeekBar>
+                           android:layout_marginTop="22dp"
+                           android:maxHeight="6dp"
+                           android:minHeight="6dp"
+                           android:progress="40"
+                           app:backgroundColor="@color/grey"
+                           app:progressColor="@color/theme_blue"/>
 
                    </LinearLayout>
 
@@ -408,6 +429,7 @@
                            android:orientation="vertical">
 
                            <TextView
+                               android:id="@+id/txt_highest_talentreward"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="3210"
@@ -418,6 +440,7 @@
                                android:textStyle="bold"></TextView>
 
                            <TextView
+                               android:id="@+id/txt_highest_talentname"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Gold"
@@ -429,6 +452,7 @@
 
 
                            <TextView
+                               android:id="@+id/txt_current_talentpoints"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="2981"
@@ -439,6 +463,7 @@
                                android:textStyle="bold"></TextView>
 
                            <TextView
+                               android:id="@+id/txt_current_talentname"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:text="Silver"

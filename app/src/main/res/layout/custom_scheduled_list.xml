@@ -52,7 +52,6 @@
                     android:id="@+id/txt_scheduled_subjectname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mathematics"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:fontFamily="@font/nunito"
@@ -81,6 +80,7 @@
                     android:layout_marginTop="11dp"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_remainingdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -136,7 +136,6 @@
                     android:id="@+id/txt_scheduled_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="90mins"
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     android:layout_gravity="right"

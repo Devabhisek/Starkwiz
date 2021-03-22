@@ -93,6 +93,7 @@ public class Dasboard_Activity extends AppCompatActivity {
                 case R.id.bottom_menu_dynamo:
                     // selectedFragment = new HomeFragment();
                     // menuItem.setIcon(R.mipmap.homeselected);
+
                     menuItem = bottomnavigation.getMenu().getItem(0);
                     menuItem.setEnabled(true);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DynamoFragment()).commit();

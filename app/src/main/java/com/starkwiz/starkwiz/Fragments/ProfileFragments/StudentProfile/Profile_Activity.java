@@ -32,11 +32,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 import com.starkwiz.starkwiz.Adapter.ProfileAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.R;
@@ -60,7 +62,7 @@ public class Profile_Activity extends Fragment {
             txt_profile_status,txt_editprofile,txt_editprofile_save;
     LinearLayout linearedit,linear_profile;
     String strtext,status,city,state,school,location,board,birthday,about_me,interest,address,
-            facebook_link,insta_link,cls,last_name,first_name,encodedImage,image;
+            facebook_link,insta_link,cls,last_name,first_name,encodedImage,image,User_ID;
     EditText et_profile_address,et_class,et_profile_firstname,et_profile_lastname;
     CircleImageView profileimg;
     public static final int PICK_IMAGE = 1;
@@ -93,7 +95,9 @@ public class Profile_Activity extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Friends"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        User_ID = SharedPrefManager.getInstance(getActivity()).getUser().getId();
         GetProfile();
+        Getrank(User_ID);
 
         profileimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +286,7 @@ public class Profile_Activity extends Fragment {
                                 et_class.setText(object.getString("class"));
                             }
 
-                            txt_profile_status.setText("status");
+                            //txt_profile_status.setText("status");
 
                             if (object.getString("board").equals("CBSE") || object.getString("board").equals("cbse")){
                                 txt_profile_board.setText("CBSE");
@@ -290,9 +294,9 @@ public class Profile_Activity extends Fragment {
                                 txt_profile_board.setText("ICSE");
                             }
 
-                            txt_profile_status.setText(object.getString("status"));
+                           // txt_profile_status.setText(object.getString("status"));
 
-                            status = object.getString("status");
+
                             city = object.getString("city");
                             state = object.getString("state");
                             school = object.getString("school");
@@ -433,6 +437,40 @@ public class Profile_Activity extends Fragment {
 
 
 
+    }
+
+    private void Getrank(String id){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/getrank?user_id=" + id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject object = new JSONObject(response);
+
+                            String Information = object.getString("Information");
+
+
+
+                            JSONObject jsonObject = new JSONObject(Information);
+
+                            txt_profile_status.setText(jsonObject.getString("rank_name"));
+
+                            status = jsonObject.getString("rank_name");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
     }
 
 

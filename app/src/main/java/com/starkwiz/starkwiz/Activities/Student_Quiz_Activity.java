@@ -8,6 +8,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import android.animation.Animator;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
@@ -69,7 +71,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
     String selected_testid, selected_module,selected_subject,selected_hour,selected_minutes,test_id,selected_subjectid,
             module_id,mark,user_id,total_question,total_marks_obtained,total_points_obtained,selected_totalmark,
-            total_time,total_acquired_time,total_correct_answer,GP;
+            total_time,total_acquired_time,total_correct_answer,GP,selected_moduleid;
     TextView txt_chapter,txt_noofqn,txt_qn,txt_quiz_subject,txt_qn_hint,txtfixture,txt_otptimer,txt_quiz_mark;
     Button optionone,optiontwo,optionthree,optionfour;
     Button btn_next,btn_skip;
@@ -121,7 +123,6 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
         txtfixture.setText("FIXTURE: "+month);
 
-
         try {
 
             selected_testid = getIntent().getStringExtra("selected_testid");
@@ -131,6 +132,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
             selected_minutes = getIntent().getStringExtra("selected_minutes");
             selected_totalmark = getIntent().getStringExtra("selected_totalmark");
             selected_subjectid = getIntent().getStringExtra("selected_subjectid");
+            selected_moduleid = getIntent().getStringExtra("selected_moduleid");
 
             minutes = (Integer.parseInt(selected_hour)*60)+Integer.parseInt(selected_minutes);
 
@@ -152,6 +154,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     txt_otptimer.setText("Times up");
+                    Vibrator vibrator = (Vibrator) Student_Quiz_Activity.this
+                            .getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(2000);
 
                     final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Student_Quiz_Activity.this)
                             .setMessage("Times up. Would you like to")
@@ -211,46 +216,52 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 try {
 
-                    JSONArray array = response.getJSONArray("question");
+                    if (response.equals("[]")){
+                        AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"No Question found.");
+                    }else {
 
-                    for (int i= 0 ; i<array.length() ; i++){
+                        JSONArray array = response.getJSONArray("question");
 
-                        JSONObject object = array.getJSONObject(i);
 
-                        String mark = object.getString("mark");
+                        for (int i = 0; i < array.length(); i++) {
 
-                        if (mark.equals("null")){
-                            mark = "0";
-                        }else {
-                            mark = object.getString("mark");
+                            JSONObject object = array.getJSONObject(i);
+
+                            String mark = object.getString("mark");
+
+                            if (mark.equals("null")) {
+                                mark = "0";
+                            } else {
+                                mark = object.getString("mark");
+                            }
+
+
+                            Quiz_Modelclass modelClass = new Quiz_Modelclass(
+                                    object.getString("question_id"),
+                                    object.getString("question"),
+                                    object.getString("correct_answer"),
+                                    object.getString("wrong_answer_1"),
+                                    object.getString("wrong_answer_2"),
+                                    object.getString("wrong_answer_3"),
+                                    object.getString("wrong_answer_4"),
+                                    object.getString("image"),
+                                    object.getString("hint"),
+                                    object.getString("explanation"),
+                                    mark
+                            );
+
+
+                            list_quiz.add(modelClass);
+
+                            test_id = object.getString("test_id");
+                            module_id = object.getString("module_id");
+
+
                         }
 
-
-                        Quiz_Modelclass modelClass = new Quiz_Modelclass(
-                                object.getString("question_id"),
-                                object.getString("question"),
-                                object.getString("correct_answer"),
-                                object.getString("wrong_answer_1"),
-                                object.getString("wrong_answer_2"),
-                                object.getString("wrong_answer_3"),
-                                object.getString("wrong_answer_4"),
-                                object.getString("image"),
-                                object.getString("hint"),
-                                object.getString("explanation"),
-                                mark
-                        );
-
-
-                        list_quiz.add(modelClass);
-
-                        test_id = object.getString("test_id");
-                        module_id = object.getString("module_id");
-
-
+                        PlayAnim(txt_qn, 0, list_quiz.get(position).getQuestion());
 
                     }
-
-                    PlayAnim(txt_qn,0,list_quiz.get(position).getQuestion());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -281,6 +292,9 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 if (position+1==list_quiz.size()){
                     total_question = String.valueOf(list_quiz.size());
                     AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"You have attend all questions");
+                    Vibrator vibrator = (Vibrator) Student_Quiz_Activity.this
+                            .getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(1000);
                     //Score(user_id,test_id,module_id,selected_subject,total_question,mark);
                 }else {
                     btn_next.setEnabled(false);
@@ -324,6 +338,8 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 }
             }
         });
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -454,6 +470,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                         test_id,
                         module_id,
                         selected_subjectid,
+                        String.valueOf(Integer.parseInt(GP)+minutes),
                         selected_subject,
                         question,
                         selected_totalmark,
@@ -530,7 +547,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         }
     }
 
-    public void Score(String user_id, String test_id, String module_id, String subject_id,
+    public void Score(String user_id, String test_id, String module_id, String subject_id,String total_points,
                       String subject_name, String total_question, String total_marks, String total_marks_obtained,
                       String total_points_obtained, String total_time,String gp, String total_acquired_time, String total_correct_answer){
 
@@ -555,6 +572,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         params.put("total_gp", gp);
         params.put("total_acquired_time", total_acquired_time);
         params.put("total_correct_answer", total_correct_answer);
+        params.put("total_points", total_points);
 
         JSONObject parameters = new JSONObject(params);
 
@@ -594,7 +612,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(Student_Quiz_Activity.this,Subjectwise_Syllabus_Activity.class));
+                        startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
                         finish();
                     }
                 });

@@ -32,10 +32,10 @@ public class DynamoAdapter extends FragmentStatePagerAdapter {
             case 1:
                 ScheduleFragment scheduleFragment = new ScheduleFragment();
                 return scheduleFragment;
+//            case 2:
+//                ScoreCard_Fragment scoreCard_fragment = new ScoreCard_Fragment();
+//                return scoreCard_fragment;
             case 2:
-                ScoreCard_Fragment scoreCard_fragment = new ScoreCard_Fragment();
-                return scoreCard_fragment;
-            case 3:
                 RewardFragment rewardFragment = new RewardFragment();
                 return rewardFragment;
 

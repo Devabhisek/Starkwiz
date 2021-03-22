@@ -2,11 +2,11 @@ package com.starkwiz.starkwiz.ModelClass;
 
 public class Score_Modelclass {
 
-    String id,user_id,test_id,module_id,subject_name,total_question,total_marks,total_marks_obtained,total_points_obtained,
-            subject_id,total_time,total_acquired_time,total_correct_answer,subjectName,module_name,name,lastname,cls,district,state;
+    String id,user_id,test_id,module_id,subject_name,total_question,total_marks,total_marks_obtained,total_points_obtained,total_gp,
+            subject_id,total_time,total_acquired_time,total_correct_answer,accuracy,module_name,name,lastname,cls,district,state;
 
-    public Score_Modelclass(String id, String user_id, String test_id, String module_id, String subject_name, String total_question, String total_marks, String total_marks_obtained, String total_points_obtained, String subject_id, String total_time, String total_acquired_time, String total_correct_answer,
-                            String subjectName, String module_name, String name, String lastname, String cls, String district, String state) {
+    public Score_Modelclass(String id, String user_id, String test_id, String module_id, String subject_name, String total_question, String total_marks, String total_marks_obtained, String total_points_obtained, String total_gp, String subject_id, String total_time, String total_acquired_time, String total_correct_answer, String accuracy,
+                            String module_name, String name, String lastname, String cls, String district, String state) {
         this.id = id;
         this.user_id = user_id;
         this.test_id = test_id;
@@ -16,11 +16,12 @@ public class Score_Modelclass {
         this.total_marks = total_marks;
         this.total_marks_obtained = total_marks_obtained;
         this.total_points_obtained = total_points_obtained;
+        this.total_gp = total_gp;
         this.subject_id = subject_id;
         this.total_time = total_time;
         this.total_acquired_time = total_acquired_time;
         this.total_correct_answer = total_correct_answer;
-        this.subjectName = subjectName;
+        this.accuracy = accuracy;
         this.module_name = module_name;
         this.name = name;
         this.lastname = lastname;
@@ -101,6 +102,14 @@ public class Score_Modelclass {
         this.total_points_obtained = total_points_obtained;
     }
 
+    public String getTotal_gp() {
+        return total_gp;
+    }
+
+    public void setTotal_gp(String total_gp) {
+        this.total_gp = total_gp;
+    }
+
     public String getSubject_id() {
         return subject_id;
     }
@@ -133,12 +142,12 @@ public class Score_Modelclass {
         this.total_correct_answer = total_correct_answer;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public String getAccuracy() {
+        return accuracy;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setAccuracy(String accuracy) {
+        this.accuracy = accuracy;
     }
 
     public String getModule_name() {
@@ -188,7 +197,4 @@ public class Score_Modelclass {
     public void setState(String state) {
         this.state = state;
     }
-
-
-
 }

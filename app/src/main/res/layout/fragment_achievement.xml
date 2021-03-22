@@ -93,11 +93,12 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_achvmnt_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2231"
                     android:layout_weight="5"
                     android:textSize="16dp"
+                    android:gravity="center"
                     android:layout_marginLeft="95dp"
                     android:textColor="@color/black"></TextView>
 
@@ -122,9 +123,10 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_no_dynamos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="23"
+                    android:gravity="center"
                     android:layout_weight="5"
                     android:textSize="16dp"
                     android:textColor="@color/black"></TextView>
@@ -150,10 +152,11 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_scorecard_accuracy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="68.89%"
                     android:layout_weight="5"
+                    android:gravity="center"
                     android:layout_marginLeft="85dp"
                     android:textSize="16dp"
                     android:textColor="@color/black"></TextView>
@@ -179,10 +182,11 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_grand_total_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="45.342 Pts."
                     android:layout_weight="5"
+                    android:gravity="center"
                     android:layout_marginLeft="55dp"
                     android:textSize="16dp"
                     android:textColor="@color/black"></TextView>
@@ -208,10 +212,11 @@
                     android:textColor="@color/black"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_performance_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3487.84 Pts."
                     android:layout_weight="5"
+                    android:gravity="center"
                     android:layout_marginLeft="55dp"
                     android:textSize="16dp"
                     android:textColor="@color/black"></TextView>

@@ -132,6 +132,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                     @Override
                     public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+                        month = month+1;
                         date = year + "/0" + month + "/"+ dayOfMonth ;
                         Log.d("TAG", "yyyy/mm/dd:" + date);
 

@@ -1,6 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@color/white">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="490dp"
+        app:cardCornerRadius="11dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:cardElevation="11dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@mipmap/science">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="11dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_schedule_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21st\nOCT"
+                    android:textSize="19dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_schedule_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03:00 PM"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_schedule_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="90mins"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Marks"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_schedule_marks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginLeft="11dp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="11dp">
+
+                <TextView
+                    android:id="@+id/txt_schdule_subject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Science &amp; Tech"
+                    android:textSize="22dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginLeft="11dp"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_schedule_module"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solar System &amp;\nUniverse"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:layout_marginLeft="11dp"></TextView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Remaining"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="49dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 d:3 h:43 m"
+                android:textSize="22dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"></TextView>
+
+            <Button
+                android:id="@+id/btn_schedule_okay"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:text="ok"
+                android:textSize="19dp"
+                android:textColor="@color/BlueViolet"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_button_white"
+                android:layout_marginTop="11dp"></Button>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_schedule_appear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Appear"
+        android:textSize="19dp"
+        android:textAllCaps="false"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button_blue"
+        android:layout_marginTop="11dp"></Button>
+
+    <Button
+        android:id="@+id/btn_schedule_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modify"
+        android:textColor="@color/theme_blue"
+        android:textSize="19dp"
+        android:textAllCaps="false"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="22dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bordeetwo"
+        android:layout_marginTop="11dp"></Button>
+
 
 </LinearLayout>

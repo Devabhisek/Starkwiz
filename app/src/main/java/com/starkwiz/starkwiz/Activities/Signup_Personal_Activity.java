@@ -185,7 +185,6 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                         otp_view = dialog.findViewById(R.id.otp_view);
 
 
-
                         txtresendotp.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -216,7 +215,6 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                                 String v = String.format("%02d", millisUntilFinished / 60000);
                                 int va = (int) ((millisUntilFinished % 60000) / 1000);
                                 txt_otptimer.setText(v + ":" + String.format("%02d", va));
-
 
                             }
 

@@ -337,7 +337,7 @@ public class SubjectFragment extends Fragment {
                                         progressDialog.dismiss();
                                         Log.d("Error.Response", error.toString());
                                     }
-                                }
+                                } 
                         );
 
                             Volley.newRequestQueue(getActivity()).add(getRequest);

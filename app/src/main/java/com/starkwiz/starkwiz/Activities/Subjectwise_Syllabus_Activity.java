@@ -344,7 +344,9 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
 //        }
     }
 
-//    private void Firsttime_Guide(){
+
+
+    //    private void Firsttime_Guide(){
 //        mTourGuideHandler = TourGuide.init( Subjectwise_Syllabus_Activity.this  ).with(TourGuide.Technique.Click)
 //                .setPointer(new Pointer())
 //                .setToolTip( new ToolTip()
