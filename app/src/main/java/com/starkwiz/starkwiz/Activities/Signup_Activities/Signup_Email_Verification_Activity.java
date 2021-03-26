@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Signup_Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,16 +18,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
-import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -224,7 +220,7 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
 
                     if (message.equals("Email Verified")){
 
-                        Intent intent = new Intent(Signup_Email_Verification_Activity.this,Signup_SetupPassword_Activity.class);
+                        Intent intent = new Intent(Signup_Email_Verification_Activity.this, Signup_SetupPassword_Activity.class);
                         intent.putExtra("FirstName",FirstName);
                         intent.putExtra("LastName",LastName);
                         intent.putExtra("Dob",Dob);

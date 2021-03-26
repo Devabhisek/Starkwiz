@@ -35,15 +35,15 @@ public class ShowcaseAdapter extends FragmentStatePagerAdapter {
                 All_Showcase_Fragment all_showcase_fragment = new All_Showcase_Fragment();
                 return all_showcase_fragment;
 
-//            case 1:
-//                Events_Showcase_Fragment events_showcase_fragment = new Events_Showcase_Fragment();
-//                return events_showcase_fragment;
-
             case 1:
+                Events_Showcase_Fragment events_showcase_fragment = new Events_Showcase_Fragment();
+                return events_showcase_fragment;
+
+            case 2:
                 Friends_Showcase_Fragment friends_showcase_fragment = new Friends_Showcase_Fragment();
                 return friends_showcase_fragment;
 
-            case 2:
+            case 3:
                 Following_Showcase_Fragment following_showcase_fragment = new Following_Showcase_Fragment();
                 return following_showcase_fragment;
 
