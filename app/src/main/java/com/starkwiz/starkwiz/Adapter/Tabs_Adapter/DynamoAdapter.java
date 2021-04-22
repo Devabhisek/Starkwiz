@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Adapter;
+package com.starkwiz.starkwiz.Adapter.Tabs_Adapter;
 
 import android.content.Context;
 

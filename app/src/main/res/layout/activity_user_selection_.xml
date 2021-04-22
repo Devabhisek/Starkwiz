@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/white"
-    tools:context=".Activities.UserSelection_Activity">
+    tools:context=".Activities.Starting_Pages.UserSelection_Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -2,17 +2,11 @@ package com.starkwiz.starkwiz.Fragments.ProfileFragments.StudentProfile;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -23,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
-import com.starkwiz.starkwiz.Adapter.ProfileAdapter;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.ProfileAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
@@ -59,7 +52,7 @@ public class Profile_Activity extends Fragment {
     TabLayout tabLayout;
     ViewPager viewPager;
     TextView txt_profile_name,txt_profile_address,txt_class,txt_profile_board,
-            txt_profile_status,txt_editprofile,txt_editprofile_save;
+            txt_profile_status,txt_editprofile,txt_editprofile_save,txt_profile_folowers;
     LinearLayout linearedit,linear_profile;
     String strtext,status,city,state,school,location,board,birthday,about_me,interest,address,
             facebook_link,insta_link,cls,last_name,first_name,encodedImage,image,User_ID;
@@ -89,6 +82,7 @@ public class Profile_Activity extends Fragment {
         et_profile_address= view.findViewById(R.id.et_profile_address);
         et_class= view.findViewById(R.id.et_class);
         profileimg= view.findViewById(R.id.profileimg);
+        txt_profile_folowers= view.findViewById(R.id.txt_profile_folowers);
 
         tabLayout.addTab(tabLayout.newTab().setText("Info"));
         tabLayout.addTab(tabLayout.newTab().setText("Achievement"));
@@ -98,6 +92,7 @@ public class Profile_Activity extends Fragment {
         User_ID = SharedPrefManager.getInstance(getActivity()).getUser().getId();
         GetProfile();
         Getrank(User_ID);
+        GetFollowers(User_ID);
 
         profileimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -470,6 +465,34 @@ public class Profile_Activity extends Fragment {
             }
         });
 
+        MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
+    }
+
+    private void GetFollowers(String Id){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/getfollowers?user_id=" + Id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    txt_profile_folowers.setText(object.getString("myfollowercount"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
         MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
     }
 

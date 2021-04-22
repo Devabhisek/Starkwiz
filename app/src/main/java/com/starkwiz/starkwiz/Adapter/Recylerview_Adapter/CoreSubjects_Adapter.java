@@ -1,37 +1,24 @@
 package com.starkwiz.starkwiz.Adapter.Recylerview_Adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.starkwiz.starkwiz.Activities.UserSelection_Activity;
 import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
 import com.starkwiz.starkwiz.R;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
-import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
 import static android.content.Context.MODE_PRIVATE;

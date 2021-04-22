@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Starting_Pages;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;

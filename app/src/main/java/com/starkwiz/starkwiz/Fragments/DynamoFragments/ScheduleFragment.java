@@ -1,11 +1,14 @@
 package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,14 +25,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.starkwiz.starkwiz.Activities.HubListsActivity;
-import com.starkwiz.starkwiz.Activities.Signup_Parent_AboutYou_Activity;
-import com.starkwiz.starkwiz.Activities.Signup_Personal_Activity;
-import com.starkwiz.starkwiz.Activities.Signup_teaching_Activity;
-import com.starkwiz.starkwiz.Activities.Sigup_Studying_Activity;
-import com.starkwiz.starkwiz.Activities.Subject_Schedule_Detail_Activity;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ScheduledList_Adapter;
-import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.AlertReceiver;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Scheduled_ModelClass;
@@ -45,13 +43,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class        ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment implements TimePickerDialog.OnTimeSetListener{
 
     //CardView cardview_math;
-    String Userid;
+    String Userid,remindtime,reminddate,hour,mintue;
     ArrayList<Scheduled_ModelClass>list_schedule;
     RecyclerView lv_schedule;
     TextView txt_fixturemonth;
+    SharedPreferences sp;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +70,18 @@ public class        ScheduleFragment extends Fragment {
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
         String month = month_date.format(cal.getTime());
 
+
         txt_fixturemonth.setText("FIXTURE: "+month);
+
+        sp = getActivity().getSharedPreferences("reminder", 0);;
+        remindtime = sp.getString("remindtime","");
+        reminddate = sp.getString("reminddate","");
+
+
+//        String parts[] = remindtime.split(":");
+//        mintue = parts[1];
+//        hour = parts[0];
+
 
 
         return view;
@@ -157,5 +167,37 @@ public class        ScheduleFragment extends Fragment {
     public void onStart() {
         super.onStart();
         GetSchedule();
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+
+        hourOfDay=Integer.parseInt(hour);
+        minute = Integer.parseInt(mintue);
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+
+        startAlarm(c);
+
+    }
+
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getActivity(), AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 1, intent, 0);
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+    }
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getActivity(), AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
+        Toast.makeText(getActivity(), "Reminder Canceled", Toast.LENGTH_SHORT).show();
     }
 }

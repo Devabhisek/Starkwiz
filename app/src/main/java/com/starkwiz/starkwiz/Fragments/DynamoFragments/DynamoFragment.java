@@ -1,6 +1,5 @@
 package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
-import com.starkwiz.starkwiz.Adapter.DynamoAdapter;
-import com.starkwiz.starkwiz.Adapter.ProfileAdapter;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.DynamoAdapter;
 import com.starkwiz.starkwiz.R;
 
 

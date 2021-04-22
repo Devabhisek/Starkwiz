@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Starting_Pages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
 import com.starkwiz.starkwiz.Activities.Signup_Activities.Signup_Personal_Activity;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.R;

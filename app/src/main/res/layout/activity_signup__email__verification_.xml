@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/white"
-    tools:context=".Activities.Signup_Email_Verification_Activity">
+    tools:context=".Activities.Signup_Activities.Signup_Email_Verification_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"

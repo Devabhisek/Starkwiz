@@ -4,24 +4,19 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,59 +36,36 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.starkwiz.starkwiz.Activities.Dance_Activity;
-import com.starkwiz.starkwiz.Activities.Declamation;
-import com.starkwiz.starkwiz.Activities.Music_Activity;
-import com.starkwiz.starkwiz.Activities.Signup_Personal_Activity;
-import com.starkwiz.starkwiz.Activities.Student_Quiz_Activity;
-import com.starkwiz.starkwiz.Activities.Subjectwise_Syllabus_Activity;
-import com.starkwiz.starkwiz.Activities.UserSelection_Activity;
 import com.starkwiz.starkwiz.Adapter.GridAdapter.Getsubject_GridViewAdapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.CoreSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.FeaturedSubjects_Adapter;
-import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
-import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Core_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Core_Subjectbyplans_ModelClass;
-import com.starkwiz.starkwiz.ModelClass.Extra_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Extra_Subjectplan_ModelClass;
-import com.starkwiz.starkwiz.ModelClass.Featured_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Featured_Subjectplan_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.GetSubjects_ModelClass;
-import com.starkwiz.starkwiz.ModelClass.GetTestList_ModelClass;
-import com.starkwiz.starkwiz.ModelClass.Quiz_Modelclass;
 import com.starkwiz.starkwiz.ModelClass.Selected_Subject_Modelclass;
-import com.starkwiz.starkwiz.ModelClass.TotalSubjects_ModelClass;
 import com.starkwiz.starkwiz.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
-import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
-import static android.content.Context.MODE_PRIVATE;
 
-
-public class SubjectFragment extends Fragment {
+ public class SubjectFragment extends Fragment {
 
 
     RelativeLayout rl_addsubject;

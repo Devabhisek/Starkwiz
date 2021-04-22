@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="11dp"
+        app:cardElevation="11dp"
+        android:backgroundTint="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="149dp"
+                android:layout_height="85dp"
+                android:src="@mipmap/logo"
+                android:layout_gravity="center"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Upload Music Video"
+                android:textSize="19dp"
+                android:textColor="#51D1B1"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp"
+                android:text="Choose the Song you have created"></TextView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bordeetwo">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"></Spinner>
+
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txt_music_filename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"></TextView>
+
+            <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                android:id="@+id/progress_bar_1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                android:layout_marginTop="22dp"
+                android:layout_gravity="center"
+                android:maxHeight="6dp"
+                android:minHeight="6dp"
+                android:progress="40"
+                app:backgroundColor="@color/grey"
+                app:progressColor="@color/theme_blue"/>
+
+            <Button
+                android:id="@+id/txt_music_browsefile"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="Browse File"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="11dp"
+                android:background="@drawable/rounded_button_lightsky"></Button>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+    android:id="@+id/txt_music_done"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:text="Done"
+    android:layout_gravity="center"
+    android:layout_marginTop="22dp"
+    android:layout_marginRight="22dp"
+    android:layout_marginLeft="22dp"
+    android:background="@drawable/rounded_button_lightsky"></Button>
+
+    <Button
+        android:id="@+id/txt_music_cancel"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/grey"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/bordeetwo"></Button>
 </LinearLayout>

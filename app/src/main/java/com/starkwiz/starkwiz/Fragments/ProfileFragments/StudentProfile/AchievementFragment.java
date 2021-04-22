@@ -19,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.starkwiz.starkwiz.Activities.Signup_Personal_Activity;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ScoreCardList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;

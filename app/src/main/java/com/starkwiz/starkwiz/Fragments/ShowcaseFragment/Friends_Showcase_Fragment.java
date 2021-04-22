@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 
-import com.starkwiz.starkwiz.Activities.Declamation;
 import com.starkwiz.starkwiz.R;
 
 

@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Starting_Pages;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.starkwiz.starkwiz.Adapter.TermCondition_Adapter;
-import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.TermCondition_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.TermCondition_ModelClass;
 import com.starkwiz.starkwiz.R;
@@ -122,7 +121,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     SharedPreferences.Editor sedt = sp.edit();
                     sedt.putString("checked", "checked");
                     sedt.commit();
-                    startActivity(new Intent(WelcomeActivity.this,UserSelection_Activity.class));
+                    startActivity(new Intent(WelcomeActivity.this, UserSelection_Activity.class));
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 }
                 else {

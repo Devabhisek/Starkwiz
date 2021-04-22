@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
-import com.starkwiz.starkwiz.Adapter.ProfileAdapter;
-import com.starkwiz.starkwiz.Adapter.TeacherAdapter;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.TeacherAdapter;
 import com.starkwiz.starkwiz.R;
 
 

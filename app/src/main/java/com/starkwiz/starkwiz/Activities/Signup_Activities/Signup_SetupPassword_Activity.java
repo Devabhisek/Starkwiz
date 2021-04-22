@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Signup_Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -255,7 +256,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                     String created = response.getString("message");
 
                    if (created.equals("profile created")){
-                    Intent intent = new Intent(Signup_SetupPassword_Activity.this,Dasboard_Activity.class);
+                    Intent intent = new Intent(Signup_SetupPassword_Activity.this, Dasboard_Activity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                    }

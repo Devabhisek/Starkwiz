@@ -3,7 +3,7 @@ package com.starkwiz.starkwiz.LinkingClass;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import com.starkwiz.starkwiz.Activities.UserSelection_Activity;
+import com.starkwiz.starkwiz.Activities.Starting_Pages.UserSelection_Activity;
 import com.starkwiz.starkwiz.ModelClass.Login_ModelClass;
 
 

@@ -13,10 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,11 +24,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.Activities.Quiz_Activities.Student_Quiz_Activity;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.GetList_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
-import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.GetTestList_ModelClass;
@@ -47,9 +43,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import tourguide.tourguide.Overlay;
-import tourguide.tourguide.Pointer;
-import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
 public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
@@ -98,7 +91,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (selected_testid!=null){
-                    Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Student_Quiz_Activity.class);
+                    Intent intent = new Intent(Subjectwise_Syllabus_Activity.this, Student_Quiz_Activity.class);
                     intent.putExtra("selected_testid",selected_testid);
                     intent.putExtra("selected_module",selected_module);
                     intent.putExtra("selected_hour",selected_hour);

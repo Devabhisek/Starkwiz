@@ -1,28 +1,18 @@
-package com.starkwiz.starkwiz.Adapter;
+package com.starkwiz.starkwiz.Adapter.Tabs_Adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.starkwiz.starkwiz.ModelClass.TermCondition_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.TermCondition_ModelClass;
 import com.starkwiz.starkwiz.R;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-
-import tourguide.tourguide.TourGuide;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class TermCondition_Adapter extends RecyclerView.Adapter<TermCondition_Adapter.ViewHolder> {
 

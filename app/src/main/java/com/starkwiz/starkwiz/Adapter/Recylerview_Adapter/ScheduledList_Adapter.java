@@ -3,20 +3,18 @@ package com.starkwiz.starkwiz.Adapter.Recylerview_Adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -24,12 +22,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.starkwiz.starkwiz.Activities.Student_Quiz_Activity;
+import com.starkwiz.starkwiz.Activities.Quiz_Activities.Student_Quiz_Activity;
 import com.starkwiz.starkwiz.Activities.Subject_Schedule_Detail_Activity;
-import com.starkwiz.starkwiz.Activities.Subjectwise_Syllabus_Activity;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
-import com.starkwiz.starkwiz.ModelClass.Scheduled_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.Scheduled_ModelClass;
 import com.starkwiz.starkwiz.R;
 
@@ -103,11 +99,24 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
 //            long days = hours / 24;
 
 
-
             if (selected_month>=current_month){
 
                 int day_remaining = selected_day-current_day;;
                 holder.txt_remainingdate.setText(String.valueOf(day_remaining+" d: "));
+
+
+                if (Scheduled_ModelClass.getDate().equals(dateFormat)){
+                    for (int i = 0 ; i<listitems.size() ; i++){
+
+                        SharedPreferences sp = context.getSharedPreferences("reminder", 0);
+                        SharedPreferences.Editor sedt = sp.edit();
+                        sedt.putString("remindtime",listitems.get(i).getTime());
+                        sedt.putString("reminddate",listitems.get(i).getDate());
+                        sedt.commit();
+                    }
+                }
+
+
             }
             else {
                 holder.txt_remainingdate.setText("Missed ! Reschedule");

@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Signup_Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +22,7 @@ public class Signup_Parent_AboutYou_Activity extends AppCompatActivity {
         btn_verfication_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Signup_Parent_AboutYou_Activity.this,Signup_Email_Verification_Activity.class));
+                startActivity(new Intent(Signup_Parent_AboutYou_Activity.this, Signup_Email_Verification_Activity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });

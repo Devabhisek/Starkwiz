@@ -10,9 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
-import com.starkwiz.starkwiz.Adapter.DynamoAdapter;
-import com.starkwiz.starkwiz.Adapter.HubAdapter;
-import com.starkwiz.starkwiz.Adapter.Hub_Other_Adapter;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.Hub_Other_Adapter;
 import com.starkwiz.starkwiz.R;
 
 

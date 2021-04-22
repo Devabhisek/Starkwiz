@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Quiz_Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

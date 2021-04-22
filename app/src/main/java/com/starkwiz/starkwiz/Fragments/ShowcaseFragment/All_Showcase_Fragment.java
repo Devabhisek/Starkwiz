@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class All_Showcase_Fragment extends Fragment {
 
     CardView card_friend,card_video;
     //RelativeLayout rl_scoreboard,rl_achievement;
+    RecyclerView lv_showcase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,31 +32,31 @@ public class All_Showcase_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all__showcase_, container, false);
         card_friend = view.findViewById(R.id.card_friend);
-        card_video = view.findViewById(R.id.card_video);
+        lv_showcase = view.findViewById(R.id.lv_showcase);
         //rl_scoreboard = view.findViewById(R.id.rl_scoreboard);
         //rl_achievement = view.findViewById(R.id.rl_achievement);
 
-        card_friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.alert_music_showcase);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            }
-        });
-
-        card_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(getActivity());
-                dialog.setContentView(R.layout.alert_video_showcase);
-                dialog.show();
-                Window window = dialog.getWindow();
-                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            }
-        });
+//        card_friend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Dialog dialog = new Dialog(getActivity());
+//                dialog.setContentView(R.layout.alert_music_showcase);
+//                dialog.show();
+//                Window window = dialog.getWindow();
+//                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+//            }
+//        });
+//
+//        card_video.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Dialog dialog = new Dialog(getActivity());
+//                dialog.setContentView(R.layout.alert_video_showcase);
+//                dialog.show();
+//                Window window = dialog.getWindow();
+//                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+//            }
+//        });
        // rl_scoreboard.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

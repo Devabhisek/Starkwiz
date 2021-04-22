@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
-import com.starkwiz.starkwiz.Adapter.DynamoAdapter;
-import com.starkwiz.starkwiz.Adapter.ShowcaseAdapter;
+import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.ShowcaseAdapter;
 import com.starkwiz.starkwiz.R;
 
 
@@ -29,7 +28,7 @@ public class ShowCaseFragment extends Fragment {
         viewPager=(ViewPager)view.findViewById(R.id.viewPager);
 
         tabLayout.addTab(tabLayout.newTab().setText("All"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Events"));
+        tabLayout.addTab(tabLayout.newTab().setText("Events"));
         tabLayout.addTab(tabLayout.newTab().setText("Friends"));
         tabLayout.addTab(tabLayout.newTab().setText("Following"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

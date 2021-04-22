@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.starkwiz.starkwiz">
+    package="com.starkwiz.starkwiz"
+    >
 
-    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:allowBackup="true"
         android:allowClearUserData="true"
@@ -10,11 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:exported="false"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Starkwiz">
-        <activity android:name=".Activities.PlansActivity"></activity>
-        <activity android:name=".Activities.IntroActivity" />
+        <activity android:name=".Activities.Quiz_Activities.Elocution_Activity"></activity>
+        <activity android:name=".Activities.Quiz_Activities.Debate_Activity" />
+        <activity android:name=".Activities.Quiz_Activities.Arts_Activity" />
+        <activity android:name=".Activities.PlansActivity" />
+        <activity android:name=".Activities.Starting_Pages.IntroActivity" />
         <activity
-            android:name=".Activities.Student_Quiz_Activity"
+            android:name=".Activities.Quiz_Activities.Student_Quiz_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.Achivement_Showcase_Activity"
@@ -26,13 +31,13 @@
             android:name=".Activities.ShowCase_Music_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Music_Activity"
+            android:name=".Activities.Quiz_Activities.Music_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Declamation"
+            android:name=".Activities.Quiz_Activities.Declamation"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Dance_Activity"
+            android:name=".Activities.Quiz_Activities.Dance_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.Subjectwise_Syllabus_Activity"
@@ -56,34 +61,34 @@
             android:name=".Activities.Forgot_Password_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_SetupPassword_Activity"
+            android:name=".Activities.Signup_Activities.Signup_SetupPassword_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_Qualification_Activity"
+            android:name=".Activities.Signup_Activities.Signup_Qualification_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_Parent_AboutYou_Activity"
+            android:name=".Activities.Signup_Activities.Signup_Parent_AboutYou_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_Email_Verification_Activity"
+            android:name=".Activities.Signup_Activities.Signup_Email_Verification_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_teaching_Activity"
+            android:name=".Activities.Signup_Activities.Signup_teaching_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Sigup_Studying_Activity"
+            android:name=".Activities.Signup_Activities.Sigup_Studying_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.UserSelection_Activity"
+            android:name=".Activities.Starting_Pages.UserSelection_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.Signup_Personal_Activity"
+            android:name=".Activities.Signup_Activities.Signup_Personal_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.WelcomeActivity"
+            android:name=".Activities.Starting_Pages.WelcomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.Starting_Pages.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -95,11 +100,15 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-    </application>
 
+        <receiver android:name=".LinkingClass.AlertReceiver"></receiver>
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+    </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
 
 </manifest>

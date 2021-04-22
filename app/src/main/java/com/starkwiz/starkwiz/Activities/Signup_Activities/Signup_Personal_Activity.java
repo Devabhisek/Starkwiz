@@ -1,4 +1,4 @@
-package com.starkwiz.starkwiz.Activities;
+package com.starkwiz.starkwiz.Activities.Signup_Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -32,8 +31,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
+import com.starkwiz.starkwiz.Activities.HubListsActivity;
+import com.starkwiz.starkwiz.Activities.Starting_Pages.WelcomeActivity;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -678,7 +678,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                     login_modelClasses.add(modelClass);
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
                     Toast.makeText(Signup_Personal_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Signup_Personal_Activity.this,Dasboard_Activity.class);
+                    Intent intent = new Intent(Signup_Personal_Activity.this, Dasboard_Activity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 } catch (JSONException e) {
@@ -1030,7 +1030,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-           startActivity(new Intent(Signup_Personal_Activity.this,WelcomeActivity.class));
+           startActivity(new Intent(Signup_Personal_Activity.this, WelcomeActivity.class));
            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
 
     }
