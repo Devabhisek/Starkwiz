@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/logo"
+            android:src="@mipmap/splash"
             android:layout_marginTop="22dp"></ImageView>
 
 
@@ -24,18 +24,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Verification"
-            android:textSize="26dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
             android:textColor="@color/oceanblue"
+            android:fontFamily="@font/nunito_extrabold"
             android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Get verified and we are \ndone to getyou in"
-            android:textSize="19dp"
-            android:layout_marginLeft="16dp"
+            android:text="Get verified and we are \ndone to get you in"
+            android:textSize="22dp"
+            android:fontFamily="@font/nunito"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="14dp"
             android:textColor="@color/theme_blue"
             android:textStyle="bold"></TextView>
@@ -46,20 +48,23 @@
             android:layout_height="49dp"
             android:background="@drawable/round_textview"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="22dp"
             android:hint="Email Id"
             android:textColorHint="#bebebe"
             android:textColor="@color/black"
-            android:paddingLeft="11dp"></EditText>
+            android:paddingLeft="22dp"></EditText>
 
         <TextView
+            android:id="@+id/txt_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="We will send an email with a verification \ncode on the above address. Please Confirm and be patient for its neccessary for a Safe user experience"
             android:textSize="14dp"
-            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/nunito"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
             ></TextView>
@@ -84,20 +89,21 @@
             android:layout_height="49dp"
             android:background="@drawable/round_textview"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="22dp"
             android:hint="Enter 6 digit verification code here"
             android:textColorHint="#bebebe"
             android:textColor="@color/black"
-            android:paddingLeft="11dp"></EditText>
+            android:paddingLeft="22dp"></EditText>
 
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -120,16 +126,16 @@
         <Button
             android:id="@+id/btn_verfication_proceed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/rounded_button"
+            android:layout_height="49dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/round_textview_grey"
             android:text="Proceed"
             android:enabled="false"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="6dp"></Button>
 
     </LinearLayout>

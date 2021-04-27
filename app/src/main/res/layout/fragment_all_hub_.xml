@@ -60,13 +60,13 @@
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/round_textview_clicked"
                     android:text="Nearby"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"></Button>
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"></Button>
 
 
             </LinearLayout>

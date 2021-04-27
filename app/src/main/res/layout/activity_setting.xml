@@ -102,22 +102,22 @@
 
             <LinearLayout
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="132dp"
                 android:orientation="vertical"
                 android:layout_margin="1dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_profileone"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="11dp"
-                    android:src="@mipmap/person"></de.hdodenhof.circleimageview.CircleImageView>
+                    android:src="@mipmap/nophoto"></de.hdodenhof.circleimageview.CircleImageView>
 
                 <TextView
                     android:id="@+id/txt_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Khusi Meher"
                     android:gravity="center"
                     android:textColor="@color/theme_blue"
                     android:layout_marginTop="5dp"></TextView>
@@ -127,72 +127,26 @@
             <LinearLayout
                 android:id="@+id/linear_switch_account"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="132dp"
                 android:orientation="vertical"
                 android:layout_margin="1dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="11dp"
-                    android:src="@mipmap/persontwo"></de.hdodenhof.circleimageview.CircleImageView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Barsha Meher"
-                    android:gravity="center"
-                    android:textColor="@color/theme_blue"
-                    android:layout_marginTop="5dp"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:layout_margin="1dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="11dp"
-                    android:src="@mipmap/personthree"></de.hdodenhof.circleimageview.CircleImageView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Barsha Meher"
-                    android:gravity="center"
-                    android:textColor="@color/theme_blue"
-                    android:layout_marginTop="5dp"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:layout_margin="1dp">
-
-                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="65dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="11dp"
-                    android:src="@mipmap/plus"></ImageView>
+                    android:src="@mipmap/plus"></de.hdodenhof.circleimageview.CircleImageView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add Account"
+                    android:text="Add \n Account"
                     android:gravity="center"
                     android:textColor="@color/theme_blue"
                     android:layout_marginTop="5dp"></TextView>
-
             </LinearLayout>
+
 
         </LinearLayout>
         </HorizontalScrollView>
@@ -202,7 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Account settings"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="22dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -213,7 +167,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:layout_marginRight="8dp">
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="11dp">
 
             <include
                 layout="@layout/setting_accountsetting"></include>
@@ -225,7 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notification"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="22dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -236,6 +191,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="11dp"
             android:visibility="gone">
 
             <include
@@ -249,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Privacy &amp; Data"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="22dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -260,6 +216,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="11dp"
             android:visibility="gone">
             <include
                 layout="@layout/setting_privacy_data"></include>
@@ -270,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Plan Details"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="22dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -280,7 +237,8 @@
             android:id="@+id/linear_setting_plandetails"
             android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
             <include
                 layout="@layout/setting_plandetails"></include>
         </LinearLayout>
@@ -291,14 +249,14 @@
             android:text="SUPPORT"
             android:layout_margin="11dp"
             android:textColor="@color/theme_blue"
-            android:textSize="18dp"></TextView>
+            android:textSize="14dp"></TextView>
 
         <TextView
             android:id="@+id/txtsetting_supportnotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notification"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:textSize="18dp"
             android:textColor="@color/black"
             android:textStyle="bold"></TextView>
@@ -308,7 +266,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Privacy &amp; data"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="22dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -320,14 +278,14 @@
             android:text="ACTION"
             android:layout_margin="11dp"
             android:textColor="@color/theme_blue"
-            android:textSize="18dp"></TextView>
+            android:textSize="14dp"></TextView>
 
         <TextView
             android:id="@+id/txtsetting_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log out"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="16dp"
             android:textSize="18dp"
             android:textColor="@color/black"
@@ -342,7 +300,8 @@
             android:layout_height="49dp"
             android:text="copyright Starkwiz 2020"
             android:background="@color/theme_blue"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/nunito"
             android:textSize="16dp"
             android:layout_below="@+id/linearcontainersetting"
             android:gravity="center"

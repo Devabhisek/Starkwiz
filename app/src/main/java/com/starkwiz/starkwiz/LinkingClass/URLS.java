@@ -30,5 +30,18 @@ public class URLS {
     public static String send_otp_forgotpassword="https://www.rentopool.com/starkwiz/api/auth/send-mail-trap";
     public static String verifyemail_forgot_password="https://www.rentopool.com/starkwiz/api/auth/verifyemail";
     public static String forgot_password="https://www.rentopool.com/starkwiz/api/auth/forgotpassword";
+    public static String createparentprofile="https://rentopool.com/starkwiz/api/auth/createparentprofile";
+    public static String registerparent="https://rentopool.com/starkwiz/api/auth/registerparent";
+    public static String registerteacher="https://rentopool.com/starkwiz/api/auth/registerteacher";
+    public static String createteacherprofile="https://rentopool.com/starkwiz/api/auth/createteacherprofile";
+    public static String getparentprofile="https://rentopool.com/starkwiz/api/auth/getparentprofile";
+    public static String updateparentprofile="https://rentopool.com/starkwiz/api/auth/updateparentprofile";
+    public static String getteacherprofile="https://rentopool.com/starkwiz/api/auth/getteacherprofile";
+    public static String getstate="https://rentopool.com/starkwiz/api/auth/getstate";
+    public static String getdistrictbystate="https://rentopool.com/starkwiz/api/auth/getdistrictbystate";
+    public static String getcitybydistrict="https://rentopool.com/starkwiz/api/auth/getcitybydistrict";
+    public static String updateteacherprofile="https://rentopool.com/starkwiz/api/auth/updateteacherprofile";
+    public static String gethubtype="https://rentopool.com/starkwiz/api/auth/gethubtype";
+    public static String registerhub="https://rentopool.com/starkwiz/api/auth/registerhub";
 }
 

@@ -23,6 +23,7 @@
             android:layout_alignParentTop="true">
 
     <ImageView
+        android:id="@+id/img_cross"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@mipmap/cross"
@@ -36,9 +37,9 @@
 
         <ImageView
             android:id="@+id/img_alert"
-            android:layout_width="220dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/logo"
+            android:src="@mipmap/splash"
             android:layout_centerHorizontal="true"></ImageView>
 
 
@@ -54,8 +55,9 @@
         android:layout_marginLeft="49dp"
         android:layout_marginTop="22dp"
         android:text="Plans"
+        android:fontFamily="@font/nunito"
         android:textColor="@color/oceanblue"
-        android:textSize="26dp"
+        android:textSize="30dp"
         android:textStyle="bold"></TextView>
 
     <TextView
@@ -66,7 +68,8 @@
         android:text="Choose a suitable plan.\nWelcome to Starkwiz !"
         android:textColor="@color/theme_blue"
         android:layout_marginLeft="49dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="13dp"
         android:textSize="16dp"
         android:textStyle="bold"></TextView>
 
@@ -78,13 +81,14 @@
         android:layout_marginRight="22dp"
         android:backgroundTint="@color/white"
         android:layout_marginTop="5dp"
+        android:background="@color/theme_blue"
         android:layout_marginBottom="11dp"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/plan_gradient"
+            android:background="@drawable/bordee"
             android:orientation="vertical">
 
         <LinearLayout
@@ -99,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nunito"
+                android:textSize="18dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="11dp"></TextView>
 
@@ -112,7 +117,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="55dp"></TextView>
+                android:layout_marginLeft="16dp"></TextView>
 
             <TextView
                 android:id="@+id/txtplanprice"
@@ -122,6 +127,7 @@
                 android:fontFamily="@font/nunito"
                 android:textSize="26dp"
                 android:textStyle="bold"
+                android:layout_marginTop="5dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="3dp"></TextView>
 
@@ -139,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:fontFamily="@font/nunito"
-                    android:textSize="19dp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
                     android:layout_marginTop="5dp"
                     android:layout_gravity="center_vertical"
@@ -152,17 +158,17 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/nunito"
                     android:textSize="15dp"
-                    android:textStyle="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="3dp"></TextView>
             </LinearLayout>
         </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/lineardisciunt"
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
+                android:layout_height="57dp"
                 android:orientation="horizontal"
+                android:background="@drawable/plan_gradient"
                 android:layout_marginTop="-3dp">
 
 
@@ -193,11 +199,11 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:text="/- only \nfor Limited Period"
+                    android:layout_height="wrap_content"
+                    android:text=" /- only \nfor Limited Period"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito"
-                    android:textSize="8dp"
+                    android:textSize="10dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="8dp"></TextView>
 
@@ -243,7 +249,9 @@
 
   </LinearLayout>
 
+
         <LinearLayout
+            android:id="@+id/linear_plan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearplans"
@@ -254,14 +262,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:orientation="horizontal">
+        android:layout_marginRight="85dp">
 
         <LinearLayout
             android:id="@+id/basic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true">
 
             <TextView
@@ -270,14 +278,15 @@
                 android:fontFamily="@font/nunito"
                 android:text="Basic"
                 android:textColor="@color/black"
-                android:textSize="19dp"
+                android:textSize="20dp"
                 android:textStyle="bold"></TextView>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/linear_basictype"
-                android:layout_width="35dp"
+                android:layout_width="22dp"
                 android:layout_height="7dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/round_textview_clicked"></LinearLayout>
 
 
@@ -288,7 +297,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerInParent="true">
+            android:layout_toRightOf="@+id/basic"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="35dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -296,7 +307,7 @@
                 android:fontFamily="@font/nunito"
                 android:text="Standard"
                 android:textColor="@color/black"
-                android:textSize="19dp"
+                android:textSize="20dp"
                 android:textStyle="bold"></TextView>
 
             <LinearLayout
@@ -314,7 +325,9 @@
             android:id="@+id/premium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/standard"
+            android:layout_marginLeft="35dp"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
@@ -323,7 +336,7 @@
                 android:fontFamily="@font/nunito"
                 android:text="Premium"
                 android:textColor="@color/black"
-                android:textSize="19dp"
+                android:textSize="20dp"
                 android:textStyle="bold"></TextView>
 
             <LinearLayout
@@ -339,15 +352,15 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lineartype"
-        android:layout_below="@+id/linear_usertype"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lineartype"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
 
@@ -361,7 +374,7 @@
         android:background="@drawable/rounded_button"
         android:layout_marginRight="16dp"
         android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/linear_plan"
         android:layout_marginBottom="16dp"
         android:textAllCaps="false"></Button>
 

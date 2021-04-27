@@ -16,15 +16,17 @@
             android:id="@+id/img_personal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/splash"></ImageView>
+            android:src="@mipmap/splash"
+            android:layout_marginTop="16dp"></ImageView>
 
         <TextView
             android:id="@+id/txtpersonalfirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Studying"
+            android:fontFamily="@font/nunito_extrabold"
             android:layout_below="@+id/img_personal"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:textStyle="bold"
             android:layout_marginLeft="55dp"
             android:textColor="@color/oceanblue"
@@ -35,22 +37,24 @@
             android:layout_below="@+id/txtpersonalfirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_extrabold"
             android:text="Tell us about your Eductaion"
             android:textColor="@color/theme_blue"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:textSize="19dp"
             android:layout_marginLeft="55dp"></TextView>
-
 
         <TextView
             android:id="@+id/txt_studying_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="School Board"
+            android:text="School Details"
             android:textColor="@color/theme_blue"
             android:layout_marginLeft="49dp"
             android:layout_marginTop="11dp"
             android:textSize="19dp"
+            android:fontFamily="@font/nunito_extrabold"
             android:layout_below="@+id/txtpersonalftwo"></TextView>
 
 
@@ -61,7 +65,7 @@
             android:layout_below="@+id/txt_studying_school"
             android:layout_marginLeft="49dp"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="11dp"
             android:layout_marginRight="60dp">
 
             <RadioButton
@@ -69,7 +73,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ICSE"
-                android:paddingLeft="8dp"
+                android:paddingLeft="11dp"
+                android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:drawableLeft="@drawable/radio_button_selector"
                 android:drawablePadding="16dp"
@@ -81,7 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CBSE "
-                android:paddingLeft="8dp"
+                android:textStyle="bold"
+                android:paddingLeft="11dp"
                 android:layout_marginLeft="35dp"
                 android:drawableLeft="@drawable/radio_button_selector"
                 android:drawablePadding="16dp"
@@ -93,95 +99,100 @@
         </RadioGroup>
 
 
-
-
         <LinearLayout
             android:id="@+id/linear_styuding_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="11dp"
             android:layout_below="@+id/linear_studying_school">
 
-            <EditText
+            <Spinner
                 android:id="@+id/et_studying_state"
-                android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:layout_marginTop="18dp"
-                android:layout_weight="5"
-                android:background="@drawable/round_textview"
-                android:gravity="center_vertical"
-                android:hint="State"
-                android:layout_marginLeft="49dp"
+                android:layout_width="146dp"
+                android:layout_height="46dp"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="35dp"
                 android:layout_marginRight="6dp"
-                android:paddingLeft="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="#bebebe"></EditText>
-
-            <EditText
-                android:id="@+id/et_studying_district"
-                android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:hint="District"
-                android:textColorHint="#bebebe"
+                android:layout_marginBottom="8dp"
                 android:textColor="@color/black"
                 android:layout_weight="5"
-                android:layout_marginRight="49dp"
-                android:layout_marginTop="18dp"
-                android:paddingLeft="16dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/round_textview"></EditText>
+                android:popupBackground="@color/white"
+                android:background="@drawable/round_textview"
+                android:spinnerMode="dropdown" />
+
+
+            <Spinner
+                android:id="@+id/et_studying_district"
+                android:layout_width="146dp"
+                android:layout_height="49dp"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:layout_weight="5"
+                android:popupBackground="@color/white"
+                android:background="@drawable/round_textview"
+                android:spinnerMode="dropdown" ></Spinner>
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/linear_styuding_districtblock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
             android:layout_below="@+id/linear_styuding_location">
 
-            <EditText
+            <Spinner
                 android:id="@+id/et_studying_city"
-                android:layout_alignParentLeft="true"
-                android:layout_width="122dp"
+                android:layout_width="146dp"
                 android:layout_height="49dp"
-                android:hint="City"
-                android:layout_marginLeft="49dp"
-                android:layout_marginTop="16dp"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="8dp"
                 android:textColor="@color/black"
-                android:textColorHint="#bebebe"
-                android:paddingLeft="16dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/round_textview"></EditText>
+                android:layout_weight="5"
+                android:popupBackground="@color/white"
+                android:background="@drawable/round_textview"
+                android:spinnerMode="dropdown" ></Spinner>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/et_studying_block"
                 android:text="or"
-                android:textSize="16dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:textColor="@color/black"></TextView>
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="5"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
 
             <EditText
                 android:id="@+id/et_studying_block"
-                android:layout_alignParentRight="true"
-                android:layout_width="135dp"
+                android:layout_width="144dp"
                 android:layout_height="49dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="44dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="5"
-                android:hint="Block"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="#bebebe"
-                android:paddingLeft="16dp"
+                android:background="@drawable/round_textview"
                 android:gravity="center_vertical"
-                android:layout_marginRight="49dp"
-                android:background="@drawable/round_textview"></EditText>
+                android:hint="Block"
+                android:paddingLeft="16dp"
+                android:textColor="@color/black"
+                android:textColorHint="#bebebe"></EditText>
 
-        </RelativeLayout>
-
+        </LinearLayout>
 
 
 
@@ -191,13 +202,13 @@
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:hint="Name of your School"
-            android:layout_marginLeft="49dp"
+            android:layout_marginLeft="35dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textColorHint="#bebebe"
             android:paddingLeft="16dp"
             android:gravity="center_vertical"
-            android:layout_marginRight="49dp"
+            android:layout_marginRight="35dp"
             android:background="@drawable/round_textview"></EditText>
 
         <TextView
@@ -205,6 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Class you are studying now"
+            android:fontFamily="@font/nunito_extrabold"
             android:textColor="@color/theme_blue"
             android:layout_marginLeft="49dp"
             android:layout_marginTop="11dp"
@@ -228,6 +240,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4 "
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="16dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -240,6 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 "
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -252,6 +266,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -264,6 +279,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -280,7 +296,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear_studying_class"
             android:layout_marginLeft="49dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
             android:layout_marginRight="60dp">
 
@@ -292,6 +308,7 @@
                 android:drawableLeft="@drawable/radio_button_selector"
                 android:drawablePadding="16dp"
                 android:button="@null"
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:text="8 "
                 android:textColor="@color/black"></RadioButton>
@@ -301,6 +318,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9 "
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -313,6 +331,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
+                android:textStyle="bold"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
@@ -323,20 +342,16 @@
         </RadioGroup>
 
 
-
-
-
-
-
         <Button
+            android:enabled="false"
             android:id="@+id/btn_signup_personal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
-            android:layout_marginLeft="55dp"
-            android:layout_marginRight="55dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
             android:layout_marginBottom="11dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/round_textview_grey"
             android:layout_below="@+id/linear_studying_classes"
             android:text="Proceed"
             android:textAllCaps="false"

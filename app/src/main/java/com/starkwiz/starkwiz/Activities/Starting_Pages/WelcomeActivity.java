@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,7 +34,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
 import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.TermCondition_Adapter;
+import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.TermCondition_ModelClass;
 import com.starkwiz.starkwiz.R;
@@ -106,25 +109,46 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         }, DELAY_MS, PERIOD_MS);
 
-        if (welcome_checkbox.isChecked()){
+        welcome_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    btn_getstarted.setBackground(getResources().getDrawable(R.drawable.rounded_button));
+                    btn_getstarted.setTextColor(getResources().getColor(R.color.white));
+                }else {
+                    btn_getstarted.setBackground(getResources().getDrawable(R.drawable.round_textview_grey));
+                    btn_getstarted.setTextColor(getResources().getColor(R.color.gray));
+                }
+            }
+        });
+
+        if (welcome_checkbox.isChecked()) {
             SharedPreferences sp = getSharedPreferences("key", 0);
             SharedPreferences.Editor sedt = sp.edit();
             sedt.putString("checked", "checked");
             sedt.commit();
+
+
         }
+
+
 
         btn_getstarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (welcome_checkbox.isChecked()){
+
                     SharedPreferences sp = getSharedPreferences("key", 0);
                     SharedPreferences.Editor sedt = sp.edit();
                     sedt.putString("checked", "checked");
                     sedt.commit();
-                    startActivity(new Intent(WelcomeActivity.this, UserSelection_Activity.class));
+                    startActivity(new Intent(WelcomeActivity.this, Login_Activity.class));
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 }
                 else {
+
                     final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WelcomeActivity.this)
                             .setMessage("Please Accept Term & Condition")
                             .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
@@ -299,15 +323,36 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences sp = getSharedPreferences("key", 0);
-        String strtext = sp.getString("checked","");
 
-        if (!strtext.isEmpty()){
-            welcome_checkbox.setChecked(true);
-            startActivity(new Intent(WelcomeActivity.this,UserSelection_Activity.class));
+        String User = SharedPrefManager.getInstance(WelcomeActivity.this).getUser().getId();
+        if (User!=null){
+            Intent intent = new Intent(WelcomeActivity.this,Dasboard_Activity.class);
+            startActivity(intent);
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         }
     }
 
+    @Override
+    public void onBackPressed() {
 
+        final androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(WelcomeActivity.this)
+                .setMessage("Are you sure you want to Exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alert11 = alertDialog.create();
+        alert11.show();
+    }
 }

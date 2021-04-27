@@ -23,11 +23,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -92,6 +94,7 @@ import tourguide.tourguide.TourGuide;
     String Cls,User_Id,Plan_Id;
     GridView subject_grid;
     int discount_month;
+    ImageView img_cross_subjects;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -134,6 +137,7 @@ import tourguide.tourguide.TourGuide;
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.activity_plans);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                ImageView img_cross = dialog.findViewById(R.id.img_cross);
                 lineartype = dialog.findViewById(R.id.lineartype);
                 basic = dialog.findViewById(R.id.basic);
                 linear_basictype = dialog.findViewById(R.id.linear_basictype);
@@ -151,6 +155,12 @@ import tourguide.tourguide.TourGuide;
                 btn_plans = dialog.findViewById(R.id.btn_plans);
                 btn_plans.setEnabled(false);
 
+                img_cross.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
                 LayoutInflater inflater = LayoutInflater
                         .from(getActivity());
@@ -228,6 +238,7 @@ import tourguide.tourguide.TourGuide;
                         }
                 );
 
+                getRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 Volley.newRequestQueue(getActivity()).add(getRequest);
 
                 basic.setOnClickListener(new View.OnClickListener() {
@@ -312,7 +323,8 @@ import tourguide.tourguide.TourGuide;
                                 } 
                         );
 
-                            Volley.newRequestQueue(getActivity()).add(getRequest);
+                        getRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                        Volley.newRequestQueue(getActivity()).add(getRequest);
 
 
                     }
@@ -407,6 +419,7 @@ import tourguide.tourguide.TourGuide;
                                 }
                         );
 
+                        getRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                         Volley.newRequestQueue(getActivity()).add(getRequest);
 
 
@@ -496,6 +509,7 @@ import tourguide.tourguide.TourGuide;
                                 }
                         );
 
+                        getRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                         Volley.newRequestQueue(getActivity()).add(getRequest);
                     }
                 });
@@ -508,10 +522,14 @@ import tourguide.tourguide.TourGuide;
                         dialog.setContentView(R.layout.alert_subjectplan);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-                        txtplantype_subject = dialog.findViewById(R.id.txtplantype_subject);
-                        txtplanprice_subject = dialog.findViewById(R.id.txtplanprice_subject);
-                        txtplanvalidity_subject = dialog.findViewById(R.id.txtplanvalidity_subject);
-                        txt_perprice_subject = dialog.findViewById(R.id.txt_perprice_subject);
+                        TextView txt_disciuntprice,txt_disciuntpricemonth;
+
+                        txtplantype_subject = dialog.findViewById(R.id.txtplantype);
+                        txtplanprice_subject = dialog.findViewById(R.id.txtplanprice);
+                        txtplanvalidity_subject = dialog.findViewById(R.id.txtplanvalidity);
+                        txt_perprice_subject = dialog.findViewById(R.id.txt_perprice);
+                        txt_disciuntprice = dialog.findViewById(R.id.txt_disciuntprice);
+                        txt_disciuntpricemonth = dialog.findViewById(R.id.txt_disciuntpricemonth);
                         lv_subjectsplan = dialog.findViewById(R.id.lv_subjectsplan);
                         lv_subjectsplan_extra = dialog.findViewById(R.id.lv_subjectsplan_extra);
                         lv_subjectsplan_feature = dialog.findViewById(R.id.lv_subjectsplan_feature);
@@ -522,6 +540,31 @@ import tourguide.tourguide.TourGuide;
                         feature = dialog.findViewById(R.id.feature);
                         linear_coretype = dialog.findViewById(R.id.linear_coretype);
                         linear_featuretype = dialog.findViewById(R.id.linear_featuretype);
+                        img_cross_subjects = dialog.findViewById(R.id.img_cross_subjects);
+
+
+
+                        if (!discounted_price.equals("0")){
+
+                            lineardisciunt.setVisibility(View.VISIBLE);
+
+                            txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                            txt_disciuntprice.setText(discounted_price);
+
+                            discount_month = Integer.parseInt(discounted_price)/12;
+
+                            txt_disciuntpricemonth.setText(String.valueOf(discount_month));
+                        }
+                        else {
+                            lineardisciunt.setVisibility(View.GONE);
+                        }
+
+                        img_cross_subjects.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
 
                         core.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -670,6 +713,7 @@ import tourguide.tourguide.TourGuide;
                                 }
                             });
 
+                        stringRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                             MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
 
 
@@ -907,7 +951,7 @@ import tourguide.tourguide.TourGuide;
                                             Toast.makeText(getActivity(), "Please Choose 6 Subjects", Toast.LENGTH_SHORT).show();
                                         }else if (PlanType.equals("Standard")){
                                             Toast.makeText(getActivity(), "Please Choose 9 Subjects", Toast.LENGTH_SHORT).show();
-                                        }else {
+                                        }else if (PlanType.equals("Premium")){
                                             Toast.makeText(getActivity(), "Please Choose 12 Subjects", Toast.LENGTH_SHORT).show();
                                         }
 
@@ -978,6 +1022,7 @@ import tourguide.tourguide.TourGuide;
         });
 
 
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
     }
 
@@ -1055,6 +1100,7 @@ import tourguide.tourguide.TourGuide;
         });
 
 
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
     }
 

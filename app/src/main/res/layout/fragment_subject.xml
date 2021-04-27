@@ -64,9 +64,10 @@
                     android:layout_height="wrap_content"
                     android:text="Add more subject by upgrading\nyour plan"
                     android:layout_centerVertical="true"
-                    android:drawableLeft="@mipmap/pls"
-                    android:textColor="@color/black"
-                    android:drawablePadding="30dp"
+                    android:drawableLeft="@mipmap/plus"
+                    android:textColor="@color/theme_blue"
+                    android:drawablePadding="49dp"
+                    android:textSize="17dp"
                     android:layout_centerHorizontal="true"> </TextView>
 
             </RelativeLayout>

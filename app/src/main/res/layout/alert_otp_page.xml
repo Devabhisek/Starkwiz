@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="We have sent you a 4 digit code\nnumber please enter below to Confirm."
+                android:text="We have sent you a 6 digits code\nnumber please enter below to Confirm."
                 android:gravity="center"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"

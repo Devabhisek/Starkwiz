@@ -50,6 +50,8 @@
                android:text="View and Share all of \nthe Starkwiz activity."
                android:textSize="18dp"
                android:textColor="@color/oceanblue"
+               android:fontFamily="@font/nunito"
+               android:textStyle="bold"
                android:layout_marginLeft="55dp"
                android:layout_marginTop="8dp"></TextView>
 
@@ -58,15 +60,17 @@
                android:layout_height="wrap_content"
                android:text="Share your Achievements,\nScore Cards,Oerformances\nhere"
                android:textSize="16dp"
+               android:fontFamily="@font/nunito"
                android:textColor="@color/black"
                android:layout_marginLeft="55dp"
                android:layout_marginTop="8dp"></TextView>
 
            <Button
-               android:layout_width="130dp"
-               android:layout_height="wrap_content"
+               android:layout_width="116dp"
+               android:layout_height="40dp"
                android:layout_marginTop="16dp"
                android:layout_marginLeft="55dp"
+               android:textSize="14dp"
                android:background="@drawable/round_textview_clicked"
                android:text="Share"
                android:textAllCaps="false"
@@ -78,8 +82,9 @@
                android:layout_height="wrap_content"
                android:background="@color/white"
                app:tabTextColor="@color/black"
+               app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+               app:tabIndicator="@drawable/tab_indicator"
                app:tabIndicatorColor="@color/theme_blue"
-               app:tabTextAppearance="@style/MineCustomTabText"
                app:tabIndicatorFullWidth="false">
            </com.google.android.material.tabs.TabLayout>
 

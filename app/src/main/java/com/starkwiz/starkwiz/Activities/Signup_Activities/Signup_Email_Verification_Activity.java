@@ -6,10 +6,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,9 +32,11 @@ import java.util.Map;
 public class Signup_Email_Verification_Activity extends AppCompatActivity {
 
     Button btn_verfication_proceed,btn_cnfrm_email;
-    String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,Class,Board,Email,Role,BlockNo,isvalid;
+    String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,kids,Experience,
+            Class,Board,Email,Role,BlockNo,isvalid,newaccount,Qualification,Profession;
     EditText etemail,et_token;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    TextView txt_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,11 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
             Role = getIntent().getStringExtra("Role");
             Board = getIntent().getStringExtra("Board");
             BlockNo = getIntent().getStringExtra("BlockNo");
+            newaccount = getIntent().getStringExtra("newaccount");
+            Qualification = getIntent().getStringExtra("Qualification");
+            Profession = getIntent().getStringExtra("Profession");
+            kids = getIntent().getStringExtra("kids");
+            Experience = getIntent().getStringExtra("Experience");
 
 
         }catch (Exception e){
@@ -62,6 +71,11 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
         btn_cnfrm_email = findViewById(R.id.btn_cnfrm_email);
         etemail = findViewById(R.id.etemail);
         et_token = findViewById(R.id.et_token);
+        txt_text = findViewById(R.id.txt_text);
+
+        String text = "<font color=#000000>We will send an email with a verification \n code on the above address. Please</font> <font color=#88D5F0>Confirm</font> <font color=#000000>and be patient for its neccessary for a </font><font color=#88D5F0>Safe</font><font color=#000000> user experience</font>";
+
+        txt_text.setText(Html.fromHtml(text));
 
         etemail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,10 +114,12 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
 
-                if (et_token.getText().toString().length()==6){
+                if (et_token.getText().toString().trim().length()>0){
                     btn_verfication_proceed.setEnabled(true);
+                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
                 }else {
                     btn_verfication_proceed.setEnabled(false);
+                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
                 }
             }
         });
@@ -235,6 +251,11 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
                         intent.putExtra("Email",Email);
                         intent.putExtra("Role",Role);
                         intent.putExtra("BlockNo",BlockNo);
+                        intent.putExtra("newaccount",newaccount);
+                        intent.putExtra("Qualification",Qualification);
+                        intent.putExtra("Profession",Profession);
+                        intent.putExtra("kids",kids);
+                        intent.putExtra("Experience",Experience);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                     }

@@ -10,16 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.starkwiz.starkwiz.ModelClass.State_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.District_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.District_ModelClass;
 import com.starkwiz.starkwiz.R;
 
 import java.util.ArrayList;
 
-public class StateSpinnerAdapter extends ArrayAdapter<State_ModelClass> {
+public class DistrictSpinnerAdapter extends ArrayAdapter<District_ModelClass> {
 
-    private ArrayList<State_ModelClass> myarrayList;
+    private ArrayList<District_ModelClass> myarrayList;
 
-    public StateSpinnerAdapter(Context context, int textViewResourceId, ArrayList<State_ModelClass> modelArrayList) {
+    public DistrictSpinnerAdapter(Context context, int textViewResourceId, ArrayList<District_ModelClass> modelArrayList) {
         super(context, textViewResourceId, modelArrayList);
         this.myarrayList = modelArrayList;
     }
@@ -31,7 +32,7 @@ public class StateSpinnerAdapter extends ArrayAdapter<State_ModelClass> {
 
     @Nullable
     @Override
-    public State_ModelClass getItem(int position) {
+    public District_ModelClass getItem(int position) {
         return myarrayList.get(position);
     }
 
@@ -49,12 +50,12 @@ public class StateSpinnerAdapter extends ArrayAdapter<State_ModelClass> {
     }
 
     private View getCustomView(int position, ViewGroup parent) {
-        State_ModelClass model = getItem(position);
+        District_ModelClass model = getItem(position);
 
         View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_textview, parent, false);
 
         TextView label = spinnerRow.findViewById(R.id.spinner_text);
-        label.setText(String.format("%s", model != null ? model.getState_name() : ""));
+        label.setText(String.format("%s", model != null ? model.getDistrict_name() : ""));
         
 
         return spinnerRow;

@@ -21,6 +21,7 @@
             android:text="Search engine privacy "
             android:textSize="16dp"
             android:layout_alignParentLeft="true"
+            android:fontFamily="@font/nunito"
             android:layout_marginLeft="16dp"
             android:textColor="@color/black"></TextView>
 
@@ -30,6 +31,7 @@
                 android:text="Hide your profile from search engine"
                 android:textSize="14dp"
                 android:layout_alignParentLeft="true"
+                android:fontFamily="@font/nunito"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/black"></TextView>
 
@@ -62,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="Store your contacts "
                 android:textSize="16dp"
+                android:fontFamily="@font/nunito"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/black"></TextView>
@@ -71,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="All Starkwiz to access your\ndevice's contacts"
                 android:textSize="14dp"
+                android:fontFamily="@font/nunito"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/black"></TextView>
@@ -104,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:text="Play video on mobile\ndata "
                 android:textSize="16dp"
+                android:fontFamily="@font/nunito"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/black"></TextView>
@@ -113,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text="All Starkwiz to access your\ndevice's contacts"
                 android:textSize="14dp"
+                android:fontFamily="@font/nunito"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/black"></TextView>
@@ -135,6 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear Cache "
+        android:fontFamily="@font/nunito"
         android:textSize="16dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="18dp"

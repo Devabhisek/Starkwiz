@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
+import com.starkwiz.starkwiz.Activities.HubInfo_Activity;
+import com.starkwiz.starkwiz.Activities.SettingActivity;
 import com.starkwiz.starkwiz.Activities.Signup_Activities.Signup_Personal_Activity;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.R;
@@ -24,7 +26,7 @@ public class UserSelection_Activity extends AppCompatActivity {
 
     TextView txt_userselection_knowmore,txt_userselection_student,txt_userselection_parent,txt_userselection_teacher,txt_userselection_hub;
     Button btn_userselection;
-    String Student, Parent, Teacher, Hub;
+    String Student, Parent, Teacher, Hub, newaccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,12 @@ public class UserSelection_Activity extends AppCompatActivity {
         txt_userselection_hub = findViewById(R.id.txt_userselection_hub);
 
         btn_userselection.setEnabled(false);
+
+        try {
+            newaccount = getIntent().getExtras().getString("newaccount");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         txt_userselection_student.setOnClickListener(new View.OnClickListener() {
@@ -134,24 +142,28 @@ public class UserSelection_Activity extends AppCompatActivity {
                 if (Student.equals("1") && Parent.equals("null") && Teacher.equals("null") && Hub.equals("null")){
                     Intent Student_intent = new Intent(UserSelection_Activity.this, Signup_Personal_Activity.class);
                     Student_intent.putExtra("Student_intent","Student_intent");
+                    Student_intent.putExtra("newaccount",newaccount);
                     startActivity(Student_intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else if(Parent.equals("3")&& Student.equals("null")&& Teacher.equals("null")&& Hub.equals("null")){
 
                     Intent Parent_intent = new Intent(UserSelection_Activity.this,Signup_Personal_Activity.class);
                     Parent_intent.putExtra("Parent_intent","Parent_intent");
+                    Parent_intent.putExtra("newaccount",newaccount);
                     startActivity(Parent_intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else if(Teacher.equals("2")&& Student.equals("null") && Parent.equals("null") &&Hub.equals("null")){
                     Intent Teacher_intent = new Intent(UserSelection_Activity.this,Signup_Personal_Activity.class);
                     Teacher_intent.putExtra("Teacher_intent","Teacher_intent");
+                    Teacher_intent.putExtra("newaccount",newaccount);
                     startActivity(Teacher_intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }else if (Hub.equals("4")&& Student.equals("null")&& Teacher.equals("null")&& Parent.equals("null")){
 
 
-                     Intent Hub_intent = new Intent(UserSelection_Activity.this, Signup_Personal_Activity.class);
+                     Intent Hub_intent = new Intent(UserSelection_Activity.this, HubInfo_Activity.class);
                     Hub_intent.putExtra("Hub_intent", "Hub_intent");
+                    Hub_intent.putExtra("newaccount",newaccount);
                     startActivity(Hub_intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
@@ -314,10 +326,15 @@ public class UserSelection_Activity extends AppCompatActivity {
         super.onStart();
 
         try {
-            String strtext = SharedPrefManager.getInstance(UserSelection_Activity.this).getUser().getAccess_token();
+            String strtext = SharedPrefManager.getInstance(UserSelection_Activity.this).getUser().getId();
             Log.d("accesstoken", strtext);
 
-            if (!strtext.equals("")) {
+            if (newaccount.equals("newaccount")){
+                startActivity(new Intent(UserSelection_Activity.this, UserSelection_Activity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+
+           else if (!strtext.equals("")) {
 
                 startActivity(new Intent(UserSelection_Activity.this, Dasboard_Activity.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -333,7 +350,13 @@ public class UserSelection_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(UserSelection_Activity.this,Signup_Personal_Activity.class));
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        if (newaccount.equals("newaccount")){
+            startActivity(new Intent(UserSelection_Activity.this, SettingActivity.class));
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+        }else {
+
+            startActivity(new Intent(UserSelection_Activity.this, Signup_Personal_Activity.class));
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        }
     }
 }

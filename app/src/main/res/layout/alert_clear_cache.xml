@@ -17,7 +17,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:backgroundTint="@color/white"
-        android:layout_marginTop="110dp">
+        android:layout_marginTop="11dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <ImageView
                 android:id="@+id/img_alert"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:src="@mipmap/logo"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
@@ -41,6 +41,7 @@
                 android:layout_below="@+id/img_alert"
                 android:layout_marginTop="8dp"
                 android:textSize="22dp"
+                android:fontFamily="@font/nunito"
                 android:textColor="@color/theme_blue"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -55,19 +56,27 @@
                 android:layout_below="@+id/txt_typeofuser"
                 android:layout_marginTop="8dp"
                 android:textSize="16dp"
+                android:fontFamily="@font/nunito"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"></TextView>
 
-            <SeekBar
+            <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                android:id="@+id/progress_bar_3"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:indeterminate="false"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
                 android:layout_marginBottom="22dp"
-                android:background="@color/theme_blue"
-                android:thumb="@null"></SeekBar>
+                android:maxHeight="6dp"
+                android:minHeight="6dp"
+                android:progress="40"
+                android:layout_gravity="center"
+                app:backgroundColor="@color/grey"
+                app:progressColor="@color/theme_blue"/>
 
 
 

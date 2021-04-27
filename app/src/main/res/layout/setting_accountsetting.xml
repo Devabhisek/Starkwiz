@@ -29,15 +29,16 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"></TextView>
+            android:layout_alignParentRight="true"></TextView>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,15 +59,16 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"></TextView>
+            android:layout_alignParentRight="true"></TextView>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,74 +89,102 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"></TextView>
+            android:layout_alignParentRight="true"></TextView>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/txt_loginoption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login option"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="8dp"
-        android:drawableRight="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:text="Login option"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        android:layout_marginLeft="16dp"></TextView>
+        android:textSize="16dp"></TextView>
 
-    <CheckBox
+    <LinearLayout
+        android:id="@+id/linear_loginoption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="  Facebook"
-        android:textColor="@color/black"
-        android:buttonTint="@color/theme_blue"
-        android:layout_marginLeft="22dp"></CheckBox>
+        android:visibility="gone"
+        android:orientation="vertical">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="  Google"
-        android:textColor="@color/black"
-        android:buttonTint="@color/theme_blue"
-        android:checked="true"
-        android:layout_marginLeft="22dp"></CheckBox>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="  Facebook"
+            android:textColor="@color/black"
+            android:buttonTint="@color/theme_blue"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="8dp"></CheckBox>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="  Google"
+            android:textColor="@color/black"
+            android:buttonTint="@color/theme_blue"
+            android:checked="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="22dp"></CheckBox>
+
+    </LinearLayout>
+
+
 
 
     <TextView
+        android:id="@+id/txt_connectedoption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Connected accounts"
         android:layout_marginTop="8dp"
-        android:drawableRight="@drawable/ic_baseline_keyboard_arrow_up_24"
+        android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
         android:textColor="@color/black"
         android:textSize="16dp"
-        android:layout_marginLeft="16dp"></TextView>
+        android:layout_marginLeft="21dp"></TextView>
 
-    <CheckBox
+    <LinearLayout
+        android:id="@+id/linear_connectedaccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="  Information of rewards"
-        android:textColor="@color/black"
-        android:buttonTint="@color/theme_blue"
-        android:checked="true"
-        android:layout_marginLeft="22dp"></CheckBox>
+        android:visibility="gone"
+        android:orientation="vertical">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="  Information of rewards"
+            android:textColor="@color/black"
+            android:buttonTint="@color/theme_blue"
+            android:checked="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="11dp"></CheckBox>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="  Fariend Requests"
-        android:textColor="@color/black"
-        android:buttonTint="@color/theme_blue"
-        android:layout_marginLeft="22dp"></CheckBox>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="  Fariend Requests"
+            android:textColor="@color/black"
+            android:buttonTint="@color/theme_blue"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="8dp"></CheckBox>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="  Event"
-        android:textColor="@color/black"
-        android:buttonTint="@color/theme_blue"
-        android:checked="true"
-        android:layout_marginLeft="22dp"></CheckBox>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="  Event"
+            android:textColor="@color/black"
+            android:buttonTint="@color/theme_blue"
+            android:checked="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="8dp"></CheckBox>
+    </LinearLayout>
+
+
+
+
 
 
     <TextView
@@ -165,7 +195,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="16dp"
-        android:layout_marginLeft="16dp"></TextView>
+        android:layout_marginLeft="21dp"></TextView>
 
     <TextView
         android:id="@+id/txt_closeaccount"
@@ -175,6 +205,6 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="16dp"
-        android:layout_marginLeft="16dp"></TextView>
+        android:layout_marginLeft="21dp"></TextView>
 
 </LinearLayout>

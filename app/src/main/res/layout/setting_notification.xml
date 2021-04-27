@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:text="See activity from other\n people"
             android:textSize="16dp"
+            android:fontFamily="@font/nunito"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="16dp"
             android:textColor="@color/black"></TextView>
@@ -36,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
+        android:fontFamily="@font/nunito"
         android:textSize="16dp"
         android:textColor="@color/black"
         android:layout_marginLeft="16dp"
@@ -49,6 +51,7 @@
         android:buttonTint="@color/theme_blue"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
+        android:fontFamily="@font/nunito"
         android:textColor="@color/black"></CheckBox>
 
     <CheckBox
@@ -58,6 +61,7 @@
         android:buttonTint="@color/theme_blue"
         android:layout_marginTop="3dp"
         android:checked="true"
+        android:fontFamily="@font/nunito"
         android:layout_marginLeft="16dp"
         android:textColor="@color/black"></CheckBox>
 
@@ -67,6 +71,7 @@
         android:text="  Information of rewards"
         android:buttonTint="@color/theme_blue"
         android:layout_marginTop="3dp"
+        android:fontFamily="@font/nunito"
         android:layout_marginLeft="16dp"
         android:checked="true"
         android:textColor="@color/black"></CheckBox>
@@ -76,6 +81,7 @@
         android:layout_height="wrap_content"
         android:text="  Friend Requests"
         android:buttonTint="@color/theme_blue"
+        android:fontFamily="@font/nunito"
         android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
         android:textColor="@color/black"></CheckBox>
@@ -86,6 +92,7 @@
         android:text="  Events"
         android:buttonTint="@color/theme_blue"
         android:layout_marginTop="3dp"
+        android:fontFamily="@font/nunito"
         android:layout_marginLeft="16dp"
         android:checked="true"
         android:textColor="@color/black"></CheckBox>
@@ -97,6 +104,7 @@
         android:buttonTint="@color/theme_blue"
         android:layout_marginTop="3dp"
         android:layout_marginLeft="16dp"
+        android:fontFamily="@font/nunito"
         android:checked="true"
         android:textColor="@color/black"></CheckBox>
 
@@ -110,6 +118,7 @@
             android:layout_height="wrap_content"
             android:text="Starkwiz announcement\nand updates"
             android:textSize="16dp"
+            android:fontFamily="@font/nunito"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="16dp"
             android:textColor="@color/black"></TextView>
@@ -136,6 +145,7 @@
             android:layout_height="wrap_content"
             android:text="Feedback and surveys"
             android:textSize="16dp"
+            android:fontFamily="@font/nunito"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="16dp"
             android:textColor="@color/black"></TextView>
@@ -162,6 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Class updates "
+            android:fontFamily="@font/nunito"
             android:textSize="16dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="16dp"

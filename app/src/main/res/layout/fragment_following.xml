@@ -18,6 +18,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,8 +31,24 @@
             android:textColor="@color/oceanblue"
             android:textSize="30dp"
             android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nunito"
+            android:layout_alignParentLeft="true"
             android:layout_marginLeft="11dp"
             android:layout_marginTop="5dp"></TextView>
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/search"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_centerVertical="true"></ImageView>
+
+
+
+        </RelativeLayout>
+
 
 
         <TextView
@@ -36,8 +57,9 @@
             android:text="You are not following\nanyone yet !"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="18dp"
-            android:layout_marginLeft="22dp"
+            android:fontFamily="@font/nunito"
+            android:textSize="19dp"
+            android:layout_marginLeft="51dp"
             android:layout_marginTop="22dp"></TextView>
 
         <TextView
@@ -45,26 +67,22 @@
             android:layout_height="wrap_content"
             android:text="Let's find some friends and\npeople for you."
             android:textColor="@color/black"
-            android:textSize="16dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="22dp"></TextView>
+            android:textSize="14dp"
+            android:fontFamily="@font/nunito"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="5dp"></TextView>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="249dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_textview_clicked"
             android:text="Connect with Facebook"
             android:textColor="@color/white"
+            android:fontFamily="@font/nunito"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="22dp"></Button>
-
-
-
-
-
-
-
-
+            android:textAllCaps="false"
+            android:layout_marginBottom="22dp"
+            android:layout_marginLeft="53dp"></Button>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -72,8 +90,9 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:tabTextColor="@color/black"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorColor="@color/theme_blue"
-            app:tabTextAppearance="@style/MineCustomTabText"
             app:tabIndicatorFullWidth="false">
         </com.google.android.material.tabs.TabLayout>
 

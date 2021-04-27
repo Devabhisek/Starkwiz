@@ -24,48 +24,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Qualification"
-            android:textSize="26dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
             android:textColor="@color/oceanblue"
             android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="School and Board you are related to"
+            android:text="School and Board you are \nrelated to"
             android:textSize="19dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="14dp"
             android:textColor="@color/theme_blue"
             android:textStyle="bold"></TextView>
 
 
         <EditText
+            android:id="@+id/et_qualification_degree"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="55dp"
             android:background="@drawable/round_textview"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginTop="16dp"
             android:hint="Bachelores, Masters, Diploma etc."
             android:textColorHint="#bebebe"
             android:textColor="@color/black"
-            android:paddingLeft="11dp"></EditText>
+            android:paddingLeft="22dp"
+            android:nextFocusDown="@+id/et_major"
+            android:singleLine="true"></EditText>
 
         <EditText
+            android:id="@+id/et_major"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="55dp"
             android:background="@drawable/round_textview"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginTop="16dp"
             android:hint="Major in Physics,Englishetc"
             android:textColorHint="#bebebe"
             android:textColor="@color/black"
-            android:paddingLeft="11dp"></EditText>
+            android:paddingLeft="16dp"
+            android:imeOptions="actionDone"
+            android:singleLine="true"></EditText>
 
         <TextView
             android:id="@+id/txt_studying_school"
@@ -73,8 +80,8 @@
             android:layout_height="wrap_content"
             android:text="Year of Experience"
             android:textColor="@color/theme_blue"
-            android:layout_marginLeft="22dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="22dp"
             android:textSize="19dp"
             android:layout_below="@+id/linear_studying_classes"></TextView>
 
@@ -85,40 +92,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_studying_school"
             android:layout_marginLeft="22dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="22dp">
 
             <CheckBox
+                android:id="@+id/chk_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
                 android:textColor="@color/black"></CheckBox>
 
             <CheckBox
+                android:id="@+id/chk_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2 "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
                 android:textColor="@color/black"></CheckBox>
 
             <CheckBox
+                android:id="@+id/chk_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3 "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
                 android:textColor="@color/black"></CheckBox>
 
             <CheckBox
+                android:id="@+id/chk_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4 "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
@@ -132,30 +147,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="22dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/chk_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
                 android:textColor="@color/black"></CheckBox>
 
             <CheckBox
+                android:id="@+id/chk_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6 "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="18dp"
                 android:buttonTint="@color/theme_blue"
                 android:textColor="@color/black"></CheckBox>
 
             <CheckBox
+                android:id="@+id/chk_sixplus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6+ "
+                android:textSize="19dp"
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="22dp"
                 android:buttonTint="@color/theme_blue"
@@ -193,17 +215,18 @@
 
 
         <Button
+            android:enabled="false"
             android:id="@+id/btn_verfication_proceed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginTop="49dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/round_textview_grey"
             android:text="Proceed"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="6dp"></Button>
 
 

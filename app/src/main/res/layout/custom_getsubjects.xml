@@ -12,33 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginRight="16dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:orientation="vertical">-->
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:text="Marks"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:textSize="14dp"-->
-<!--                android:textColor="@color/white"></TextView>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:text="80"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:textSize="16dp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/white"></TextView>-->
-<!--        </LinearLayout>-->
 
         <TextView
             android:id="@+id/txt_subjectname"
@@ -54,38 +28,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"></TextView>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginLeft="8dp"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:orientation="vertical">-->
 
-
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:text="Duration"-->
-<!--                android:fontFamily="@font/nunito"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:textSize="14dp"-->
-<!--                android:textColor="@color/white"></TextView>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/txt_subjectduration"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:text="80 mins"-->
-<!--                android:fontFamily="@font/nunito"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:textSize="14dp"-->
-<!--                android:textColor="@color/white"></TextView>-->
-
-<!--        </LinearLayout>-->
 
     </RelativeLayout>
 

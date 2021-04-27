@@ -5,10 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.ShowcaseFragment.Events_Showcase_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <GridView
+        android:id="@+id/lv_events"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        android:backgroundTint="@color/white"
+        android:horizontalSpacing="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:nestedScrollingEnabled="true"
+        android:scrollbars="vertical"
+        android:background="#EFF3F6"
+        android:numColumns="3"></GridView>
+
 
 </FrameLayout>

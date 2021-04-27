@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,7 +17,7 @@
         android:drawablePadding="11dp"
         android:textColor="@color/black"
         android:layout_marginTop="8dp"
-        android:text="12 selected subject Dynamos according\nto your choice"></TextView>
+        android:text="\n12 selected subject Dynamos according\nto your choice"></TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -21,7 +26,7 @@
         android:drawablePadding="11dp"
         android:textColor="@color/black"
         android:layout_marginTop="16dp"
-        android:text="Premium Event Dynamo Pass for all\nStarkwiz exclusive sponsered Event\nDynamos."></TextView>
+        android:text="\nPremium Event Dynamo Pass for all\nStarkwiz exclusive sponsered Event\nDynamos."></TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -30,7 +35,7 @@
         android:drawablePadding="11dp"
         android:textColor="@color/black"
         android:layout_marginTop="16dp"
-        android:text="x5 Prize value of every reward you earn\nthrough Fixtures"></TextView>
+        android:text="\nx5 Prize value of every reward you earn\nthrough Fixtures"></TextView>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,8 +44,9 @@
         android:drawablePadding="11dp"
         android:textColor="@color/black"
         android:layout_marginTop="16dp"
-        android:text="Customize your selected subject\nDynamos as per your requirment"></TextView>
+        android:layout_marginBottom="16dp"
+        android:text="\nCustomize your selected subject\nDynamos as per your requirment"></TextView>
 
+    </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>

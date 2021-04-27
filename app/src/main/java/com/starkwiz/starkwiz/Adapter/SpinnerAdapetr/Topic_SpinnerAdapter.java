@@ -1,4 +1,4 @@
-package com.mowallet.mowallet.Adapter;
+package com.starkwiz.starkwiz.Adapter.SpinnerAdapetr;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.mowallet.mowallet.ModelClasses.BindDistributor_ModelClass;
-import com.mowallet.mowallet.ModelClasses.BindState_ModelClass;
 
+import com.starkwiz.starkwiz.ModelClass.Topics_Modelclass;
+import com.starkwiz.starkwiz.R;
 
 import java.util.ArrayList;
 
-public class SpinnerAdapter extends ArrayAdapter<BindState_ModelClass> {
+public class Topic_SpinnerAdapter extends ArrayAdapter<Topics_Modelclass> {
 
-    private ArrayList<BindState_ModelClass> myarrayList;
+    private ArrayList<Topics_Modelclass> myarrayList;
 
-    public SpinnerAdapter(Context context, int textViewResourceId, ArrayList<BindState_ModelClass> modelArrayList) {
+    public Topic_SpinnerAdapter(Context context, int textViewResourceId, ArrayList<Topics_Modelclass> modelArrayList) {
         super(context, textViewResourceId, modelArrayList);
         this.myarrayList = modelArrayList;
     }
@@ -34,7 +34,7 @@ public class SpinnerAdapter extends ArrayAdapter<BindState_ModelClass> {
 
     @Nullable
     @Override
-    public BindState_ModelClass getItem(int position) {
+    public Topics_Modelclass getItem(int position) {
         return myarrayList.get(position);
     }
 
@@ -52,12 +52,12 @@ public class SpinnerAdapter extends ArrayAdapter<BindState_ModelClass> {
     }
 
     private View getCustomView(int position, ViewGroup parent) {
-        BindState_ModelClass model = getItem(position);
+        Topics_Modelclass model = getItem(position);
 
-        View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
+        View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_topic_spinner, parent, false);
 
-        TextView label = spinnerRow.findViewById(android.R.id.text1);
-        label.setText(String.format("%s", model != null ? model.getStateName() : ""));
+        TextView txt_spinner = spinnerRow.findViewById(R.id.txt_spinner);
+        txt_spinner.setText(String.format("%s", model != null ? model.getTopic() : ""));
 
         return spinnerRow;
     }

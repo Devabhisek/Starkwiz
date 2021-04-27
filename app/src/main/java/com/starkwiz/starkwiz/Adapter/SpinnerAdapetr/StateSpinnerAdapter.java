@@ -1,4 +1,4 @@
-package com.placement.placement.Adapter;
+package com.starkwiz.starkwiz.Adapter.SpinnerAdapetr;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.placement.placement.model.ReligionModel;
-import com.placement.placement.model.StateModel;
+import com.starkwiz.starkwiz.ModelClass.State_ModelClass;
+import com.starkwiz.starkwiz.R;
 
 import java.util.ArrayList;
 
-public class StateSpinnerAdapter extends ArrayAdapter<StateModel> {
+public class StateSpinnerAdapter extends ArrayAdapter<State_ModelClass> {
 
-    private ArrayList<StateModel> myarrayList;
+    private ArrayList<State_ModelClass> myarrayList;
 
-    public StateSpinnerAdapter(Context context, int textViewResourceId, ArrayList<StateModel> modelArrayList) {
+    public StateSpinnerAdapter(Context context, int textViewResourceId, ArrayList<State_ModelClass> modelArrayList) {
         super(context, textViewResourceId, modelArrayList);
         this.myarrayList = modelArrayList;
     }
@@ -31,7 +31,7 @@ public class StateSpinnerAdapter extends ArrayAdapter<StateModel> {
 
     @Nullable
     @Override
-    public StateModel getItem(int position) {
+    public State_ModelClass getItem(int position) {
         return myarrayList.get(position);
     }
 
@@ -49,12 +49,13 @@ public class StateSpinnerAdapter extends ArrayAdapter<StateModel> {
     }
 
     private View getCustomView(int position, ViewGroup parent) {
-        StateModel model = getItem(position);
+        State_ModelClass model = getItem(position);
 
-        View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
+        View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_textview, parent, false);
 
-        TextView label = spinnerRow.findViewById(android.R.id.text1);
-        label.setText(String.format("%s", model != null ? model.getState() : ""));
+        TextView label = spinnerRow.findViewById(R.id.spinner_text);
+        label.setText(String.format("%s", model != null ? model.getState_name() : ""));
+
 
         return spinnerRow;
     }

@@ -26,6 +26,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -54,13 +55,13 @@ import in.aabhasjindal.otptextview.OtpTextView;
 public class Signup_Personal_Activity extends AppCompatActivity {
 
     Button btn_signup_personal;
-    String Student_intent,Parent_intent,Teacher_intent,Hub_intent,Gender,Email,
+    String Student_intent,Parent_intent,Teacher_intent,Hub_intent,Gender,newaccount,
             FirstName,LastName,Dob,PhoneNo,date,User_ID,token,verificationkey;
     RadioButton check_gender_male,check_gender_female;
     EditText et_personal_firstname,et_personal_lastname,et_personal_phnno;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static final String TAG = "MainActivity";
-    TextView txt_signin,et_personal_dob;
+    TextView et_personal_dob;
     ArrayList<Login_ModelClass>login_modelClasses;
     boolean doubleBackToExitPressedOnce = false;
     @Override
@@ -75,6 +76,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             Parent_intent = getIntent().getExtras().getString("Parent_intent");
             Teacher_intent = getIntent().getExtras().getString("Teacher_intent");
             Hub_intent = getIntent().getExtras().getString("Hub_intent");
+            newaccount = getIntent().getExtras().getString("newaccount");
 
             et_personal_dob.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,6 +136,9 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                     }
                 }
             });
+
+
+
 
 
             btn_signup_personal.setOnClickListener(new View.OnClickListener() {
@@ -281,6 +286,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                                                     StudentIntent.putExtra("PhoneNo", PhoneNo);
                                                     StudentIntent.putExtra("Gender", Gender);
                                                     StudentIntent.putExtra("Role", "Student");
+                                                    StudentIntent.putExtra("newaccount", newaccount);
                                                     startActivity(StudentIntent);
                                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                                 } else if (Student_intent == null && Parent_intent != null && Teacher_intent == null && Hub_intent == null) {
@@ -288,21 +294,45 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                                                     SharedPreferences.Editor sedt = sp.edit();
                                                     sedt.putString("type", Parent_intent);
                                                     sedt.commit();
-                                                    startActivity(new Intent(Signup_Personal_Activity.this, Signup_Parent_AboutYou_Activity.class));
+                                                    Intent StudentIntent = new Intent(Signup_Personal_Activity.this, Signup_Parent_AboutYou_Activity.class);
+                                                    StudentIntent.putExtra( "FirstName", FirstName);
+                                                    StudentIntent.putExtra("LastName", LastName);
+                                                    StudentIntent.putExtra("Dob", date);
+                                                    StudentIntent.putExtra("PhoneNo", PhoneNo);
+                                                    StudentIntent.putExtra("Gender", Gender);
+                                                    StudentIntent.putExtra("Role", "Parent");
+                                                    StudentIntent.putExtra("newaccount", newaccount);
+                                                    startActivity(StudentIntent);
                                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                                 } else if (Student_intent == null && Parent_intent == null && Teacher_intent != null && Hub_intent == null) {
                                                     SharedPreferences sp = getSharedPreferences("key", 0);
                                                     SharedPreferences.Editor sedt = sp.edit();
                                                     sedt.putString("type", Teacher_intent);
                                                     sedt.commit();
-                                                    startActivity(new Intent(Signup_Personal_Activity.this, Signup_teaching_Activity.class));
+                                                    Intent StudentIntent = new Intent(Signup_Personal_Activity.this, Signup_teaching_Activity.class);
+                                                    StudentIntent.putExtra( "FirstName", FirstName);
+                                                    StudentIntent.putExtra("LastName", LastName);
+                                                    StudentIntent.putExtra("Dob", date);
+                                                    StudentIntent.putExtra("PhoneNo", PhoneNo);
+                                                    StudentIntent.putExtra("Gender", Gender);
+                                                    StudentIntent.putExtra("Role", "Teacher");
+                                                    StudentIntent.putExtra("newaccount", newaccount);
+                                                    startActivity(StudentIntent);
                                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                                 } else {
                                                     SharedPreferences sp = getSharedPreferences("key", 0);
                                                     SharedPreferences.Editor sedt = sp.edit();
                                                     sedt.putString("type", Hub_intent);
                                                     sedt.commit();
-                                                    startActivity(new Intent(Signup_Personal_Activity.this, HubListsActivity.class));
+                                                    Intent StudentIntent = new Intent(Signup_Personal_Activity.this, HubListsActivity.class);
+                                                    StudentIntent.putExtra( "FirstName", FirstName);
+                                                    StudentIntent.putExtra("LastName", LastName);
+                                                    StudentIntent.putExtra("Dob", date);
+                                                    StudentIntent.putExtra("PhoneNo", PhoneNo);
+                                                    StudentIntent.putExtra("Gender", Gender);
+                                                    StudentIntent.putExtra("Role", "Hub");
+                                                    StudentIntent.putExtra("newaccount", newaccount);
+                                                    startActivity(StudentIntent);
                                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                                 }
                                             }else {
@@ -326,7 +356,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                                     }
                                 });
 
-
+                                jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                                 Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -346,182 +376,182 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        txt_signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
-                dialog.setContentView(R.layout.alert_add_account);
-
-                Window window = dialog.getWindow();
-                dialog.show();
-
-                EditText et_login_user,et_password;
-                Button btn_create_account,btn_login,btn_alert_cancel;
-                TextView txt_forgotpassword;
-
-
-                et_login_user = dialog.findViewById(R.id.et_login_user);
-                et_password = dialog.findViewById(R.id.et_password);
-                btn_create_account = dialog.findViewById(R.id.btn_create_account);
-                btn_login = dialog.findViewById(R.id.btn_login);
-                btn_alert_cancel = dialog.findViewById(R.id.btn_alert_cancel);
-                txt_forgotpassword = dialog.findViewById(R.id.txt_forgotpassword);
-
-                txt_forgotpassword.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
-                        dialog.setContentView(R.layout.alert_forgot_passwprd);
-                        Window window = dialog.getWindow();
-                        dialog.show();
-                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                        EditText et_email,et_new_password,et_reenterpassword,et_otp;
-                        Button btn_change_pswd_confirm,btn_change_pswd_cancel,btn_change_pswd_otp;
-                        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                        LinearLayout txt_otp;
-
-                        et_email = dialog.findViewById(R.id.et_email);
-                        et_new_password = dialog.findViewById(R.id.et_new_password);
-                        et_reenterpassword = dialog.findViewById(R.id.et_reenterpassword);
-                        btn_change_pswd_confirm = dialog.findViewById(R.id.btn_change_pswd_confirm);
-                        btn_change_pswd_cancel = dialog.findViewById(R.id.btn_change_pswd_cancel);
-                        txt_otp = dialog.findViewById(R.id.txt_otp);
-                        et_otp = dialog.findViewById(R.id.et_otp);
-                        btn_change_pswd_otp = dialog.findViewById(R.id.btn_change_pswd_otp);
-
-                        et_email.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable editable) {
-
-                                String Email = et_email.getText().toString().trim();
-                                if (!Email.isEmpty() || Email.matches(emailPattern)) {
-                                    btn_change_pswd_otp.setVisibility(View.VISIBLE);
-
-                                } else {
-
-                                    btn_change_pswd_otp.setVisibility(View.GONE);
-
-                                }
-                            }
-                        });
-
-                        btn_change_pswd_otp.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                 Email = et_email.getText().toString().trim();
-                                if (Email.isEmpty() || !Email.matches(emailPattern)){
-                                    et_email.setError("Please Enter Valid Email");
-                                }else {
-
-                                    Forgot_Password_Email(Email, txt_otp, et_otp);
-                                }
-                            }
-                        });
-
-
-
-                        et_otp.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable editable) {
-
-                                String otp = et_otp.getText().toString().trim();
-
-                                if (otp.length()<6 && !otp.equals(token)){
-                                    Toast.makeText(Signup_Personal_Activity.this, "Enter valid otp", Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    et_new_password.setEnabled(true);
-                                    et_reenterpassword.setEnabled(true);
-                                    Forgot_Password_OTP(Email,btn_change_pswd_otp,et_new_password);
-                                }
-                            }
-                        });
-
-
-                        btn_change_pswd_confirm.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String NewPassword = et_new_password.getText().toString().trim();
-                                String ConfirmPassword = et_reenterpassword.getText().toString().trim();
-
-                                if (NewPassword.equals(ConfirmPassword)){
-                                    Forgot_Password(Email,NewPassword);
-                                }else {
-                                    AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Password not matched");
-                                }
-                            }
-                        });
-
-                        btn_change_pswd_cancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                            }
-                        });
-
-
-
-
-                    }
-                });
-
-
-                btn_login.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String Login_user,Password;
-                        Login_user = et_login_user.getText().toString().trim();
-                        Password = et_password.getText().toString().trim();
-                        if (Login_user.isEmpty()){
-                            et_login_user.setError("Please Enter your Email/Phone Number");
-                        }else if (Password.isEmpty()){
-                            et_password.setError("Please Enter Password");
-                        }
-                        else {
-                            Login(Login_user,Password);
-                        }
-                    }
-                });
-
-                btn_alert_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-
-                btn_create_account.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-
-
-                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            }
-        });
+//        txt_signin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
+//                dialog.setContentView(R.layout.alert_add_account);
+//
+//                Window window = dialog.getWindow();
+//                dialog.show();
+//
+//                EditText et_login_user,et_password;
+//                Button btn_create_account,btn_login,btn_alert_cancel;
+//                TextView txt_forgotpassword;
+//
+//
+//                et_login_user = dialog.findViewById(R.id.et_login_user);
+//                et_password = dialog.findViewById(R.id.et_password);
+//                btn_create_account = dialog.findViewById(R.id.btn_create_account);
+//                btn_login = dialog.findViewById(R.id.btn_login);
+//                btn_alert_cancel = dialog.findViewById(R.id.btn_alert_cancel);
+//                txt_forgotpassword = dialog.findViewById(R.id.txt_forgotpassword);
+//
+//                txt_forgotpassword.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
+//                        dialog.setContentView(R.layout.alert_forgot_passwprd);
+//                        Window window = dialog.getWindow();
+//                        dialog.show();
+//                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//                        EditText et_email,et_new_password,et_reenterpassword,et_otp;
+//                        Button btn_change_pswd_confirm,btn_change_pswd_cancel,btn_change_pswd_otp;
+//                        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+//                        LinearLayout txt_otp;
+//
+//                        et_email = dialog.findViewById(R.id.et_email);
+//                        et_new_password = dialog.findViewById(R.id.et_new_password);
+//                        et_reenterpassword = dialog.findViewById(R.id.et_reenterpassword);
+//                        btn_change_pswd_confirm = dialog.findViewById(R.id.btn_change_pswd_confirm);
+//                        btn_change_pswd_cancel = dialog.findViewById(R.id.btn_change_pswd_cancel);
+//                        txt_otp = dialog.findViewById(R.id.txt_otp);
+//                        et_otp = dialog.findViewById(R.id.et_otp);
+//                        btn_change_pswd_otp = dialog.findViewById(R.id.btn_change_pswd_otp);
+//
+//                        et_email.addTextChangedListener(new TextWatcher() {
+//                            @Override
+//                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                            }
+//
+//                            @Override
+//                            public void afterTextChanged(Editable editable) {
+//
+//                                String Email = et_email.getText().toString().trim();
+//                                if (!Email.isEmpty() || Email.matches(emailPattern)) {
+//                                    btn_change_pswd_otp.setVisibility(View.VISIBLE);
+//
+//                                } else {
+//
+//                                    btn_change_pswd_otp.setVisibility(View.GONE);
+//
+//                                }
+//                            }
+//                        });
+//
+//                        btn_change_pswd_otp.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                 Email = et_email.getText().toString().trim();
+//                                if (Email.isEmpty() || !Email.matches(emailPattern)){
+//                                    et_email.setError("Please Enter Valid Email");
+//                                }else {
+//
+//                                    Forgot_Password_Email(Email, txt_otp, et_otp);
+//                                }
+//                            }
+//                        });
+//
+//
+//
+//                        et_otp.addTextChangedListener(new TextWatcher() {
+//                            @Override
+//                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//                            }
+//
+//                            @Override
+//                            public void afterTextChanged(Editable editable) {
+//
+//                                String otp = et_otp.getText().toString().trim();
+//
+//                                if (otp.length()<6 && !otp.equals(token)){
+//                                    Toast.makeText(Signup_Personal_Activity.this, "Enter valid otp", Toast.LENGTH_SHORT).show();
+//                                }
+//                                else {
+//                                    et_new_password.setEnabled(true);
+//                                    et_reenterpassword.setEnabled(true);
+//                                    Forgot_Password_OTP(Email,btn_change_pswd_otp,et_new_password);
+//                                }
+//                            }
+//                        });
+//
+//
+//                        btn_change_pswd_confirm.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                String NewPassword = et_new_password.getText().toString().trim();
+//                                String ConfirmPassword = et_reenterpassword.getText().toString().trim();
+//
+//                                if (NewPassword.equals(ConfirmPassword)){
+//                                    Forgot_Password(Email,NewPassword);
+//                                }else {
+//                                    AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Password not matched");
+//                                }
+//                            }
+//                        });
+//
+//                        btn_change_pswd_cancel.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//
+//
+//
+//
+//                    }
+//                });
+//
+//
+//                btn_login.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        String Login_user,Password;
+//                        Login_user = et_login_user.getText().toString().trim();
+//                        Password = et_password.getText().toString().trim();
+//                        if (Login_user.isEmpty()){
+//                            et_login_user.setError("Please Enter your Email/Phone Number");
+//                        }else if (Password.isEmpty()){
+//                            et_password.setError("Please Enter Password");
+//                        }
+//                        else {
+//                            Login(Login_user,Password);
+//                        }
+//                    }
+//                });
+//
+//                btn_alert_cancel.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//                btn_create_account.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//
+//                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            }
+//        });
 
     }
 
@@ -562,7 +592,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -622,7 +652,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -733,7 +763,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -800,7 +830,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
     }
@@ -862,7 +892,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -925,7 +955,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -986,7 +1016,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
 
 
@@ -1001,7 +1031,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
         et_personal_lastname =findViewById(R.id.et_personal_lastname);
         et_personal_dob =findViewById(R.id.et_personal_dob);
         et_personal_phnno =findViewById(R.id.et_personal_phnno);
-        txt_signin =findViewById(R.id.txt_signin);
+        //txt_signin =findViewById(R.id.txt_signin);
         login_modelClasses=new ArrayList<>();
 //        btn_signup_personal.setEnabled(false);
         check_gender_male.setChecked(true);
@@ -1016,7 +1046,12 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             String strtext =SharedPrefManager.getInstance(Signup_Personal_Activity.this).getUser().getAccess_token();
             Log.d("accesstoken",strtext);
 
-            if (!strtext.equals("")){
+            if (newaccount.equals("newaccount")){
+                startActivity(new Intent(Signup_Personal_Activity.this,Signup_Personal_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+
+           else if (!strtext.equals("")){
 
                 startActivity(new Intent(Signup_Personal_Activity.this,Dasboard_Activity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);

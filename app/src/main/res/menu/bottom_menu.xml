@@ -7,12 +7,12 @@
         android:icon="@mipmap/user_profile"/>
 
     <item android:id="@+id/bottom_menu_showcase"
-        android:title="ShowCase"
+        android:title="Showcase"
         android:icon="@mipmap/showcase"/>
 
     <item android:id="@+id/bottom_menu_dynamo"
         android:title="Dynamo"
-        android:icon="@mipmap/dynamo"/>
+        android:icon="@mipmap/imdynamo"/>
 
     <item android:id="@+id/bottom_menu_following"
         android:title="Following"

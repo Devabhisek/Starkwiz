@@ -57,7 +57,7 @@
                         android:id="@+id/txt_studenttype"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
+                        android:fontFamily="@font/nunito_extrabold"
                         android:text="Student"
                         android:textColor="@color/black"
                         android:textSize="16dp"
@@ -66,8 +66,10 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:id="@+id/linear_studenttype"
-                        android:layout_width="35dp"
+                        android:layout_width="22dp"
                         android:layout_height="7dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="3dp"
                         android:background="@drawable/round_textview_clicked"></LinearLayout>
 
 
@@ -84,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="11dp"
-                    android:fontFamily="@font/nunito"
+                    android:fontFamily="@font/nunito_extrabold"
                     android:text="Parent"
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -94,9 +96,11 @@
                         android:visibility="gone"
                         android:orientation="horizontal"
                         android:id="@+id/linear_parenttype"
-                        android:layout_width="35dp"
+                        android:layout_width="22dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="11dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@drawable/round_textview_clicked"></LinearLayout>
 
 
@@ -113,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="11dp"
-                    android:fontFamily="@font/nunito"
+                    android:fontFamily="@font/nunito_extrabold"
                     android:text="Teacher"
                     android:textColor="@color/black"
                     android:textSize="16dp"
@@ -123,8 +127,10 @@
                       android:visibility="gone"
                         android:orientation="horizontal"
                         android:id="@+id/linear_teachertype"
-                        android:layout_width="35dp"
+                        android:layout_width="22dp"
                         android:layout_height="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_marginLeft="11dp"
                         android:background="@drawable/round_textview_clicked"></LinearLayout>
 
@@ -142,18 +148,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="11dp"
-                    android:fontFamily="@font/nunito"
+                    android:fontFamily="@font/nunito_extrabold"
                     android:text="Hub"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold"></TextView>
 
-                  <LinearLayout
+                <LinearLayout
                       android:visibility="gone"
                         android:orientation="horizontal"
                         android:id="@+id/linear_hubtype"
-                        android:layout_width="35dp"
+                        android:layout_width="22dp"
                         android:layout_height="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_marginLeft="11dp"
                         android:background="@drawable/round_textview_clicked"></LinearLayout>
 
@@ -169,7 +177,6 @@
                 android:id="@+id/lineartype"
                 android:layout_below="@+id/linear_usertype"
                 android:layout_marginBottom="11dp"
-                android:layout_marginTop="11dp"
                 android:orientation="vertical"></LinearLayout>
 
             <Button

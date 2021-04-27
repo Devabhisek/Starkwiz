@@ -48,14 +48,14 @@
 
     <Button
         android:id="@+id/btnselectsubject"
-        android:layout_width="135dp"
+        android:layout_width="155dp"
         android:layout_height="42dp"
         android:background="@drawable/round_textview_clicked"
         android:text="Select Subjects"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="22dp"></Button>
+        android:layout_marginLeft="60dp"></Button>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -63,9 +63,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:tabTextColor="@color/black"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorColor="@color/theme_blue"
-        app:tabTextAppearance="@style/MineCustomTabText"
         app:tabIndicatorFullWidth="false">
     </com.google.android.material.tabs.TabLayout>
 

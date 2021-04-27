@@ -12,13 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
+import com.starkwiz.starkwiz.Activities.SettingActivity;
+import com.starkwiz.starkwiz.Activities.Starting_Pages.Login_Activity;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -38,7 +42,8 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
     SeekBar seekbar_pswd;
     EditText et_password,et_cnfrm_password;
     TextView txt_strength;
-    String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,Class,Board,Email,Role,BlockNo;
+    String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,Class,
+            Board,Email,Role,BlockNo,newaccount,Qualification,Profession,kids,user_id,Experience;
    ArrayList<Login_ModelClass> login_modelClass;
 
     @Override
@@ -69,6 +74,11 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             Role = getIntent().getStringExtra("Role");
             Email = getIntent().getStringExtra("Email");
             BlockNo = getIntent().getStringExtra("BlockNo");
+            newaccount = getIntent().getStringExtra("newaccount");
+            Qualification = getIntent().getStringExtra("Qualification");
+            Profession = getIntent().getStringExtra("Profession");
+            kids = getIntent().getStringExtra("kids");
+            Experience = getIntent().getStringExtra("Experience");
 
 
 
@@ -76,13 +86,44 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        et_cnfrm_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (et_cnfrm_password.getText().toString().trim().length()>0){
+                    btn_verfication_proceed.setEnabled(true);
+                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
+                }else {
+                    btn_verfication_proceed.setEnabled(false);
+                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
+                }
+            }
+        });
+
         btn_verfication_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
                 if (et_password.getText().toString().trim().matches(et_cnfrm_password.getText().toString().trim())){
-                    Signup();
+
+                    if (Role.equals("Student")){
+                        Signup();
+                    }else if(Role.equals("Parent")){
+                        Signup_Parent();
+                    }else if(Role.equals("Teacher")){
+                        Signup_Teacher();
+                    }
+
                 }
                 else {
                     AlertBoxClasses.SimpleAlertBox(Signup_SetupPassword_Activity.this,"Password did not matched");
@@ -205,7 +246,12 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                         );
                         login_modelClass.add(modelClass);
                         SharedPrefManager.getInstance(Signup_SetupPassword_Activity.this).userLogin(modelClass);
-                        Profile(object.getString("id"));
+
+                        if (Role.equals("Parent")){
+                                Parent_Profile(object.getString("id"),Profession,Qualification,kids);
+                        }else {
+                            Profile(object.getString("id"));
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -227,6 +273,136 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
 
     }
 
+    private void Signup_Parent() {
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("first_name", FirstName);
+        params.put("last_name", LastName);
+        params.put("date_of_birth", Dob);
+        params.put("mobile_number", PhoneNo);
+        params.put("gender", Gender);
+        params.put("role", Role);
+        params.put("email", Email);
+        params.put("password", et_password.getText().toString().trim());
+        params.put("password_confirmation", et_password.getText().toString().trim());
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.registerparent, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+                try {
+                    String Id = response.getString("user");
+
+                    String message = response.getString("message");
+
+                    if (message.equals("Parent successfully registered")){
+
+                         user_id = response.getString("user_id");
+
+                        Parent_Profile(user_id,Profession,Qualification,kids);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
+
+    private void Signup_Teacher() {
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("first_name", FirstName);
+        params.put("last_name", LastName);
+        params.put("date_of_birth", Dob);
+        params.put("mobile_number", PhoneNo);
+        params.put("gender", Gender);
+        params.put("role", Role);
+        params.put("email", Email);
+        params.put("password", et_password.getText().toString().trim());
+        params.put("password_confirmation", et_password.getText().toString().trim());
+        params.put("school_board", Board);
+        params.put("teacher_block", BlockNo);
+        params.put("state", State);
+        params.put("district", District);
+        params.put("city", City);
+        params.put("school", SchoolName);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.registerteacher, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+
+                try {
+                    String message = response.getString("message");
+                    if (message.equals("User successfully registered")){
+
+                        user_id = response.getString("user_id");
+
+                        Teacher_Profile(user_id,Class,Qualification,Profession,Experience);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
 
     private void Profile(String id) {
 
@@ -256,9 +432,16 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                     String created = response.getString("message");
 
                    if (created.equals("profile created")){
-                    Intent intent = new Intent(Signup_SetupPassword_Activity.this, Dasboard_Activity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+                       if (newaccount!=null){
+                           startActivity(new Intent(Signup_SetupPassword_Activity.this,SettingActivity.class));
+                           overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                       }
+                       else {
+                           Intent intent = new Intent(Signup_SetupPassword_Activity.this, Login_Activity.class);
+                           startActivity(intent);
+                           overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                       }
                    }
 
 
@@ -282,4 +465,133 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
         Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
 
     }
+
+    private void Parent_Profile(String id,String profession,String qualification, String no_of_children) {
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("user_id", id);
+        params.put("profession", profession);
+        params.put("qualification", qualification);
+        params.put("no_of_children", no_of_children);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createparentprofile, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+                try {
+                    String created = response.getString("message");
+
+                    if (created.equals("Success")){
+                        Toast.makeText(Signup_SetupPassword_Activity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+
+                        if (newaccount!=null){
+                            startActivity(new Intent(Signup_SetupPassword_Activity.this, SettingActivity.class));
+                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(Signup_SetupPassword_Activity.this, Login_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+
+
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
+
+    private void Teacher_Profile(String user_id,String current_teaching_class,
+                                 String qualification_degree, String qualification_major_subject, String year_of_experience) {
+
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("user_id", user_id);
+        params.put("current_teaching_class", current_teaching_class);
+        params.put("qualification_degree", qualification_degree);
+        params.put("qualification_major_subject", qualification_major_subject);
+        params.put("year_of_experience", year_of_experience);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createteacherprofile, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+                try {
+                    String created = response.getString("message");
+
+                    if (created.equals("Success")){
+                        Toast.makeText(Signup_SetupPassword_Activity.this, "Profile Created", Toast.LENGTH_SHORT).show();
+
+                        if (newaccount!=null){
+                            startActivity(new Intent(Signup_SetupPassword_Activity.this, SettingActivity.class));
+                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                        }
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(Signup_SetupPassword_Activity.this, Login_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+            }
+        });
+
+
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
+
+
+
+
+
 }

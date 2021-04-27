@@ -42,11 +42,18 @@ public class Dasboard_Activity extends AppCompatActivity {
     String Student_intent,Parent_intent,Teacher_intent,Hub_intent;
     private TourGuide mTourGuideHandler;
     private boolean isBackFromB;
+    String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dasboard_);
+
+        try {
+            role = SharedPrefManager.getInstance(Dasboard_Activity.this).getUser().getRole();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         isBackFromB=false;
         bottomnavigation = findViewById(R.id.bottomnavigation);
         dash_setting = findViewById(R.id.dash_setting);
@@ -71,21 +78,27 @@ public class Dasboard_Activity extends AppCompatActivity {
             //bottomnavigation.getMenu().getItem(0).setIcon(R.mipmap.homeselect);
             String strtext = SharedPrefManager.getInstance(Dasboard_Activity.this).getUser().getRole();
 
+
+
             switch (menuItem.getItemId()) {
 
                 case R.id.bottom_menu_profile:
                     // selectedFragment = new HomeFragment();
                    // menuItem.setIcon(R.mipmap.homeselected);
-
-                    if (strtext.equals("student") || strtext.equals("Student")){
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile_Activity()).commit();
-                    }else if (strtext.equals("Parent_intent")){
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ParentProfile_Fragment()).commit();
-                    }else if(strtext.equals("Teacher_intent")){
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Teacher_Profile_Fragment()).commit();
-                    }else {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HubProfile_Fragment()).commit();
+                    if (strtext==null){
+                        strtext = role;
                     }
+
+                        if (strtext.equals("student") || strtext.equals("Student")) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile_Activity()).commit();
+                        } else if (strtext.equals("parent")||strtext.equals("Parent")) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ParentProfile_Fragment()).commit();
+                        } else if (strtext.equals("Teacher") || strtext.equals("teacher")) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Teacher_Profile_Fragment()).commit();
+                        } else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HubProfile_Fragment()).commit();
+                        }
+
 
                     //getSupportActionBar().setTitle("Home");
                     break;

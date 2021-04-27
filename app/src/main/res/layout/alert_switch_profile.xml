@@ -70,16 +70,18 @@
                     android:layout_marginTop="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="55dp"
+                android:id="@+id/img_switchprofile"
+                android:layout_width="44dp"
                 android:layout_height="55dp"
-                android:src="@mipmap/person"
+                android:layout_gravity="center"
+                android:src="@mipmap/nophoto"
                 ></de.hdodenhof.circleimageview.CircleImageView>
 
               <TextView
+                  android:id="@+id/txt_switch_name"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="Khusi \nMeher"
-
+                  android:layout_gravity="center"
                   android:textColor="@color/theme_blue"></TextView>
 
                 </LinearLayout>
@@ -100,10 +102,11 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="55dp"
+                    android:layout_width="44dp"
                     android:layout_height="55dp"
-                    android:src="@mipmap/persontwo"
+                    android:src="@mipmap/plus"
                     app:civ_border_width="4dp"
+                    android:layout_gravity="center"
                     app:civ_border_color="@color/theme_blue"
                     ></de.hdodenhof.circleimageview.CircleImageView>
 
@@ -111,8 +114,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Barsha \nMeher"
-                        android:layout_marginLeft="10dp"
+                        android:text="Add  Account"
+                        android:layout_gravity="center"
                         android:textColor="@color/theme_blue"></TextView>
 
 
@@ -123,6 +126,7 @@
 
 
             <TextView
+                android:id="@+id/txt_disconnect_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Disconnect Account "

@@ -10,7 +10,9 @@
         android:text="Basic"
         android:textSize="16dp"
         android:textColor="@color/black"
-        android:layout_marginTop="55dp"
+        android:fontFamily="@font/nunito"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="30dp"></TextView>
 
     <LinearLayout
@@ -23,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="1 Year"
             android:textSize="16dp"
+            android:fontFamily="@font/nunito"
             android:layout_marginTop="55dp"
             android:textColor="@color/black"
             android:layout_marginLeft="30dp"></TextView>
@@ -36,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs."
+                android:fontFamily="@font/nunito"
                 android:layout_marginLeft="30dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"></TextView>
@@ -44,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120"
+                android:fontFamily="@font/nunito"
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
                 android:textSize="30dp"></TextView>
@@ -55,11 +60,13 @@
             android:layout_height="wrap_content"
             android:text="Rs.10 / per month"
             android:textSize="16dp"
+            android:fontFamily="@font/nunito"
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:layout_marginLeft="30dp"></TextView>
 
         <Button
+            android:id="@+id/txt_plan_update"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="Update"

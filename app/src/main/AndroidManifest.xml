@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.starkwiz.starkwiz"
-    >
+    package="com.starkwiz.starkwiz">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:allowClearUserData="true"
+        android:exported="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:exported="false"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Starkwiz">
-        <activity android:name=".Activities.Quiz_Activities.Elocution_Activity"></activity>
+        android:theme="@style/Theme.Starkwiz"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.Starting_Pages.Login_Activity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".Activities.Quiz_Activities.Events_Subjects_Activity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".Activities.Quiz_Activities.Elocution_Activity" />
         <activity android:name=".Activities.Quiz_Activities.Debate_Activity" />
         <activity android:name=".Activities.Quiz_Activities.Arts_Activity" />
         <activity android:name=".Activities.PlansActivity" />
@@ -47,43 +59,46 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.SettingActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.HubInfo_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.HubListsActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Dasboard_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
         <activity
             android:name=".Activities.Forgot_Password_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_SetupPassword_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Qualification_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Parent_AboutYou_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Email_Verification_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_teaching_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Sigup_Studying_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Starting_Pages.UserSelection_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Personal_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Starting_Pages.WelcomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -101,14 +116,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <receiver android:name=".LinkingClass.AlertReceiver"></receiver>
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
-    </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <receiver android:name=".LinkingClass.AlertReceiver" />
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
 
 </manifest>

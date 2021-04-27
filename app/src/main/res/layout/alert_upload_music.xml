@@ -52,8 +52,11 @@
                 android:background="@drawable/bordeetwo">
 
                 <Spinner
+                    android:id="@+id/spinner_topic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="22dp"
                     android:layout_centerVertical="true"></Spinner>
 
 

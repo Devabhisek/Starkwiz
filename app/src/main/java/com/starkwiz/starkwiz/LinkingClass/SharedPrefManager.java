@@ -3,6 +3,8 @@ package com.starkwiz.starkwiz.LinkingClass;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.starkwiz.starkwiz.Activities.Starting_Pages.Login_Activity;
 import com.starkwiz.starkwiz.Activities.Starting_Pages.UserSelection_Activity;
 import com.starkwiz.starkwiz.ModelClass.Login_ModelClass;
 
@@ -85,7 +87,7 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-        mCtx.startActivity(new Intent(mCtx, UserSelection_Activity.class));
+        mCtx.startActivity(new Intent(mCtx, Login_Activity.class));
     }
 
 

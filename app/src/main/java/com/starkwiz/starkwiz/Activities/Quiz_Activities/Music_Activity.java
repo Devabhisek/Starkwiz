@@ -2,14 +2,19 @@ package com.starkwiz.starkwiz.Activities.Quiz_Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -17,8 +22,10 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +33,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar;
+import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.Topic_Adapter;
+import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.Topic_SpinnerAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AndroidMultiPartEntity;
 import com.starkwiz.starkwiz.LinkingClass.HttpsTrustManager;
+import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
+import com.starkwiz.starkwiz.ModelClass.Topics_Modelclass;
 import com.starkwiz.starkwiz.R;
 
 import org.apache.http.HttpEntity;
@@ -41,12 +54,14 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,10 +71,12 @@ public class Music_Activity extends AppCompatActivity {
     Button btn_music_upload;
     TextView txt_fixture;
     int SELECT_VIDEO_REQUEST=100;
-    String selectedVideoPath,filemanagerstring,videoname,Userid,responseString;
+    String selectedVideoPath,filemanagerstring,Category,Userid,responseString;
     int REQUEST_TAKE_GALLERY_VIDEO =1;
     Uri selectedImageUri,returnUri;
-
+    RecyclerView lv_tpopics;
+    ArrayList<Topics_Modelclass>list_topics;
+    RoundedHorizontalProgressBar progress_bar_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +84,15 @@ public class Music_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_music_);
         btn_music_upload = findViewById(R.id.btn_music_upload);
         txt_fixture = findViewById(R.id.txt_fixture);
+        lv_tpopics = findViewById(R.id.lv_tpopics);
+        lv_tpopics.setHasFixedSize(true);
+        lv_tpopics.setLayoutManager(new LinearLayoutManager(Music_Activity.this));
+        list_topics = new ArrayList<>();
         Calendar cal=Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
         String month = month_date.format(cal.getTime());
         Userid = SharedPrefManager.getInstance(Music_Activity.this).getUser().getId();
+
 
 
         txt_fixture.setText("FIXTURE: "+month);
@@ -86,17 +108,49 @@ public class Music_Activity extends AppCompatActivity {
 
                 Button txt_music_browsefile,txt_music_done,txt_music_cancel;
                 TextView txt_music_filename;
+                Spinner spinner_topic;
 
                 txt_music_browsefile = dialog.findViewById(R.id.txt_music_browsefile);
                 txt_music_done = dialog.findViewById(R.id.txt_music_done);
                 txt_music_cancel = dialog.findViewById(R.id.txt_music_cancel);
                 txt_music_filename = dialog.findViewById(R.id.txt_music_filename);
+                spinner_topic = dialog.findViewById(R.id.spinner_topic);
+                progress_bar_1 = dialog.findViewById(R.id.progress_bar_1);
 
                 if (filemanagerstring!=null){
                     txt_music_filename.setText(filemanagerstring);
                 }else {
                     txt_music_filename.setText("File Name");
                 }
+
+                GetTopics();
+                Topic_SpinnerAdapter adapter = new Topic_SpinnerAdapter(Music_Activity.this, android.R.layout.simple_spinner_dropdown_item, list_topics);
+                spinner_topic.setAdapter(adapter);
+
+                spinner_topic.setSelection(0,true);
+                spinner_topic.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+
+                        try {
+
+                            Topics_Modelclass myModel=(Topics_Modelclass) parent.getSelectedItem();
+
+                            Category = myModel.getTopic();
+
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+
+                    } // to close the onItemSelected
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });
 
 
 
@@ -110,9 +164,11 @@ public class Music_Activity extends AppCompatActivity {
                 txt_music_done.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        UploadVideo();
-                   /*   UploadVideoToServer uploadVideoToServer = new UploadVideoToServer();
-                       uploadVideoToServer.execute();*/
+
+                        progress_bar_1.animateProgress(2000, 0, 49); // (animationDuration, oldProgress, newProgress)
+
+                        Toast.makeText(Music_Activity.this, "Uploading Please wait..", Toast.LENGTH_SHORT).show();
+
                         if (android.os.Build.VERSION.SDK_INT > 9) {
                             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                             StrictMode.setThreadPolicy(policy);
@@ -154,12 +210,12 @@ public class Music_Activity extends AppCompatActivity {
                                 // Server response
                                 responseString = EntityUtils.toString(r_entity);
                                 try {
-                                    JSONObject obj = new JSONObject(responseString);
-                                    JSONObject res = obj.getJSONObject("response");
-                                    String mStatus = res.getString("status");
-                                    Log.e("Json status", mStatus);
-                                    if (mStatus.equalsIgnoreCase("1")) {
-                                        Toast.makeText(Music_Activity.this, "Video Uploaded", Toast.LENGTH_SHORT).show();
+                                    JSONObject object = new JSONObject(responseString);
+                                    String Status = object.getString("message");
+                                    if (Status.equals("showcase created")){
+                                        progress_bar_1.animateProgress(2000, 0, 100); // (animationDuration, oldProgress, newProgress)
+                                        btn_music_upload.setText("Uploaded");
+                                        btn_music_upload.setEnabled(false);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -182,6 +238,8 @@ public class Music_Activity extends AppCompatActivity {
                 });
             }
         });
+
+        GetTopics();
     }
 
     public void selectVideoFromGallery()
@@ -238,304 +296,82 @@ public class Music_Activity extends AppCompatActivity {
         return path;
     }
 
-    private void UploadVideo(){
+    private void GetTopics(){
+        String cls = SharedPrefManager.getInstance(Music_Activity.this).getUser().getCls();
+        ProgressDialog dialog = new ProgressDialog(Music_Activity.this);
+        dialog.setMessage("Loading...");
+        dialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/gettopicbycategory?category=Music&class="+cls,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-        ProgressDialog progressDialog = new ProgressDialog(Music_Activity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        final Map<String, String> params = new HashMap();
-
-        params.put("user_id", Userid);
-        params.put("topic", "topic1");
-        params.put("format", "mp4");
-        params.put("category", "Music");
-
-
-        params.put("file_name", String.valueOf(selectedImageUri));
-
-
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
-                "https://rentopool.com/starkwiz/api/auth/createshowcase", parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                progressDialog.dismiss();
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-
-            }
-        });
-
-
-        Volley.newRequestQueue(Music_Activity.this).add(jsonRequest);
-
-
-
-    }
-
-//    private void Upload(){
-//        VolleyMultipartRequest  multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-//                "https://rentopool.com/starkwiz/api/auth/createshowcase", new Response.Listener<NetworkResponse>() {
-//            @Override
-//            public void onResponse(NetworkResponse response) {
-//                String resultResponse = new String(response.data);
-//                try {
-//                    JSONObject result = new JSONObject(resultResponse);
-//
-//                    Log.d("results",result.toString());
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                NetworkResponse networkResponse = error.networkResponse;
-//                String errorMessage = "Unknown error";
-//                if (networkResponse == null) {
-//                    if (error.getClass().equals(TimeoutError.class)) {
-//                        errorMessage = "Request timeout";
-//                    } else if (error.getClass().equals(NoConnectionError.class)) {
-//                        errorMessage = "Failed to connect server";
-//                    }
-//                } else {
-//                    String result = new String(networkResponse.data);
-//                    try {
-//                        JSONObject response = new JSONObject(result);
-//                        String status = response.getString("status");
-//                        String message = response.getString("message");
-//
-//                        Log.e("Error Status", status);
-//                        Log.e("Error Message", message);
-//
-//                        if (networkResponse.statusCode == 404) {
-//                            errorMessage = "Resource not found";
-//                        } else if (networkResponse.statusCode == 401) {
-//                            errorMessage = message+" Please login again";
-//                        } else if (networkResponse.statusCode == 400) {
-//                            errorMessage = message+ " Check your inputs";
-//                        } else if (networkResponse.statusCode == 500) {
-//                            errorMessage = message+" Something is getting wrong";
-//                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                Log.i("Error", errorMessage);
-//                error.printStackTrace();
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("user_id", Userid);
-//                params.put("topic", "topic1");
-//                params.put("format", "mp4");
-//                params.put("category", "Music");
-//
-//                return params;
-//            }
-//
-//            @Override
-//            protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
-//
-//                Map<String, VolleyMultipartRequest.DataPart> params = new HashMap<>();
-//
-//                params.put("file_name", new VolleyMultipartRequest.DataPart(filemanagerstring,selectedImageUri,"mp4"));
-//
-//                params.put("uploaded_file_sig", new VolleyMultipartRequest.DataPart("Signature", AppHelper.getFileDataFromDrawable(getBaseContext(), imageview2.getDrawable()), "image/jpeg"));
-//
-//                return params;
-//            }
-//        };
-//
-//        MySingleton.getInstance(getBaseContext()).addToRequestque(multipartRequest);
-//    }
-
-//    private void Upload() throws IOException {
-////        FileInputStream fileInputStream = new FileInputStream(selectedFile);
-//        URL url = new URL("https://rentopool.com/starkwiz/api/auth/createshowcase");
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//        connection.setDoInput(true);//Allow Inputs
-//        connection.setDoOutput(true);//Allow Outputs
-//        connection.setUseCaches(false);//Don't use a cached Copy
-//        connection.setRequestMethod("POST");
-//        connection.setRequestProperty("Connection", "Keep-Alive");
-//        connection.setRequestProperty("ENCTYPE", "multipart/form-data");
-//        connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-//        connection.setRequestProperty("uploaded_file", selectedFilePath);
-//
-//        //creating new dataoutputstream
-//        dataOutputStream = new DataOutputStream(connection.getOutputStream());
-//
-//        //writing bytes to data outputstream
-//        dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
-//        dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""
-//                + selectedFilePath + "\"" + lineEnd);
-//
-//        dataOutputStream.writeBytes(lineEnd);
-//
-//        //returns no. of bytes present in fileInputStream
-//        bytesAvailable = fileInputStream.available();
-//        //selecting the buffer size as minimum of available bytes or 1 MB
-//        bufferSize = Math.min(bytesAvailable, maxBufferSize);
-//        //setting the buffer as byte array of size of bufferSize
-//        buffer = new byte[bufferSize];
-//
-//        //reads bytes from FileInputStream(from 0th index of buffer to buffersize)
-//        bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-//
-//        //loop repeats till bytesRead = -1, i.e., no bytes are left to read
-//        while (bytesRead > 0) {
-//            //write the bytes read from inputstream
-//            dataOutputStream.write(buffer, 0, bufferSize);
-//            bytesAvailable = fileInputStream.available();
-//            bufferSize = Math.min(bytesAvailable, maxBufferSize);
-//            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-//        }
-//
-//        dataOutputStream.writeBytes(lineEnd);
-//        dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-//
-//        serverResponseCode = connection.getResponseCode();
-//        String serverResponseMessage = connection.getResponseMessage();
-//
-//        Log.i(TAG, "Server Response is: " + serverResponseMessage + ": " + serverResponseCode);
-//
-//        //response code of 200 indicates the server status OK
-//        if (serverResponseCode == 200) {
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    tvFileName.setText("File Upload completed.\n\n You can see the uploaded file here: \n\n" + "http://coderefer.com/extras/uploads/" + fileName);
-//                }
-//            });
-//        }
-//
-//        //closing the input and output streams
-//        fileInputStream.close();
-//        dataOutputStream.flush();
-//        dataOutputStream.close();
-//    }
-
-    private class UploadVideoToServer extends AsyncTask<Void, Integer, String> {
-        @Override
-        protected void onPreExecute() {
-            // setting progress bar to zero
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... progress) {
-
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return uploadFile();
-        }
-
-        @SuppressWarnings("deprecation")
-        private String uploadFile() {
-
-            try {
-
-
-                HttpsTrustManager.allowAllSSL();
-
-                responseString = null;
-
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("https://rentopool.com/starkwiz/api/auth/createshowcase");
-
-                try {
-                    AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
-                            new AndroidMultiPartEntity.ProgressListener() {
-
-                                @Override
-                                public void transferred(long num) {
-// publishProgress((int) ((num / (float) totalSize) * 100));
-                                }
-                            });
-
-
-                    File sourceFile = new File(selectedVideoPath);
-
-                    // Adding file data to http body
-                    entity.addPart("file_name", new FileBody(sourceFile));
-                    // Extra parameters if you want to pass to server
-                    entity.addPart("user_id", new StringBody(Userid));
-                    entity.addPart("topic", new StringBody("topic1"));
-                    entity.addPart("format", new StringBody("mp4"));
-                    entity.addPart("category", new StringBody("Music"));
-
-// totalSize = entity.getContentLength();
-                    httppost.setEntity(entity);
-
-                    // Making server call
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity r_entity = response.getEntity();
-                    int statusCode = response.getStatusLine().getStatusCode();
-                    if (statusCode == 200) {
-                        // Server response
-                        responseString = EntityUtils.toString(r_entity);
+                        dialog.dismiss();
                         try {
-                            JSONObject obj = new JSONObject(responseString);
-                            JSONObject res = obj.getJSONObject("response");
-                            String mStatus = res.getString("status");
-                            Log.e("Json status", mStatus);
-                            if (mStatus.equalsIgnoreCase("1")) {
-                                Toast.makeText(Music_Activity.this, "Video Uploaded", Toast.LENGTH_SHORT).show();
+                            JSONObject object = new JSONObject(response);
+                            String Information = object.getString("Information");
+
+                            JSONArray array = new JSONArray(Information);
+
+                            for (int i = 0 ; i<array.length(); i++){
+
+                                JSONObject object1 = array.getJSONObject(i);
+
+                                String Category = object1.getString("category");
+                                if (Category.equals("Music")){
+
+                                    Topics_Modelclass modelclass = new Topics_Modelclass(
+                                            object1.getString("id"),
+                                            object1.getString("category"),
+                                            object1.getString("topic"),
+                                            object1.getString("class")
+                                    );
+
+                                    list_topics.add(modelclass);
+                                }
+
+                                Topic_Adapter adapter = new Topic_Adapter(list_topics,Music_Activity.this);
+                                lv_tpopics.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-                    } else {
-                        responseString = "Error occurred! Http Status Code: "
-                                + statusCode;
-                        Toast.makeText(Music_Activity.this, responseString, Toast.LENGTH_SHORT).show();
                     }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-
-                } catch (ClientProtocolException e) {
-                    responseString = e.toString();
-                } catch (IOException e) {
-                    responseString = e.toString();
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                dialog.dismiss();
             }
-            return responseString;
-        }
+        });
 
-        @Override
-        protected void onPostExecute(String result) {
-            Log.e("Response for video", "Response from server: " + result);
+        MySingleton.getInstance(Music_Activity.this).addToRequestque(stringRequest);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        cameraOpertions();
+    }
 
-            // showing the server response in an alert dialog
-// showAlert(result);
+    public void cameraOpertions() {
 
-            super.onPostExecute(result);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_DENIED || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_DENIED) {
+                //Permission not enabled request it
+                String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                // show popup to request permission
+
+                requestPermissions(permission, 100);
+
+            } else {
+            }
+        } else {
+
         }
 
     }

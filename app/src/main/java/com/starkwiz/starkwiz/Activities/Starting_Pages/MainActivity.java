@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.starkwiz.starkwiz.R;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView SpalshImage;
     private Animation animation;
+    LinearLayout txtsecind;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -29,10 +31,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SpalshImage = findViewById(R.id.spalshimg);
+        txtsecind = findViewById(R.id.txtsecind);
 
 
         animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         SpalshImage.startAnimation(animation);
+        txtsecind.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 animation = AnimationUtils.loadAnimation(MainActivity.this,
                         R.anim.fade_out);
                 SpalshImage.startAnimation(animation);
+                txtsecind.startAnimation(animation);
 
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override

@@ -26,21 +26,59 @@
         android:layout_marginTop="111dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:textSize="22dp"
+        android:textSize="16dp"
         android:textColor="@color/oceanblue"></TextView>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/txtsecind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@+id/txtfirst"
-        android:text="The Battle of the Bests."
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/nunito"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/theme_blue"></TextView>
+        android:layout_marginTop="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="The "
+            android:textColor="@color/theme_blue"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Battle "
+            android:textColor="@color/theme_blue"
+            android:textSize="14dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="of the "
+            android:textColor="@color/theme_blue"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Best."
+            android:textColor="@color/theme_blue"
+            android:textSize="14dp"
+            android:textStyle="bold"></TextView>
+
+    </LinearLayout>
+
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="100dp"

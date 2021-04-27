@@ -31,6 +31,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -774,6 +775,7 @@ public class InfoFragment extends Fragment {
 
 
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
     }
 
@@ -848,8 +850,6 @@ public class InfoFragment extends Fragment {
             }
 
 
-
-
             JSONObject parameters = new JSONObject(params);
 
             JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.StoreProfile, parameters, new Response.Listener<JSONObject>() {
@@ -881,9 +881,6 @@ public class InfoFragment extends Fragment {
 
             Volley.newRequestQueue(getActivity()).add(jsonRequest);
         }
-
-
-
 
     }
 

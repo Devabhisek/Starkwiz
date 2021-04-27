@@ -8,7 +8,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:backgroundTint="@color/white"
-    android:layout_marginTop="110dp"
     android:orientation="vertical">
 
 
@@ -52,6 +51,7 @@
                 android:text="You can disconnect any added account\nfrom your profile and Log into it\nseparately from other device"
                 android:layout_below="@+id/txt_typeofuser"
                 android:layout_marginTop="8dp"
+                android:layout_marginLeft="22dp"
                 android:textSize="16dp"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -62,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:text="Once disconnected you will have to\n provide Log in details to add the\n account again."
                 android:layout_below="@+id/txt_typeofuser"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="22dp"
                 android:textSize="16dp"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -78,7 +79,7 @@
 
 
     <Button
-        android:id="@+id/btn_change_email_confirm"
+        android:id="@+id/btn_change_email_close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"

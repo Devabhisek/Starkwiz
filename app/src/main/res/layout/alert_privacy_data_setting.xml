@@ -17,103 +17,115 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="8dp">
 
-            <ImageView
-                android:id="@+id/img_alert"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/logo"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="11dp"></ImageView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="11dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/white">
 
-            <TextView
-                android:id="@+id/txt_typeofuser"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Privacy and Data"
-                android:layout_below="@+id/img_alert"
-                android:layout_marginTop="8dp"
-                android:textSize="22dp"
-                android:textColor="@color/theme_blue"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"></TextView>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/img_alert"
+                    android:layout_width="122dp"
+                    android:layout_height="55dp"
+                    android:src="@mipmap/logo"
+                    android:layout_gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"></ImageView>
+
+                <TextView
+                    android:id="@+id/txt_typeofuser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy and Data"
+                    android:layout_below="@+id/img_alert"
+                    android:layout_marginTop="8dp"
+                    android:textSize="22dp"
+                    android:textColor="@color/theme_blue"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"></TextView>
 
 
-            <TextView
-                android:id="@+id/txt_belowtypeofuser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pick on required Privacy and Data\nmanagement"
-                android:layout_below="@+id/txt_typeofuser"
-                android:layout_marginTop="8dp"
-                android:textSize="16dp"
-                android:textColor="@color/theme_blue"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"></TextView>
+                <TextView
+                    android:id="@+id/txt_belowtypeofuser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pick on required Privacy and Data\nmanagement"
+                    android:layout_below="@+id/txt_typeofuser"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/theme_blue"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"></TextView>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/theme_blue"
-                android:text=" All activity back on Email"
-                android:fontFamily="@font/nunito"
-                android:checked="true"
-                android:textColor="@color/black"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="55dp"></CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/theme_blue"
+                    android:text=" All activity back on Email"
+                    android:fontFamily="@font/nunito"
+                    android:checked="true"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="55dp"></CheckBox>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/theme_blue"
-                android:fontFamily="@font/nunito"
-                android:text=" All achievement data on Email"
-                android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/theme_blue"
+                    android:fontFamily="@font/nunito"
+                    android:text=" All achievement data on Email"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="55dp"></CheckBox>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/theme_blue"
-                android:fontFamily="@font/nunito"
-                android:text=" Hide or profile from Search Engine"
-                android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/theme_blue"
+                    android:fontFamily="@font/nunito"
+                    android:text=" Hide or profile from Search Engine"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="55dp"></CheckBox>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/theme_blue"
-                android:fontFamily="@font/nunito"
-                android:text=" Use your activity for better experience"
-                android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/theme_blue"
+                    android:fontFamily="@font/nunito"
+                    android:text=" Use your activity for better experience"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="55dp"></CheckBox>
 
-          <Button
-              android:id="@+id/btn_alert_clearcache"
-              android:layout_width="160dp"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:textAllCaps="false"
-              android:fontFamily="@font/nunito"
-              android:background="@drawable/round_textview_clicked"
-              android:text="Clear Cache"
-              android:layout_marginTop="8dp"
-              android:layout_marginBottom="8dp"
-              android:textColor="@color/white"></Button>
-
-
+                <Button
+                    android:id="@+id/btn_alert_clearcache"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/nunito"
+                    android:background="@drawable/round_textview_clicked"
+                    android:text="Clear Cache"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/white"></Button>
 
 
 
-        </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
 
 
 

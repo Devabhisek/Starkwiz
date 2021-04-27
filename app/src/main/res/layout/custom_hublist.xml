@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/txt_hublist"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="22dp"
+        android:textColor="#bebebe"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/round_textview"
+        android:text="Home/Private tutor"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"></CheckBox>
+
 
 </LinearLayout>

@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <LinearLayout android:visibility="gone"
                 android:id="@+id/linear_personalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,12 +57,14 @@
 
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -74,25 +76,31 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="UK834H717"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                <TableRow>
+
+
+                <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="City"
@@ -102,23 +110,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_city"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -130,23 +142,28 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -158,25 +175,30 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_school"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Deepika English\nMedium School"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                <TableRow>
+
+                <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Location"
@@ -186,23 +208,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_location"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sector 5, Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -214,23 +240,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_contact"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="PhD. in Mathematics"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -242,16 +272,18 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_website"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="6 Years"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
 
@@ -273,6 +305,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_persona_edit"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -313,21 +346,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_teacher_one"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/person"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_teacher_two"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/persontwo"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_teacher_three"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personthree"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -338,21 +371,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_teacher_four"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:scaleType="centerCrop"
-                                android:src="@mipmap/persomfour"></ImageView>
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="95dp"
-                                android:src="@mipmap/personfive"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_teacher_five"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:id="@+id/img_teacher_six"
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -363,12 +396,14 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -380,37 +415,41 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_dob"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="21st August 2010"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="About me"
+                        android:text="About us"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_about"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:gravity="center"
@@ -418,65 +457,55 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                <TableRow>
+
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Interest"
-                        android:layout_weight="5"
+                        android:text="Interests"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="75dp"
+                    <HorizontalScrollView
+                        android:layout_width="318dp"
                         android:layout_height="wrap_content"
-                        android:text="Music"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="11dp"
-                        android:textColor="@color/white"></TextView>
+                        android:layout_marginLeft="16dp"
+                        android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Poetry"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lv_interest"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Travel"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -496,6 +525,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_location_edit"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -509,12 +539,14 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -526,16 +558,18 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_address"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -555,6 +589,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_socialmedia_edit"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -568,26 +603,27 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Facebook"
-                        android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_fblink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="facebook.com/queenmeher"
                         android:layout_weight="5"
                         android:layout_marginLeft="11dp"
                         android:textSize="18dp"
@@ -595,28 +631,31 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Instagram"
-                        android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_teacher_instalink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="instagram.com/queenmeher"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:layout_marginLeft="11dp"
@@ -624,7 +663,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
                 <TextView
@@ -642,7 +683,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/linear_editpersonalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -669,10 +709,11 @@
                     <TextView
                         android:id="@+id/txt_editgeneralinfo"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -683,15 +724,18 @@
 
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TableRow>
+
+
+                <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="User ID"
                         android:layout_weight="5"
@@ -700,26 +744,30 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_teacher_edit_userid"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="UK834H717"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="City"
                         android:layout_weight="5"
@@ -728,9 +776,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_parent_editcity"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -738,17 +786,21 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="State"
                         android:layout_weight="5"
@@ -757,9 +809,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_parent_editstate"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -767,17 +819,21 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="School"
                         android:layout_weight="5"
@@ -786,9 +842,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_teacher_editschool"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Deepika English\nMedium School"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -796,17 +852,21 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Location"
                         android:layout_weight="5"
@@ -815,9 +875,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_parent_editlocation"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sector 5, Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -825,49 +885,78 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Board"
-                        android:layout_weight="5"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"></TextView>
+                    <TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ICSE"
-                        android:textSize="18dp"
-                        android:textColor="@color/theme_blue"
-                        android:textStyle="bold"></TextView>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Education"
+                            android:layout_weight="5"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" / "
-                        android:textSize="18dp"
-                        android:textColor="@color/black"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CBSE"
-                        android:textSize="18dp"
-                        android:textColor="@color/black"></TextView>
+                        <EditText
+                            android:id="@+id/et_parent_editcontact"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:textSize="18dp"
+                            android:textColor="@color/black"
+                            android:backgroundTint="@android:color/holo_blue_light"></EditText>
 
 
 
-                </LinearLayout>
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Experience"
+                            android:layout_weight="5"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"></TextView>
+
+                        <EditText
+                            android:id="@+id/et_parent_editwebsite"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:textSize="18dp"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:backgroundTint="@android:color/holo_blue_light"></EditText>
+
+
+
+                    </TableRow>
+
+                </TableLayout>
+
+
 
 
                 <RelativeLayout
@@ -888,11 +977,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_persona_save"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -928,21 +1019,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_parent_editone"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/person"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_parent_edittwo"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/persontwo"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_parent_editthree"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personthree"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -953,21 +1044,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_parent_editfour"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:scaleType="centerCrop"
-                                android:src="@mipmap/persomfour"></ImageView>
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="95dp"
-                                android:src="@mipmap/personfive"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_parent_editfive"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:id="@+id/img_parent_editsix"
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -978,15 +1069,17 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Birthday"
                         android:layout_weight="5"
@@ -994,28 +1087,33 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <EditText
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/et_teacher_editdob"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="21st August 2010"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
-                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+                        android:backgroundTint="@android:color/holo_blue_light"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TableRow>
+
+
+                <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="About me"
                         android:layout_weight="5"
@@ -1024,79 +1122,74 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_teacher_editabout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
-                        android:layout_weight="5"
-                        android:textSize="18dp"
-                        android:gravity="center"
                         android:layout_marginLeft="22dp"
+                        android:layout_weight="5"
                         android:backgroundTint="@android:color/holo_blue_light"
-                        android:textColor="@color/black"></EditText>
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"></EditText>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Interest"
-                        android:layout_weight="5"
                         android:textSize="16dp"
+                        android:layout_weight="5"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="75dp"
+                    <HorizontalScrollView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Music"
-                        android:background="@drawable/rounded_button"
                         android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="11dp"
-                        android:textColor="@color/white"></TextView>
+                        android:layout_marginLeft="16dp"
+                        android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Poetry"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lv_editinterest"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Travel"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
 
 
 
-                </LinearLayout>
+
+                </TableRow>
+
+                </TableLayout>
+
 
                 <EditText
+                    android:id="@+id/et_teacher_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Singing,Dance,Sports etc.."
@@ -1126,11 +1219,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_location_save"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:text="Edit"
+                        android:layout_height="35dp"
+                        android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -1139,15 +1234,18 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TableRow>
+
+
+                <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Address"
                         android:layout_weight="5"
@@ -1156,9 +1254,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_teacher_address"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -1166,7 +1264,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -1186,11 +1286,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_social_save"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -1199,15 +1301,17 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Facebook"
                         android:layout_weight="5"
@@ -1216,9 +1320,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_teacher_fb"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="facebook.com/queenmeher"
                         android:backgroundTint="@android:color/holo_blue_light"
                         android:layout_weight="5"
                         android:layout_marginLeft="11dp"
@@ -1227,14 +1331,18 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1246,6 +1354,7 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
+                        android:id="@+id/et_teacher_insta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="instagram.com/queenmeher"
@@ -1257,7 +1366,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
                 <TextView

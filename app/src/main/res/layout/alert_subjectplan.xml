@@ -23,6 +23,7 @@
             android:layout_alignParentTop="true">
 
             <ImageView
+                android:id="@+id/img_cross_subjects"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@mipmap/cross"
@@ -36,9 +37,9 @@
 
                 <ImageView
                     android:id="@+id/img_alert"
-                    android:layout_width="220dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/logo"
+                    android:src="@mipmap/splash"
                     android:layout_centerHorizontal="true"></ImageView>
 
 
@@ -72,85 +73,172 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/txtrs"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
                 android:backgroundTint="@color/white"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/theme_blue"
+                android:layout_marginBottom="11dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@drawable/plansgradient">
-
-                    <TextView
-                        android:id="@+id/txtplantype_subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/nunito"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="11dp"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rs."
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/nunito"
-                        android:textSize="19dp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="55dp"></TextView>
-
-                    <TextView
-                        android:id="@+id/txtplanprice_subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/nunito"
-                        android:textSize="26dp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="3dp"></TextView>
-
+                    android:background="@drawable/bordee"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="22dp"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/plansgradient">
 
                         <TextView
-                            android:id="@+id/txtplanvalidity_subject"
+                            android:id="@+id/txtplantype"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/nunito"
+                            android:textSize="18dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="11dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs."
                             android:textColor="@color/white"
                             android:fontFamily="@font/nunito"
                             android:textSize="19dp"
                             android:textStyle="bold"
                             android:layout_marginTop="5dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="11dp"></TextView>
+                            android:layout_marginLeft="16dp"></TextView>
 
                         <TextView
-                            android:id="@+id/txt_perprice_subject"
+                            android:id="@+id/txtplanprice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:fontFamily="@font/nunito"
-                            android:textSize="15dp"
+                            android:textSize="26dp"
                             android:textStyle="bold"
-                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="3dp"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="22dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtplanvalidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/nunito"
+                                android:textSize="17dp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="11dp"></TextView>
+
+                            <TextView
+                                android:id="@+id/txt_perprice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/nunito"
+                                android:textSize="15dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginLeft="3dp"></TextView>
+                        </LinearLayout>
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/lineardisciunt"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/plan_gradient"
+                        android:layout_marginTop="-3dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs."
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/nunito"
+                            android:textSize="19dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="22dp"></TextView>
+
+                        <TextView
+                            android:id="@+id/txt_disciuntprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/nunito"
+                            android:textSize="19dp"
+                            android:text="80"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="11dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" /- only \nfor Limited Period"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/nunito"
+                            android:textSize="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="8dp"></TextView>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_disciuntpricemonth"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito"
+                                android:paddingLeft="11dp"
+                                android:textSize="14dp"
+                                android:text="RS. "
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="11dp"></TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito"
+                                android:textSize="11dp"
+                                android:text="(Exclusive of all Taxes and GST charges)"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="11dp"></TextView>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

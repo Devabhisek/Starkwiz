@@ -48,7 +48,7 @@
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="55dp"
         android:layout_marginTop="16dp"></TextView>
 
     <TextView
@@ -57,17 +57,18 @@
         android:text="Your School, Music Class, Book-\nShop we have covered up all here."
         android:textColor="@color/black"
         android:textSize="16dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="22dp"></TextView>
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="5dp"></TextView>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_textview_clicked"
         android:text="Connect with Facebook"
         android:textColor="@color/white"
+        android:textAllCaps="false"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="22dp"></Button>
+        android:layout_marginLeft="55dp"></Button>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -75,9 +76,10 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:tabTextColor="@color/black"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabIndicatorColor="@color/theme_blue"
-        app:tabTextAppearance="@style/MineCustomTabText"
-        app:tabIndicatorFullWidth="false">
+        app:tabIndicatorFullWidth="false"
+        android:layout_marginTop="35dp">
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

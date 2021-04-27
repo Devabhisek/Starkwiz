@@ -171,50 +171,11 @@
             android:textSize="16dp"></TextView>
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv_tpopics"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. Topic"
-            android:textStyle="bold"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="16dp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2. Topic"
-            android:textStyle="bold"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3. Topic"
-            android:textStyle="bold"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4. Topic"
-            android:textStyle="bold"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="16dp"></TextView>
-
+            android:layout_margin="8dp"></androidx.recyclerview.widget.RecyclerView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

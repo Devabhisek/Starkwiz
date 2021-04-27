@@ -146,7 +146,7 @@
         android:id="@+id/btn_getstarted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/round_textview_grey"
         android:text="Get Started ! "
         android:textColor="@color/white"
         android:textAllCaps="false"

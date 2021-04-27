@@ -16,10 +16,20 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <GridView
+                android:id="@+id/sowcase_grid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/lv_showcase"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_gravity="center"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="5dp"
+                android:backgroundTint="@color/white"
+                android:horizontalSpacing="5dp"
+                android:layout_margin="8dp"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="vertical"
+                android:background="#EFF3F6"
+                android:numColumns="2"></GridView>
 
         </LinearLayout>
 

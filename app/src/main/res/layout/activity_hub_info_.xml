@@ -40,6 +40,7 @@
 
 
         <EditText
+            android:id="@+id/et_hubinfo_name"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_marginLeft="22dp"
@@ -51,6 +52,7 @@
             android:layout_marginTop="22dp"></EditText>
 
         <EditText
+            android:id="@+id/et_hubinfo_address"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_marginLeft="22dp"
@@ -85,6 +87,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/et_hubinfo_yearestablishment"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_marginLeft="22dp"
@@ -111,13 +114,13 @@
                 android:text="Contact +91"></TextView>
 
             <EditText
+                android:id="@+id/et_hubinfo_mobileno"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:layout_marginLeft="22dp"
                 android:background="@drawable/round_textview"
-                android:hint="778 898 6838"
+                android:hint="Enter Mobile No"
                 android:paddingLeft="11dp"
-                android:drawableRight="@drawable/ic_baseline_check_circle_24"
                 android:textColorHint="#bebebe"></EditText>
 
         </LinearLayout>
@@ -126,7 +129,7 @@
             android:id="@+id/btn_hubinfo"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/round_textview"
             android:textColor="@color/white"
             android:text="Proceed"
             android:layout_gravity="center"

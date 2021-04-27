@@ -62,26 +62,26 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txt_parent_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Divya Meher"
                     android:textColor="@color/theme_blue"
                     android:textSize="22dp"
                     android:textStyle="bold"
                     android:layout_marginTop="22dp"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_parent_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rourkela, Odisha"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:layout_marginTop="5dp"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_parent_profession"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Housewife"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold"

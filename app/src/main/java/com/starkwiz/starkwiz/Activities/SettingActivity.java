@@ -9,15 +9,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +32,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar;
+import com.squareup.picasso.Picasso;
+import com.starkwiz.starkwiz.Activities.Starting_Pages.UserSelection_Activity;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -37,6 +45,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,9 +53,13 @@ public class SettingActivity extends AppCompatActivity {
 
     TextView txtsetting_account,txtsetting_notification,txtsetting_privacyanddata,txtsetting_plandetail,txt_username,
             txt_setting_email,txt_setting_changepassword,txt_changeregion,txt_deactivate_account,txt_closeaccount,
-            txtsetting_supportnotification,txtsetting_supportprivacy,txt_disconnect_knowmore,txtsetting_logout;
-    LinearLayout linear_setting_account,linear_setting_notification,linear_setting_privacydata,linear_setting_plandetails,linear_switch_account;
-    String UserId,Email_Id,NewEmail,Password,OldPassword,NewPassword,ConfirmPassword,strtext;
+            txtsetting_supportnotification,txtsetting_supportprivacy,txt_disconnect_knowmore,txtsetting_logout,
+            txt_loginoption,txt_connectedoption;
+    LinearLayout linear_setting_account,linear_setting_notification,linear_setting_privacydata,
+            linear_setting_plandetails,linear_switch_account,linear_loginoption,linear_connectedaccount;
+    String UserId,Email_Id,NewEmail,Password,OldPassword,NewPassword,ConfirmPassword,strtext,image,Name;
+    ImageView img_profileone;
+    RoundedHorizontalProgressBar progress_bar_3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +84,41 @@ public class SettingActivity extends AppCompatActivity {
         txt_disconnect_knowmore = findViewById(R.id.txt_disconnect_knowmore);
         txtsetting_logout = findViewById(R.id.txtsetting_logout);
         txt_username = findViewById(R.id.txt_username);
+        linear_loginoption = findViewById(R.id.linear_loginoption);
+        linear_connectedaccount = findViewById(R.id.linear_connectedaccount);
+        txt_loginoption = findViewById(R.id.txt_loginoption);
+        txt_connectedoption = findViewById(R.id.txt_connectedoption);
+        img_profileone = findViewById(R.id.img_profileone);
 
         UserId = SharedPrefManager.getInstance(SettingActivity.this).getUser().getId();
         Email_Id = SharedPrefManager.getInstance(SettingActivity.this).getUser().getEmail();
+
+        txt_loginoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (linear_loginoption.getVisibility()==View.VISIBLE){
+                    linear_loginoption.setVisibility(View.GONE);
+                    txt_loginoption.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_keyboard_arrow_down_24, 0);
+                }else {
+                    linear_loginoption.setVisibility(View.VISIBLE);
+                    txt_loginoption.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_keyboard_arrow_up_24, 0);
+                }
+            }
+        });
+
+        txt_connectedoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (linear_connectedaccount.getVisibility()==View.VISIBLE){
+                    linear_connectedaccount.setVisibility(View.GONE);
+                    txt_connectedoption.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_keyboard_arrow_down_24, 0);
+                }else {
+                    linear_connectedaccount.setVisibility(View.VISIBLE);
+                    txt_connectedoption.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_keyboard_arrow_up_24, 0);
+                }
+            }
+        });
 
 
         txtsetting_logout.setOnClickListener(new View.OnClickListener() {
@@ -282,6 +327,23 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.show();
                 Window window = dialog.getWindow();
                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+               Button btn_change_email_cancel = dialog.findViewById(R.id.btn_change_email_cancel);
+               Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+
+                btn_change_email_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
@@ -298,6 +360,10 @@ public class SettingActivity extends AppCompatActivity {
                         final Dialog dialog = new Dialog(SettingActivity.this);
                         dialog.setContentView(R.layout.alert_clear_cache);
                         dialog.show();
+                        progress_bar_3 = dialog.findViewById(R.id.progress_bar_3);
+                        deleteCache(SettingActivity.this);
+                        progress_bar_3.animateProgress(2000, 0, 100); // (animationDuration, oldProgress, newProgress)
+
                         Window window = dialog.getWindow();
                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     }
@@ -311,36 +377,9 @@ public class SettingActivity extends AppCompatActivity {
         linear_switch_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(SettingActivity.this);
-                dialog.setContentView(R.layout.alert_switch_profile);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                TextView txt_disconnect_knowmore = dialog.findViewById(R.id.txt_disconnect_knowmore);
-                Button btn_switch_account = dialog.findViewById(R.id.btn_switch_account);
-                txt_disconnect_knowmore.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final Dialog dialog = new Dialog(SettingActivity.this);
-                        dialog.setContentView(R.layout.alert_disconnet_knowmore);
-                        dialog.show();
-                        Window window = dialog.getWindow();
-                       window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    }
-                });
-
-                btn_switch_account.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final Dialog dialog = new Dialog(SettingActivity.this);
-                        dialog.setContentView(R.layout.alert_add_account);
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        dialog.show();
-                        Window window = dialog.getWindow();
-                       window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    }
-                });
-                dialog.show();
-                Window window = dialog.getWindow();
-               window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+               Intent intent = new Intent(SettingActivity.this, UserSelection_Activity.class);
+               intent.putExtra("newaccount","newaccount");
+               startActivity(intent);
             }
         });
     }
@@ -621,7 +660,30 @@ public class SettingActivity extends AppCompatActivity {
 
                             txt_setting_email.setText(object.getString("email"));
                             txt_username.setText(object.getString("first_name")+" "+object.getString("last_name"));
+                            Name=object.getString("first_name")+"\n "+object.getString("last_name");
+                            image = object.getString("profile_image");
+                            if (!image.equals("null")){
 
+                                try {
+                                    image = image.replace("data:image/png;base64,","");
+                                    byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+                                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                                    float degrees = 90; //rotation degree
+                                    Matrix matrix = new Matrix();
+                                    matrix.setRotate(degrees);
+                                    decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+
+                                    img_profileone.setImageBitmap(decodedByte);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }else {
+                                Picasso.with(SettingActivity.this)
+                                        .load(R.mipmap.nophoto)
+                                        .into(img_profileone);
+                            }
                         }
 
                     }
@@ -650,6 +712,30 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -657,3 +743,93 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 }
+
+
+//    final Dialog dialog = new Dialog(SettingActivity.this);
+//                dialog.setContentView(R.layout.alert_switch_profile);
+//                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                        TextView txt_disconnect_knowmore = dialog.findViewById(R.id.txt_disconnect_knowmore);
+//                        TextView txt_disconnect_account = dialog.findViewById(R.id.txt_disconnect_account);
+//                        TextView txt_switch_name = dialog.findViewById(R.id.txt_switch_name);
+//                        ImageView img_switchprofile = dialog.findViewById(R.id.img_switchprofile);
+//                        Button btn_switch_account = dialog.findViewById(R.id.btn_switch_account);
+//
+//                        txt_switch_name.setText(Name);
+//
+//                        if (!image.equals("null")){
+//
+//                        try {
+//                        image = image.replace("data:image/png;base64,","");
+//                        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+//                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//
+//                        float degrees = 90; //rotation degree
+//                        Matrix matrix = new Matrix();
+//                        matrix.setRotate(degrees);
+//                        decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//
+//                        img_switchprofile.setImageBitmap(decodedByte);
+//                        }catch (Exception e){
+//                        e.printStackTrace();
+//                        }
+//
+//                        }else {
+//                        Picasso.with(SettingActivity.this)
+//                        .load(R.mipmap.nophoto)
+//                        .into(img_switchprofile);
+//                        }
+//
+//                        txt_disconnect_knowmore.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//final Dialog dialog = new Dialog(SettingActivity.this);
+//        dialog.setContentView(R.layout.alert_disconnet_knowmore);
+//        dialog.show();
+//        Button btn_change_email_close = dialog.findViewById(R.id.btn_change_email_close);
+//
+//        txt_disconnect_account.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//final AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingActivity.this)
+//        .setMessage("Are you sure you want to disconnect your account?")
+//        .setPositiveButton("Disconnect", new DialogInterface.OnClickListener() {
+//@Override
+//public void onClick(DialogInterface dialogInterface, int i) {
+//        SharedPrefManager.getInstance(SettingActivity.this).logout();
+//        }
+//        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//@Override
+//public void onClick(DialogInterface dialogInterface, int i) {
+//        dialogInterface.cancel();
+//        }
+//        });
+//        AlertDialog alert11 = alertDialog.create();
+//        alert11.show();
+//        }
+//        });
+//
+//        btn_change_email_close.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//        dialog.dismiss();
+//        }
+//        });
+//        Window window = dialog.getWindow();
+//        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        }
+//        });
+//
+//        btn_switch_account.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//final Dialog dialog = new Dialog(SettingActivity.this);
+//        dialog.setContentView(R.layout.alert_add_account);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.show();
+//        Window window = dialog.getWindow();
+//        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        }
+//        });
+//        dialog.show();
+//        Window window = dialog.getWindow();
+//        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

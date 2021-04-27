@@ -18,7 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="122dp"
-                android:layout_height="175dp"
+                android:layout_height="200dp"
                 android:layout_margin="11dp"
                 android:background="@drawable/bordeethree"
                 android:orientation="horizontal">
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hubs you follow will apear here.\nlet's search some of the Hubs\nnear you."
+                android:text="Schools, Book Store, Music Class\nand a lot more of educational hubs\n we have here for you."
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/nunito"
                 android:textColor="@color/theme_blue"
@@ -63,8 +63,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_textview_clicked"
                     android:text="Search"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="30dp"
                     android:textColor="@color/white"
                     android:textAllCaps="false"></Button>
 
