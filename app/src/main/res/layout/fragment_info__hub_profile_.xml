@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <LinearLayout android:visibility="gone"
                 android:id="@+id/linear_personalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -58,13 +58,14 @@
 
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -75,24 +76,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_userid"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="UK834H717"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -103,23 +107,26 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_city"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -131,23 +138,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -159,23 +170,28 @@
                         android:textStyle="bold"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_location"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sector 5, Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="0dp"
@@ -187,24 +203,27 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_contact"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="+91 987654321"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -215,16 +234,18 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_website"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="www.google.com"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
 
@@ -247,6 +268,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_persona"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -287,21 +309,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_hub_one"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/person"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_hub_two"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/persontwo"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                    android:id="@+id/img_hub_three"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personthree"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -312,21 +334,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_hub_four"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:scaleType="centerCrop"
-                                android:src="@mipmap/persomfour"></ImageView>
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="95dp"
-                                android:src="@mipmap/personfive"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_hub_five"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:id="@+id/img_hub_six"
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -337,41 +359,46 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Birthday"
+                        android:text="Established"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_established"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="21st August 2010"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -382,9 +409,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_aboutus"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:gravity="center"
@@ -393,15 +420,19 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -412,46 +443,33 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="75dp"
+                    <HorizontalScrollView
+                        android:layout_width="318dp"
                         android:layout_height="wrap_content"
-                        android:text="Music"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="11dp"
-                        android:textColor="@color/white"></TextView>
+                        android:layout_marginLeft="16dp"
+                        android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Poetry"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lv_interest"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Travel"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -471,6 +489,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_locationaddress"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -484,14 +503,17 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                <TableRow>
+
+
+                <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Address"
@@ -501,16 +523,18 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_address"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -530,6 +554,7 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_socialmedia"
                         android:layout_width="75dp"
                         android:layout_height="22dp"
                         android:text="Edit"
@@ -543,12 +568,14 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -560,6 +587,7 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_fblink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="facebook.com/queenmeher"
@@ -570,14 +598,18 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -589,9 +621,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_hub_insta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="instagram.com/queenmeher"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:layout_marginLeft="11dp"
@@ -599,7 +631,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
                 <TextView
@@ -617,7 +651,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/linear_editpersonalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -644,10 +677,11 @@
                     <TextView
                         android:id="@+id/txt_editgeneralinfo"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -658,12 +692,14 @@
 
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -675,26 +711,31 @@
                         android:textColor="@color/black"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_edithub_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="UK834H717"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                <TableRow>
+
+
+                <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="City"
                         android:layout_weight="5"
@@ -703,9 +744,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_hubedit_city"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -713,17 +754,20 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="State"
                         android:layout_weight="5"
@@ -732,9 +776,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_edithub_state"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -742,46 +786,22 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="School"
-                        android:layout_weight="5"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"></TextView>
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Deepika English\nMedium School"
-                        android:layout_weight="5"
-                        android:textSize="18dp"
-                        android:textColor="@color/black"
-                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                <TableRow>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Location"
                         android:layout_weight="5"
@@ -790,9 +810,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/et_hub_edit_location"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sector 5, Rourkela"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -800,49 +820,75 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
+                </TableLayout>
+
+             <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Board"
+                        android:text="Contact"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/et_hub_edit_contact"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="ICSE"
+                        android:layout_weight="5"
                         android:textSize="18dp"
-                        android:textColor="@color/theme_blue"
-                        android:textStyle="bold"></TextView>
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
 
+
+
+                </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                <TableRow>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text=" / "
+                        android:text="Website"
+                        android:layout_weight="5"
                         android:textSize="18dp"
+                        android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/et_hubedit_website"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="CBSE"
+                        android:layout_weight="5"
                         android:textSize="18dp"
-                        android:textColor="@color/black"></TextView>
+                        android:textColor="@color/black"
+                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
+
 
 
                 <RelativeLayout
@@ -863,11 +909,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_save_persona"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -903,21 +951,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_hubedit_one"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/person"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_hubedit_two"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/persontwo"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_hubedit_three"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personthree"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -928,21 +976,21 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/img_hubedit_four"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:scaleType="centerCrop"
-                                android:src="@mipmap/persomfour"></ImageView>
-
-                            <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="95dp"
-                                android:src="@mipmap/personfive"
                                 android:scaleType="centerCrop"></ImageView>
 
                             <ImageView
+                                android:id="@+id/img_hubedit_five"
                                 android:layout_width="100dp"
                                 android:layout_height="95dp"
-                                android:src="@mipmap/personsix"
+                                android:scaleType="centerCrop"></ImageView>
+
+                            <ImageView
+                                android:id="@+id/img_hubedit_six"
+                                android:layout_width="100dp"
+                                android:layout_height="95dp"
                                 android:scaleType="centerCrop"></ImageView>
 
                         </LinearLayout>
@@ -953,55 +1001,61 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Birthday"
+                        android:text="Established"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/txt_hubedit_established"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="21st August 2010"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
-                        android:backgroundTint="@android:color/holo_blue_light"></EditText>
+                        android:backgroundTint="@android:color/holo_blue_light"></TextView>
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About me"
+                        android:text="About us"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
                     <EditText
+                        android:id="@+id/et_hubedit_aboutus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="I am quite mischievous\nsometimes but I keep my\nrhythm of studies inact.\nI love to dance and want\n to be a model"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:gravity="center"
@@ -1011,7 +1065,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
                 <LinearLayout
@@ -1030,48 +1086,33 @@
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
 
-                    <TextView
-                        android:layout_width="75dp"
+                    <HorizontalScrollView
+                        android:layout_width="318dp"
                         android:layout_height="wrap_content"
-                        android:text="Music"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="11dp"
-                        android:textColor="@color/white"></TextView>
+                        android:layout_marginLeft="16dp"
+                        android:fillViewport="true">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Poetry"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lv_editinterest"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="11dp"></androidx.recyclerview.widget.RecyclerView>
 
-                    <TextView
-                        android:layout_width="75dp"
-                        android:layout_height="wrap_content"
-                        android:text="Travel"
-                        android:background="@drawable/rounded_button"
-                        android:layout_weight="5"
-                        android:textSize="14dp"
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/white"></TextView>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
 
 
 
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/et_hubedit_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Singing,Dance,Sports etc.."
@@ -1101,11 +1142,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_save_location"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:text="Edit"
+                        android:layout_height="35dp"
+                        android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -1114,13 +1157,14 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
+                <TableRow>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1131,9 +1175,9 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
+                        android:id="@+id/et_hubedit_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="D-220, Sector-7\nRourkela- 789760\n Sundargarh, Odisha"
                         android:layout_weight="5"
                         android:textSize="18dp"
                         android:textColor="@color/black"
@@ -1141,7 +1185,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -1161,11 +1207,13 @@
                         android:textColor="@color/theme_blue"></TextView>
 
                     <TextView
+                        android:id="@+id/txt_save_social"
                         android:layout_width="75dp"
-                        android:layout_height="30dp"
+                        android:layout_height="35dp"
                         android:text="Done"
+                        android:paddingBottom="11dp"
                         android:layout_centerVertical="true"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:gravity="center"
                         android:background="@drawable/round_textview_clicked"
                         android:layout_alignParentRight="true"
@@ -1174,12 +1222,14 @@
                 </RelativeLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1191,6 +1241,7 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
+                        android:id="@+id/et_hubedit_fblink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="facebook.com/queenmeher"
@@ -1202,14 +1253,18 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
+
+                <TableRow>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1221,6 +1276,7 @@
                         android:textColor="@color/black"></TextView>
 
                     <EditText
+                        android:id="@+id/et_hubedit_insta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="instagram.com/queenmeher"
@@ -1232,7 +1288,9 @@
 
 
 
-                </LinearLayout>
+                </TableRow>
+
+                </TableLayout>
 
 
                 <TextView

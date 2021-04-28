@@ -38,6 +38,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.starkwiz.starkwiz.Activities.Quiz_Activities.Student_Quiz_Activity;
 import com.starkwiz.starkwiz.Adapter.GridAdapter.Getsubject_GridViewAdapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.CoreSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
@@ -186,7 +187,7 @@ import tourguide.tourguide.TourGuide;
                                     try {
                                         JSONObject object = response.getJSONObject(j);
 
-                                        if (object.getString("plan_type").equals("Basic")){
+                                        if (object.getString("plan_type").equals("Basic") || object.getString("plan_type").equals("basic")){
                                             txt_perprice.setText("Rs "+object.getString("plan_price_month")+" / per month");
                                             txtplanprice.setText(object.getString("plan_price"));
                                             txtplantype.setText(object.getString("plan_type"));
@@ -278,7 +279,7 @@ import tourguide.tourguide.TourGuide;
                                             try {
                                                 JSONObject object = response.getJSONObject(j);
 
-                                                if (object.getString("plan_type").equals("Basic")){
+                                                if (object.getString("plan_type").equals("Basic") || object.getString("plan_type").equals("basic")){
                                                     txt_perprice.setText("Rs "+object.getString("plan_price_month")+"/ per month");
                                                     txtplanprice.setText(object.getString("plan_price"));
                                                     txtplantype.setText(object.getString("plan_type"));
@@ -518,6 +519,7 @@ import tourguide.tourguide.TourGuide;
                 btn_plans.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        dialog.dismiss();
                         final Dialog dialog = new Dialog(getActivity());
                         dialog.setContentView(R.layout.alert_subjectplan);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -947,11 +949,11 @@ import tourguide.tourguide.TourGuide;
 
                                     else {
 
-                                        if (PlanType.equals("Basic")){
+                                        if (PlanType.equals("Basic") && list_subjects.size()<6){
                                             Toast.makeText(getActivity(), "Please Choose 6 Subjects", Toast.LENGTH_SHORT).show();
-                                        }else if (PlanType.equals("Standard")){
+                                        }else if (PlanType.equals("Standard") && list_subjects.size()<9){
                                             Toast.makeText(getActivity(), "Please Choose 9 Subjects", Toast.LENGTH_SHORT).show();
-                                        }else if (PlanType.equals("Premium")){
+                                        }else if (PlanType.equals("Premium") && list_subjects.size()<12){
                                             Toast.makeText(getActivity(), "Please Choose 12 Subjects", Toast.LENGTH_SHORT).show();
                                         }
 
@@ -1003,6 +1005,8 @@ import tourguide.tourguide.TourGuide;
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
 
                         GetSubjects();
+
+                        CreateNotification(User_Id,"Your Dynamo has been created.");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1104,6 +1108,55 @@ import tourguide.tourguide.TourGuide;
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
     }
 
+     public void CreateNotification(String user_id, String notification_text){
+
+         ProgressDialog progressDialog = new ProgressDialog(getActivity());
+         progressDialog.setMessage("Loading...");
+         progressDialog.setCancelable(false);
+         progressDialog.show();
+         //HttpsTrustManager.allowAllSSL();
+
+         final Map<String, String> params = new HashMap();
+
+         params.put("user_id", user_id);
+         params.put("notification_text", notification_text);
+
+         JSONObject parameters = new JSONObject(params);
+
+         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+             @Override
+             public void onResponse(JSONObject response) {
+
+                 progressDialog.dismiss();
+
+                 try {
+                     String message= response.getString("message");
+                     if (message.equals("notification created")){
+                         Log.d("success",message);
+                     }
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                 }
+
+
+             }
+
+
+         }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+                 error.printStackTrace();
+                 progressDialog.dismiss();
+
+                 Log.d("error","error");
+
+                 Toast.makeText(getActivity(), "Something went wrong ", Toast.LENGTH_SHORT).show();
+             }
+         });
+
+
+         Volley.newRequestQueue(getActivity()).add(jsonRequest);
+     }
 
 
     @Override

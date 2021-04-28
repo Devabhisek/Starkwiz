@@ -265,10 +265,15 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                progressDialog.dismiss();
+//                Intent intent = new Intent(Signup_SetupPassword_Activity.this, Login_Activity.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
 
     }
@@ -329,6 +334,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progressDialog.dismiss();
+                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -396,6 +402,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progressDialog.dismiss();
+                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -448,8 +455,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startActivity(new Intent(Signup_SetupPassword_Activity.this, Dasboard_Activity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
             }
 
 
@@ -461,7 +467,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
 
     }
@@ -522,7 +528,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
 
     }
@@ -585,7 +591,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
 
     }

@@ -42,6 +42,7 @@ import com.starkwiz.starkwiz.LinkingClass.AndroidMultiPartEntity;
 import com.starkwiz.starkwiz.LinkingClass.HttpsTrustManager;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
+import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Topics_Modelclass;
 import com.starkwiz.starkwiz.R;
 
@@ -216,6 +217,7 @@ public class Music_Activity extends AppCompatActivity {
                                         progress_bar_1.animateProgress(2000, 0, 100); // (animationDuration, oldProgress, newProgress)
                                         btn_music_upload.setText("Uploaded");
                                         btn_music_upload.setEnabled(false);
+                                        CreateNotification(Userid,"Your video is uploaded");
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -374,5 +376,55 @@ public class Music_Activity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void CreateNotification(String user_id, String notification_text){
+
+        ProgressDialog progressDialog = new ProgressDialog(Music_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", user_id);
+        params.put("notification_text", notification_text);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String message= response.getString("message");
+                    if (message.equals("notification created")){
+                        Log.d("success",message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Log.d("error","error");
+
+                Toast.makeText(Music_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Music_Activity.this).add(jsonRequest);
     }
 }

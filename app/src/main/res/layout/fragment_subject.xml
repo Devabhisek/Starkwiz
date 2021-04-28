@@ -59,16 +59,31 @@
                 android:background="@drawable/bordeethree"
                 android:layout_margin="11dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add more subject by upgrading\nyour plan"
-                    android:layout_centerVertical="true"
-                    android:drawableLeft="@mipmap/plus"
-                    android:textColor="@color/theme_blue"
-                    android:drawablePadding="49dp"
-                    android:textSize="17dp"
-                    android:layout_centerHorizontal="true"> </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_margin="11dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/plus"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="49dp"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add more subject by upgrading\nyour plan"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="16dp"></TextView>
+
+                </LinearLayout>
+
+
+
 
             </RelativeLayout>
 

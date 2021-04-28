@@ -173,7 +173,7 @@ public class HubListsActivity extends AppCompatActivity {
         params.put("hub_establishment", YearOfEstablishment);
         params.put("mobile_number", Mobileno);
         params.put("role", "Hub");
-        params.put("hub_type", selected_hubtype);
+        params.put("hub_typee", selected_hubtype);
 
         JSONObject parameters = new JSONObject(params);
 

@@ -22,14 +22,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.CitySpinnerAdapter;
 import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.DistrictSpinnerAdapter;
+import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.School_SpinnerAdapter;
 import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.StateSpinnerAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
+import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.City_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.District_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.School_ModelClass;
 import com.starkwiz.starkwiz.ModelClass.State_ModelClass;
 import com.starkwiz.starkwiz.R;
 
@@ -47,12 +51,14 @@ public class Signup_teaching_Activity extends AppCompatActivity {
     RadioGroup linear_studying_class,linear_studying_classes;
     RadioButton radio_teaching_icse,radio_teaching_cbse,radio_teahing_four,radio_teahing_five,radio_teahing_six,
             radio_teahing_seven,radio_teahing_eight,radio_teahing_nine,radio_teahing_ten;
-    EditText et_personal_schoolname,et_studying_block;
-    String FirstName,LastName,Dob,PhoneNo,Gender,Role,newaccount,cls,board,State,District,City,stateid,districtid;
+    EditText et_studying_block;
+    String FirstName,LastName,Dob,PhoneNo,Gender,Role,newaccount,cls,board,State,District,City,stateid,
+            districtid,district,schoolid,School,cityid;
     ArrayList<State_ModelClass> listStates;
     ArrayList<District_ModelClass>listDistricts;
     ArrayList<City_ModelClass>listCity;
-    Spinner et_personal_firstname,et_personal_lastname,et_studying_city;
+    ArrayList<School_ModelClass>listSchool;
+    Spinner et_personal_firstname,et_personal_lastname,et_studying_city,et_personal_schoolname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,11 +102,10 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                     intent.putExtra("District",District);
                     intent.putExtra("City",City);
                     intent.putExtra("BlockNo",et_studying_block.getText().toString());
-                    intent.putExtra("SchoolName",et_personal_schoolname.getText().toString());
+                    intent.putExtra("SchoolName",School);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 }
-
             }
         });
 
@@ -116,7 +121,6 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                 radio_teahing_ten.setTextColor(getResources().getColor(R.color.gray));
                 linear_studying_classes.clearCheck();
                 cls = "4";
-
             }
         });
 
@@ -230,33 +234,6 @@ public class Signup_teaching_Activity extends AppCompatActivity {
             }
         });
 
-        et_personal_schoolname.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-                if (et_personal_schoolname.getText().toString().trim().length()>0){
-                    btn_signup_teaching.setEnabled(true);
-                    btn_signup_teaching.setBackground(getResources().getDrawable(R.drawable.rounded_button));
-                }else {
-                    btn_signup_teaching.setEnabled(false);
-                    btn_signup_teaching.setBackground(getResources().getDrawable(R.drawable.round_textview));
-                }
-
-            }
-        });
-
-
     }
 
     private void Initialzation() {
@@ -299,6 +276,7 @@ public class Signup_teaching_Activity extends AppCompatActivity {
         listStates = new ArrayList<>();
         listDistricts = new ArrayList<>();
         listCity = new ArrayList<>();
+        listSchool = new ArrayList<>();
     }
 
     private void GetStates(){
@@ -389,20 +367,16 @@ public class Signup_teaching_Activity extends AppCompatActivity {
         progressDialog.show();
         final Map<String,String> params = new HashMap<>();
 
-        params.put("state_id",StateId);
-        JSONObject parameters = new JSONObject(params);
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                URLS.getdistrictbystate, parameters, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/getdistrictbystate?state_id="+StateId, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 progressDialog.dismiss();
                 try {
 
-                    String district = response.getString("district");
+                    //String district = response.getString("district");
 
-                    JSONArray array = new JSONArray(district);
+                    JSONArray array = new JSONArray(response);
                     for (int i = 0 ; i<array.length() ; i++){
 
                         JSONObject object = array.getJSONObject(i);
@@ -435,9 +409,8 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                             District_ModelClass mystate=(District_ModelClass) parent.getSelectedItem();
 
                             districtid = mystate.getId();
-                            District=mystate.getDistrict_name();
-
-                            GetCity(districtid);
+                            district=mystate.getDistrict_name();
+                            GetCity(stateid);
 
 
 
@@ -451,16 +424,14 @@ public class Signup_teaching_Activity extends AppCompatActivity {
 
                     }
                 });
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+
             }
         });
-
-        Volley.newRequestQueue(Signup_teaching_Activity.this).add(jsonObjectRequest);
+        MySingleton.getInstance(Signup_teaching_Activity.this).addToRequestque(stringRequest);
     }
 
     private void GetCity(String District){
@@ -469,22 +440,15 @@ public class Signup_teaching_Activity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        final Map<String,String> params = new HashMap<>();
 
-        params.put("district_id",District);
-        JSONObject parameters = new JSONObject(params);
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                URLS.getcitybydistrict, parameters, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/getcitybydistrict?district_id="+districtid, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                progressDialog.dismiss();
+            public void onResponse(String response) {
                 try {
+                    progressDialog.dismiss();
 
-                    String district = response.getString("city");
-
-                    JSONArray array = new JSONArray(district);
+                    JSONArray array = new JSONArray(response);
                     for (int i = 0 ; i<array.length() ; i++){
 
                         JSONObject object = array.getJSONObject(i);
@@ -501,14 +465,14 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                                 R.layout.spinner_textview,listCity);
                         et_studying_city.setAdapter(adapter);
 
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                et_personal_lastname.setSelection(-1,true);
 
-                et_personal_lastname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                et_studying_city.setSelection(-1,true);
+
+                et_studying_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                 {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                     {
@@ -517,10 +481,97 @@ public class Signup_teaching_Activity extends AppCompatActivity {
 
                             City_ModelClass mystate=(City_ModelClass) parent.getSelectedItem();
 
+                            cityid = mystate.getId();
 
-                            City = mystate.getCity_name();
+                            City=mystate.getCity_name();
+
+                            GetSchool(cityid);
 
 
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    } // to close the onItemSelected
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+            }
+        });
+
+        Volley.newRequestQueue(Signup_teaching_Activity.this).add(stringRequest);
+    }
+
+    private void GetSchool(String CityId){
+        listSchool.clear();
+        ProgressDialog progressDialog = new ProgressDialog(Signup_teaching_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        final Map<String,String> params = new HashMap<>();
+
+        params.put("city_id",CityId);
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                URLS.getschool, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+                try {
+
+                    String district = response.getString("school");
+
+                    JSONArray array = new JSONArray(district);
+                    for (int i = 0 ; i<array.length() ; i++){
+
+                        JSONObject object = array.getJSONObject(i);
+
+                        School_ModelClass modelClass = new School_ModelClass(
+                                object.getString("id"),
+                                object.getString("school_name")
+                        );
+
+                        listSchool.add(modelClass);
+                        School_SpinnerAdapter adapter = new School_SpinnerAdapter(Signup_teaching_Activity.this,
+                                R.layout.spinner_textview,listSchool);
+                        et_personal_schoolname.setAdapter(adapter);
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                et_personal_schoolname.setSelection(-1,true);
+
+                et_personal_schoolname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+
+                        try {
+
+                            School_ModelClass mystate=(School_ModelClass) parent.getSelectedItem();
+
+                            schoolid = mystate.getId();
+
+                            School=mystate.getSchool_name();
+
+                            if (School!=null){
+                                btn_signup_teaching.setEnabled(true);
+                                btn_signup_teaching.setBackgroundResource(R.drawable.rounded_button);
+                            }else {
+                                btn_signup_teaching.setEnabled(false);
+                                btn_signup_teaching.setBackgroundResource(R.drawable.round_textview_grey);
+                            }
 
 
                         }catch (Exception e){
@@ -534,7 +585,6 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                     }
                 });
 
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -545,6 +595,5 @@ public class Signup_teaching_Activity extends AppCompatActivity {
 
         Volley.newRequestQueue(Signup_teaching_Activity.this).add(jsonObjectRequest);
     }
-
 
 }

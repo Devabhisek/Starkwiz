@@ -166,7 +166,7 @@ public class DynamoFragment extends Fragment {
                                     try {
                                         JSONObject object = response.getJSONObject(j);
 
-                                        if (object.getString("plan_type").equals("Basic")){
+                                        if (object.getString("plan_type").equals("Basic") || object.getString("plan_type").equals("basic")){
                                             txt_perprice.setText("Rs "+object.getString("plan_price_month")+" / per month");
                                             txtplanprice.setText(object.getString("plan_price"));
                                             txtplantype.setText(object.getString("plan_type"));

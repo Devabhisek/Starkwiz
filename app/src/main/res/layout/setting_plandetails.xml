@@ -5,9 +5,9 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/txt_setting_plantype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Basic"
         android:textSize="16dp"
         android:textColor="@color/black"
         android:fontFamily="@font/nunito"
@@ -21,9 +21,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txt_setting_planyear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 Year"
             android:textSize="16dp"
             android:fontFamily="@font/nunito"
             android:layout_marginTop="55dp"
@@ -45,9 +45,9 @@
                 android:textSize="18dp"></TextView>
 
             <TextView
+                android:id="@+id/txt_setting_planprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="120"
                 android:fontFamily="@font/nunito"
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/black"
@@ -56,9 +56,9 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_setting_permonthprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rs.10 / per month"
             android:textSize="16dp"
             android:fontFamily="@font/nunito"
             android:layout_marginTop="8dp"

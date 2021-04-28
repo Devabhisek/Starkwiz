@@ -31,13 +31,16 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.Topic_Adapter;
 import com.starkwiz.starkwiz.Adapter.SpinnerAdapetr.Topic_SpinnerAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AndroidMultiPartEntity;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
+import com.starkwiz.starkwiz.LinkingClass.URLS;
 import com.starkwiz.starkwiz.ModelClass.Topics_Modelclass;
 import com.starkwiz.starkwiz.R;
 
@@ -59,6 +62,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Declamation extends AppCompatActivity {
 
@@ -211,6 +216,7 @@ public class Declamation extends AppCompatActivity {
                                         progress_bar_1.animateProgress(2000, 0, 100); // (animationDuration, oldProgress, newProgress)
                                         btn_music_upload.setText("Uploaded");
                                         btn_music_upload.setEnabled(false);
+                                        CreateNotification(Userid,"Your video is uploaded.");
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -371,5 +377,55 @@ public class Declamation extends AppCompatActivity {
 
         }
 
+    }
+
+    public void CreateNotification(String user_id, String notification_text){
+
+        ProgressDialog progressDialog = new ProgressDialog(Declamation.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", user_id);
+        params.put("notification_text", notification_text);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String message= response.getString("message");
+                    if (message.equals("notification created")){
+                        Log.d("success",message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Log.d("error","error");
+
+                Toast.makeText(Declamation.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Declamation.this).add(jsonRequest);
     }
 }

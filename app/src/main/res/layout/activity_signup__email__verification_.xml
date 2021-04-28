@@ -92,6 +92,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="22dp"
+            android:maxLength="6"
             android:hint="Enter 6 digit verification code here"
             android:textColorHint="#bebebe"
             android:textColor="@color/black"

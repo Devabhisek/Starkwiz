@@ -606,10 +606,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image1, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_one.setImageBitmap(decodedByte);
                                 img_profile_one.setImageBitmap(decodedByte);
@@ -633,10 +633,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image2, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_two.setImageBitmap(decodedByte);
                                 img_profile_two.setImageBitmap(decodedByte);
@@ -657,10 +657,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image3, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_three.setImageBitmap(decodedByte);
                                 img_profile_three.setImageBitmap(decodedByte);
@@ -684,10 +684,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image4, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_four.setImageBitmap(decodedByte);
                                 img_profile_four.setImageBitmap(decodedByte);
@@ -708,10 +708,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image5, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_five.setImageBitmap(decodedByte);
                                 img_profile_five.setImageBitmap(decodedByte);
@@ -731,10 +731,10 @@ public class InfoFragment extends Fragment {
                                 byte[] decodedString = Base64.decode(image5, Base64.DEFAULT);
                                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 
-                                float degrees = 90; //rotation degree
-                                Matrix matrix = new Matrix();
-                                matrix.setRotate(degrees);
-                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
+//                                float degrees = 90; //rotation degree
+//                                Matrix matrix = new Matrix();
+//                                matrix.setRotate(degrees);
+//                                decodedByte = Bitmap.createBitmap(decodedByte, 0, 0, decodedByte.getWidth(), decodedByte.getHeight(), matrix, true);
 
                                 profile_img_six.setImageBitmap(decodedByte);
                                 img_profile_six.setImageBitmap(decodedByte);
@@ -816,38 +816,43 @@ public class InfoFragment extends Fragment {
             params.put("active_status", "active");
 
 
+            try {
+                if (profile_image_one.equals("imageone")){
+                    params.put("profile_image_1",Image_One);
+                }
+                else {
+                    params.put("profile_image_1",image1);
+                }
+                if (profile_image_two.equals("imagetwo")){
+                    params.put("profile_image_2",Image_Two);
+                }
+                else {
+                    params.put("profile_image_2",image2);
+                }
+                if (profile_image_three.equals("imagethree")){
+                    params.put("profile_image_3",Image_Three);
+                }else {
+                    params.put("profile_image_3",image3);
+                }
+                if (profile_image_four.equals("imagefour")){
+                    params.put("profile_image_4",Image_Four);
+                }else {
+                    params.put("profile_image_4",image4);
+                } if (profile_image_five.equals("imagefive")){
+                    params.put("profile_image_5",Image_Five);
+                }else {
+                    params.put("profile_image_5",image5);
+                }
+                if (profile_image_six.equals("imagesix")){
+                    params.put("profile_image_6",Image_Six);
+                }else {
+                    params.put("profile_image_6",image6);
+                }
 
-            if (profile_image_one.equals("imageone")){
-                params.put("profile_image_1",Image_One);
+            }catch (Exception e){
+                e.printStackTrace();
             }
-            else {
-                params.put("profile_image_1",image1);
-            }
-             if (profile_image_two.equals("imagetwo")){
-                params.put("profile_image_2",Image_Two);
-            }
-             else {
-                 params.put("profile_image_2",image2);
-             }
-             if (profile_image_three.equals("imagethree")){
-                params.put("profile_image_3",Image_Three);
-            }else {
-                 params.put("profile_image_3",image3);
-             }
-             if (profile_image_four.equals("imagefour")){
-                params.put("profile_image_4",Image_Four);
-            }else {
-                 params.put("profile_image_4",image4);
-             } if (profile_image_five.equals("imagefive")){
-                params.put("profile_image_5",Image_Five);
-            }else {
-                params.put("profile_image_5",image5);
-            }
-            if (profile_image_six.equals("imagesix")){
-                params.put("profile_image_6",Image_Six);
-            }else {
-                params.put("profile_image_6",image6);
-            }
+
 
 
             JSONObject parameters = new JSONObject(params);
@@ -878,7 +883,7 @@ public class InfoFragment extends Fragment {
                 }
             });
 
-
+            jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             Volley.newRequestQueue(getActivity()).add(jsonRequest);
         }
 

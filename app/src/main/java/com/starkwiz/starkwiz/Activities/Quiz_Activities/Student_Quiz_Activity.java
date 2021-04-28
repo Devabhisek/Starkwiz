@@ -573,6 +573,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 Log.d("success","success");
 
+                CreateNotification(user_id,"You have obtained "+total_marks_obtained+" marks.");
 
             }
 
@@ -613,5 +614,56 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         });
         AlertDialog alert11 = alertDialog.create();
         alert11.show();
+    }
+
+    public void CreateNotification(String user_id, String notification_text){
+
+        ProgressDialog progressDialog = new ProgressDialog(Student_Quiz_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", user_id);
+        params.put("notification_text", notification_text);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String message= response.getString("message");
+                    if (message.equals("notification created")){
+
+                        Log.d("success",message);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Log.d("error","error");
+
+                Toast.makeText(Student_Quiz_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Student_Quiz_Activity.this).add(jsonRequest);
     }
 }

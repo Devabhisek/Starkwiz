@@ -10,17 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.starkwiz.starkwiz.ModelClass.City_ModelClass;
-import com.starkwiz.starkwiz.ModelClass.City_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.School_ModelClass;
+import com.starkwiz.starkwiz.ModelClass.School_ModelClass;
 import com.starkwiz.starkwiz.R;
 
 import java.util.ArrayList;
 
-public class CitySpinnerAdapter extends ArrayAdapter<City_ModelClass> {
+public class School_SpinnerAdapter extends ArrayAdapter<School_ModelClass> {
 
-    private ArrayList<City_ModelClass> myarrayList;
+    private ArrayList<School_ModelClass> myarrayList;
 
-    public CitySpinnerAdapter(Context context, int textViewResourceId, ArrayList<City_ModelClass> modelArrayList) {
+    public School_SpinnerAdapter(Context context, int textViewResourceId, ArrayList<School_ModelClass> modelArrayList) {
         super(context, textViewResourceId, modelArrayList);
         this.myarrayList = modelArrayList;
     }
@@ -32,7 +32,7 @@ public class CitySpinnerAdapter extends ArrayAdapter<City_ModelClass> {
 
     @Nullable
     @Override
-    public City_ModelClass getItem(int position) {
+    public School_ModelClass getItem(int position) {
         return myarrayList.get(position);
     }
 
@@ -50,12 +50,12 @@ public class CitySpinnerAdapter extends ArrayAdapter<City_ModelClass> {
     }
 
     private View getCustomView(int position, ViewGroup parent) {
-        City_ModelClass model = getItem(position);
+        School_ModelClass model = getItem(position);
 
         View spinnerRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.spinner_textview, parent, false);
 
         TextView label = spinnerRow.findViewById(R.id.spinner_text);
-        label.setText(String.format("%s", model != null ? model.getCity_name() : ""));
+        label.setText(String.format("%s", model != null ? model.getSchool_name() : ""));
         
 
         return spinnerRow;

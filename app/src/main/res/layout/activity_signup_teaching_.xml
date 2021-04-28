@@ -192,20 +192,22 @@
         </LinearLayout>
 
 
-        <EditText
+        <Spinner
             android:id="@+id/et_personal_schoolname"
             android:layout_below="@+id/linear_styuding_districtblock"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:hint="Name of your School"
+            android:layout_height="46dp"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="35dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginRight="44dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/black"
-            android:textColorHint="#bebebe"
-            android:paddingLeft="16dp"
-            android:gravity="center_vertical"
-            android:layout_marginRight="35dp"
-            android:background="@drawable/round_textview"></EditText>
+            android:layout_weight="5"
+            android:popupBackground="@color/white"
+            android:background="@drawable/round_textview"
+            android:spinnerMode="dropdown"></Spinner>
 
         <TextView
             android:id="@+id/txt_studying_class"
