@@ -1,16 +1,23 @@
  package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -802,6 +809,8 @@ import tourguide.tourguide.TourGuide;
                                             Log.d("extra_js",json);
 
                                             InsertSubjects(json);
+                                             GetSubjects();
+                                             CreateNotification(User_Id,"Your Dynamo has been created.");
                                             dialog.dismiss();
 
                                     }
@@ -874,6 +883,8 @@ import tourguide.tourguide.TourGuide;
                                         Log.d("extra_js",json);
 
                                         InsertSubjects(json);
+                                        GetSubjects();
+                                        CreateNotification(User_Id,"Your Dynamo has been created.");
                                         dialog.dismiss();
                                     }else if (PlanType.equals("Premium") && total==12){
 
@@ -944,6 +955,8 @@ import tourguide.tourguide.TourGuide;
                                         Log.d("extra_js",json);
 
                                         InsertSubjects(json);
+                                        GetSubjects();
+                                        CreateNotification(User_Id,"Your Dynamo has been created.");
                                         dialog.dismiss();
                                     }
 
@@ -1004,9 +1017,7 @@ import tourguide.tourguide.TourGuide;
 
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
 
-                        GetSubjects();
 
-                        CreateNotification(User_Id,"Your Dynamo has been created.");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1123,7 +1134,7 @@ import tourguide.tourguide.TourGuide;
 
          JSONObject parameters = new JSONObject(params);
 
-         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createscore, parameters, new Response.Listener<JSONObject>() {
+         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createnotification, parameters, new Response.Listener<JSONObject>() {
              @Override
              public void onResponse(JSONObject response) {
 
@@ -1133,6 +1144,7 @@ import tourguide.tourguide.TourGuide;
                      String message= response.getString("message");
                      if (message.equals("notification created")){
                          Log.d("success",message);
+                         notificationDialog();
                      }
                  } catch (JSONException e) {
                      e.printStackTrace();
@@ -1204,6 +1216,32 @@ import tourguide.tourguide.TourGuide;
 
         }
     };
+
+     private void notificationDialog() {
+         NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+         String NOTIFICATION_CHANNEL_ID = "tutorialspoint_01";
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+             @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+             // Configure the notification channel.
+             notificationChannel.setDescription("Sample Channel description");
+             notificationChannel.enableLights(true);
+             notificationChannel.setLightColor(Color.RED);
+             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+             notificationChannel.enableVibration(true);
+             notificationManager.createNotificationChannel(notificationChannel);
+         }
+         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getActivity(), NOTIFICATION_CHANNEL_ID);
+         notificationBuilder.setAutoCancel(true)
+                 .setDefaults(Notification.DEFAULT_ALL)
+                 .setWhen(System.currentTimeMillis())
+                 .setSmallIcon(R.mipmap.logo)
+                 .setTicker("Tutorialspoint")
+                 .setPriority(Notification.PRIORITY_MAX)
+                 .setContentTitle("Starkwiz")
+                 .setContentText("Your Dynamo has been created.")
+                 .setContentInfo("Information");
+         notificationManager.notify(1, notificationBuilder.build());
+     }
 
 }
 

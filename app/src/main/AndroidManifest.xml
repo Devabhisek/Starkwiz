@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Starkwiz"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.Notification_Activity"></activity>
+        <activity android:name=".Activities.Notification_Activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".Activities.Starting_Pages.Login_Activity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>

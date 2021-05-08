@@ -158,14 +158,7 @@ public class InfoFragment extends Fragment {
 
 
 
-        txt_editgeneralinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                linear_editpersonalinfo.setVisibility(View.GONE);
-                linear_personalinfo.setVisibility(View.VISIBLE);
-            }
-        });
-
+       
         txt_edit_persona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,23 +172,23 @@ public class InfoFragment extends Fragment {
             public void onClick(View view) {
 
 
-                if (et_profile_city.getText().toString().trim().isEmpty()) {
-                    et_profile_city.setError("Enter City");
-                } else if (et_profile_state.getText().toString().trim().isEmpty()) {
-                    et_profile_state.setError("Enter State");
-                } else if (et_profile_school.getText().toString().trim().isEmpty()) {
-                    et_profile_school.setError("Enter School");
-                } else if (et_profile_location.getText().toString().trim().isEmpty()) {
-                    et_profile_location.setError("Enter Location");
-                } else if (et_profile_about.getText().toString().trim().isEmpty()) {
-                    et_profile_about.setError("Tell something about yourself");
-                } else if (et_profile_address.getText().toString().trim().isEmpty()) {
-                    et_profile_address.setError("Enter Address");
-                } else if (et_profile_fblink.getText().toString().trim().isEmpty()) {
-                    et_profile_fblink.setError("Enter your Facebook Profile Link");
-                } else if (et_profile_instalink.getText().toString().trim().isEmpty()) {
-                    et_profile_instalink.setError("Enter your Instagram Profile Link");
-                } else {
+//                if (et_profile_city.getText().toString().trim().isEmpty()) {
+//                    et_profile_city.setError("Enter City");
+//                } else if (et_profile_state.getText().toString().trim().isEmpty()) {
+//                    et_profile_state.setError("Enter State");
+//                } else if (et_profile_school.getText().toString().trim().isEmpty()) {
+//                    et_profile_school.setError("Enter School");
+//                } else if (et_profile_location.getText().toString().trim().isEmpty()) {
+//                    et_profile_location.setError("Enter Location");
+//                } else if (et_profile_about.getText().toString().trim().isEmpty()) {
+//                    et_profile_about.setError("Tell something about yourself");
+//                } else if (et_profile_address.getText().toString().trim().isEmpty()) {
+//                    et_profile_address.setError("Enter Address");
+//                } else if (et_profile_fblink.getText().toString().trim().isEmpty()) {
+//                    et_profile_fblink.setError("Enter your Facebook Profile Link");
+//                } else if (et_profile_instalink.getText().toString().trim().isEmpty()) {
+//                    et_profile_instalink.setError("Enter your Instagram Profile Link");
+//                } else {
 
                     String intrst = Interest+et_profile_interest.getText().toString()+",";
 
@@ -217,7 +210,7 @@ public class InfoFragment extends Fragment {
                             SharedPrefManager.getInstance(getActivity()).getUser().getFirst_name()
                     );
 
-                }
+               // }
             }
         });
 
@@ -229,6 +222,7 @@ public class InfoFragment extends Fragment {
                 profile_image_three = "null";
                 profile_image_four = "null";
                 profile_image_five = "null";
+                profile_image_six = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -244,7 +238,7 @@ public class InfoFragment extends Fragment {
                 profile_image_three = "null";
                 profile_image_four = "null";
                 profile_image_five = "null";
-
+                profile_image_six = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -260,7 +254,7 @@ public class InfoFragment extends Fragment {
                 profile_image_three = "imagethree";
                 profile_image_four = "null";
                 profile_image_five = "null";
-
+                profile_image_six = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -276,7 +270,7 @@ public class InfoFragment extends Fragment {
                 profile_image_three = "null";
                 profile_image_four = "imagefour";
                 profile_image_five = "null";
-
+                profile_image_six = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -292,7 +286,7 @@ public class InfoFragment extends Fragment {
                 profile_image_three = "null";
                 profile_image_four = "null";
                 profile_image_five = "imagefive";
-
+                profile_image_six = "null";
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -339,10 +333,10 @@ public class InfoFragment extends Fragment {
 
 
 
-                float degrees = 90; //rotation degree
-                Matrix matrix = new Matrix();
-                matrix.setRotate(degrees);
-                bitmap_one = Bitmap.createBitmap(bitmap_one, 0, 0, bitmap_one.getWidth(), bitmap_one.getHeight(), matrix, true);
+//                float degrees = 90; //rotation degree
+//                Matrix matrix = new Matrix();
+//                matrix.setRotate(degrees);
+//                bitmap_one = Bitmap.createBitmap(bitmap_one, 0, 0, bitmap_one.getWidth(), bitmap_one.getHeight(), matrix, true);
 
 
                 if (profile_image_one.equals("imageone")){

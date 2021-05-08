@@ -1,14 +1,21 @@
 package com.starkwiz.starkwiz.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -326,6 +333,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
 
                         if (success.equals("success")){
                             AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this,"Schedule updated");
+                            CreateNotification(user_id,"Your Schedule has been update successfully.");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -409,6 +417,81 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
     }
 
 
+    public void CreateNotification(String user_id, String notification_text){
 
+        ProgressDialog progressDialog = new ProgressDialog(Subject_Schedule_Detail_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
+
+        final Map<String, String> params = new HashMap();
+
+        params.put("user_id", user_id);
+        params.put("notification_text", notification_text);
+
+        JSONObject parameters = new JSONObject(params);
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.createnotification, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                progressDialog.dismiss();
+
+                try {
+                    String message= response.getString("message");
+                    if (message.equals("notification created")){
+                        Log.d("success",message);
+                        notificationDialog();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+
+                Log.d("error","error");
+
+                Toast.makeText(Subject_Schedule_Detail_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        Volley.newRequestQueue(Subject_Schedule_Detail_Activity.this).add(jsonRequest);
+    }
+
+    private void notificationDialog() {
+        NotificationManager notificationManager = (NotificationManager)       getSystemService(Context.NOTIFICATION_SERVICE);
+        String NOTIFICATION_CHANNEL_ID = "tutorialspoint_01";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
+            // Configure the notification channel.
+            notificationChannel.setDescription("Sample Channel description");
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.RED);
+            notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+            notificationChannel.enableVibration(true);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.mipmap.logo)
+                .setTicker("Tutorialspoint")
+                .setPriority(Notification.PRIORITY_MAX)
+                .setContentTitle("Starkwiz")
+                .setContentText("Your Schedule has been update successfully.")
+                .setContentInfo("Information");
+        notificationManager.notify(1, notificationBuilder.build());
+    }
 
 }

@@ -38,7 +38,7 @@ import tourguide.tourguide.TourGuide;
 public class Dasboard_Activity extends AppCompatActivity {
 
     BottomNavigationView bottomnavigation;
-    ImageView dash_setting;
+    ImageView dash_setting,img_notification;
     String Student_intent,Parent_intent,Teacher_intent,Hub_intent;
     private TourGuide mTourGuideHandler;
     private boolean isBackFromB;
@@ -57,9 +57,18 @@ public class Dasboard_Activity extends AppCompatActivity {
         isBackFromB=false;
         bottomnavigation = findViewById(R.id.bottomnavigation);
         dash_setting = findViewById(R.id.dash_setting);
+        img_notification = findViewById(R.id.img_notification);
 
         bottomnavigation.setOnNavigationItemSelectedListener(navListner);
         bottomnavigation.setSelectedItemId(R.id.bottom_menu_dynamo);
+
+        img_notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Dasboard_Activity.this,Notification_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+        });
 
         dash_setting.setOnClickListener(new View.OnClickListener() {
             @Override
