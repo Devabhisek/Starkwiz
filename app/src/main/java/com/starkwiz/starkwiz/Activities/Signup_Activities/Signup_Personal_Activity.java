@@ -31,6 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
 import com.starkwiz.starkwiz.Activities.HubListsActivity;
@@ -129,6 +130,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
                         et_personal_phnno.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
                         btn_signup_personal.setBackgroundResource(R.drawable.rounded_button);
                         btn_signup_personal.setEnabled(true);
+                        CheckMobileNumber(et_personal_phnno.getText().toString().trim());
                     }
                     else {
                         btn_signup_personal.setBackgroundResource(R.drawable.round_textview);
@@ -376,182 +378,7 @@ public class Signup_Personal_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        txt_signin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
-//                dialog.setContentView(R.layout.alert_add_account);
-//
-//                Window window = dialog.getWindow();
-//                dialog.show();
-//
-//                EditText et_login_user,et_password;
-//                Button btn_create_account,btn_login,btn_alert_cancel;
-//                TextView txt_forgotpassword;
-//
-//
-//                et_login_user = dialog.findViewById(R.id.et_login_user);
-//                et_password = dialog.findViewById(R.id.et_password);
-//                btn_create_account = dialog.findViewById(R.id.btn_create_account);
-//                btn_login = dialog.findViewById(R.id.btn_login);
-//                btn_alert_cancel = dialog.findViewById(R.id.btn_alert_cancel);
-//                txt_forgotpassword = dialog.findViewById(R.id.txt_forgotpassword);
-//
-//                txt_forgotpassword.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        final Dialog dialog = new Dialog(Signup_Personal_Activity.this);
-//                        dialog.setContentView(R.layout.alert_forgot_passwprd);
-//                        Window window = dialog.getWindow();
-//                        dialog.show();
-//                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//                        EditText et_email,et_new_password,et_reenterpassword,et_otp;
-//                        Button btn_change_pswd_confirm,btn_change_pswd_cancel,btn_change_pswd_otp;
-//                        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-//                        LinearLayout txt_otp;
-//
-//                        et_email = dialog.findViewById(R.id.et_email);
-//                        et_new_password = dialog.findViewById(R.id.et_new_password);
-//                        et_reenterpassword = dialog.findViewById(R.id.et_reenterpassword);
-//                        btn_change_pswd_confirm = dialog.findViewById(R.id.btn_change_pswd_confirm);
-//                        btn_change_pswd_cancel = dialog.findViewById(R.id.btn_change_pswd_cancel);
-//                        txt_otp = dialog.findViewById(R.id.txt_otp);
-//                        et_otp = dialog.findViewById(R.id.et_otp);
-//                        btn_change_pswd_otp = dialog.findViewById(R.id.btn_change_pswd_otp);
-//
-//                        et_email.addTextChangedListener(new TextWatcher() {
-//                            @Override
-//                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                            }
-//
-//                            @Override
-//                            public void afterTextChanged(Editable editable) {
-//
-//                                String Email = et_email.getText().toString().trim();
-//                                if (!Email.isEmpty() || Email.matches(emailPattern)) {
-//                                    btn_change_pswd_otp.setVisibility(View.VISIBLE);
-//
-//                                } else {
-//
-//                                    btn_change_pswd_otp.setVisibility(View.GONE);
-//
-//                                }
-//                            }
-//                        });
-//
-//                        btn_change_pswd_otp.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                 Email = et_email.getText().toString().trim();
-//                                if (Email.isEmpty() || !Email.matches(emailPattern)){
-//                                    et_email.setError("Please Enter Valid Email");
-//                                }else {
-//
-//                                    Forgot_Password_Email(Email, txt_otp, et_otp);
-//                                }
-//                            }
-//                        });
-//
-//
-//
-//                        et_otp.addTextChangedListener(new TextWatcher() {
-//                            @Override
-//                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                            }
-//
-//                            @Override
-//                            public void afterTextChanged(Editable editable) {
-//
-//                                String otp = et_otp.getText().toString().trim();
-//
-//                                if (otp.length()<6 && !otp.equals(token)){
-//                                    Toast.makeText(Signup_Personal_Activity.this, "Enter valid otp", Toast.LENGTH_SHORT).show();
-//                                }
-//                                else {
-//                                    et_new_password.setEnabled(true);
-//                                    et_reenterpassword.setEnabled(true);
-//                                    Forgot_Password_OTP(Email,btn_change_pswd_otp,et_new_password);
-//                                }
-//                            }
-//                        });
-//
-//
-//                        btn_change_pswd_confirm.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                String NewPassword = et_new_password.getText().toString().trim();
-//                                String ConfirmPassword = et_reenterpassword.getText().toString().trim();
-//
-//                                if (NewPassword.equals(ConfirmPassword)){
-//                                    Forgot_Password(Email,NewPassword);
-//                                }else {
-//                                    AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Password not matched");
-//                                }
-//                            }
-//                        });
-//
-//                        btn_change_pswd_cancel.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//
-//
-//
-//
-//                    }
-//                });
-//
-//
-//                btn_login.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        String Login_user,Password;
-//                        Login_user = et_login_user.getText().toString().trim();
-//                        Password = et_password.getText().toString().trim();
-//                        if (Login_user.isEmpty()){
-//                            et_login_user.setError("Please Enter your Email/Phone Number");
-//                        }else if (Password.isEmpty()){
-//                            et_password.setError("Please Enter Password");
-//                        }
-//                        else {
-//                            Login(Login_user,Password);
-//                        }
-//                    }
-//                });
-//
-//                btn_alert_cancel.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//                btn_create_account.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//
-//                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            }
-//        });
+
 
     }
 
@@ -658,117 +485,6 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
     }
 
-    private void Login(String Email,String Password){
-
-        ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
-        progressDialog.setMessage("Signing In..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
-
-
-        final Map<String, String> params = new HashMap();
-
-        params.put("email", Email);
-        params.put("password", Password);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.Login, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                progressDialog.dismiss();
-
-                try {
-
-                    String token_details = response.getString("token_details");
-
-                    JSONObject object = new JSONObject(token_details);
-
-                    String original = object.getString("original");
-
-                    JSONObject jsonObject = new JSONObject(original);
-
-                    String user = jsonObject.getString("user");
-
-                    JSONObject obj = new JSONObject(user);
-
-                    Login_ModelClass modelClass=new Login_ModelClass(
-                            jsonObject.getString("access_token"),
-                            obj.getString("id"),
-                            obj.getString("first_name"),
-                            obj.getString("last_name"),
-                            obj.getString("mobile_number"),
-                            obj.getString("class"),
-                            obj.getString("school_board"),
-                            obj.getString("role"),
-                            obj.getString("email")
-                    );
-                    login_modelClasses.add(modelClass);
-                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
-                    Toast.makeText(Signup_Personal_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Signup_Personal_Activity.this, Dasboard_Activity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-
-                    try {
-                        String msg =  response.getString("message");
-
-                        String all_profile = response.getString("all_profile");
-
-                        JSONArray array = new JSONArray(all_profile);
-
-                        for (int i = 0 ; i<array.length();i++){
-
-                            JSONObject object = array.getJSONObject(i);
-
-                            User_ID = object.getString("userid");
-
-                        }
-
-                        if (msg.equals("user is not active")){
-
-                            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Signup_Personal_Activity.this)
-                                    .setMessage("Your account is Deactived / Closed.\n Would you like to active your account?")
-                                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            activate(User_ID);
-                                            dialogInterface.cancel();
-                                        }
-                                    });
-                            AlertDialog alert11 = alertDialog.create();
-                            alert11.show();
-                        }
-                    } catch (JSONException jsonException) {
-                        jsonException.printStackTrace();
-                    }
-                }
-
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-                Toast.makeText(Signup_Personal_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
-
-
-    }
-
     public void activate(String UserId){
 
         ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
@@ -835,193 +551,6 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
     }
 
-    private void Forgot_Password_Email(String Email,View view,View Editview){
-
-        ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
-        progressDialog.setMessage("Sending Otp Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
-
-
-        final Map<String, String> params = new HashMap();
-
-        params.put("email", Email);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.send_otp_forgotpassword, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                progressDialog.dismiss();
-
-                try {
-                    String storetoken = response.getString("storetoken");
-
-                    JSONObject object = new JSONObject(storetoken);
-
-                    String is_valid =object.getString("is_valid");
-
-                    if (is_valid.equals("YES")){
-                        Toast.makeText(Signup_Personal_Activity.this, "Otp has sent to "+object.getString("email"), Toast.LENGTH_SHORT).show();
-                        token=object.getString("token");
-                        view.setVisibility(View.VISIBLE);
-                        Editview.setFocusable(true);
-                    }else {
-
-                        Toast.makeText(Signup_Personal_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-                Toast.makeText(Signup_Personal_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
-
-
-    }
-
-    private void Forgot_Password_OTP(String Email,View view,View newview){
-
-        ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
-        progressDialog.setMessage("Verifying Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
-
-
-        final Map<String, String> params = new HashMap();
-
-        params.put("email", Email);
-        params.put("token", token);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.verifyemail_forgot_password, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                progressDialog.dismiss();
-
-                try {
-                    String message = response.getString("message");
-
-                     verificationkey =response.getString("verificationkey");
-
-                    if (message.equals("Email Verified")){
-                        view.setVisibility(View.VISIBLE);
-                        newview.setFocusable(true);
-                        Toast.makeText(Signup_Personal_Activity.this, "Enter new password", Toast.LENGTH_SHORT).show();
-
-
-                    }else {
-
-                        Toast.makeText(Signup_Personal_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-                Toast.makeText(Signup_Personal_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
-
-
-    }
-
-    private void Forgot_Password(String Email,String Password){
-
-        ProgressDialog progressDialog = new ProgressDialog(Signup_Personal_Activity.this);
-        progressDialog.setMessage("Updating Password Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
-
-
-        final Map<String, String> params = new HashMap();
-
-        params.put("email", Email);
-        params.put("verification_key", verificationkey);
-        params.put("password", Password);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.forgot_password, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                progressDialog.dismiss();
-
-                try {
-                    String message = response.getString("message");
-
-
-
-                    if (message.equals("password updated")){
-                        AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Password Updated");
-
-                    }else {
-
-                        Toast.makeText(Signup_Personal_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-
-                Toast.makeText(Signup_Personal_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
-
-
-    }
-
     private void Initialize() {
 
         btn_signup_personal =findViewById(R.id.btn_signup_personal);
@@ -1059,6 +588,60 @@ public class Signup_Personal_Activity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void CheckMobileNumber(String Mobileno){
+
+        ProgressDialog dialog = new ProgressDialog(Signup_Personal_Activity.this);
+        dialog.setMessage("Checking Mobile Number...");
+        dialog.setCancelable(false);
+        dialog.show();
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("mobile_number", "+91"+Mobileno);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.checknumber, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                dialog.dismiss();
+
+                try {
+                    String mobilenumberCount = response.getString("mobilenumberCount");
+
+                    if (mobilenumberCount.equals("1")){
+                        AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Phone Number already exists,\nPlease try another phone number");
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                dialog.dismiss();
+
+
+                AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Try Again");
+
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(Signup_Personal_Activity.this).add(jsonRequest);
+
     }
 
     @Override

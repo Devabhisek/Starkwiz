@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <LinearLayout
+        <LinearLayout android:visibility="gone"
             android:id="@+id/linear_personalinfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -689,7 +689,7 @@
 
         </LinearLayout>
 
-        <LinearLayout android:visibility="gone"
+        <LinearLayout
                 android:id="@+id/linear_editpersonalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

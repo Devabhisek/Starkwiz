@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout android:visibility="gone"
+            <LinearLayout
                 android:id="@+id/linear_personalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -650,7 +650,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:visibility="gone"
                 android:id="@+id/linear_editpersonalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1081,7 +1081,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Interest"
-                        android:layout_weight="5"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
@@ -1235,7 +1234,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Facebook"
-                        android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
@@ -1246,7 +1244,6 @@
                         android:layout_height="wrap_content"
                         android:text="facebook.com/queenmeher"
                         android:backgroundTint="@android:color/holo_blue_light"
-                        android:layout_weight="5"
                         android:layout_marginLeft="11dp"
                         android:textSize="18dp"
                         android:textColor="@color/black"></EditText>
@@ -1270,7 +1267,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Instagram"
-                        android:layout_weight="5"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"></TextView>
@@ -1280,7 +1276,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="instagram.com/queenmeher"
-                        android:layout_weight="5"
                         android:textSize="18dp"
                         android:layout_marginLeft="11dp"
                         android:textColor="@color/black"

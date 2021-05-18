@@ -48,6 +48,7 @@
             android:background="@drawable/round_textview"
             android:hint="Name"
             android:paddingLeft="11dp"
+            android:textColor="@color/black"
             android:textColorHint="#bebebe"
             android:layout_marginTop="22dp"></EditText>
 
@@ -60,6 +61,7 @@
             android:background="@drawable/round_textview"
             android:hint="Full Address"
             android:paddingLeft="11dp"
+            android:textColor="@color/black"
             android:textColorHint="#bebebe"
             android:layout_marginTop="22dp"></EditText>
 
@@ -86,7 +88,7 @@
 
         </LinearLayout>
 
-        <EditText
+        <TextView
             android:id="@+id/et_hubinfo_yearestablishment"
             android:layout_width="match_parent"
             android:layout_height="49dp"
@@ -94,9 +96,11 @@
             android:layout_marginRight="22dp"
             android:background="@drawable/round_textview"
             android:hint="Year of Establishment"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
             android:paddingLeft="11dp"
             android:textColorHint="#bebebe"
-            android:layout_marginTop="22dp"></EditText>
+            android:layout_marginTop="22dp"></TextView>
 
 
         <LinearLayout
@@ -120,6 +124,7 @@
                 android:layout_marginLeft="22dp"
                 android:background="@drawable/round_textview"
                 android:hint="Enter Mobile No"
+                android:textColor="@color/black"
                 android:paddingLeft="11dp"
                 android:textColorHint="#bebebe"></EditText>
 

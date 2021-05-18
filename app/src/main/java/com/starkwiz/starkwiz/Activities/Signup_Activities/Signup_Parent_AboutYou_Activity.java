@@ -77,31 +77,31 @@ public class Signup_Parent_AboutYou_Activity extends AppCompatActivity {
         });
 
 
-        etqualification.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (etqualification.getText().toString().trim().length()>0 &&
-                        et_signup_profession.getText().toString().trim().length()>0){
-                    btn_verfication_proceed.setEnabled(true);
-                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
-                }else {
-                    btn_verfication_proceed.setEnabled(false);
-                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
-                }
-
-            }
-        });
+//        etqualification.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                if (etqualification.getText().toString().trim().length()>0 &&
+//                        et_signup_profession.getText().toString().trim().length()>0){
+//                    btn_verfication_proceed.setEnabled(true);
+//                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
+//                }else {
+//                    btn_verfication_proceed.setEnabled(false);
+//                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
+//                }
+//
+//            }
+//        });
 
 
 

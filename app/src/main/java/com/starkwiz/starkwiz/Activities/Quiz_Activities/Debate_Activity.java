@@ -171,7 +171,7 @@ public class Debate_Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        progress_bar_1.animateProgress(2000, 0, 49); // (animationDuration, oldProgress, newProgress)
+                        progress_bar_1.animateProgress(2000, 0, 5); // (animationDuration, oldProgress, newProgress)
 
                         Toast.makeText(Debate_Activity.this, "Uploading Please wait..", Toast.LENGTH_SHORT).show();
 

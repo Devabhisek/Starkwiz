@@ -297,7 +297,9 @@ public class Login_Activity extends AppCompatActivity {
                     login_modelClasses.add(modelClass);
                     if (checkBox.isChecked()){
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
-                        Toast.makeText(Login_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
+                        if (!obj.getString("role").equals("Hub")){
+                            Toast.makeText(Login_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
+                        }
                         Intent intent = new Intent(Login_Activity.this, Dasboard_Activity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
@@ -517,8 +519,6 @@ public class Login_Activity extends AppCompatActivity {
 
                 try {
                     String message = response.getString("message");
-
-
 
                     if (message.equals("password updated")){
                         AlertBoxClasses.SimpleAlertBox(Login_Activity.this,"Password Updated");

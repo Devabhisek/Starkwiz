@@ -256,30 +256,30 @@ public class Signup_Qualification_Activity extends AppCompatActivity {
             }
         });
 
-        et_major.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (et_major.getText().toString().trim().length()>0 &&
-                        et_qualification_degree.getText().toString().trim().length()>0){
-                    btn_verfication_proceed.setEnabled(true);
-                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
-                }else {
-                    btn_verfication_proceed.setEnabled(false);
-                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
-                }
-            }
-        });
+//        et_major.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                if (et_major.getText().toString().trim().length()>0 &&
+//                        et_qualification_degree.getText().toString().trim().length()>0){
+//                    btn_verfication_proceed.setEnabled(true);
+//                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
+//                }else {
+//                    btn_verfication_proceed.setEnabled(false);
+//                    btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
+//                }
+//            }
+//        });
 
         btn_verfication_proceed.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -152,13 +152,12 @@
 
             <Spinner
                 android:id="@+id/et_studying_city"
-                android:layout_width="146dp"
+                android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:textSize="13dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="35dp"
-                android:layout_marginRight="6dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/black"
                 android:layout_weight="5"
@@ -167,22 +166,23 @@
                 android:spinnerMode="dropdown" ></Spinner>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/et_studying_block"
-                android:text="or"
-                android:layout_marginLeft="5dp"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="5"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="or"
                 android:textColor="@color/black"
                 android:textSize="16dp"></TextView>
 
             <EditText
                 android:id="@+id/et_studying_block"
-                android:layout_width="144dp"
+                android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="44dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="5"
                 android:background="@drawable/round_textview"
@@ -246,7 +246,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="16dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 
@@ -259,7 +259,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 
@@ -272,7 +272,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 
@@ -285,7 +285,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 
@@ -308,7 +308,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textStyle="bold"
                 android:paddingLeft="8dp"
@@ -324,7 +324,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 
@@ -337,7 +337,7 @@
                 android:paddingLeft="8dp"
                 android:layout_marginLeft="8dp"
                 android:drawableLeft="@drawable/radio_button_selector"
-                android:drawablePadding="16dp"
+                android:drawablePadding="8dp"
                 android:button="@null"
                 android:textColor="@color/black"></RadioButton>
 

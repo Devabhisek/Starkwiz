@@ -2,6 +2,7 @@ package com.starkwiz.starkwiz.Activities.Starting_Pages;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -25,6 +26,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
-    private TextView[] dots;
+    private ImageView[] dots;
     private int[] layouts;
     private Button btn_getstarted;
     private TextView txt_welcome_termsserives;
@@ -85,17 +87,64 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.getstarted_layout_one};
 
         // adding bottom dots
-        addBottomDots(0);
+       // addBottomDots(0);
 
         // making notification bar transparent
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
+
+        dots = new ImageView[myViewPagerAdapter.getCount()];
+
+
+
+        //dotsLayout.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new ImageView(WelcomeActivity.this);
+            dots[i].setImageDrawable(ContextCompat.getDrawable(WelcomeActivity.this, R.drawable.non_active_dot));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.setMargins(22, 0, 22, 0);
+
+            dotsLayout.addView(dots[i]);
+        }
+
+
+            dots[0].setImageDrawable(ContextCompat.getDrawable(WelcomeActivity.this, R.drawable.active_dot));
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                try{
+                    for(int i = 0; i< layouts.length; i++){
+
+                        dots[i].setImageDrawable(ContextCompat.getDrawable(WelcomeActivity.this, R.drawable.non_active_dot));
+
+                    }
+
+                    dots[position].setImageDrawable(ContextCompat.getDrawable(WelcomeActivity.this, R.drawable.active_dot));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == layouts.length) {
                     currentPage = 0;
+
                 }
                 viewPager.setCurrentItem(currentPage++, true);
             }
@@ -262,24 +311,24 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-    private void addBottomDots(int currentPage) {
-        dots = new TextView[layouts.length];
-
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
-
-        dotsLayout.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
-            dotsLayout.addView(dots[i]);
-        }
-
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
-    }
+//    private void addBottomDots(int currentPage) {
+//        dots = new TextView[layouts.length];
+//
+//        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+//        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+//
+//        //dotsLayout.removeAllViews();
+//        for (int i = 0; i < dots.length; i++) {
+//            dots[i] = new TextView(WelcomeActivity.this);
+//            dots[i].setText(Html.fromHtml("&#8226;"));
+//            dots[i].setTextSize(35);
+//            dots[i].setTextColor(colorsInactive[currentPage]);
+//            dotsLayout.addView(dots[i]);
+//        }
+//
+//        if (dots.length > 0)
+//            dots[0].setTextColor(colorsActive[currentPage]);
+//    }
 
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;

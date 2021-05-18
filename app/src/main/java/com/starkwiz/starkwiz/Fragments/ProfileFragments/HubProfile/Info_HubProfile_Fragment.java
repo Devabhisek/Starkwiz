@@ -58,14 +58,13 @@ public class Info_HubProfile_Fragment extends Fragment {
     TextView txt_hub_userid,txt_hub_city,txt_hub_state,txt_hub_location,txt_hub_contact,txt_hub_website,
             txt_hub_persona,txt_hub_established,txt_hub_aboutus,txt_hub_locationaddress,txt_hub_address,
             txt_hub_socialmedia,txt_hub_fblink,txt_hub_insta,txt_save_persona,txt_hubedit_established,txt_save_location,
-            txt_save_social,txt_edithub_id,txt_generalinfo;
+            txt_save_social,txt_edithub_id,txt_generalinfo,txt_editgeneralinfo;
     ImageView img_hub_one,img_hub_two,img_hub_three,img_hub_four,img_hub_five,img_hub_six,
             img_hubedit_one,img_hubedit_two,img_hubedit_three,img_hubedit_four,img_hubedit_five,img_hubedit_six;
     RecyclerView lv_interest,lv_editinterest;
     LinearLayout linear_personalinfo,linear_editpersonalinfo;
     EditText et_hubedit_city,et_edithub_state,et_hub_edit_location,et_hub_edit_contact,et_hubedit_website,
-            et_hubedit_aboutus,et_hubedit_interest,et_hubedit_address,et_hubedit_fblink,et_hubedit_insta,
-            txt_editgeneralinfo;
+            et_hubedit_aboutus,et_hubedit_interest,et_hubedit_address,et_hubedit_fblink,et_hubedit_insta;
 
     String date,strtext,hub_typee,image,image1,image2,image3,image4,image5,image6,Interest,
             profile_image_one,profile_image_two,profile_image_three,profile_image_four,profile_image_five,profile_image_six,
@@ -415,9 +414,6 @@ public class Info_HubProfile_Fragment extends Fragment {
                 bitmap_one = Bitmap.createScaledBitmap(bitmap_one, 500, 750, true);
                 bitmap_one.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
                 byte[] img = baos.toByteArray();
-
-
-
 
                 float degrees = 90; //rotation degree
                 Matrix matrix = new Matrix();

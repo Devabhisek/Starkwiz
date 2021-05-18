@@ -3,7 +3,7 @@
     android:shape="oval" android:useLevel="true"
     android:dither="true">
 
-    <size android:height="6dp" android:width="6dp"/>
+    <size android:height="11dp" android:width="11dp"/>
 
-    <solid android:color="@color/waymartcolor"/>
+    <solid android:color="@color/dot_light_screen1"/>
 </shape>

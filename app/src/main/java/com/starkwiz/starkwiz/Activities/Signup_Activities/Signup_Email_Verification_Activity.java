@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,7 +34,8 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
 
     Button btn_verfication_proceed,btn_cnfrm_email;
     String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,kids,Experience,
-            Class,Board,Email,Role,BlockNo,isvalid,newaccount,Qualification,Profession;
+            Class,Board,Email,Role,BlockNo,isvalid,newaccount,Qualification,Profession,
+            Hub_Name,Hub_Address,Hub_YearOfEstablishment,Hub_type;
     EditText etemail,et_token;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     TextView txt_text;
@@ -61,6 +63,10 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
             Profession = getIntent().getStringExtra("Profession");
             kids = getIntent().getStringExtra("kids");
             Experience = getIntent().getStringExtra("Experience");
+            Hub_Name = getIntent().getStringExtra("Hub_Name");
+            Hub_Address = getIntent().getStringExtra("Hub_Address");
+            Hub_YearOfEstablishment = getIntent().getStringExtra("Hub_YearOfEstablishment");
+            Hub_type = getIntent().getStringExtra("Hub_type");
 
 
         }catch (Exception e){
@@ -130,7 +136,9 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (etemail.getText().toString().trim()!=null && et_token.getText().toString().trim()!=null){
-                   SendOtpEmail(etemail.getText().toString().trim());
+
+                    CheckEmail(etemail.getText().toString().trim());
+
                 }else {
                     AlertBoxClasses.SimpleAlertBox(Signup_Email_Verification_Activity.this,"Check all fields.");
                 }
@@ -256,6 +264,10 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
                         intent.putExtra("Profession",Profession);
                         intent.putExtra("kids",kids);
                         intent.putExtra("Experience",Experience);
+                        intent.putExtra("Hub_Name",Hub_Name);
+                        intent.putExtra("Hub_Address",Hub_Address);
+                        intent.putExtra("Hub_YearOfEstablishment",Hub_YearOfEstablishment);
+                        intent.putExtra("Hub_type",Hub_type);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                     }
@@ -283,6 +295,62 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
         });
 
 
+        Volley.newRequestQueue(Signup_Email_Verification_Activity.this).add(jsonRequest);
+
+    }
+
+    private void CheckEmail(String Email){
+
+        ProgressDialog dialog = new ProgressDialog(Signup_Email_Verification_Activity.this);
+        dialog.setMessage("Checking Mobile Number...");
+        dialog.setCancelable(false);
+        dialog.show();
+        final Map<String, String> params = new HashMap();
+
+
+        params.put("email", Email);
+
+
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.checkemail, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                dialog.dismiss();
+
+                try {
+                    String email = response.getString("email");
+
+                    if (email.equals("1")){
+                        AlertBoxClasses.SimpleAlertBox(Signup_Email_Verification_Activity.this,"Email already exists,\nPlease try another Emaild id");
+                    }else {
+                        SendOtpEmail(etemail.getText().toString().trim());
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                dialog.dismiss();
+
+
+                AlertBoxClasses.SimpleAlertBox(Signup_Email_Verification_Activity.this,"Try Again");
+
+            }
+        });
+
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Signup_Email_Verification_Activity.this).add(jsonRequest);
 
     }

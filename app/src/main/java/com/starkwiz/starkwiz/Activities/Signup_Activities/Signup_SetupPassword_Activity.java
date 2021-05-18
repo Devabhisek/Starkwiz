@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.starkwiz.starkwiz.Activities.Dasboard_Activity;
+import com.starkwiz.starkwiz.Activities.HubListsActivity;
 import com.starkwiz.starkwiz.Activities.SettingActivity;
 import com.starkwiz.starkwiz.Activities.Starting_Pages.Login_Activity;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Signup_SetupPassword_Activity extends AppCompatActivity {
 
@@ -43,7 +46,8 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
     EditText et_password,et_cnfrm_password;
     TextView txt_strength;
     String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,Class,
-            Board,Email,Role,BlockNo,newaccount,Qualification,Profession,kids,user_id,Experience;
+            Board,Email,Role,BlockNo,newaccount,Qualification,Profession,kids,user_id,Experience,
+            Hub_Name,Hub_Address,Hub_YearOfEstablishment,Hub_type;
    ArrayList<Login_ModelClass> login_modelClass;
 
     @Override
@@ -79,6 +83,10 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             Profession = getIntent().getStringExtra("Profession");
             kids = getIntent().getStringExtra("kids");
             Experience = getIntent().getStringExtra("Experience");
+            Hub_Name = getIntent().getStringExtra("Hub_Name");
+            Hub_Address = getIntent().getStringExtra("Hub_Address");
+            Hub_YearOfEstablishment = getIntent().getStringExtra("Hub_YearOfEstablishment");
+            Hub_type = getIntent().getStringExtra("Hub_type");
 
 
 
@@ -122,6 +130,8 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                         Signup_Parent();
                     }else if(Role.equals("Teacher")){
                         Signup_Teacher();
+                    }else if (Role.equals("Hub")){
+                        RegisterHub();
                     }
 
                 }
@@ -162,7 +172,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                     seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.teal_700));
                     txt_strength.setText("Medium");
                     txt_strength.setTextColor(getResources().getColor(R.color.teal_700));
-                }else if(s.length()>5 || s.length()==6) {
+                }else if(s.length()>5 || s.length()==6 && isValidPassword(et_password.getText().toString().trim())) {
                     seekbar_pswd.setProgress(80);
                     seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.teal_200));
                     txt_strength.setText("Strong");
@@ -268,7 +278,8 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
 //                Intent intent = new Intent(Signup_SetupPassword_Activity.this, Login_Activity.class);
 //                startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
+
+                AlertBoxClasses.SimpleAlertBox(Signup_SetupPassword_Activity.this,"Seems like Account already exists or\n Something went wrong. Please try again");
 
             }
         });
@@ -334,7 +345,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progressDialog.dismiss();
-                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                AlertBoxClasses.SimpleAlertBox(Signup_SetupPassword_Activity.this,"Seems like Account already exists or\n Something went wrong. Please try again");
             }
         });
 
@@ -402,7 +413,7 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progressDialog.dismiss();
-                Toast.makeText(Signup_SetupPassword_Activity.this, "Try Again", Toast.LENGTH_SHORT).show();
+                AlertBoxClasses.SimpleAlertBox(Signup_SetupPassword_Activity.this,"Seems like Account already exists or\n Something went wrong. Please try again");
             }
         });
 
@@ -596,8 +607,67 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
 
     }
 
+    private void RegisterHub(){
+        ProgressDialog progressDialog = new ProgressDialog(Signup_SetupPassword_Activity.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        //HttpsTrustManager.allowAllSSL();
 
 
+        final Map<String, String> params = new HashMap();
 
+
+        params.put("hub_name", Hub_Name);
+        params.put("address", Hub_Address);
+        params.put("hub_establishment", Hub_YearOfEstablishment);
+        params.put("mobile_number", PhoneNo);
+        params.put("role", "Hub");
+        params.put("hub_typee", Hub_type);
+        params.put("email", Email);
+        params.put("password", et_password.getText().toString().trim());
+        params.put("password_confirmation", et_password.getText().toString().trim());
+
+        JSONObject parameters = new JSONObject(params);
+
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.registerhub, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+
+                Toast.makeText(Signup_SetupPassword_Activity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Signup_SetupPassword_Activity.this,Login_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                progressDialog.dismiss();
+                AlertBoxClasses.SimpleAlertBox(Signup_SetupPassword_Activity.this,"Seems like Account already exists or\n Something went wrong. Please try again");
+            }
+        });
+
+
+        Volley.newRequestQueue(Signup_SetupPassword_Activity.this).add(jsonRequest);
+
+    }
+
+    public boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
+    }
 
 }

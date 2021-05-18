@@ -48,5 +48,7 @@ public class URLS {
     public static String edithub="https://www.rentopool.com/starkwiz/api/auth/edithub";
     public static String getnotification="https://www.rentopool.com/starkwiz/api/auth/getnotification";
     public static String createnotification="https://www.rentopool.com/starkwiz/api/auth/createnotification";
+    public static String checknumber="https://www.rentopool.com/starkwiz/api/auth/checknumber";
+    public static String checkemail="https://www.rentopool.com/starkwiz/api/auth/checkemail";
 }
 

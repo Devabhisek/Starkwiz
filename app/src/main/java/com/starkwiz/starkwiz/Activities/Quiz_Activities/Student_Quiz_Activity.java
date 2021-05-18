@@ -34,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -70,7 +71,7 @@ public class Student_Quiz_Activity extends AppCompatActivity {
     ArrayList<String>list_gp;
     int position = 0;
     int score=0,markobtain=0;
-    ImageView img_qn;
+    ImageView img_qn,dash_setting,imgcross;
     int minutes,millisecond;
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
@@ -83,6 +84,8 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_student__quiz_);
 
         txt_chapter=findViewById(R.id.txt_chapter);
+        dash_setting=findViewById(R.id.dash_setting);
+        imgcross=findViewById(R.id.imgcross);
         txt_noofqn=findViewById(R.id.txt_noofqn);
         txt_qn=findViewById(R.id.txt_qn);
         optionone=findViewById(R.id.optionone);
@@ -105,6 +108,22 @@ public class Student_Quiz_Activity extends AppCompatActivity {
         timer.stop();
         timer.setVisibility(View.GONE);
         user_id = SharedPrefManager.getInstance(Student_Quiz_Activity.this).getUser().getId();
+
+        dash_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+        });
+
+        imgcross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+            }
+        });
 
         Calendar cal=Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
@@ -206,7 +225,19 @@ public class Student_Quiz_Activity extends AppCompatActivity {
                 try {
 
                     if (response.equals("[]")){
-                        AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"No Question found.");
+                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Student_Quiz_Activity.this)
+                                .setMessage("No Question found.")
+                                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.cancel();
+                                        startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
+                                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                                    }
+                                });
+                        AlertDialog alert11 = alertDialog.create();
+                        alert11.show();
+
                     }else {
 
                         JSONArray array = response.getJSONArray("question");
@@ -280,7 +311,19 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 if (position+1==list_quiz.size()){
                     total_question = String.valueOf(list_quiz.size());
-                    AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"You have attend all questions");
+
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Student_Quiz_Activity.this)
+                            .setMessage("You have attend all questions")
+                            .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                    startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
+                                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                                }
+                            });
+                    AlertDialog alert11 = alertDialog.create();
+                    alert11.show();
                     Vibrator vibrator = (Vibrator) Student_Quiz_Activity.this
                             .getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(1000);
@@ -317,7 +360,21 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 if (position+1==list_quiz.size()){
 
-                    AlertBoxClasses.SimpleAlertBox(Student_Quiz_Activity.this,"You have attend all questions");
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Student_Quiz_Activity.this)
+                            .setMessage("You have attend all questions")
+                            .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                    startActivity(new Intent(Student_Quiz_Activity.this,Dasboard_Activity.class));
+                                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                                }
+                            });
+                    AlertDialog alert11 = alertDialog.create();
+                    alert11.show();
+                    Vibrator vibrator = (Vibrator) Student_Quiz_Activity.this
+                            .getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(1000);
                 }else {
                     enableoption(true);
                     count = 0;
@@ -586,11 +643,11 @@ public class Student_Quiz_Activity extends AppCompatActivity {
 
                 Log.d("error","error");
 
-                Toast.makeText(Student_Quiz_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Student_Quiz_Activity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
             }
         });
 
-
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(Student_Quiz_Activity.this).add(jsonRequest);
     }
 

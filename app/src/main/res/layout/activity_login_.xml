@@ -103,7 +103,6 @@
             android:hint="email ID"
             android:paddingLeft="16dp"
             android:imeOptions="actionNext"
-            android:nextFocusForward="@+id/et_personal_lastname"
             android:textColor="@color/black"
             android:textColorHint="#bebebe">
             <requestFocus />

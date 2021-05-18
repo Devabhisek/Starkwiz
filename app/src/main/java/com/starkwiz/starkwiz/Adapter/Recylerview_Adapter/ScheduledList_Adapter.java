@@ -46,7 +46,7 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
     private ArrayList<Scheduled_ModelClass> listitems;
     private int mCheckedPostion = -1;
     String UserId,Subject_name,Module_name;
-    int selected_day, selected_month,selected_year,current_day,current_month,current_year;
+    int selected_day, selected_month,selected_year,current_day,current_month,current_year,day_remaining;
 
 
     public ScheduledList_Adapter(ArrayList<Scheduled_ModelClass> listitems, Activity context) {
@@ -101,7 +101,7 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
 
             if (selected_month>=current_month){
 
-                int day_remaining = selected_day-current_day;;
+                 day_remaining = selected_day-current_day;;
                 holder.txt_remainingdate.setText(String.valueOf(day_remaining+" d: "));
 
 
@@ -193,7 +193,7 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
                                         dialog.show();
 
                                         TextView  txt_schedule_date,txt_schedule_time,txt_schedule_duration,txt_schedule_marks,
-                                                txt_schdule_subject,txt_schedule_module;
+                                                txt_schdule_subject,txt_schedule_module,txt_schedule;
                                         Button btn_schedule_okay,btn_schedule_appear,btn_schedule_modify;
 
                                         txt_schedule_date       =   dialog.findViewById(R.id.txt_schedule_date);
@@ -205,6 +205,7 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
                                         btn_schedule_okay       =   dialog.findViewById(R.id.btn_schedule_okay);
                                         btn_schedule_appear     =   dialog.findViewById(R.id.btn_schedule_appear);
                                         btn_schedule_modify     =   dialog.findViewById(R.id.btn_schedule_modify);
+                                        txt_schedule            =   dialog.findViewById(R.id.txt_schedule);
 
                                         txt_schedule_date.setText("Date\n"+Scheduled_ModelClass.getDate());
                                         txt_schedule_time.setText(Scheduled_ModelClass.getTime()+Scheduled_ModelClass.getTime_type());
@@ -212,6 +213,7 @@ public class ScheduledList_Adapter extends RecyclerView.Adapter<ScheduledList_Ad
                                         txt_schedule_marks.setText(Scheduled_ModelClass.getTotalmark());
                                         txt_schdule_subject.setText(holder.txt_scheduled_subjectname.getText().toString());
                                         txt_schedule_module.setText(holder.txt_scheduled_modulename.getText().toString());
+                                        txt_schedule.setText(String.valueOf(day_remaining+" d: "));
 
                                         btn_schedule_okay.setOnClickListener(new View.OnClickListener() {
                                             @Override

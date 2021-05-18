@@ -215,12 +215,11 @@
 
 
         <Button
-            android:enabled="false"
             android:id="@+id/btn_verfication_proceed"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="49dp"
-            android:background="@drawable/round_textview_grey"
+            android:background="@drawable/rounded_button"
             android:text="Proceed"
             android:textAllCaps="false"
             android:textColor="@color/white"

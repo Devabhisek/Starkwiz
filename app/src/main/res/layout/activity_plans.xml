@@ -191,7 +191,6 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito"
                     android:textSize="19dp"
-                    android:text="80"
                     android:textStyle="bold"
                     android:layout_marginTop="5dp"
                     android:layout_gravity="center_vertical"
@@ -286,7 +285,6 @@
                 android:id="@+id/linear_basictype"
                 android:layout_width="22dp"
                 android:layout_height="7dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/round_textview_clicked"></LinearLayout>
 
 

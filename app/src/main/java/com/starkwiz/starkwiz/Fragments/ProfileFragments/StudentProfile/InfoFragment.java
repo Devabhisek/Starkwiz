@@ -68,7 +68,7 @@ public class InfoFragment extends Fragment {
    TextView txt_editgeneralinfo,txt_generalinfo,txt_profile_status,txt_profile_userid,txt_profile_city,txt_profile_state,
            txt_profile_school,txt_profile_board,txt_profile_dob,txt_profile_aboutme,txt_profile_address,et_profile_dob,
            txt_profile_fblink,txt_profile_instalink,txt_profile_location,txt_edit_location,txt_edit_social
-           ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board;
+           ,txt_profile_icse,txt_profile_cbse,txt_userid,txt_edit_persona,txt_edit_board,txt_editgeneralinfo_location,txt_editgeneralinfo_socialmedia;
     String date,strtext,Board,image,image1,image2,image3,image4,image5,image6,Interest,
             profile_image_one,profile_image_two,profile_image_three,profile_image_four,profile_image_five,profile_image_six,
             Image_One,Image_Two,Image_Three,Image_Four,Image_Five,Image_Six,city,state,school,location,date_of_birth,
@@ -211,6 +211,58 @@ public class InfoFragment extends Fragment {
                     );
 
                // }
+            }
+        });
+
+        txt_editgeneralinfo_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String intrst = Interest+et_profile_interest.getText().toString()+",";
+
+                EditProfile(strtext,
+                        "Bubble",
+                        et_profile_city.getText().toString().trim(),
+                        et_profile_state.getText().toString().trim(),
+                        et_profile_school.getText().toString().trim(),
+                        et_profile_location.getText().toString().trim(),
+                        txt_edit_board.getText().toString().trim(),
+                        et_profile_dob.getText().toString(),
+                        et_profile_about.getText().toString().trim(),
+                        et_profile_address.getText().toString().trim(),
+                        intrst,
+                        et_profile_fblink.getText().toString().trim(),
+                        et_profile_instalink.getText().toString().trim(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getCls(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getLast_name(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getFirst_name()
+                );
+
+            }
+        });
+
+        txt_editgeneralinfo_socialmedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String intrst = Interest+et_profile_interest.getText().toString()+",";
+
+                EditProfile(strtext,
+                        "Bubble",
+                        et_profile_city.getText().toString().trim(),
+                        et_profile_state.getText().toString().trim(),
+                        et_profile_school.getText().toString().trim(),
+                        et_profile_location.getText().toString().trim(),
+                        txt_edit_board.getText().toString().trim(),
+                        et_profile_dob.getText().toString(),
+                        et_profile_about.getText().toString().trim(),
+                        et_profile_address.getText().toString().trim(),
+                        intrst,
+                        et_profile_fblink.getText().toString().trim(),
+                        et_profile_instalink.getText().toString().trim(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getCls(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getLast_name(),
+                        SharedPrefManager.getInstance(getActivity()).getUser().getFirst_name()
+                );
+
             }
         });
 
@@ -416,6 +468,8 @@ public class InfoFragment extends Fragment {
         img_profile_four = view.findViewById(R.id.img_profile_four);
         img_profile_five = view.findViewById(R.id.img_profile_five);
         img_profile_six = view.findViewById(R.id.img_profile_six);
+        txt_editgeneralinfo_location = view.findViewById(R.id.txt_editgeneralinfo_location);
+        txt_editgeneralinfo_socialmedia = view.findViewById(R.id.txt_editgeneralinfo_socialmedia);
         list_interest=new ArrayList<>();
         lv_interest.setHasFixedSize(true);
         lv_interest.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));

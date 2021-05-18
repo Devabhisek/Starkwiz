@@ -57,7 +57,8 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             hour,minutes,subject,module,schedule_date,totalmark,Schdmin,newschedule;
     Button btn_createschedule;
     TextView txt_schedule_time,txt_scheduled_date,txt_scheduld_time,txt_schedule_subjectname,txt_schdl_fixture,txt_schdl_subjectname,
-            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration,txt_scdlmark,txt_scdl_duration,txt_schedule_mark;
+            txt_schedule_modulename,txt_schedule_timeremaining,txt_schedule_duration,txt_scdlmark,txt_scdl_duration,txt_schedule_mark,
+            txt_schedule_done;
     RadioButton rb_am,rb_pm;
     String Subject_Name,Module_Name,Schedule_Date,Schedule_Time;
     @Override
@@ -81,6 +82,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         txt_scdl_duration = findViewById(R.id.txt_scdl_duration);
         txt_schdl_subjectname = findViewById(R.id.txt_schdl_subjectname);
         txt_schedule_mark = findViewById(R.id.txt_schedule_mark);
+        txt_schedule_done = findViewById(R.id.txt_schedule_done);
 
         Calendar Fix_cal=Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
@@ -216,6 +218,24 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
             }
         });
 
+            txt_schedule_done.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rb_am.isChecked()){
+                        time_type = "AM";
+                    }
+                    else {
+                        time_type = "PM";
+                    }
+
+                    if (newschedule!=null) {
+                        CreateSchdule(test_id, user_id, subject_id, module_id, date, time, month, time_type);
+                    }else {
+                        UpdateSchdule(id,test_id,user_id,subject_id,module_id,date,time,month);
+                    }
+                }
+            });
+
 
 
             txt_schedule_subjectname.setText(subject);
@@ -265,6 +285,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
                         if (msg.equals("fixture created")) {
                             Toast.makeText(Subject_Schedule_Detail_Activity.this, "Scheduled", Toast.LENGTH_SHORT).show();
                             AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this, "Scheduled Successfully");
+                            CreateNotification(user_id,"Your Schedule has been saved successfully.");
                         } else {
                             AlertBoxClasses.SimpleAlertBox(Subject_Schedule_Detail_Activity.this, "Something went wrong, Please try again.");
                         }
@@ -442,7 +463,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
                     String message= response.getString("message");
                     if (message.equals("notification created")){
                         Log.d("success",message);
-                        notificationDialog();
+                        notificationDialog("Your schedule has been saved successfully");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -468,8 +489,8 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
         Volley.newRequestQueue(Subject_Schedule_Detail_Activity.this).add(jsonRequest);
     }
 
-    private void notificationDialog() {
-        NotificationManager notificationManager = (NotificationManager)       getSystemService(Context.NOTIFICATION_SERVICE);
+    private void notificationDialog(String message) {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "tutorialspoint_01";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_MAX);
@@ -489,7 +510,7 @@ public class Subject_Schedule_Detail_Activity extends AppCompatActivity {
                 .setTicker("Tutorialspoint")
                 .setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle("Starkwiz")
-                .setContentText("Your Schedule has been update successfully.")
+                .setContentText(message)
                 .setContentInfo("Information");
         notificationManager.notify(1, notificationBuilder.build());
     }

@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.starkwiz.starkwiz.Activities.Signup_Activities.Signup_Email_Verification_Activity;
 import com.starkwiz.starkwiz.Activities.Signup_Activities.Signup_SetupPassword_Activity;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.Hublist_Adapter;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
@@ -61,10 +62,10 @@ public class HubListsActivity extends AppCompatActivity {
 
         try {
 
-            Name = getIntent().getExtras().getString("Name");
-            Address = getIntent().getExtras().getString("Address");
-            YearOfEstablishment = getIntent().getExtras().getString("YearOfEstablishment");
-            Mobileno = getIntent().getExtras().getString("Mobileno");
+            Name = getIntent().getExtras().getString("Hub_Name");
+            Address = getIntent().getExtras().getString("Hub_Address");
+            YearOfEstablishment = getIntent().getExtras().getString("Hub_YearOfEstablishment");
+            Mobileno = getIntent().getExtras().getString("PhoneNo");
 
         }catch (Exception e){
             e.printStackTrace();
@@ -79,7 +80,14 @@ public class HubListsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (selected_hubtype!=null){
-                    RegisterHub();
+                    Intent intent = new Intent(HubListsActivity.this, Signup_Email_Verification_Activity.class);
+                    intent.putExtra("Hub_Name",Name);
+                    intent.putExtra("Hub_Address",Address);
+                    intent.putExtra("Hub_YearOfEstablishment",YearOfEstablishment);
+                    intent.putExtra("PhoneNo",Mobileno);
+                    intent.putExtra("Hub_type",selected_hubtype);
+                    intent.putExtra("Role","Hub");
+                    startActivity(intent);
                 }else {
                     Toast.makeText(HubListsActivity.this, "Choose any one of these", Toast.LENGTH_SHORT).show();
                 }
@@ -157,48 +165,5 @@ public class HubListsActivity extends AppCompatActivity {
         Volley.newRequestQueue(HubListsActivity.this).add(getRequest);
     }
 
-    private void RegisterHub(){
-        ProgressDialog progressDialog = new ProgressDialog(HubListsActivity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        //HttpsTrustManager.allowAllSSL();
 
-
-        final Map<String, String> params = new HashMap();
-
-
-        params.put("hub_name", Name);
-        params.put("address", Address);
-        params.put("hub_establishment", YearOfEstablishment);
-        params.put("mobile_number", Mobileno);
-        params.put("role", "Hub");
-        params.put("hub_typee", selected_hubtype);
-
-        JSONObject parameters = new JSONObject(params);
-
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URLS.registerhub, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                progressDialog.dismiss();
-
-                Toast.makeText(HubListsActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                progressDialog.dismiss();
-                Toast.makeText(HubListsActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        Volley.newRequestQueue(HubListsActivity.this).add(jsonRequest);
-
-    }
 }

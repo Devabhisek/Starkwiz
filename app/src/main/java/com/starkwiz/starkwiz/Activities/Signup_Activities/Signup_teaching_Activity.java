@@ -99,7 +99,7 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                     intent.putExtra("Class",cls);
                     intent.putExtra("Board",board);
                     intent.putExtra("State",State);
-                    intent.putExtra("District",District);
+                    intent.putExtra("District",district);
                     intent.putExtra("City",City);
                     intent.putExtra("BlockNo",et_studying_block.getText().toString());
                     intent.putExtra("SchoolName",School);
