@@ -60,10 +60,10 @@
                 android:text="Pick which type of Notification you\nwould like to receive in application"
                 android:layout_below="@+id/txt_typeofuser"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="22dp"
                 android:textSize="16dp"
                 android:textColor="@color/theme_blue"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"></TextView>
+                ></TextView>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                 android:checked="true"
                 android:textColor="@color/black"
                 android:layout_marginTop="22dp"
-                android:layout_marginLeft="55dp"></CheckBox>
+                android:layout_marginLeft="22dp"></CheckBox>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                 android:buttonTint="@color/theme_blue"
                 android:text=" Friend Requests"
                 android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                android:layout_marginLeft="22dp"></CheckBox>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                 android:buttonTint="@color/theme_blue"
                 android:text=" Event Invitations"
                 android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                android:layout_marginLeft="22dp"></CheckBox>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 android:buttonTint="@color/theme_blue"
                 android:text=" Reward Unlock"
                 android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                android:layout_marginLeft="22dp"></CheckBox>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                 android:buttonTint="@color/theme_blue"
                 android:text=" Like and Stars"
                 android:textColor="@color/black"
-                android:layout_marginLeft="55dp"></CheckBox>
+                android:layout_marginLeft="22dp"></CheckBox>
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:buttonTint="@color/theme_blue"
                 android:text=" Shares on other platform"
                 android:textColor="@color/black"
-               android:layout_marginLeft="55dp"
+               android:layout_marginLeft="22dp"
                 android:layout_marginBottom="16dp"></CheckBox>
 
 

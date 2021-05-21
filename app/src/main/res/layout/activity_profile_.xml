@@ -310,6 +310,7 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/bordee"
                 android:gravity="center"
+                android:text="Candy"
                 android:textSize="16dp"
                 android:textColor="@color/theme_blue" />
 

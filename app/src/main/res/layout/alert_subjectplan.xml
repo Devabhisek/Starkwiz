@@ -37,9 +37,9 @@
 
                 <ImageView
                     android:id="@+id/img_alert"
-                    android:layout_width="wrap_content"
+                    android:layout_width="330dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/splash"
+                    android:src="@mipmap/secondsplash"
                     android:layout_centerHorizontal="true"></ImageView>
 
 
@@ -64,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito"
-                android:text="Choose any 6 subjects of your choice\nTry to select minimum 1 form each section\nStarkwiz !"
                 android:textColor="@color/theme_blue"
                 android:layout_marginLeft="49dp"
                 android:layout_marginBottom="16dp"

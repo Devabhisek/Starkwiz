@@ -53,7 +53,7 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
     Button btn_signup_personal;
     String FirstName,LastName,Dob,PhoneNo,Gender,State,City,District,SchoolName,Class,Board,Role,BlockNo,newaccount,
             stateid,districtid,cityid,schoolid,state,district,city,School;
-    EditText et_studying_block;
+   // EditText et_studying_block;
     RadioButton radio_class_four,radio_class_five,radio_class_six,radio_class_seven,radio_class_eight,radio_class_nine,radio_class_ten,radio_class_icse,radio_class_cbse;
     RadioGroup linear_studying_class,linear_studying_classes;
     ArrayList<State_ModelClass>listStates;
@@ -210,7 +210,7 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
                // City = et_studying_city.getText().toString().trim();
                 //District = et_studying_district.getText().toString().trim();
                 //SchoolName = et_personal_schoolname.getText().toString().trim();
-                BlockNo=et_studying_block.getText().toString().trim();
+                //BlockNo=et_studying_block.getText().toString().trim();
 
                 if (radio_class_four.isChecked()) {
                     Class = "4";
@@ -271,7 +271,7 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
                     intent.putExtra("Gender", Gender);
                     intent.putExtra("State", state);
                     intent.putExtra("City", city);
-                    intent.putExtra("BlockNo", BlockNo);
+                    intent.putExtra("BlockNo", "block no");
                     intent.putExtra("District", district);
                     intent.putExtra("SchoolName", School);
                     intent.putExtra("Class", Class);
@@ -301,7 +301,7 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
         radio_class_cbse = findViewById(R.id.radio_class_cbse);
         linear_studying_class = findViewById(R.id.linear_studying_class);
         linear_studying_classes = findViewById(R.id.linear_studying_classes);
-        et_studying_block = findViewById(R.id.et_studying_block);
+        //et_studying_block = findViewById(R.id.et_studying_block);
 
         radio_class_four.setChecked(true);
         radio_class_icse.setChecked(true);
@@ -351,6 +351,7 @@ public class Sigup_Studying_Activity extends AppCompatActivity {
                                 listStates.add(modelClass);
 
                                 StateSpinnerAdapter adapter = new StateSpinnerAdapter(Sigup_Studying_Activity.this,R.layout.spinner_textview,listStates);
+
                                 et_studying_state.setAdapter(adapter);
 
                             } catch (JSONException e) {

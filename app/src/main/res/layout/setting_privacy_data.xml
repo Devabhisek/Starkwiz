@@ -44,7 +44,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>
@@ -88,7 +88,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>
@@ -132,12 +132,13 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/txt_privacy_clearcahce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear Cache "

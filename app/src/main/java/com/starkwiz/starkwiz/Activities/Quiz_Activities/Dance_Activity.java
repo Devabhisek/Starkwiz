@@ -94,8 +94,8 @@ public class Dance_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dance_);
 
-        btn_music_upload = findViewById(R.id.btn_music_upload);
-        txt_fixture = findViewById(R.id.txt_fixture);
+        btn_music_upload = findViewById(R.id.btn_dance_upload);
+        txt_fixture = findViewById(R.id.txtfixture);
         lv_tpopics = findViewById(R.id.lv_tpopics);
         lv_tpopics.setHasFixedSize(true);
         lv_tpopics.setLayoutManager(new LinearLayoutManager(Dance_Activity.this));

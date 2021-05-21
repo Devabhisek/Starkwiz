@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BADGES"
-                android:layout_marginLeft="55dp"
+                android:layout_marginLeft="22dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/theme_blue"
                 android:textSize="18dp"></TextView>
@@ -35,8 +35,8 @@
                 <RelativeLayout
                     android:layout_width="95dp"
                     android:layout_height="95dp"
-                    android:background="@drawable/bordee"
-                    android:layout_marginLeft="49dp"
+                    android:background="@drawable/bordee_achievement"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="30dp">
 
                     <ImageView
@@ -61,7 +61,7 @@
             <LinearLayout
                 android:layout_width="22dp"
                 android:layout_height="5dp"
-                android:layout_marginLeft="49dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/theme_blue"></LinearLayout>
 
@@ -231,7 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PERFORMANCE"
-                android:layout_marginLeft="55dp"
+                android:layout_marginLeft="22dp"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/theme_blue"
                 android:textSize="18dp"></TextView>
@@ -246,9 +246,9 @@
 
                 <RelativeLayout
                     android:layout_width="95dp"
-                    android:layout_height="95dp"
-                    android:background="@drawable/bordee"
-                    android:layout_marginLeft="49dp"
+                    android:layout_height="135dp"
+                    android:background="@drawable/bordee_achievement"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="30dp">
 
                     <ImageView
@@ -274,7 +274,7 @@
             <LinearLayout
                 android:layout_width="22dp"
                 android:layout_height="5dp"
-                android:layout_marginLeft="49dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/theme_blue"></LinearLayout>

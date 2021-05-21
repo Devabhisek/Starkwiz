@@ -616,6 +616,11 @@ public class Signup_Personal_Activity extends AppCompatActivity {
 
                     if (mobilenumberCount.equals("1")){
                         AlertBoxClasses.SimpleAlertBox(Signup_Personal_Activity.this,"Phone Number already exists,\nPlease try another phone number");
+                        btn_signup_personal.setEnabled(false);
+                        btn_signup_personal.setBackground(getResources().getDrawable(R.drawable.round_textview));
+                    }else {
+                        btn_signup_personal.setEnabled(true);
+                        btn_signup_personal.setBackground(getResources().getDrawable(R.drawable.rounded_button));
                     }
 
 

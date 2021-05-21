@@ -172,16 +172,16 @@ public class Signup_SetupPassword_Activity extends AppCompatActivity {
                     seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.teal_700));
                     txt_strength.setText("Medium");
                     txt_strength.setTextColor(getResources().getColor(R.color.teal_700));
-                }else if(s.length()>5 || s.length()==6 && isValidPassword(et_password.getText().toString().trim())) {
-                    seekbar_pswd.setProgress(80);
-                    seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.teal_200));
-                    txt_strength.setText("Strong");
-                    txt_strength.setTextColor(getResources().getColor(R.color.teal_200));
-                }else {
+                }else if(isValidPassword(et_password.getText().toString().trim())) {
                     seekbar_pswd.setProgress(100);
                     seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.teal_200));
                     txt_strength.setText("Strong");
                     txt_strength.setTextColor(getResources().getColor(R.color.teal_200));
+                }else {
+                    seekbar_pswd.setProgress(0);
+                    seekbar_pswd.setBackgroundColor(getResources().getColor(R.color.orange));
+                    txt_strength.setText("Weak");
+                    txt_strength.setTextColor(getResources().getColor(R.color.orange));
                 }
             }
         });

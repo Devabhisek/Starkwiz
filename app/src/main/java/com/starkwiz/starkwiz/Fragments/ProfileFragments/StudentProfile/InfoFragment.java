@@ -484,6 +484,7 @@ public class InfoFragment extends Fragment {
     }
 
     private void GetProfile(){
+        list_interest.clear();
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);

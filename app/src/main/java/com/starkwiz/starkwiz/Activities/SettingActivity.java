@@ -76,7 +76,8 @@ public class SettingActivity extends AppCompatActivity {
             txtsetting_supportnotification,txtsetting_supportprivacy,txt_disconnect_knowmore,txtsetting_logout,
             txt_loginoption,txt_connectedoption,txt_setting_plantype,txt_setting_planyear,txt_setting_planprice,
             txt_setting_permonthprice,txt_plan_update,txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
-            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth;
+            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth,
+            txt_privacy_clearcahce;
     LinearLayout linear_setting_account,linear_setting_notification,linear_setting_privacydata,
             linear_setting_plandetails,linear_switch_account,linear_loginoption,linear_connectedaccount,
             lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
@@ -132,6 +133,7 @@ public class SettingActivity extends AppCompatActivity {
         txt_setting_planprice = findViewById(R.id.txt_setting_planprice);
         txt_setting_permonthprice = findViewById(R.id.txt_setting_permonthprice);
         txt_plan_update = findViewById(R.id.txt_plan_update);
+        txt_privacy_clearcahce = findViewById(R.id.txt_privacy_clearcahce);
 
         list_coresubjects =new ArrayList<>();
         list_extrasubjects =new ArrayList<>();
@@ -367,7 +369,13 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.alert_change_close_account);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
-
+                Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+                btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Close(UserId);
+                    }
+                });
                 Window window = dialog.getWindow();
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
@@ -409,16 +417,37 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.alert_privacy_data_setting);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 Button btn_alert_clearcache = dialog.findViewById(R.id.btn_alert_clearcache);
+                Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+                Button btn_change_email_cancel = dialog.findViewById(R.id.btn_change_email_cancel);
+
+                btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                btn_change_email_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
                 btn_alert_clearcache.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         final Dialog dialog = new Dialog(SettingActivity.this);
                         dialog.setContentView(R.layout.alert_clear_cache);
                         dialog.show();
+                        Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
                         progress_bar_3 = dialog.findViewById(R.id.progress_bar_3);
                         deleteCache(SettingActivity.this);
                         progress_bar_3.animateProgress(2000, 0, 100); // (animationDuration, oldProgress, newProgress)
-
+                        btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
                         Window window = dialog.getWindow();
                        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     }
@@ -426,6 +455,29 @@ public class SettingActivity extends AppCompatActivity {
                 dialog.show();
                 Window window = dialog.getWindow();
                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            }
+        });
+
+        txt_privacy_clearcahce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(SettingActivity.this);
+                dialog.setContentView(R.layout.alert_clear_cache);
+                dialog.show();
+                Button btn_change_email_confirm = dialog.findViewById(R.id.btn_change_email_confirm);
+                progress_bar_3 = dialog.findViewById(R.id.progress_bar_3);
+                deleteCache(SettingActivity.this);
+                progress_bar_3.animateProgress(2000, 0, 100);
+                // (animationDuration, oldProgress, newProgress)
+                btn_change_email_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Window window = dialog.getWindow();
+                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             }
         });
 

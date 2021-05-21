@@ -1,5 +1,6 @@
 package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -61,11 +62,17 @@ public class RewardFragment extends Fragment {
 
     public void GetFixtureRewards(){
 
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 "https://rentopool.com/starkwiz/api/auth/getsubscribedsubjects?user_id=" + User_ID, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+                dialog.dismiss();
                 try {
                     JSONObject object = new JSONObject(response);
                     String pointmark = object.getString("pointmark");
@@ -106,6 +113,7 @@ public class RewardFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                dialog.dismiss();
             }
         });
 
@@ -113,12 +121,16 @@ public class RewardFragment extends Fragment {
     }
 
     public void GetConsecutiveRewards(){
-
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 "https://rentopool.com/starkwiz/api/auth/consecutiverewards?user_id=" + User_ID, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+                dialog.dismiss();
                 try {
                     JSONObject object = new JSONObject(response);
                     String consuqutive_reeards_count = object.getString("consuqutive_reeards_count");
@@ -159,6 +171,7 @@ public class RewardFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                dialog.dismiss();
             }
         });
 
@@ -166,6 +179,10 @@ public class RewardFragment extends Fragment {
     }
 
     public void GetTalentReward(){
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 "https://rentopool.com/starkwiz/api/auth/getsubscribedsubjects?user_id=" + User_ID,
@@ -173,6 +190,7 @@ public class RewardFragment extends Fragment {
             @Override
             public void onResponse(String response) {
 
+                dialog.dismiss();
                 try {
                     JSONObject object = new JSONObject(response);
                     String talentrewards = object.getString("talent_rewards");
@@ -225,6 +243,7 @@ public class RewardFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                dialog.dismiss();
             }
         });
 

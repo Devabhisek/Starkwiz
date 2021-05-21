@@ -450,9 +450,13 @@ public class Profile_Activity extends Fragment {
 
                             JSONObject jsonObject = new JSONObject(Information);
 
-                            txt_profile_status.setText(jsonObject.getString("rank_name"));
-
                             status = jsonObject.getString("rank_name");
+
+                            if (status.equals("null") || status.equals(" ")){
+                                txt_profile_status.setText("Candy");
+                            }else {
+                                txt_profile_status.setText(jsonObject.getString("rank_name"));
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

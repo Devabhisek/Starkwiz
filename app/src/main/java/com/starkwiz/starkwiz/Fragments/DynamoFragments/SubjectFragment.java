@@ -142,6 +142,9 @@ import tourguide.tourguide.TourGuide;
         rl_addsubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                list_coresubjects.clear();
+                list_featuresubjects.clear();
+                list_extrasubjects.clear();
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.activity_plans);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -531,7 +534,7 @@ import tourguide.tourguide.TourGuide;
                         dialog.setContentView(R.layout.alert_subjectplan);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-                        TextView txt_disciuntprice,txt_disciuntpricemonth;
+                        TextView txt_disciuntprice,txt_disciuntpricemonth,txt_studenttype;
 
                         txtplantype_subject = dialog.findViewById(R.id.txtplantype);
                         txtplanprice_subject = dialog.findViewById(R.id.txtplanprice);
@@ -550,6 +553,16 @@ import tourguide.tourguide.TourGuide;
                         linear_coretype = dialog.findViewById(R.id.linear_coretype);
                         linear_featuretype = dialog.findViewById(R.id.linear_featuretype);
                         img_cross_subjects = dialog.findViewById(R.id.img_cross_subjects);
+                        txt_studenttype = dialog.findViewById(R.id.txt_studenttype);
+
+                        if (PlanType.equals("Basic")){
+
+                            txt_studenttype.setText("Choose any 6 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }else if (PlanType.equals("Standard")){
+                            txt_studenttype.setText("Choose any 9 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }else {
+                            txt_studenttype.setText("Choose any 12 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }
 
 
 

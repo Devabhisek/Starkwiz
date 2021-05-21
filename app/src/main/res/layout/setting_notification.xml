@@ -28,7 +28,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>
@@ -130,7 +130,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>
@@ -158,7 +158,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="false"></Switch>
 
     </RelativeLayout>
@@ -185,7 +185,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
-            android:background="@color/theme_blue"
+            android:background="@drawable/round_textview_clicked"
             android:checked="true"></Switch>
 
     </RelativeLayout>

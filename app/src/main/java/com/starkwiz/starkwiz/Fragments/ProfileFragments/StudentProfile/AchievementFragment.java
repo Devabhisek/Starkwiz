@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -83,6 +84,13 @@ public class AchievementFragment extends Fragment {
                 dialog.setContentView(R.layout.custom_achievement);
                 Window window = dialog.getWindow();
                 dialog.show();
+                ImageView imgback = dialog.findViewById(R.id.imgback);
+                imgback.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
                 window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             }
         });

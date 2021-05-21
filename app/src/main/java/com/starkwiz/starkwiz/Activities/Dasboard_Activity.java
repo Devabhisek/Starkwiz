@@ -60,7 +60,7 @@ public class Dasboard_Activity extends AppCompatActivity {
         img_notification = findViewById(R.id.img_notification);
 
         bottomnavigation.setOnNavigationItemSelectedListener(navListner);
-        bottomnavigation.setSelectedItemId(R.id.bottom_menu_dynamo);
+        bottomnavigation.setSelectedItemId(R.id.bottom_menu_showcase);
 
         img_notification.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,6 +57,9 @@ public class StateSpinnerAdapter extends ArrayAdapter<State_ModelClass> {
         label.setText(String.format("%s", model != null ? model.getState_name() : ""));
 
 
+
+
+
         return spinnerRow;
     }
 }

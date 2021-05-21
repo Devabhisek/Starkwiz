@@ -47,30 +47,30 @@
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"></TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img_alert"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="16dp"
-                android:text="Enter Password"
-                android:textColor="@color/theme_blue"
-                android:textSize="16dp"
-                android:textStyle="bold"></TextView>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/img_alert"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:paddingLeft="16dp"-->
+<!--                android:text="Enter Password"-->
+<!--                android:textColor="@color/theme_blue"-->
+<!--                android:textSize="16dp"-->
+<!--                android:textStyle="bold"></TextView>-->
 
-            <EditText
-                android:id="@+id/et_change_email"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="30dp"
-                android:backgroundTint="@android:color/holo_blue_light"
-                android:hint="starkwiz2021@gmail.com"
-                android:textColor="@color/black"
-                android:textColorHint="#bebebe"
-                android:textSize="14dp"></EditText>
+<!--            <EditText-->
+<!--                android:id="@+id/et_change_email"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:layout_marginRight="30dp"-->
+<!--                android:backgroundTint="@android:color/holo_blue_light"-->
+<!--                android:hint="starkwiz2021@gmail.com"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textColorHint="#bebebe"-->
+<!--                android:textSize="14dp"></EditText>-->
 
             <TextView
                 android:layout_width="match_parent"

@@ -14,9 +14,11 @@
 
         <ImageView
             android:id="@+id/img_personal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/splash"></ImageView>
+            android:layout_width="330dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:src="@mipmap/secondsplash"></ImageView>
 
         <TextView
             android:id="@+id/txtpersonalfirst"
@@ -139,61 +141,78 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear_styuding_districtblock"
+        <Spinner
+            android:id="@+id/et_studying_city"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="8dp"
-            android:layout_below="@+id/linear_styuding_location">
+            android:layout_height="46dp"
+            android:textSize="13dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="44dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            android:layout_weight="5"
+            android:popupBackground="@color/white"
+            android:background="@drawable/round_textview"
+            android:spinnerMode="dropdown"
+            android:layout_below="@+id/linear_styuding_location"></Spinner>
 
-            <Spinner
-                android:id="@+id/et_studying_city"
-                android:layout_width="0dp"
-                android:layout_height="46dp"
-                android:textSize="13dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/black"
-                android:layout_weight="5"
-                android:popupBackground="@color/white"
-                android:background="@drawable/round_textview"
-                android:spinnerMode="dropdown" ></Spinner>
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linear_styuding_districtblock"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_below="@+id/linear_styuding_location">-->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/et_studying_block"
-                android:text="or"
-                android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="3"
-                android:textColor="@color/black"
-                android:textSize="16dp"></TextView>
+<!--            <Spinner-->
+<!--                android:id="@+id/et_studying_city"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="46dp"-->
+<!--                android:textSize="13dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="35dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_weight="5"-->
+<!--                android:popupBackground="@color/white"-->
+<!--                android:background="@drawable/round_textview"-->
+<!--                android:spinnerMode="dropdown" ></Spinner>-->
 
-            <EditText
-                android:id="@+id/et_studying_block"
-                android:layout_width="0dp"
-                android:layout_height="49dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="44dp"
-                android:layout_weight="5"
-                android:background="@drawable/round_textview"
-                android:gravity="center_vertical"
-                android:hint="Block"
-                android:paddingLeft="16dp"
-                android:textColor="@color/black"
-                android:textColorHint="#bebebe"></EditText>
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignLeft="@+id/et_studying_block"-->
+<!--                android:text="or"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_weight="3"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="16dp"></TextView>-->
 
-        </LinearLayout>
+<!--            <EditText-->
+<!--                android:id="@+id/et_studying_block"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="49dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginRight="44dp"-->
+<!--                android:layout_weight="5"-->
+<!--                android:background="@drawable/round_textview"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:hint="Block"-->
+<!--                android:paddingLeft="16dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textColorHint="#bebebe"></EditText>-->
+
+<!--        </LinearLayout>-->
 
 
         <Spinner
             android:id="@+id/et_personal_schoolname"
-            android:layout_below="@+id/linear_styuding_districtblock"
+            android:layout_below="@+id/et_studying_city"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:textSize="13dp"

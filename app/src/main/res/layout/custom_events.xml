@@ -5,7 +5,8 @@
     android:layout_height="128dp"
     app:cardCornerRadius="11dp"
     app:cardElevation="11dp"
-    android:id="@+id/card_events">
+    android:id="@+id/card_events"
+    android:layout_margin="8dp">
 
     <RelativeLayout
         android:id="@+id/card_subject"

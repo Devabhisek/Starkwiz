@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
     LinearLayout linearaction;
     private TourGuide mTourGuideHandler;
     SharedPreferences sharedPreferences ;
+    ImageView dash_setting,img_cross;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,31 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
         linearaction = findViewById(R.id.linearaction);
         btn_schedule = findViewById(R.id.btn_schedule);
         txt_totalmark = findViewById(R.id.txt_totalmark);
+        dash_setting = findViewById(R.id.dash_setting);
+        img_cross = findViewById(R.id.img_cross);
         lis_gettests = new ArrayList<>();
         list_test.setHasFixedSize(true);
         list_test.setLayoutManager(new LinearLayoutManager(Subjectwise_Syllabus_Activity.this));
+
+        dash_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Dasboard_Activity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+            }
+        });
+
+        img_cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Subjectwise_Syllabus_Activity.this,Dasboard_Activity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+            }
+        });
 
         //GetTestList();
 
@@ -195,6 +219,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                     }
 
                     if (is_active==null){
+                        btn_schedule.setEnabled(false);
+                        txt_appear.setEnabled(false);
                         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Subjectwise_Syllabus_Activity.this)
                                 .setMessage("No Tests are availabel")
                                 .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -270,7 +296,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                         txt_appear.setEnabled(true);
 
                     }else {
-
+                        btn_schedule.setEnabled(false);
+                        txt_appear.setEnabled(false);
                         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Subjectwise_Syllabus_Activity.this)
                                 .setMessage("No tests are availabel for this subject")
                                 .setCancelable(false)
@@ -278,6 +305,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         dialogInterface.cancel();
+                                        startActivity(new Intent(Subjectwise_Syllabus_Activity.this,Dasboard_Activity.class));
+                                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                                     }
                                 });
                         AlertDialog alert11 = alertDialog.create();
@@ -287,6 +316,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    btn_schedule.setEnabled(false);
+                    txt_appear.setEnabled(false);
                     final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Subjectwise_Syllabus_Activity.this)
                             .setMessage("No tests are availabel for this subject")
                             .setCancelable(false)
@@ -294,6 +325,8 @@ public class Subjectwise_Syllabus_Activity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
+                                    startActivity(new Intent(Subjectwise_Syllabus_Activity.this,Dasboard_Activity.class));
+                                    overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                                 }
                             });
                     AlertDialog alert11 = alertDialog.create();

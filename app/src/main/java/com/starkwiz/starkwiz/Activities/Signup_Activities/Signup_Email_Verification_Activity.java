@@ -302,7 +302,7 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
     private void CheckEmail(String Email){
 
         ProgressDialog dialog = new ProgressDialog(Signup_Email_Verification_Activity.this);
-        dialog.setMessage("Checking Mobile Number...");
+        dialog.setMessage("Checking Email Id...");
         dialog.setCancelable(false);
         dialog.show();
         final Map<String, String> params = new HashMap();
@@ -325,8 +325,12 @@ public class Signup_Email_Verification_Activity extends AppCompatActivity {
 
                     if (email.equals("1")){
                         AlertBoxClasses.SimpleAlertBox(Signup_Email_Verification_Activity.this,"Email already exists,\nPlease try another Emaild id");
+                        btn_verfication_proceed.setEnabled(false);
+                        btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.round_textview));
                     }else {
                         SendOtpEmail(etemail.getText().toString().trim());
+                        btn_verfication_proceed.setEnabled(true);
+                        btn_verfication_proceed.setBackground(getResources().getDrawable(R.drawable.rounded_button));
                     }
 
 

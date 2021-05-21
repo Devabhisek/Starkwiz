@@ -51,7 +51,7 @@ public class Signup_teaching_Activity extends AppCompatActivity {
     RadioGroup linear_studying_class,linear_studying_classes;
     RadioButton radio_teaching_icse,radio_teaching_cbse,radio_teahing_four,radio_teahing_five,radio_teahing_six,
             radio_teahing_seven,radio_teahing_eight,radio_teahing_nine,radio_teahing_ten;
-    EditText et_studying_block;
+    //EditText et_studying_block;
     String FirstName,LastName,Dob,PhoneNo,Gender,Role,newaccount,cls,board,State,District,City,stateid,
             districtid,district,schoolid,School,cityid;
     ArrayList<State_ModelClass> listStates;
@@ -85,9 +85,7 @@ public class Signup_teaching_Activity extends AppCompatActivity {
         btn_signup_teaching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (et_studying_block.getText().toString().trim().length()<0 ){
-                    AlertBoxClasses.SimpleAlertBox(Signup_teaching_Activity.this,"Check all fields");
-                }else {
+
                     Intent intent = new Intent(Signup_teaching_Activity.this, Signup_Qualification_Activity.class);
                     intent.putExtra("FirstName",FirstName);
                     intent.putExtra("LastName",LastName);
@@ -101,11 +99,11 @@ public class Signup_teaching_Activity extends AppCompatActivity {
                     intent.putExtra("State",State);
                     intent.putExtra("District",district);
                     intent.putExtra("City",City);
-                    intent.putExtra("BlockNo",et_studying_block.getText().toString());
+                    intent.putExtra("BlockNo","block no");
                     intent.putExtra("SchoolName",School);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                }
+
             }
         });
 
@@ -254,7 +252,7 @@ public class Signup_teaching_Activity extends AppCompatActivity {
         et_personal_firstname = findViewById(R.id.et_personal_firstname);
         et_personal_lastname = findViewById(R.id.et_personal_lastname);
         et_studying_city = findViewById(R.id.et_studying_city);
-        et_studying_block = findViewById(R.id.et_studying_block);
+        //et_studying_block = findViewById(R.id.et_studying_block);
 
         radio_teahing_four.setChecked(true);
         radio_teaching_icse.setChecked(true);
