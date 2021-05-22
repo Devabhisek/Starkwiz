@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,10 +54,10 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
 
             holder.chk_subject.setText(Extra_Subjectplan_ModelClass.getSubject_name());
 
-            holder.chk_subject.setOnClickListener(new View.OnClickListener() {
+            holder.chk_subject.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View view) {
-                    if (holder.chk_subject.isChecked()){
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (compoundButton.isChecked()){
 
                         SharedPreferences sharedPreferences = context.getSharedPreferences("USER", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor1 = sharedPreferences.edit();
@@ -83,9 +84,16 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
                         editor.putString("ExtraSet",json );
                         editor.commit();
 
-                    }else {
+                    }else if (!compoundButton.isChecked()){
 
-                        arrPackage.remove(Extra_Subjectplan_ModelClass.getSubject_name());
+                        for (int i =0;i<arrPackage.size();i++){
+
+                            if (arrPackage.get(i).getSubjectname()==Extra_Subjectplan_ModelClass.getSubject_name()){
+
+                                arrPackage.remove(i);
+                            }
+                        }
+
 
                         Gson gson = new Gson();
                         String json = gson.toJson(arrPackage);
@@ -98,6 +106,52 @@ public class ExtraSubjects_Adapter extends RecyclerView.Adapter<ExtraSubjects_Ad
                     }
                 }
             });
+
+//            holder.chk_subject.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (holder.chk_subject.isChecked()){
+//
+//                        SharedPreferences sharedPreferences = context.getSharedPreferences("USER", Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+//                        editor1.clear();
+//                        editor1.apply();
+//
+//                        Core_ModelClass core_modelClass= new Core_ModelClass(Extra_Subjectplan_ModelClass.getId(),
+//                                Extra_Subjectplan_ModelClass.getSubject_name(),
+//                                Extra_Subjectplan_ModelClass.getSubject_type());
+//                        arrPackage.add(core_modelClass);
+//                        HashSet hs = new HashSet();
+//
+//                        hs.addAll(arrPackage); // demoArrayList= name of arrayList from which u want to remove duplicates
+//
+//                        arrPackage.clear();
+//                        arrPackage.addAll(hs);
+//
+//                        Gson gson = new Gson();
+//                        String json = gson.toJson(arrPackage);
+//                        Log.d("js",json);
+//
+//                        sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("ExtraSet",json );
+//                        editor.commit();
+//
+//                    }else {
+//
+//                        arrPackage.remove(Extra_Subjectplan_ModelClass.getSubject_name());
+//
+//                        Gson gson = new Gson();
+//                        String json = gson.toJson(arrPackage);
+//                        Log.d("js",json);
+//
+//                        sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("ExtraSet",json );
+//                        editor.commit();
+//                    }
+//                }
+//            });
 
 
 

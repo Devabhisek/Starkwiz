@@ -16,7 +16,9 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+import com.starkwiz.starkwiz.Activities.SettingActivity;
+import com.starkwiz.starkwiz.Activities.Starting_Pages.UserSelection_Activity;
 import com.starkwiz.starkwiz.Adapter.Tabs_Adapter.ProfileAdapter;
 import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
@@ -61,6 +65,8 @@ public class Profile_Activity extends Fragment {
     public static final int PICK_IMAGE = 1;
     Bitmap selectedImage;
     String image1,image2,image3,image4,image5,image6;
+    ImageView profile_add;
+    String newaccount = "newaccount";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -83,6 +89,7 @@ public class Profile_Activity extends Fragment {
         et_class= view.findViewById(R.id.et_class);
         profileimg= view.findViewById(R.id.profileimg);
         txt_profile_folowers= view.findViewById(R.id.txt_profile_folowers);
+        profile_add= view.findViewById(R.id.profile_add);
 
         tabLayout.addTab(tabLayout.newTab().setText("Info"));
         tabLayout.addTab(tabLayout.newTab().setText("Achievement"));
@@ -93,6 +100,15 @@ public class Profile_Activity extends Fragment {
         GetProfile();
         Getrank(User_ID);
         GetFollowers(User_ID);
+
+        profile_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UserSelection_Activity.class);
+                intent.putExtra("newaccount",newaccount);
+                startActivity(intent);
+            }
+        });
 
         profileimg.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,7 +18,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="You don't have anyone\nin your fried list."
+              android:text="You don't have anyone\nin your friend list."
               android:textSize="16dp"
               android:textColor="@color/theme_blue"
               android:layout_marginLeft="55dp"

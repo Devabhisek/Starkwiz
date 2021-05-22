@@ -57,32 +57,48 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.HubInfo_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.HubListsActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Dasboard_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
         <activity
             android:name=".Activities.Forgot_Password_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activities.Signup_Activities.Signup_SetupPassword_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Qualification_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Parent_AboutYou_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Email_Verification_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_teaching_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Sigup_Studying_Activity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -90,22 +106,28 @@
         </activity>
         <activity
             android:name=".Activities.Starting_Pages.UserSelection_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Signup_Activities.Signup_Personal_Activity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Starting_Pages.WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activities.Starting_Pages.MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data

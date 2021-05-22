@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/img_personal"
             android:layout_width="330dp"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:src="@mipmap/secondsplash"></ImageView>
@@ -27,8 +27,7 @@
             android:text="Personal \nInformation"
             android:layout_below="@+id/img_personal"
             android:textSize="30dp"
-            android:fontFamily="@font/nunito"
-            android:textStyle="bold"
+            android:fontFamily="@font/nunito_extrabold"
             android:layout_marginLeft="35dp"
             android:textColor="@color/oceanblue"
             android:layout_marginTop="22dp"></TextView>

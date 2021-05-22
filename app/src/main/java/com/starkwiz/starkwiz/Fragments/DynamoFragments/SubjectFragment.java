@@ -382,7 +382,7 @@ import tourguide.tourguide.TourGuide;
                                             try {
                                                 JSONObject object = response.getJSONObject(j);
 
-                                                if (object.getString("plan_type").equals("Standard")){
+                                                if (object.getString("plan_type").equals("Standard") || object.getString("plan_type").equals("standard")){
                                                     txt_perprice.setText("Rs "+object.getString("plan_price_month")+" / per month");
                                                     txtplanprice.setText(object.getString("plan_price"));
                                                     txtplantype.setText(object.getString("plan_type"));
@@ -473,7 +473,7 @@ import tourguide.tourguide.TourGuide;
                                             try {
                                                 JSONObject object = response.getJSONObject(j);
 
-                                                if (object.getString("plan_type").equals("Premium")){
+                                                if (object.getString("plan_type").equals("Premium") || object.getString("plan_type").equals("premium")){
                                                     txt_perprice.setText("Rs "+object.getString("plan_price_month")+"/ per month");
                                                     txtplanprice.setText(object.getString("plan_price"));
                                                     txtplantype.setText(object.getString("plan_type"));
@@ -751,6 +751,8 @@ import tourguide.tourguide.TourGuide;
 
                                     int total = CoreSubject.size()+ExtraSubject.size()+FeatureSubject.size();
 
+                                    Log.d("total",CoreSubject.toString());
+
 
 
                                     if (PlanType.equals("Basic") && total==6){
@@ -874,7 +876,7 @@ import tourguide.tourguide.TourGuide;
 
                                         for ( int k = 0 ; k<ExtraSubject.size();k++){
 
-                                            String ExtraSub_Id = ExtraSubject.get(k).getSubjectId();
+                                            String ExtraSub_Id   = ExtraSubject.get(k).getSubjectId();
                                             String ExtraSub_name = ExtraSubject.get(k).getSubjectname();
                                             String ExtraSub_type = ExtraSubject.get(k).getSubjecttype();
 
@@ -975,11 +977,11 @@ import tourguide.tourguide.TourGuide;
 
                                     else {
 
-                                        if (PlanType.equals("Basic") && list_subjects.size()<6){
+                                        if (PlanType.equals("Basic") && list_subjects.size()<6 || list_subjects.size()>6){
                                             Toast.makeText(getActivity(), "Please Choose 6 Subjects", Toast.LENGTH_SHORT).show();
-                                        }else if (PlanType.equals("Standard") && list_subjects.size()<9){
+                                        }else if (PlanType.equals("Standard") && list_subjects.size()<9 || list_subjects.size()>9){
                                             Toast.makeText(getActivity(), "Please Choose 9 Subjects", Toast.LENGTH_SHORT).show();
-                                        }else if (PlanType.equals("Premium") && list_subjects.size()<12){
+                                        }else if (PlanType.equals("Premium") && list_subjects.size()<12 || list_subjects.size()>12){
                                             Toast.makeText(getActivity(), "Please Choose 12 Subjects", Toast.LENGTH_SHORT).show();
                                         }
 
@@ -1029,7 +1031,7 @@ import tourguide.tourguide.TourGuide;
                     if (status.equals("success")){
 
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
-
+                        GetSubjects();
 
                     }
                 } catch (JSONException e) {

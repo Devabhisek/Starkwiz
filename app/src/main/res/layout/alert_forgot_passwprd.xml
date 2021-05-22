@@ -135,7 +135,7 @@
                 android:textSize="16dp"
                 android:maxLength="6"
                 android:inputType="textEmailAddress"
-                android:hint="starkwiz2021@gmail.com"
+                android:hint="Enter OTP here"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"
                 android:backgroundTint="@android:color/holo_blue_light"></EditText>
@@ -168,7 +168,7 @@
                 android:textSize="16dp"
                 android:enabled="false"
                 android:inputType="textPassword"
-                android:hint="starkwiz2021@gmail.com"
+                android:hint="Enter new password"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"
                 android:backgroundTint="@android:color/holo_blue_light"></EditText>
@@ -201,7 +201,7 @@
                 android:inputType="textPassword"
                 android:layout_below="@+id/txt_belowtypeofuser"
                 android:textSize="16dp"
-                android:hint="starkwiz2021@gmail.com"
+                android:hint="Confirm Password"
                 android:textColorHint="#bebebe"
                 android:textColor="@color/black"
                 android:backgroundTint="@android:color/holo_blue_light"></EditText>

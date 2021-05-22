@@ -77,9 +77,9 @@
         android:background="@color/white"
         app:tabTextColor="@color/black"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorColor="@color/theme_blue"
-        app:tabIndicatorFullWidth="false"
-        android:layout_marginTop="35dp">
+        app:tabIndicatorFullWidth="false">
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/spalshimg"
-        android:layout_width="330dp"
+        android:layout_width="260dp"
         android:layout_height="160dp"
-        android:src="@mipmap/splash"
+        android:src="@mipmap/secondsplash"
         android:layout_marginTop="175dp"
         android:layout_centerHorizontal="true"></ImageView>
 

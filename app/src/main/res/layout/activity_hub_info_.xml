@@ -14,8 +14,8 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="330dp"
-            android:layout_height="80dp"
+            android:layout_width="220dp"
+            android:layout_height="160dp"
             android:src="@mipmap/secondsplash"
             android:layout_gravity="center"
             android:layout_marginTop="11dp"></ImageView>
@@ -28,7 +28,7 @@
             android:textColor="@color/oceanblue"
             android:textStyle="bold"
             android:layout_marginTop="55dp"
-            android:layout_marginLeft="16dp"></TextView>
+            android:layout_marginLeft="32dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,15 +36,15 @@
             android:text="Let people know your Hub"
             android:textColor="@color/theme_blue"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"></TextView>
+            android:layout_marginLeft="32dp"></TextView>
 
 
         <EditText
             android:id="@+id/et_hubinfo_name"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/round_textview"
             android:hint="Name"
             android:paddingLeft="11dp"
@@ -56,8 +56,8 @@
             android:id="@+id/et_hubinfo_address"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/round_textview"
             android:hint="Full Address"
             android:paddingLeft="11dp"
@@ -92,8 +92,8 @@
             android:id="@+id/et_hubinfo_yearestablishment"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/round_textview"
             android:hint="Year of Establishment"
             android:gravity="center_vertical"

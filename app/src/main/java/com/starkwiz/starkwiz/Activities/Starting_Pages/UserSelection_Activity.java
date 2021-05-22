@@ -41,11 +41,7 @@ public class UserSelection_Activity extends AppCompatActivity {
 
         btn_userselection.setEnabled(false);
 
-        try {
-            newaccount = getIntent().getExtras().getString("newaccount");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
 
 
         txt_userselection_student.setOnClickListener(new View.OnClickListener() {
@@ -350,8 +346,14 @@ public class UserSelection_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        if (newaccount.equals("newaccount")){
-            startActivity(new Intent(UserSelection_Activity.this, SettingActivity.class));
+        try {
+            newaccount = getIntent().getExtras().getString("newaccount");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (newaccount!=null && newaccount.equals("newaccount")){
+            startActivity(new Intent(UserSelection_Activity.this, Dasboard_Activity.class));
             overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         }else {
 

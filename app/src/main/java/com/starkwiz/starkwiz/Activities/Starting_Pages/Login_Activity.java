@@ -299,11 +299,13 @@ public class Login_Activity extends AppCompatActivity {
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
                         if (!obj.getString("role").equals("Hub")){
                             Toast.makeText(Login_Activity.this, "Welcome "+obj.getString("first_name")+" "+obj.getString("last_name"), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Login_Activity.this, Dasboard_Activity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                         }
-                        Intent intent = new Intent(Login_Activity.this, Dasboard_Activity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
                     }else {
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(modelClass);
                         Intent intent = new Intent(Login_Activity.this, Dasboard_Activity.class);
                         intent.putExtra("role",obj.getString("role"));
                         startActivity(intent);

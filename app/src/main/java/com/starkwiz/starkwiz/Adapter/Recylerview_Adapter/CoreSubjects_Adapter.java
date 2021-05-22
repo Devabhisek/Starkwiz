@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,11 +55,10 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
 
             holder.chk_subject.setText(Core_Subjectbyplans_ModelClass.getSubject_name());
 
-
-            holder.chk_subject.setOnClickListener(new View.OnClickListener() {
+            holder.chk_subject.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View view) {
-                    if (holder.chk_subject.isChecked()){
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (compoundButton.isChecked()){
 
                         SharedPreferences sharedPreferences = context.getSharedPreferences("USER", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor1 = sharedPreferences.edit();
@@ -87,9 +87,14 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
                         editor.putString("Set",json );
                         editor.commit();
 
-                    }else {
+                    }else if (!compoundButton.isChecked()){
+                        for (int i =0;i<arrPackage_Core.size();i++){
 
-                        arrPackage_Core.remove(Core_Subjectbyplans_ModelClass.getSubject_name());
+                            if (arrPackage_Core.get(i).getSubjectname()==Core_Subjectbyplans_ModelClass.getSubject_name()){
+
+                                arrPackage_Core.remove(i);
+                            }
+                        }
 
                         Gson gson = new Gson();
                         String json = gson.toJson(arrPackage_Core);
@@ -100,12 +105,61 @@ public class CoreSubjects_Adapter extends RecyclerView.Adapter<CoreSubjects_Adap
                         editor.putString("Set",json );
                         editor.commit();
                     }
-
-
-
-
                 }
             });
+
+
+//            holder.chk_subject.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (holder.chk_subject.isChecked()){
+//
+//                        SharedPreferences sharedPreferences = context.getSharedPreferences("USER", Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+//                        editor1.clear();
+//                        editor1.apply();
+//
+//                        Core_ModelClass core_modelClass= new Core_ModelClass(Core_Subjectbyplans_ModelClass.getId(),
+//                                Core_Subjectbyplans_ModelClass.getSubject_name(),
+//                                Core_Subjectbyplans_ModelClass.getSubject_type());
+//
+//                        arrPackage_Core.add(core_modelClass);
+//
+//                        HashSet hs = new HashSet();
+//
+//                        hs.addAll(arrPackage_Core); // demoArrayList= name of arrayList from which u want to remove duplicates
+//
+//                        arrPackage_Core.clear();
+//                        arrPackage_Core.addAll(hs);
+//
+//                        Gson gson = new Gson();
+//                        String json = gson.toJson(arrPackage_Core);
+//                        Log.d("json",json);
+//
+//                        sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("Set",json );
+//                        editor.commit();
+//
+//                    }else {
+//
+//                        arrPackage_Core.remove(Core_Subjectbyplans_ModelClass.getSubject_name());
+//
+//                        Gson gson = new Gson();
+//                        String json = gson.toJson(arrPackage_Core);
+//                        Log.d("js",json);
+//
+//                        sharedPreferences=context.getSharedPreferences("USER",MODE_PRIVATE) ;
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("Set",json );
+//                        editor.commit();
+//                    }
+//
+//
+//
+//
+//                }
+//            });
 
 
 

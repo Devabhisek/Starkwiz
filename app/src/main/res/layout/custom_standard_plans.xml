@@ -45,7 +45,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="\n qCustomize your selected subject\nDynamos as per your requirment"></TextView>
+        android:text="\n Customize your selected subject\nDynamos as per your requirment"></TextView>
 
     </LinearLayout>
 

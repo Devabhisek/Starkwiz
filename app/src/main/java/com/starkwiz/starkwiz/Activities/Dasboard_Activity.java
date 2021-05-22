@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -159,25 +160,52 @@ public class Dasboard_Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-                final androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(Dasboard_Activity.this)
-                .setMessage("Are you sure you want to Exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }
-                });
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog alert11 = alertDialog.create();
-        alert11.show();
+        final Fragment fragmentInFrame = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (fragmentInFrame instanceof Profile_Activity) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof ParentProfile_Fragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof Teacher_Profile_Fragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof HubProfile_Fragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof DynamoFragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof FollowingFragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof Hub_UserSelection_Fragment) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShowCaseFragment()).commit();
+            getFragmentManager().popBackStack();
+        }else if (fragmentInFrame instanceof ShowCaseFragment) {
+            final androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(Dasboard_Activity.this)
+                    .setMessage("Are you sure you want to Exit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog alert11 = alertDialog.create();
+            alert11.show();
+        }
+
+
     }
 
 

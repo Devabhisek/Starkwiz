@@ -14,10 +14,11 @@
 
     <ImageView
         android:id="@+id/welcomeimg"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
         android:src="@mipmap/secondsplash"
-        android:layout_centerHorizontal="true"></ImageView>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"></ImageView>
 
     <LinearLayout
         android:id="@+id/relative"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="60dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/welcomeimg">
 
         <TextView

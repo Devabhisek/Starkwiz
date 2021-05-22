@@ -165,7 +165,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:text="  Fariend Requests"
+            android:text="  Friend Requests"
             android:textColor="@color/black"
             android:buttonTint="@color/theme_blue"
             android:layout_marginLeft="22dp"
