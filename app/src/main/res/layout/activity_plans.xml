@@ -65,7 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito"
-        android:text="Choose a suitable plan.\nWelcome to Starkwiz !"
         android:textColor="@color/theme_blue"
         android:layout_marginLeft="49dp"
         android:layout_marginBottom="8dp"

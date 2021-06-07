@@ -1,6 +1,7 @@
  package com.starkwiz.starkwiz.Fragments.DynamoFragments;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -45,11 +46,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+import com.starkwiz.starkwiz.Activities.Payment_Activity;
 import com.starkwiz.starkwiz.Activities.Quiz_Activities.Student_Quiz_Activity;
 import com.starkwiz.starkwiz.Adapter.GridAdapter.Getsubject_GridViewAdapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.CoreSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.FeaturedSubjects_Adapter;
+import com.starkwiz.starkwiz.LinkingClass.AlertBoxClasses;
 import com.starkwiz.starkwiz.LinkingClass.MySingleton;
 import com.starkwiz.starkwiz.LinkingClass.SharedPrefManager;
 import com.starkwiz.starkwiz.LinkingClass.URLS;
@@ -75,15 +80,15 @@ import java.util.Map;
 import tourguide.tourguide.TourGuide;
 
 
- public class SubjectFragment extends Fragment {
+ public class SubjectFragment extends Fragment  {
 
 
     RelativeLayout rl_addsubject;
     LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
             linear_premiumtype,core,extra,feature,linear_coretype,linear_extratype,linear_featuretype;
     TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
-            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth;
-    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price;
+            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth,txt_studenttype;
+    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price,json,testCount,Amount;
     Button btn_plans,btn_subjectproceed;
     ArrayList<Core_Subjectbyplans_ModelClass>list_coresubjects;
     ArrayList<Extra_Subjectplan_ModelClass>list_extrasubjects;
@@ -136,6 +141,8 @@ import tourguide.tourguide.TourGuide;
 
         User_Id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
+        CheckFirstRegister(User_Id);
+
 
 
 
@@ -164,6 +171,7 @@ import tourguide.tourguide.TourGuide;
                 txtplanvalidity = dialog.findViewById(R.id.txtplanvalidity);
                 txt_perprice = dialog.findViewById(R.id.txt_perprice);
                 btn_plans = dialog.findViewById(R.id.btn_plans);
+                txt_studenttype = dialog.findViewById(R.id.txt_studenttype);
                 btn_plans.setEnabled(false);
 
                 img_cross.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +180,12 @@ import tourguide.tourguide.TourGuide;
                         dialog.dismiss();
                     }
                 });
+
+                if (testCount.equals("0")){
+                    txt_studenttype.setText("Your first Dynamo is free.");
+                }else {
+                    txt_studenttype.setText("Choose a suitable plan. \n Welcome to Starkwiz !");
+                }
 
                 LayoutInflater inflater = LayoutInflater
                         .from(getActivity());
@@ -555,6 +569,10 @@ import tourguide.tourguide.TourGuide;
                         img_cross_subjects = dialog.findViewById(R.id.img_cross_subjects);
                         txt_studenttype = dialog.findViewById(R.id.txt_studenttype);
 
+                        if (testCount.equals("0")){
+                            btn_subjectproceed.setText("Free");
+                        }
+
                         if (PlanType.equals("Basic")){
 
                             txt_studenttype.setText("Choose any 6 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
@@ -572,6 +590,8 @@ import tourguide.tourguide.TourGuide;
 
                             txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             txt_disciuntprice.setText(discounted_price);
+
+                            Amount=discounted_price;
 
                             discount_month = Integer.parseInt(discounted_price)/12;
 
@@ -819,13 +839,24 @@ import tourguide.tourguide.TourGuide;
 
                                         Log.d("Extra_selectedvalue",list_subjects.toString());
 
-                                        Gson gson = new Gson();
-                                            String json = gson.toJson(list_subjects);
+                                             Gson gson = new Gson();
+                                             json = gson.toJson(list_subjects);
                                             Log.d("extra_js",json);
 
+                                        if (testCount.equals("0")){
                                             InsertSubjects(json);
-                                             GetSubjects();
-                                             CreateNotification(User_Id,"Your Dynamo has been created.");
+                                        }else {
+                                            Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                            intent.putExtra("json",json);
+                                            intent.putExtra("Amount",Amount);
+                                            intent.putExtra("plan_type",PlanType);
+                                            intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                            startActivity(intent);
+                                        }
+
+
+
+
                                             dialog.dismiss();
 
                                     }
@@ -894,12 +925,23 @@ import tourguide.tourguide.TourGuide;
                                         Log.d("Extra_selectedvalue",list_subjects.toString());
 
                                         Gson gson = new Gson();
-                                        String json = gson.toJson(list_subjects);
+                                        json = gson.toJson(list_subjects);
                                         Log.d("extra_js",json);
 
-                                        InsertSubjects(json);
-                                        GetSubjects();
-                                        CreateNotification(User_Id,"Your Dynamo has been created.");
+                                        if (testCount.equals("0")){
+                                            InsertSubjects(json);
+                                        }else {
+                                            Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                            intent.putExtra("json",json);
+                                            intent.putExtra("Amount",Amount);
+                                            intent.putExtra("plan_type",PlanType);
+                                            intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                            startActivity(intent);
+                                        }
+
+
+
+
                                         dialog.dismiss();
                                     }else if (PlanType.equals("Premium") && total==12){
 
@@ -966,12 +1008,24 @@ import tourguide.tourguide.TourGuide;
                                         Log.d("Extra_selectedvalue",list_subjects.toString());
 
                                         Gson gson = new Gson();
-                                        String json = gson.toJson(list_subjects);
+                                        json = gson.toJson(list_subjects);
                                         Log.d("extra_js",json);
 
-                                        InsertSubjects(json);
-                                        GetSubjects();
-                                        CreateNotification(User_Id,"Your Dynamo has been created.");
+                                        if (testCount.equals("0")){
+                                            InsertSubjects(json);
+                                        }else {
+                                            Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                            intent.putExtra("json",json);
+                                            intent.putExtra("Amount",Amount);
+                                            intent.putExtra("plan_type",PlanType);
+                                            intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                            startActivity(intent);
+
+                                        }
+
+
+
+
                                         dialog.dismiss();
                                     }
 
@@ -1026,12 +1080,14 @@ import tourguide.tourguide.TourGuide;
                 progressDialog.dismiss();
 
                 try {
-                    String status = response.getString("success");
+                    String status = response.getString("status");
 
                     if (status.equals("success")){
 
+                        list_subjects.clear();
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
                         GetSubjects();
+                        CreateNotification(User_Id,"Your Dynamo has been created.");
 
                     }
                 } catch (JSONException e) {
@@ -1190,6 +1246,7 @@ import tourguide.tourguide.TourGuide;
     public void onStart() {
         super.onStart();
 
+
         GetSubjects();
     }
 //
@@ -1258,7 +1315,48 @@ import tourguide.tourguide.TourGuide;
          notificationManager.notify(1, notificationBuilder.build());
      }
 
-}
+
+
+     private void CheckFirstRegister(String Userid){
+
+         ProgressDialog dialog = new ProgressDialog(getActivity());
+         dialog.setMessage("Loading...");
+         dialog.setCancelable(false);
+         dialog.show();
+
+         StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                 "https://rentopool.com/starkwiz/api/auth/countuser?user_id=" + User_Id,
+                 new Response.Listener<String>() {
+                     @Override
+                     public void onResponse(String response) {
+
+                         dialog.dismiss();
+                         try {
+                             JSONObject object = new JSONObject(response);
+
+                             testCount = object.getString("testCount");
+
+
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
+
+
+                     }
+                 }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+
+                 dialog.dismiss();
+
+             }
+         });
+
+         MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
+     }
+
+
+ }
 
 
 

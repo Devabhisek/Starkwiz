@@ -84,7 +84,7 @@ public class InfoFragment extends Fragment {
     RecyclerView lv_interest,lv_editinterest;
     ImageView profile_img_one,profile_img_two,profile_img_three,profile_img_four,profile_img_five,profile_img_six,
             img_profile_one,img_profile_two,img_profile_three,img_profile_four,img_profile_five,img_profile_six;
-    Bitmap bitmap_one;
+    Bitmap bitmap_one,bitmap_two,bitmap_three,bitmap_four,bitmap_five,bitmap_six;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -374,13 +374,9 @@ public class InfoFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE) {
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                bitmap_one = BitmapFactory.decodeStream(imageStream);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap_one = Bitmap.createScaledBitmap(bitmap_one, 500, 750, true);
-                bitmap_one.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
-                byte[] img = baos.toByteArray();
+
+
+
 
 
 
@@ -392,24 +388,79 @@ public class InfoFragment extends Fragment {
 
 
                 if (profile_image_one.equals("imageone")){
+
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                    bitmap_one = BitmapFactory.decodeStream(imageStream);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap_one = Bitmap.createScaledBitmap(bitmap_one, 500, 750, true);
+                    bitmap_one.compress(Bitmap.CompressFormat.PNG, 80, baos); //bm is the bitmap object
+                    byte[] img = baos.toByteArray();
+
+
                     profile_img_one.setImageBitmap(bitmap_one);
                     Image_One = Base64.encodeToString(img, Base64.DEFAULT);
                 }
                 else if (profile_image_two.equals("imagetwo")){
-                    profile_img_two.setImageBitmap(bitmap_one);
-                    Image_Two = Base64.encodeToString(img, Base64.DEFAULT);
+
+                    final Uri imageUri2 = data.getData();
+                    final InputStream imageStream2 = getActivity().getContentResolver().openInputStream(imageUri2);
+                    bitmap_two = BitmapFactory.decodeStream(imageStream2);
+                    ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+                    bitmap_two = Bitmap.createScaledBitmap(bitmap_two, 500, 750, true);
+                    bitmap_two.compress(Bitmap.CompressFormat.PNG, 80, baos2); //bm is the bitmap object
+                    byte[] img2 = baos2.toByteArray();
+
+                    profile_img_two.setImageBitmap(bitmap_two);
+                    Image_Two = Base64.encodeToString(img2, Base64.DEFAULT);
                 }else if (profile_image_three.equals("imagethree")){
-                    profile_img_three.setImageBitmap(bitmap_one);
-                    Image_Three = Base64.encodeToString(img, Base64.DEFAULT);
+
+                    final Uri imageUri3 = data.getData();
+                    final InputStream imageStream3 = getActivity().getContentResolver().openInputStream(imageUri3);
+                    bitmap_three = BitmapFactory.decodeStream(imageStream3);
+                    ByteArrayOutputStream baos3 = new ByteArrayOutputStream();
+                    bitmap_three = Bitmap.createScaledBitmap(bitmap_three, 500, 750, true);
+                    bitmap_three.compress(Bitmap.CompressFormat.PNG, 80, baos3); //bm is the bitmap object
+                    byte[] img3 = baos3.toByteArray();
+
+                    profile_img_three.setImageBitmap(bitmap_three);
+                    Image_Three = Base64.encodeToString(img3, Base64.DEFAULT);
                 }else if (profile_image_four.equals("imagefour")){
-                    profile_img_four.setImageBitmap(bitmap_one);
-                    Image_Four = Base64.encodeToString(img, Base64.DEFAULT);
+
+                    final Uri imageUri4 = data.getData();
+                    final InputStream imageStream4 = getActivity().getContentResolver().openInputStream(imageUri4);
+                    bitmap_four = BitmapFactory.decodeStream(imageStream4);
+                    ByteArrayOutputStream baos4 = new ByteArrayOutputStream();
+                    bitmap_four = Bitmap.createScaledBitmap(bitmap_four, 500, 750, true);
+                    bitmap_four.compress(Bitmap.CompressFormat.PNG, 80, baos4); //bm is the bitmap object
+                    byte[] img4 = baos4.toByteArray();
+
+                    profile_img_four.setImageBitmap(bitmap_four);
+                    Image_Four = Base64.encodeToString(img4, Base64.DEFAULT);
                 }else if (profile_image_five.equals("imagefive")){
-                    profile_img_five.setImageBitmap(bitmap_one);
-                    Image_Five = Base64.encodeToString(img, Base64.DEFAULT);
+
+                    final Uri imageUri5 = data.getData();
+                    final InputStream imageStream5 = getActivity().getContentResolver().openInputStream(imageUri5);
+                    bitmap_five = BitmapFactory.decodeStream(imageStream5);
+                    ByteArrayOutputStream baos5 = new ByteArrayOutputStream();
+                    bitmap_five = Bitmap.createScaledBitmap(bitmap_five, 500, 750, true);
+                    bitmap_five.compress(Bitmap.CompressFormat.PNG, 80, baos5); //bm is the bitmap object
+                    byte[] img5 = baos5.toByteArray();
+
+                    profile_img_five.setImageBitmap(bitmap_five);
+                    Image_Five = Base64.encodeToString(img5, Base64.DEFAULT);
                 }else if (profile_image_six.equals("imagesix")) {
-                    profile_img_six.setImageBitmap(bitmap_one);
-                    Image_Six = Base64.encodeToString(img, Base64.DEFAULT);
+
+                    final Uri imageUri6 = data.getData();
+                    final InputStream imageStream6 = getActivity().getContentResolver().openInputStream(imageUri6);
+                    bitmap_six = BitmapFactory.decodeStream(imageStream6);
+                    ByteArrayOutputStream baos6 = new ByteArrayOutputStream();
+                    bitmap_six = Bitmap.createScaledBitmap(bitmap_six, 500, 750, true);
+                    bitmap_six.compress(Bitmap.CompressFormat.PNG, 80, baos6); //bm is the bitmap object
+                    byte[] img6 = baos6.toByteArray();
+
+                    profile_img_six.setImageBitmap(bitmap_six);
+                    Image_Six = Base64.encodeToString(img6, Base64.DEFAULT);
                 }
 
             } catch (Exception e) {

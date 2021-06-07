@@ -42,6 +42,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
+import com.starkwiz.starkwiz.Activities.Payment_Activity;
 import com.starkwiz.starkwiz.Adapter.GridAdapter.Getsubject_GridViewAdapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.CoreSubjects_Adapter;
 import com.starkwiz.starkwiz.Adapter.Recylerview_Adapter.ExtraSubjects_Adapter;
@@ -75,8 +76,8 @@ public class DynamoFragment extends Fragment {
     LinearLayout lineartype,basic,linear_basictype,standard,linear_standardtype,premium,lineardisciunt,
             linear_premiumtype,core,extra,feature,linear_coretype,linear_extratype,linear_featuretype;
     TextView txtplantype,txtplanprice,txtplanvalidity,txt_perprice,txt_disciuntprice,txt_disciuntpricemonth,
-            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth;
-    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price,Cls,User_Id;
+            txtplantype_subject,txtplanprice_subject,txtplanvalidity_subject,txt_perprice_subject,txt_fixturemonth,txt_studenttype;
+    String PlanType,PlanPrice,PlanPerMonth,PlanDuration,PlanDuarationType,discounted_price,Cls,User_Id,testCount,Amount,json;
     Button btn_plans,btn_subjectproceed;
     int discount_month;
     RecyclerView lv_subjectsplan,lv_subjectsplan_extra,lv_subjectsplan_feature;
@@ -117,11 +118,15 @@ public class DynamoFragment extends Fragment {
 
         User_Id = SharedPrefManager.getInstance(getActivity()).getUser().getId();
 
+        CheckFirstRegister(User_Id);
 
         btnselectsubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                list_coresubjects.clear();
+                list_featuresubjects.clear();
+                list_extrasubjects.clear();
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.activity_plans);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -141,6 +146,7 @@ public class DynamoFragment extends Fragment {
                 txtplanvalidity = dialog.findViewById(R.id.txtplanvalidity);
                 txt_perprice = dialog.findViewById(R.id.txt_perprice);
                 btn_plans = dialog.findViewById(R.id.btn_plans);
+                txt_studenttype = dialog.findViewById(R.id.txt_studenttype);
                 btn_plans.setEnabled(false);
 
                 img_cross.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +155,12 @@ public class DynamoFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
+
+                if (testCount.equals("0")){
+                    txt_studenttype.setText("Your first Dynamo is free.");
+                }else {
+                    txt_studenttype.setText("Choose a suitable plan. \n Welcome to Starkwiz !");
+                }
 
                 LayoutInflater inflater = LayoutInflater
                         .from(getActivity());
@@ -506,11 +518,12 @@ public class DynamoFragment extends Fragment {
                 btn_plans.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        dialog.dismiss();
                         final Dialog dialog = new Dialog(getActivity());
                         dialog.setContentView(R.layout.alert_subjectplan);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-                        TextView txt_disciuntprice,txt_disciuntpricemonth;
+                        TextView txt_disciuntprice,txt_disciuntpricemonth,txt_studenttype;
 
                         txtplantype_subject = dialog.findViewById(R.id.txtplantype);
                         txtplanprice_subject = dialog.findViewById(R.id.txtplanprice);
@@ -529,6 +542,20 @@ public class DynamoFragment extends Fragment {
                         linear_coretype = dialog.findViewById(R.id.linear_coretype);
                         linear_featuretype = dialog.findViewById(R.id.linear_featuretype);
                         img_cross_subjects = dialog.findViewById(R.id.img_cross_subjects);
+                        txt_studenttype = dialog.findViewById(R.id.txt_studenttype);
+
+                        if (testCount.equals("0")){
+                            btn_subjectproceed.setText("Free");
+                        }
+
+                        if (PlanType.equals("Basic")){
+
+                            txt_studenttype.setText("Choose any 6 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }else if (PlanType.equals("Standard")){
+                            txt_studenttype.setText("Choose any 9 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }else {
+                            txt_studenttype.setText("Choose any 12 subjects of your choice \nTry to select minimum 1 form each section \n Starkwiz !");
+                        }
 
 
 
@@ -538,6 +565,8 @@ public class DynamoFragment extends Fragment {
 
                             txtplanprice.setPaintFlags(txtplanprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             txt_disciuntprice.setText(discounted_price);
+
+                            Amount=discounted_price;
 
                             discount_month = Integer.parseInt(discounted_price)/12;
 
@@ -717,6 +746,8 @@ public class DynamoFragment extends Fragment {
 
                                 int total = CoreSubject.size()+ExtraSubject.size()+FeatureSubject.size();
 
+                                Log.d("total",CoreSubject.toString());
+
 
 
                                 if (PlanType.equals("Basic") && total==6){
@@ -784,10 +815,22 @@ public class DynamoFragment extends Fragment {
                                     Log.d("Extra_selectedvalue",list_subjects.toString());
 
                                     Gson gson = new Gson();
-                                    String json = gson.toJson(list_subjects);
+                                    json = gson.toJson(list_subjects);
                                     Log.d("extra_js",json);
-                                    CreateNotification(User_Id,"Your Dynamo has been created.");
-                                    InsertSubjects(json);
+
+                                    if (testCount.equals("0")){
+                                        InsertSubjects(json);
+                                    }else {
+                                        Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                        intent.putExtra("json",json);
+                                        intent.putExtra("Amount",Amount);
+                                        intent.putExtra("plan_type",PlanType);
+                                        intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                        startActivity(intent);
+
+                                    }
+
+
                                     dialog.dismiss();
 
                                 }
@@ -838,7 +881,7 @@ public class DynamoFragment extends Fragment {
 
                                     for ( int k = 0 ; k<ExtraSubject.size();k++){
 
-                                        String ExtraSub_Id = ExtraSubject.get(k).getSubjectId();
+                                        String ExtraSub_Id   = ExtraSubject.get(k).getSubjectId();
                                         String ExtraSub_name = ExtraSubject.get(k).getSubjectname();
                                         String ExtraSub_type = ExtraSubject.get(k).getSubjecttype();
 
@@ -856,13 +899,24 @@ public class DynamoFragment extends Fragment {
                                     Log.d("Extra_selectedvalue",list_subjects.toString());
 
                                     Gson gson = new Gson();
-                                    String json = gson.toJson(list_subjects);
+                                    json = gson.toJson(list_subjects);
                                     Log.d("extra_js",json);
-                                    CreateNotification(User_Id,"Your Dynamo has been created.");
-                                    InsertSubjects(json);
+
+                                    if (testCount.equals("0")){
+                                        InsertSubjects(json);
+                                    }else {
+                                        Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                        intent.putExtra("json",json);
+                                        intent.putExtra("Amount",Amount);
+                                        intent.putExtra("plan_type",PlanType);
+                                        intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                        startActivity(intent);
+
+                                    }
+
+
                                     dialog.dismiss();
-                                }
-                                else if (PlanType.equals("Premium") && total==12){
+                                }else if (PlanType.equals("Premium") && total==12){
 
                                     Log.d("coresub", String.valueOf(CoreSubject));
                                     Log.d("extrasub", String.valueOf(ExtraSubject));
@@ -927,20 +981,33 @@ public class DynamoFragment extends Fragment {
                                     Log.d("Extra_selectedvalue",list_subjects.toString());
 
                                     Gson gson = new Gson();
-                                    String json = gson.toJson(list_subjects);
+                                    json = gson.toJson(list_subjects);
                                     Log.d("extra_js",json);
-                                    CreateNotification(User_Id,"Your Dynamo has been created.");
-                                    InsertSubjects(json);
+
+                                    if (testCount.equals("0")){
+                                        InsertSubjects(json);
+                                    }else {
+                                        Intent intent = new Intent(getActivity(), Payment_Activity.class);
+                                        intent.putExtra("json",json);
+                                        intent.putExtra("Amount",Amount);
+                                        intent.putExtra("plan_type",PlanType);
+                                        intent.putExtra("duration",PlanDuration+" "+PlanDuarationType);
+                                        startActivity(intent);
+
+                                    }
+
+
+
                                     dialog.dismiss();
                                 }
 
                                 else {
 
-                                    if (PlanType.equals("Basic")){
+                                    if (PlanType.equals("Basic") && list_subjects.size()<6 || list_subjects.size()>6){
                                         Toast.makeText(getActivity(), "Please Choose 6 Subjects", Toast.LENGTH_SHORT).show();
-                                    }else if (PlanType.equals("Standard")){
+                                    }else if (PlanType.equals("Standard") && list_subjects.size()<9 || list_subjects.size()>9){
                                         Toast.makeText(getActivity(), "Please Choose 9 Subjects", Toast.LENGTH_SHORT).show();
-                                    }else if (PlanType.equals("Premium")){
+                                    }else if (PlanType.equals("Premium") && list_subjects.size()<12 || list_subjects.size()>12){
                                         Toast.makeText(getActivity(), "Please Choose 12 Subjects", Toast.LENGTH_SHORT).show();
                                     }
 
@@ -1007,11 +1074,13 @@ public class DynamoFragment extends Fragment {
                 progressDialog.dismiss();
 
                 try {
-                    String status = response.getString("success");
+                    String status = response.getString("status");
 
                     if (status.equals("success")){
 
+                        list_subjects.clear();
                         Toast.makeText(getActivity(), "Saved Successfully", Toast.LENGTH_SHORT).show();
+                        CreateNotification(User_Id,"Your Dynamo has been created.");
 
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SubjectFragment()).commit();
@@ -1115,5 +1184,42 @@ public class DynamoFragment extends Fragment {
         Volley.newRequestQueue(getActivity()).add(jsonRequest);
     }
 
+    private void CheckFirstRegister(String Userid){
+
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://rentopool.com/starkwiz/api/auth/countuser?user_id=" + User_Id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        dialog.dismiss();
+                        try {
+                            JSONObject object = new JSONObject(response);
+
+                            testCount = object.getString("testCount");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+        MySingleton.getInstance(getActivity()).addToRequestque(stringRequest);
+    }
 
 }

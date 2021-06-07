@@ -94,7 +94,7 @@ public class FeaturedSubjects_Adapter extends RecyclerView.Adapter<FeaturedSubje
                                 arrPackage.remove(i);
                             }
                         }
-                       
+
 
                         Gson gson = new Gson();
                         String json = gson.toJson(arrPackage);
